@@ -268,7 +268,8 @@
       </div>
     </div>
     <div class="fdisc">
-      <b style="color:var(--y)">Gebruik voor eigen rekening en risico.</b> Alle materialen, teksten, tools, rekentools en links in deze bibliotheek worden zonder garantie (“as is”) ter beschikking gesteld. Gebruik is volledig voor eigen rekening en risico van de gebruiker. Blinqx en partners aanvaarden geen aansprakelijkheid voor schade die voortvloeit uit het gebruik ervan. De adviseur blijft zelf verantwoordelijk voor juistheid, actualiteit en passendheid van communicatie richting klanten en voor naleving van Wft, AFM-regels en AVG. <a href="#/disclaimer">Volledige disclaimer</a>.
+      <p id="f-ask" hidden style="margin:0 0 12px"><a class="btn btn-y btn-sm" href="#/vraag">Vraag over dit item →</a></p>
+      <b style="color:var(--y)">Gebruik voor eigen rekening en risico.</b> Alles in deze bibliotheek wordt zonder garantie ter beschikking gesteld. Jij bent zelf verantwoordelijk voor controle, passend gebruik richting klanten en naleving van Wft, AFM-regels en AVG. <a href="#/disclaimer">Lees de volledige disclaimer</a>.
     </div>
     <div class="fbottom"><span>© 2026 Blinqx Verzekering &amp; Hypotheek</span><span>Een activiteit van Blinqx Verzekering &amp; Hypotheek</span><span>Tarieven premium-onderdelen: op aanvraag, tenzij anders vermeld</span></div>
   </div>
@@ -1033,7 +1034,7 @@ const app=$("#app"), hero=$("#hero");
 const setNav = k => $$(".nav a").forEach(a=>a.classList.toggle("active", a.dataset.nav===k));
 const badge = m => `<span class="badge ${m}">${MODELS[m]}</span>`;
 const catOf = id => CATS.find(c=>c.id===id);
-const DISC_SHORT = `<section class="disc compact" role="note"><h2>Gebruik voor eigen rekening en risico</h2><p>Alles in deze bibliotheek wordt zonder garantie ter beschikking gesteld. Jij bent zelf verantwoordelijk voor controle, passend gebruik richting klanten en naleving van Wft, AFM-regels en AVG. <a href="#/disclaimer">Lees de volledige disclaimer</a>.</p></section>`;
+const DISC_SHORT = ""; // staat alleen nog in de footer
 
 function smallHero(crumbs, inner){
   hero.innerHTML = `<section class="hero small"><div class="wrap">
@@ -1146,7 +1147,7 @@ function viewNewsletter(item){
   smallHero([`<a href="#/?cat=content">Content &amp; campagnes</a>`, `<b>${esc(item.title)}</b>`], `
     <div class="detail-head"><div>${badge(item.model)} <span class="badge cat">Nieuwsbrief</span>
       <h1>${esc(item.title)}</h1><p>${esc(item.summary)} Bijgewerkt: ${esc(item.updated)}.</p></div>
-      <div class="btns"><a class="btn btn-k" href="#/vraag?item=${item.id}">Vraag over dit item</a></div></div>`);
+      <div class="btns"></div></div>`);
   const d=state.nb;
   app.innerHTML = `<div class="wrap">${DISC_SHORT}
     <div class="layout">
@@ -1248,7 +1249,7 @@ function viewItem(item){
   smallHero([`<a href="#/?cat=${c.id}">${esc(c.title)}</a>`, `<b>${esc(item.title)}</b>`], `
     <div class="detail-head"><div>${badge(item.model)} <span class="badge cat">${esc(c.title)}</span>
       <h1>${esc(item.title)}</h1><p>${esc(item.summary)}</p></div>
-      <div class="btns">${mainUrl?`<a class="btn btn-k" href="${esc(mainUrl)}" target="_blank" rel="noopener">Openen ↗</a>`:""}<a class="btn btn-o" href="#/vraag?item=${item.id}">Vraag over dit item</a></div></div>`);
+      <div class="btns">${mainUrl?`<a class="btn btn-k" href="${esc(mainUrl)}" target="_blank" rel="noopener">Openen ↗</a>`:""}</div></div>`);
 
   const priceBlock = (item.free||item.premium) ? `<div class="panel cut"><h2>${item.premium?"Wat is gratis, wat niet?":"Wat is gratis?"}</h2>
     <div class="pricing" ${item.premium?"":'style="grid-template-columns:1fr"'}>
@@ -2053,7 +2054,7 @@ function viewCampagne(item){
   smallHero([`<a href="#/?cat=campagnes">Campagnes &amp; selecties</a>`, `<b>${esc(c.short)}</b>`], `
     <div class="detail-head"><div>${badge(item.model)} <span class="badge cat">Campagne</span>
       <h1>${esc(c.title)}</h1><p>${esc(c.summary)}</p></div>
-      <div class="btns"><a class="btn btn-k" href="#/item/portefeuillesignalen">Selectie draaien in PortefeuilleSignalen</a><a class="btn btn-o" href="#/vraag?item=${item.id}">Vraag over deze campagne</a></div></div>`);
+      <div class="btns"><a class="btn btn-k" href="#/item/portefeuillesignalen">Selectie draaien in PortefeuilleSignalen</a></div></div>`);
   app.innerHTML = `<div class="wrap">${DISC_SHORT}<div class="layout">
     <aside class="sticky">
       <div class="panel cut"><h2>Voor welke doelgroep?</h2><ul class="feat">${c.doelgroep.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
@@ -2078,7 +2079,7 @@ function viewSelectie(item){
   smallHero([`<a href="#/?cat=campagnes">Campagnes &amp; selecties</a>`, `<b>${esc(s.title)}</b>`], `
     <div class="detail-head"><div>${badge(item.model)} <span class="badge cat">Selectie</span>${s.historisch?` <span class="badge betaald">Historisch</span>`:""}
       <h1>${esc(s.title)}</h1></div>
-      <div class="btns"><a class="btn btn-k" href="#/item/portefeuillesignalen">Alle selecties</a><a class="btn btn-o" href="#/vraag?item=${item.id}">Vraag over deze selectie</a></div></div>`);
+      <div class="btns"><a class="btn btn-k" href="#/item/portefeuillesignalen">Alle selecties</a></div></div>`);
   app.innerHTML = `<div class="wrap">${DISC_SHORT}<div class="layout">
     <aside class="sticky">
       <div class="pricing" style="grid-template-columns:1fr;margin-bottom:18px"><div class="pbox free"><b>Gratis</b><div class="p">Idee en aanpak</div></div>
@@ -2165,6 +2166,8 @@ function viewVraag(params){
 
 /* ---------- Router ---------- */
 function route(){
+  { const m = (location.hash.match(/^#\/item\/([^?]+)/)||[])[1], fa = document.getElementById("f-ask");
+    if (fa){ fa.hidden = !m; if (m) fa.querySelector("a").href = "#/vraag?item=" + m; } }
   const raw=location.hash.replace(/^#/,"")||"/", [path,qs]=raw.split("?"), params=new URLSearchParams(qs||"");
   if (path.startsWith("/item/")){
     const item=ITEMS.find(i=>i.id===path.slice(6));
