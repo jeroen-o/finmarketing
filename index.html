@@ -311,7 +311,9 @@
     </div>
     <div class="fdisc">
       <p id="f-ask" hidden style="margin:0 0 12px"><a class="btn btn-y btn-sm" href="#/vraag">Vraag over dit item →</a></p>
-      <b style="color:var(--y)">Gebruik voor eigen rekening en risico.</b> Alles in deze bibliotheek wordt zonder garantie ter beschikking gesteld. Jij bent zelf verantwoordelijk voor controle, passend gebruik richting klanten en naleving van Wft, AFM-regels en AVG. <a href="#/disclaimer">Lees de volledige disclaimer</a>.
+      <h3 style="color:var(--y);font-size:1.05rem;margin-bottom:8px">Gebruik volledig voor eigen rekening en risico</h3>
+      <p>Alle materialen, teksten, tools, rekentools en links op deze site worden kosteloos en zonder enige garantie (“as is”) ter beschikking gesteld door Blinqx Verzekering &amp; Hypotheek en partners. Gebruik is volledig voor eigen rekening en risico. Blinqx en partners zijn niet aansprakelijk voor schade door het gebruik, ook niet bij onjuiste of verouderde informatie.</p>
+      <p style="margin:0">Jij blijft als adviseur zelf verantwoordelijk voor de juistheid, actualiteit en passendheid van alles wat je richting klanten communiceert, en voor naleving van Wft, AFM-regels (wervende communicatie, zorgplicht) en AVG. Materialen zijn algemene informatie, geen (financieel) advies. Laat teksten toetsen door je compliance officer. <a href="#/disclaimer">Volledige disclaimer →</a></p>
     </div>
     <div class="fbottom"><span>© 2026 Blinqx Verzekering &amp; Hypotheek</span><span>Een activiteit van Blinqx Verzekering &amp; Hypotheek</span><span>Tarieven premium-onderdelen: op aanvraag, tenzij anders vermeld</span></div>
   </div>
@@ -549,6 +551,15 @@ const ITEMS = [
     compliance:"Berekeningen zijn indicatief; de werkelijke rente na de rentevaste periode kan afwijken." },
 
   /* ---------- Leads & vindbaarheid ---------- */
+  { id:"websitetools-2-maanden", cat:"leads", kind:"item", model:"freemium",
+    title:"Websitetools: twee maanden gratis", by:"Blinqx V&H", url:"https://verzekeringhypotheek.blinqx.tech/partners/rekentools-voor-op-de-website",
+    summary:"Rekentools voor je eigen website, in je eigen huisstijl: van websitebezoeker naar afspraak. De eerste twee maanden gratis.",
+    free:["Twee maanden gratis gebruik","Tools in je eigen huisstijl op je website"],
+    premium:["Doorlopend gebruik na de proefperiode"], priceLabel:"Na 2 maanden", price:"Op aanvraag",
+    contents:["Maximale hypotheek: “Hoeveel kan ik lenen?”","Hypotheekcheck: betaal ik niet te veel?","Rentes vergelijken en berekenen op je eigen website","Inventarisatieformulier: gegevens direct in je dossier"],
+    links:[{label:"Rekentools voor op de website (Blinqx V&H)", url:"https://verzekeringhypotheek.blinqx.tech/partners/rekentools-voor-op-de-website"},{label:"Aanvragen via het vraagformulier", url:"#/vraag?item=websitetools-2-maanden&soort=premium"}],
+    channels:["Eigen website"], tags:["websitetools","rekentools","website","leads","maximale hypotheek","hypotheekcheck","proefperiode","gratis","twee maanden"],
+    compliance:"Controleer de actuele voorwaarden van de proefperiode voordat je die communiceert." },
   { id:"brochure-verborgen-kansen", cat:"leads", kind:"item", model:"gratis",
     title:"Brochure: Benut de verborgen kansen in je portefeuille", by:"Blinqx V&H", url:"brochure.html",
     summary:"Brochure van acht pagina's (A4) over PortefeuilleSignalen in Blinqx-stijl: oversluiters, renteverlengingen, VerhuizersAlarm, topafslagen, ORV-besparingen en websitetools. Online te bekijken en als PDF te printen.",
@@ -1112,11 +1123,6 @@ function viewHome(params){
     </div></div></section>`;
 
   app.innerHTML = `<div class="wrap">
-    <section class="disc" role="note" aria-labelledby="disc-h">
-      <h2 id="disc-h">Gebruik volledig voor eigen rekening en risico</h2>
-      <p>Alle materialen, teksten, tools, rekentools en links op deze site worden <strong>kosteloos en zonder enige garantie (“as is”)</strong> ter beschikking gesteld door Blinqx Verzekering &amp; Hypotheek en partners. <strong>Gebruik is volledig voor eigen rekening en risico.</strong> Blinqx en partners zijn niet aansprakelijk voor schade door het gebruik, ook niet bij onjuiste of verouderde informatie.</p>
-      <p>Jij blijft als adviseur zelf verantwoordelijk voor de juistheid, actualiteit en passendheid van alles wat je richting klanten communiceert, en voor naleving van Wft, AFM-regels (wervende communicatie, zorgplicht) en AVG. Materialen zijn algemene informatie, geen (financieel) advies. Laat teksten toetsen door je compliance officer. <a href="#/disclaimer">Volledige disclaimer →</a></p>
-    </section>
 
     <h2 class="sec-title">Kies een <u>categorie</u></h2>
     <p class="sec-sub">Acht categorieën, van kant-en-klare content tot bronnen. Klik op een categorie of zoek direct.</p>
@@ -1815,7 +1821,7 @@ function viewVhr(item, params){
   ["kantoor","adviseur","tel","email"].forEach(k=>{ if (params.get(k)) vh[k]=params.get(k); });
   smallHero([`<a href="#/?cat=klanttools">Klanttools</a>`, `<b>Verantwoord hypotheekrapport</b>`], `
     <div class="detail-head"><div>${badge(item.model)} <span class="badge cat">Tool</span> <span class="badge">Hypotheekverjaardag</span>
-      <h1>Verantwoord hypotheekrapport</h1><p>Direct inzicht in de risico's, besparingen en mogelijkheden van een hypotheek: bij arbeidsongeschiktheid, werkloosheid, pensioen, overlijden, einde relatie en einde looptijd. Met een partner berekenen we elke situatie ook voor de partner.</p></div>
+      <h1>Verantwoord hypotheekrapport</h1><p>Direct inzicht in de risico's, besparingen en mogelijkheden van een hypotheek: bij arbeidsongeschiktheid, werkloosheid, pensioen, overlijden, einde relatie en einde looptijd. Met een partner berekenen we elke situatie ook voor de partner. Zie ook <a href="https://sites.google.com/view/hypotheekverjaardag/homepage" target="_blank" rel="noopener">Hypotheekverjaardag.nl</a>.</p></div>
       <div class="btns" style="flex-direction:column;align-items:flex-end"><img src="data:image/png;base64,${CARDS["Verjaardag"][1]}" alt="Dat mag gevierd worden!" style="width:240px;max-width:100%;height:auto;box-shadow:0 8px 24px rgba(0,0,0,.12)">${vh.kantoor?`<span class="badge" style="font-size:.8rem;padding:8px 12px">Aangeboden door ${esc(vh.kantoor)}</span>`:""}</div></div>`);
   const persoon = (k,X,titel) => `<div ${k==="p"?`id="vh-pblock" ${vh.partner?"":"hidden"}`:""}>
     <h3>${titel}</h3>
