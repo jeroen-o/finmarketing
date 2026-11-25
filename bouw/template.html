@@ -476,6 +476,10 @@ const ITEMS = [
     title:"Marketing- en klantactiviteitenkalender 2027", by:"Blinqx V&H",
     summary:"Per maand concrete klantactiviteiten met het bijbehorende materiaal: van de nieuwsbrief in januari tot de hypotheekverjaardag in juni en Prinsjesdag in september. Met agendabestand (.ics).",
     channels:["Agenda","Jaarplanning"], tags:["kalender","jaarplanning","agenda","ics","klantactiviteiten","campagne","prinsjesdag","maand"] },
+  { id:"social-posts", cat:"content", kind:"social", model:"gratis",
+    title:"Social-postbank: posts voor elke maand", by:"Blinqx V&H",
+    summary:"Veertien kant-en-klare posts voor LinkedIn, Facebook en Instagram over leennormen, pensioen, verduurzamen, ORV, fundering en meer. Met je eigen kantoornaam en link, een passende afbeelding en hashtags.",
+    channels:["LinkedIn","Facebook","Instagram","Social"], tags:["social","linkedin","facebook","instagram","posts","social media","hashtags","content"] },
   { id:"ecards", cat:"content", kind:"kaarten", model:"gratis",
     title:"E-cards in Blinqx-stijl", by:"Blinqx V&H",
     summary:"Tien kaartjes voor klantcontact: verjaardag (“Dat mag gevierd worden!”), bedankt, welkom, super, lekker bezig, thumbs up en meer. Download als PNG voor je mail, WhatsApp of social, of gebruik ze bij de hypotheekverjaardag.",
@@ -1210,7 +1214,7 @@ function viewAflossingsvrij(item, params){
   app.innerHTML = `<div class="wrap">${DISC_SHORT}<div class="layout">
     <aside>
       <form class="panel cut" id="af" onsubmit="return false">
-        <h2><span class="hexi">1</span>U en uw partner</h2>
+        <div style="display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px"><h2 style="margin:0"><span class="hexi">1</span>U en uw partner</h2><button type="button" class="btn btn-o btn-sm" id="af-demo">Vul voorbeeld in</button></div>
         <label class="f" for="af-dob">Uw geboortedatum *</label><input class="i" type="date" id="af-dob" data-a="dob" value="${esc(af.dob)}">
         <div class="checks"><label><input type="checkbox" data-a="partner" ${af.partner?"checked":""}> Ik heb een partner</label></div>
         <div id="af-p" ${af.partner?"":"hidden"}><label class="f" for="af-pdob">Geboortedatum partner</label><input class="i" type="date" id="af-pdob" data-a="pdob" value="${esc(af.pdob)}"></div>
@@ -1303,6 +1307,10 @@ function viewAflossingsvrij(item, params){
       draw();
     });
   });
+  $("#af-demo").onclick = () => {
+    Object.assign(af, { dob:"1964-02-10", partner:false, schuld:"220.000", einde:"2034-03-01", waarde:"480.000", ink:"4.600", inkPer:"maand", vg:true, m13:false, pens:"21.000", pensPer:"jaar", eigen:"35.000", pot:"", lagerWonen:false });
+    viewAflossingsvrij(item, params); toast("Voorbeeld ingevuld (fictieve gegevens)");
+  };
   $("#ad-link").onclick = async () => {
     const p = new URLSearchParams(); [["kantoor","#ad-k"],["tel","#ad-t"],["mail","#ad-m"],["web","#ad-w"]].forEach(([k,id])=>{ const v=$(id).value.trim(); if(v) p.set(k,v); });
     const url = location.href.split("#")[0] + "#/item/" + item.id + (p.toString()?"?"+p:"");
@@ -1321,7 +1329,7 @@ function viewKansen(item){
       <div class="btns"><a class="btn btn-k" href="#/item/portefeuillesignalen">Over PortefeuilleSignalen</a></div></div>`);
   const num = (id,k,lbl)=>`<label class="f" for="${id}">${lbl}</label><input class="i" id="${id}" data-ks="${k}" inputmode="numeric" value="${esc(ks[k])}" placeholder="0">`;
   app.innerHTML = `<div class="wrap">${DISC_SHORT}<div class="layout">
-    <aside><form class="panel cut" onsubmit="return false"><h2><span class="hexi">1</span>Hoe ziet je portefeuille eruit?</h2>
+    <aside><form class="panel cut" onsubmit="return false"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px"><h2 style="margin:0"><span class="hexi">1</span>Je portefeuille</h2><button type="button" class="btn btn-o btn-sm" id="k-demo">Vul voorbeeld in</button></div>
       ${num("k-h","hyp","Aantal afgesloten hypotheken")}
       <label class="f" for="k-r">Gemiddelde rentevaste periode</label><select class="i" id="k-r" data-ks="rvp">${Array.from({length:30},(_, i)=>`<option value="${i+1}" ${+ks.rvp===i+1?"selected":""}>${i+1} jaar</option>`).join("")}</select>
       ${num("k-o","orv","Aantal afgesloten ORV's")}
@@ -1357,6 +1365,7 @@ function viewKansen(item){
       <p class="hint">Vuistregels, geen voorspelling. Het werkelijke aantal kansen hangt af van je portefeuille, klantgedrag en markt.</p></div>`;
   };
   const out = $("#k-out");
+  $("#k-demo").onclick = () => { Object.assign(ks, { hyp:"850", rvp:"10", orv:"320", opstal:"180", bez:"1.500", opbr:"" }); viewKansen(item); toast("Voorbeeld ingevuld"); };
   $$("[data-ks]").forEach(el=>{ const k=el.dataset.ks;
     if (el.hasAttribute("data-eur")) euroInput(el, ()=>{ ks[k]=el.value; draw(); });
     else if (el.tagName==="SELECT") el.addEventListener("change", ()=>{ ks[k]=el.value; draw(); });
@@ -1632,7 +1641,7 @@ function viewVhr(item, params){
   app.innerHTML = `<div class="wrap">${DISC_SHORT}<div class="layout">
     <aside>
       <form class="panel cut" onsubmit="return false">
-        <h2><span class="hexi">1</span>U en uw partner</h2>
+        <div style="display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px"><h2 style="margin:0"><span class="hexi">1</span>U en uw partner</h2><button type="button" class="btn btn-o btn-sm" id="vh-demo">Vul voorbeeld in</button></div>
         ${persoon("a",vh.a,"Aanvrager")}
         <div class="checks" style="margin-top:8px"><label><input type="checkbox" id="vh-partner" ${vh.partner?"checked":""}> Ik heb een partner</label></div>
         ${persoon("p",vh.p,"Partner")}
@@ -1727,6 +1736,12 @@ function viewVhr(item, params){
   $$("[data-vk]").forEach(el=>{ const k=el.dataset.vk;
     if (el.hasAttribute("data-eur")) euroInput(el, ()=>{ vh[k]=el.value; draw(); });
     else el.addEventListener("input", ()=>{ vh[k]=el.value; draw(); }); });
+  $("#vh-demo").onclick = () => {
+    Object.assign(vh.a, { naam:"Sam", dob:"1978-04-12", ink:"58.000", type:"werknemer", pens:"16.000", nbp:"6.000", orv:"150.000", aov:"", verpl:"1.200" });
+    Object.assign(vh.p, { naam:"Robin", dob:"1980-09-03", ink:"34.000", type:"ondernemer", pens:"9.000", nbp:"", orv:"150.000", aov:"12.000", verpl:"" });
+    Object.assign(vh, { partner:true, schuld:"315.000", afv:"120.000", rente:"3,9", rvpJaren:"6", markt:"3,6", einde:"2046-06-01", waardeStart:"340.000", waarde:"465.000", nhg:false, vermogen:"25.000", adres:"" });
+    viewVhr(item, new URLSearchParams()); toast("Voorbeeld ingevuld (fictieve gegevens)");
+  };
   $("#vh-partner").onchange = e => { vh.partner = e.target.checked; $("#vh-pblock").hidden = !vh.partner; draw(); };
   $("#vh-nhg").onchange = e => { vh.nhg = e.target.checked; draw(); };
   $("#vh-link").onclick = async () => { const p=new URLSearchParams(); ["kantoor","adviseur","tel","email"].forEach(k=>{ if(vh[k].trim()) p.set(k,vh[k].trim()); });
@@ -1887,6 +1902,7 @@ function viewKalender(){
     <section class="kmaand cut ${m===mNu?"nu":""}" id="maand-${m}">
       <h3><span>${MAANDEN[m-1][0].toUpperCase()+MAANDEN[m-1].slice(1)}</span>${m===mNu?`<span class="badge freemium">Eerstvolgend</span>`:""}</h3>
       ${a.map(x=>`<div class="kact">${x.dt?`<span class="datum">${new Date(x.dt).toLocaleDateString("nl-NL",{day:"numeric",month:"long",year:"numeric"})}</span>`:""}<b>${esc(x.t)}</b><p>${esc(x.d)}</p><div class="chan">${kalLinks(x.i)}</div></div>`).join("")}
+      ${POSTS.some(q=>q.m===m)?`<div class="kact"><b>Social post</b><div class="chan"><a href="#/item/social-posts">${esc(POSTS.filter(q=>q.m===m).map(q=>q.t).join(" · "))} →</a></div></div>`:""}
       <button class="btn btn-o btn-sm" data-ics="${m}" style="margin-top:auto;align-self:flex-start">${icon("calendar",16)} In mijn agenda</button>
     </section>`).join("")}</div>
     <div class="note" style="margin-top:18px"><strong>Let op:</strong> data van bankbeleid, Prinsjesdag en publicaties zijn indicatief. Controleer ze voordat je communiceert en leg verzending vast in het klantdossier.</div></div>`;
@@ -1949,6 +1965,82 @@ function viewKennisbank(item, params){
   $("#kb-q").addEventListener("input", e=>{ kbState.q=e.target.value; draw(); });
   $("#kb-form").addEventListener("submit", ()=>$("#kb-title").scrollIntoView({behavior:"smooth"}));
   $$("[data-th]").forEach(b=>b.onclick=()=>{ kbState.th=b.dataset.th; $$("[data-th]").forEach(x=>x.setAttribute("aria-pressed", x===b)); draw(); });
+}
+
+/* ---------- Social-postbank ---------- */
+const POSTS = [
+  {m:1, t:"Leennormen 2027", ic:"percentage", i:"nieuwsbrief-hypotheekbeleid-2027", x:"Nieuw jaar, nieuwe hypotheekregels. Sinds 1 januari gelden de leennormen voor 2027: de NHG-grens is verhoogd naar € 500.000 en veel huishoudens kunnen iets meer lenen.\n\nWat betekent dit voor jouw situatie? We rekenen het graag met je door.\n\n👉 {link}", h:"#hypotheek #leennormen2027 #NHG"},
+  {m:2, t:"Aangifte en hypotheekrenteaftrek", ic:"document", i:"kennisbank", x:"Het aangifteseizoen is begonnen. Heb je een eigen woning? Dan is je hypotheekrente in veel gevallen aftrekbaar, maar let ook op het eigenwoningforfait.\n\nTwijfel je wat je moet invullen of wil je weten of een voorlopige teruggave iets voor jou is? Stel gerust je vraag.\n\n👉 {link}", h:"#belastingaangifte #hypotheekrenteaftrek #eigenwoning"},
+  {m:3, t:"Pensioen telt eerder mee", ic:"pension", i:"campagne-pensioen", x:"Wist je dat sommige banken bij een nieuwe of aangepaste hypotheek al 15 jaar vóór je AOW-leeftijd naar je pensioeninkomen kijken?\n\nBen je tussen de 50 en 57 en heb je plannen met je woning? Dan is het slim om dit nu al in beeld te hebben. Een kort gesprek geeft veel duidelijkheid.\n\n👉 {link}", h:"#pensioen #hypotheek #50plus"},
+  {m:4, t:"Verduurzamen loont dubbel", ic:"leaf", i:"campagne-duurzaam-oversluiten", x:"Isoleren, zonnepanelen of een warmtepomp? Verduurzamen kan je energierekening verlagen. Bij sommige geldverstrekkers krijg je bovendien rentekorting bij een beter energielabel.\n\nBenieuwd wat er voor jouw woning mogelijk is? Begin met een gratis duurzaamheidscheck en bespreek de financiering met ons.\n\n👉 {link}", h:"#verduurzamen #energielabel #duurzaamwonen"},
+  {m:5, t:"Woning op het oog?", ic:"house report", i:"pandwise", x:"Een woning op het oog? Kijk verder dan de foto's. Met een gratis feitencheck zie je informatie over fundering, klimaat, geluid en een waarde-indicatie op basis van open data.\n\nEn daarna? Dan helpen wij je graag met de hypotheek.\n\n👉 {link}", h:"#huiskopen #woningzoeker #hypotheekadvies"},
+  {m:6, t:"Je hypotheek is jarig", beeld:"Verjaardag", i:"verantwoord-hypotheekrapport", x:"Dat mag gevierd worden! 🎉 Is je hypotheek weer een jaartje ouder? Dan is het een goed moment om te kijken of hij nog past bij je situatie: bij pensioen, arbeidsongeschiktheid, werkloosheid of als je wilt verhuizen.\n\nVraag ons naar je verantwoord hypotheekrapport.\n\n👉 {link}", h:"#hypotheekverjaardag #hypotheek #financieelgezond"},
+  {m:6, t:"Blijven of gaan?", ic:"house", i:"woontoekomst-check", x:"Hoe wil jij later wonen? Bijna negen op de tien 55-plussers denken erover na, maar de helft doet er (nog) niets mee.\n\nDoe de woontoekomst-check: vier vragen, drie minuten, geen cijfers. Jij bepaalt of en hoe we contact opnemen.\n\n👉 {link}", h:"#55plus #wonen #woontoekomst"},
+  {m:7, t:"Betaal je te veel voor je ORV?", ic:"orv", i:"sel-gestopte-rokers", x:"De premies voor overlijdensrisicoverzekeringen zijn de afgelopen jaren flink gedaald. Heb je je ORV al een tijd geleden afgesloten, of ben je gestopt met roken? Dan kun je mogelijk besparen.\n\nWe zoeken het graag voor je uit.\n\n👉 {link}", h:"#overlijdensrisicoverzekering #besparen #verzekeren"},
+  {m:8, t:"Ondernemer? Check je risico's", ic:"company", i:"campagne-kvk", x:"Als ondernemer regel je veel zelf, ook je inkomen bij ziekte en je pensioen. Is je bedrijf goed verzekerd tegen aansprakelijkheid? En wat gebeurt er met je hypotheek als je arbeidsongeschikt raakt?\n\nPlan een vrijblijvende check.\n\n👉 {link}", h:"#ondernemer #zzp #aov"},
+  {m:9, t:"Prinsjesdag", ic:"calendar", i:"nieuwsbrief-hypotheekbeleid-2027", x:"Vandaag is het Prinsjesdag. De plannen voor volgend jaar worden bekend, ook voor huiseigenaren. Wat verandert er voor jouw hypotheek, renteaftrek of eigenwoningforfait?\n\nWe zetten de belangrijkste punten voor je op een rij.\n\n👉 {link}", h:"#prinsjesdag #hypotheek #wonen"},
+  {m:10, t:"Aflossingsvrij: 2031 komt dichterbij", ic:"hourglass", i:"aflossingsvrij-check", x:"Heb je een aflossingsvrije hypotheek van vóór 2001? Dan stopt de hypotheekrenteaftrek mogelijk vanaf 2031. Over een overgangsregeling is nog geen besluit genomen.\n\nWeet jij of je hypotheek straks betaalbaar blijft? Doe de check of plan een gesprek.\n\n👉 {link}", h:"#aflossingsvrij #hypotheek #pensioen"},
+  {m:10, t:"Funderingsrisico", ic:"security", i:"funderingscijfer", x:"Vanaf 2027 kan het funderingsrisico van een woning meetellen in de hypotheekbeoordeling. Benieuwd hoe jouw woning scoort?\n\nBekijk gratis een indicatief funderingscijfer op basis van openbare bronnen. Vragen? Wij helpen je verder.\n\n👉 {link}", h:"#fundering #woning #huiskopen"},
+  {m:11, t:"Rentevaste periode loopt af?", ic:"swap", i:"campagne-rentevast-duurzaam", x:"Loopt je rentevaste periode binnen twee jaar af? Wacht niet op het verlengingsvoorstel van de bank. Door op tijd te vergelijken weet je wat je opties zijn, en soms is oversluiten zonder boete mogelijk.\n\nPlan op tijd een gesprek.\n\n👉 {link}", h:"#rentevast #hypotheekrente #oversluiten"},
+  {m:12, t:"Bedankt", beeld:"Bedankt he", i:"ecards", x:"Bedankt voor je vertrouwen dit jaar! We kijken ernaar uit om je ook in het nieuwe jaar te helpen met je hypotheek en verzekeringen.\n\nFijne feestdagen en een gezond nieuwjaar!", h:"#bedankt #fijnefeestdagen"}
+];
+const sp = { kantoor:"", link:"" };
+function postSvg(q, size=1080){
+  const i = ICONS[q.ic]; if (!i) return "";
+  const words = q.t.split(" "), lines = []; let cur = "";
+  words.forEach(w=>{ if ((cur+" "+w).trim().length > 16){ if (cur) lines.push(cur); cur = w; } else cur = (cur+" "+w).trim(); }); if (cur) lines.push(cur);
+  const F = "Montserrat, Segoe UI, Helvetica, Arial, sans-serif";
+  const hex = (cx,cy,r,fill) => { const pts=[0,1,2,3,4,5].map(k=>{ const a=Math.PI/180*(60*k-90); return (cx+r*Math.cos(a)).toFixed(1)+","+(cy+r*Math.sin(a)).toFixed(1); }).join(" "); return `<polygon points="${pts}" fill="${fill}"/>`; };
+  const maxLen = Math.max(...lines.map(l=>l.length)), fs = Math.min(84, Math.floor(920/(maxLen*0.6))), lh = Math.round(fs*1.14);
+  const y0 = 1080 - 150 - lines.length*lh;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 1080 1080">
+    <rect width="1080" height="1080" fill="#FFCD00"/>
+    ${hex(960,120,170,"#FFE066")}${hex(1010,420,60,"#FFE066")}${hex(110,980,120,"#FFE066")}
+    ${hex(250,300,190,"#000")}
+    <svg x="150" y="200" width="200" height="200" viewBox="${i[0]}" style="color:#FFCD00">${i[1].replace(/currentColor/g,"#FFCD00")}</svg>
+    ${lines.map((l,k)=>`<text x="80" y="${y0 + k*lh}" font-family="${F}" font-size="${fs}" font-weight="800" fill="#000">${l.replace(/&/g,"&amp;").replace(/</g,"&lt;")}</text>`).join("")}
+    <text x="80" y="1000" font-family="${F}" font-size="34" font-weight="700" fill="#000">${(sp.kantoor.trim()||"").replace(/&/g,"&amp;").replace(/</g,"&lt;")}</text>
+  </svg>`;
+}
+async function svgNaarPng(svg){
+  const img = new Image(); img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  await img.decode();
+  const c = document.createElement("canvas"); c.width = c.height = 1080; c.getContext("2d").drawImage(img,0,0,1080,1080);
+  return c.toDataURL("image/png");
+}
+function viewSocial(item){
+  setNav("content");
+  smallHero([`<a href="#/?cat=content">Content &amp; campagnes</a>`, `<b>Social-postbank</b>`], `
+    <div class="detail-head"><div>${badge(item.model)} <span class="badge cat">Social media</span><h1>Social-postbank</h1><p>${esc(item.summary)}</p></div></div>`);
+  app.innerHTML = `<div class="wrap">
+    <div class="panel cut"><h2><span class="hexi">${icon("document",18)}</span>Jouw gegevens in de posts</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 12px">
+        <div><label class="f" for="sp-k">Kantoornaam (onder de post)</label><input class="i" id="sp-k" value="${esc(sp.kantoor)}"></div>
+        <div><label class="f" for="sp-l">Link (website of afsprakenpagina)</label><input class="i" id="sp-l" value="${esc(sp.link)}" placeholder="www.jouwkantoor.nl"></div>
+      </div>
+      <p class="hint">Tip: zet de link op LinkedIn in de eerste reactie in plaats van in de post; dat geeft vaak meer bereik.</p></div>
+    <div class="grid" id="sp-grid"></div>
+    <div class="note" style="margin-top:18px"><strong>Let op, AFM/compliance:</strong> posts zijn wervende communicatie: correct, duidelijk en niet misleidend. Beloof geen uitkomsten, controleer bedragen en bankbeleid vóór plaatsing en vermeld bij acties de voorwaarden. Reageren met een persoonlijk advies in de reacties is advies; verwijs liever naar een gesprek.</div></div>`;
+  const txt = q => q.x.replace("{link}", sp.link.trim() || "[link naar je website]").replace(/\n\n👉 \[link naar je website\]$/, sp.link.trim() ? "" : "\n\n👉 [link naar je website]") + (sp.kantoor.trim() ? `\n\n${sp.kantoor.trim()}` : "") + `\n\n${q.h}`;
+  const draw = () => { $("#sp-grid").innerHTML = POSTS.map((q,i)=>`<article class="card cut">
+      <div class="meta"><span class="badge cat">${MAANDEN[q.m-1]}</span></div>
+      ${q.ic ? `<div style="width:100%;aspect-ratio:1/1;line-height:0">${postSvg(q,"100%")}</div>` : CARDS[q.beeld]?`<img src="data:image/png;base64,${CARDS[q.beeld][1]}" alt="" style="width:100%;height:auto;display:block">`:""}
+      <h3>${esc(q.t)}</h3>
+      <div class="promo" style="font-size:.88rem">${esc(txt(q))}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:auto">
+        <button class="btn btn-k btn-sm" data-sp="${i}">${icon("copy",16)} Kopieer tekst</button>
+        ${q.ic ? `<button class="btn btn-o btn-sm" data-png="${i}">${icon("download",16)} Afbeelding</button>` : CARDS[q.beeld]?`<a class="btn btn-o btn-sm" download="post-${slug(q.t)}.png" href="data:image/png;base64,${CARDS[q.beeld][1]}">${icon("download",16)} Afbeelding</a>`:""}
+        <a class="btn btn-o btn-sm" href="#/item/${q.i}">Materiaal →</a>
+      </div></article>`).join("");
+    $$("[data-sp]").forEach(b=>b.onclick=async()=>toast(await copyText(txt(POSTS[+b.dataset.sp]))?"Post gekopieerd":"Kopiëren lukte niet"));
+    $$("[data-png]").forEach(b=>b.onclick=async()=>{ const q=POSTS[+b.dataset.png];
+      try{ const url = await svgNaarPng(postSvg(q,1080)); const a=Object.assign(document.createElement("a"),{href:url,download:`post-${slug(q.t)}.png`}); document.body.appendChild(a); a.click(); a.remove(); toast("Afbeelding gedownload (1080 × 1080)"); }
+      catch(e){ toast("Afbeelding maken lukte niet in deze browser"); } });
+  };
+  $("#sp-k").onchange = e => { sp.kantoor = e.target.value; draw(); };
+  $("#sp-k").oninput = e => { sp.kantoor = e.target.value; $$("#sp-grid .promo").forEach((el,i)=>el.textContent = txt(POSTS[i])); };
+  $("#sp-l").oninput = e => { sp.link = e.target.value; draw(); };
+  draw();
 }
 
 /* ---------- E-cards ---------- */
@@ -2152,7 +2244,7 @@ function route(){
   if (path.startsWith("/item/")){
     const item=ITEMS.find(i=>i.id===path.slice(6));
     if (!item){ location.hash="#/"; return; }
-    ({nieuwsbrief:viewNewsletter, checklist:viewChecklist, aflossingsvrij:viewAflossingsvrij, kansen:viewKansen, signalen:viewSignalen, brieven:viewBrieven, campagne:viewCampagne, selectie:viewSelectie, vhr:viewVhr, woontoekomst:viewWoontoekomst, kaarten:viewKaarten, kennisbank:viewKennisbank, kalender:viewKalender}[item.kind]||viewItem)(item, params);
+    ({nieuwsbrief:viewNewsletter, checklist:viewChecklist, aflossingsvrij:viewAflossingsvrij, kansen:viewKansen, signalen:viewSignalen, brieven:viewBrieven, campagne:viewCampagne, selectie:viewSelectie, vhr:viewVhr, woontoekomst:viewWoontoekomst, kaarten:viewKaarten, kennisbank:viewKennisbank, kalender:viewKalender, social:viewSocial}[item.kind]||viewItem)(item, params);
     document.title = `${item.title} · Marketingbibliotheek Blinqx V&H`;
     window.scrollTo(0,0);
   } else if (path==="/vraag"){ viewVraag(params); document.title="Vraag & wens · Marketingbibliotheek Blinqx V&H"; window.scrollTo(0,0); }
