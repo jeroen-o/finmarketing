@@ -220,11 +220,52 @@
   .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--k);color:#fff;padding:12px 18px;font-weight:700;font-size:.9rem;opacity:0;pointer-events:none;transition:.2s;z-index:50;max-width:calc(100vw - 32px);text-align:center;border-left:6px solid var(--y)}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
+  .layout>*,.qa>*,.fgrid>*,.hero-grid>*,.detail-head>*{min-width:0}
+  h1,h2,h3{overflow-wrap:anywhere;hyphens:auto}
   @media (max-width:900px){
     .layout,.qa,.fgrid,.hero-grid{grid-template-columns:1fr}
     .hex-stack{display:none}
     .sticky{position:static}
   }
+  .menu-btn{display:none;margin-left:auto;background:var(--k);color:#fff;border:0;padding:10px 14px;font-weight:800;cursor:pointer;align-items:center;gap:8px}
+  .menu-btn .bars{display:inline-block;width:18px;height:2px;background:#fff;position:relative}
+  .menu-btn .bars::before,.menu-btn .bars::after{content:"";position:absolute;left:0;width:18px;height:2px;background:#fff}
+  .menu-btn .bars::before{top:-6px}.menu-btn .bars::after{top:6px}
+  .mres{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--k);color:#fff;display:none;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));box-shadow:0 -6px 20px rgba(0,0,0,.2);font-size:.92rem}
+  .mres b{color:var(--y)}
+  .mres button{background:var(--y);color:var(--k);border:0;padding:9px 14px;font-weight:800;cursor:pointer;flex:none}
+  @media (max-width:900px){
+    .mres.on{display:flex}
+    body.has-mres{padding-bottom:64px}
+  }
+  @media (max-width:700px){
+    .top .wrap{min-height:64px;flex-wrap:nowrap}
+    .logo{width:120px;height:41px}
+    .brand span{font-size:.72rem}
+    .menu-btn{display:inline-flex}
+    .nav{display:none;position:absolute;left:0;right:0;top:64px;background:var(--y);flex-direction:column;align-items:stretch;padding:6px 16px 16px;margin:0;box-shadow:0 12px 20px rgba(0,0,0,.15);z-index:30}
+    .nav.open{display:flex}
+    .nav a{padding:12px 4px;border-bottom:1px solid rgba(0,0,0,.12);font-size:1rem}
+    .nav a.active{border-bottom-color:var(--k)}
+    .nav a.cta{margin:10px 0 0;text-align:center;justify-content:center}
+    .top{position:relative}
+    .cats{grid-template-columns:1fr 1fr;gap:10px}
+    .cat{padding:14px 12px 12px;--cut:14px}
+    .cat p{display:none}
+    .cat h3{font-size:.92rem}
+    .cat .h{gap:8px;align-items:flex-start}
+    .cat .n{padding:6px 8px;font-size:.75rem}
+    .disc{font-size:.9rem}
+    .disc p{font-size:.88rem}
+    .filterbar select{width:100%;font-size:1rem}
+    .filterbar input[type=search],.searchbar input{font-size:1rem}
+    .grid{grid-template-columns:1fr}
+    .detail-head .btns{width:100%}
+    .panel{padding:16px}
+    .sec-title{font-size:1.4rem}
+  }
+  form div[style*="grid-template-columns:1fr 1fr"]{align-items:end}
+  @media (max-width:420px){ form div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important} }
   @media (max-width:560px){
     .pricing{grid-template-columns:1fr}
     .nav{margin-left:0;width:100%;padding-bottom:10px}
@@ -239,7 +280,8 @@
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#/" aria-label="Marketingbibliotheek Blinqx Verzekering &amp; Hypotheek, home"><i class="logo" aria-hidden="true"></i><span>Marketing-<br>bibliotheek</span></a>
-    <nav class="nav" aria-label="Hoofdmenu">
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="hoofdmenu"><span class="bars" aria-hidden="true"></span> Menu</button>
+    <nav class="nav" id="hoofdmenu" aria-label="Hoofdmenu">
       <a href="#/" data-nav="home">Alles</a>
       <a href="#/?cat=content" data-nav="content">Content</a>
       <a href="#/?cat=campagnes" data-nav="campagnes">Campagnes</a>
@@ -276,6 +318,7 @@
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="mres" id="mres" role="status" aria-live="polite"><span id="mres-txt"></span><button type="button" id="mres-btn">Bekijk uitkomst ↓</button></div>
 
 <script>
 /* ============================================================
@@ -1419,10 +1462,11 @@ function viewAflossingsvrij(item, params){
   const out = $("#af-out");
   const draw = () => {
     const r = afCalc();
-    if (!r){ out.innerHTML = `<div class="panel cut"><h2>Uw rapportcijfer</h2><p>Vul uw geboortedatum, de hypotheekschuld, de einddatum en de woningwaarde in. Met inkomen en pensioen wordt het cijfer nauwkeuriger.</p>
+    if (!r){ setMres(""); out.innerHTML = `<div class="panel cut"><h2>Uw rapportcijfer</h2><p>Vul uw geboortedatum, de hypotheekschuld, de einddatum en de woningwaarde in. Met inkomen en pensioen wordt het cijfer nauwkeuriger.</p>
       <div class="hex" style="margin:16px auto;background:var(--bg-2);color:var(--muted)"><b style="color:var(--muted)">?</b><span>cijfer</span></div></div>
       <div class="note"><strong>Hoe werkt het?</strong> We toetsen de rente op ${fmtN(AV.toetsrente*100)}% (referentierente) tegen uw inkomen nu en na pensioen, kijken naar de verhouding schuld/woningwaarde, de einddatum en uw middelen. Uitkomst: een indicatief cijfer van 1 tot 10.</div>`; return; }
     const col = r.score >= 7.5 ? "var(--ok)" : r.score >= 5.5 ? "#b88a00" : "var(--red)";
+    setMres(`Rapportcijfer <b>${fmtN(r.score,1)}</b>`, "#af-out");
     const verdict = r.score >= 7.5 ? "Ziet er goed uit" : r.score >= 5.5 ? "Aandacht nodig" : "Actie aanbevolen";
     const rowsT = [
       ["Leeftijd nu", `${fmtN(Math.floor(r.leeftijd))} jaar`],
@@ -1509,6 +1553,7 @@ function viewKansen(item){
       ["Renteoverzicht-leads (per jaar)", Math.round(B/100*2*12), "≈ 2% van de bezoekers per maand × 12"]
     ];
     const tot = rows.reduce((s,r)=>s+r[1],0);
+    setMres(tot ? `<b>${fmtN(tot)}</b> kansen in je portefeuille` : "", "#k-out");
     out.innerHTML = `<div class="panel cut">
       <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
         <div class="hex" style="width:140px"><b>${fmtN(tot)}</b><span>kansen</span></div>
@@ -1830,13 +1875,14 @@ function viewVhr(item, params){
 
   const draw = () => {
     const r = vhCalc();
-    if (!r){ out.innerHTML = `<div class="panel cut"><h2>Uw rapport</h2><p>Vul minimaal het inkomen van de aanvrager, de hypotheekschuld en de woningwaarde in. Hoe meer u invult, hoe vollediger het rapport.</p>
+    if (!r){ setMres(""); out.innerHTML = `<div class="panel cut"><h2>Uw rapport</h2><p>Vul minimaal het inkomen van de aanvrager, de hypotheekschuld en de woningwaarde in. Hoe meer u invult, hoe vollediger het rapport.</p>
       <ul class="feat"><li>Arbeidsongeschiktheid</li><li>Werkloosheid</li><li>Pensioen</li><li>Overlijden</li><li>Einde relatie</li><li>Einde looptijd van uw hypotheek</li><li>Rentekorting door gestegen woningwaarde</li><li>Hypotheekcheck: kunt u besparen?</li><li>Uw maximale hypotheek</li><li>Gratis woningwaarderapport via PandWise.nl</li></ul></div>`; return; }
     const g = k => r.scen.filter(s=>s.groep===k);
     const risico = r.scen.filter(s=>!s.ok && s.groep!=="nu");
     const groepen = ["ao","ww","pe","ov","er"].filter(k=>g(k).some(s=>!s.ok)).length;
     const score = Math.max(1, Math.round((10 - groepen*1.5 - (g("nu").some(s=>!s.ok)?1.5:0) - (r.eindeLooptijd.tekort>0?1:0))*10)/10);
     const el = r.eindeLooptijd, rk = r.renteKorting, ck = r.check, mx = r.max;
+    setMres(`Rapportcijfer <b>${fmtN(score,1)}</b> · ${risico.length ? `${risico.length} aandachtspunten` : "alles verantwoord"}`, "#vh-out");
     out.innerHTML = `<div id="vh-report">
       <div class="panel cut">
         <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
@@ -2164,8 +2210,18 @@ function viewVraag(params){
   $("#q-copy").onclick=async()=>{ if(!ok())return; const {subj,body}=compose(); toast(await copyText(`Aan: ${CONFIG.contactEmail}\nOnderwerp: ${subj}\n\n${body}`)?"Bericht gekopieerd":"Kopiëren lukte niet"); };
 }
 
+/* ---------- Mobiel: menu en uitkomstbalk ---------- */
+function setMres(html, target){
+  const m = $("#mres"); if (!m) return;
+  if (!html){ m.classList.remove("on"); document.body.classList.remove("has-mres"); return; }
+  $("#mres-txt").innerHTML = html; m.classList.add("on"); document.body.classList.add("has-mres");
+  $("#mres-btn").onclick = () => { const el = typeof target === "string" ? $(target) : target; el && el.scrollIntoView({behavior:"smooth", block:"start"}); };
+}
+$("#menu-btn").addEventListener("click", () => { const n = $("#hoofdmenu"), open = !n.classList.contains("open"); n.classList.toggle("open", open); $("#menu-btn").setAttribute("aria-expanded", open); });
+
 /* ---------- Router ---------- */
 function route(){
+  setMres(""); $("#hoofdmenu").classList.remove("open"); $("#menu-btn").setAttribute("aria-expanded","false");
   { const m = (location.hash.match(/^#\/item\/([^?]+)/)||[])[1], fa = document.getElementById("f-ask");
     if (fa){ fa.hidden = !m; if (m) fa.querySelector("a").href = "#/vraag?item=" + m; } }
   const raw=location.hash.replace(/^#/,"")||"/", [path,qs]=raw.split("?"), params=new URLSearchParams(qs||"");
