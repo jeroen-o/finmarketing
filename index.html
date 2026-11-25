@@ -196,7 +196,7 @@
   .links a:hover{background:var(--y-soft)}
   .links a small{font-weight:500;color:var(--muted)}
   .code{background:var(--k);color:#e8eef6;padding:12px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.78rem;white-space:pre-wrap;word-break:break-all;max-height:200px;overflow:auto}
-  .promo{background:var(--bg-2);padding:12px;font-size:.92rem;white-space:pre-wrap}
+  .promo{background:var(--bg-2);padding:12px;font-size:.92rem;white-space:pre-wrap;overflow-wrap:anywhere}
   .chan{display:flex;gap:6px;flex-wrap:wrap}
   .chan span{font-size:.75rem;font-weight:700;background:var(--bg-2);padding:4px 8px}
   .cl label{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line-2);cursor:pointer}
@@ -1421,7 +1421,7 @@ function viewItem(item){
 }
 
 /* ---------- Getallen (NL-notatie) ---------- */
-const fmtEUR = n => new Intl.NumberFormat("nl-NL",{style:"currency",currency:"EUR",maximumFractionDigits:0}).format(Math.round(n||0)).replace(/ /g," ");
+const fmtEUR = n => { const r = Math.round(n||0), s = new Intl.NumberFormat("nl-NL",{style:"currency",currency:"EUR",maximumFractionDigits:0}).format(Math.abs(r)).replace(/\u00a0/g," "); return r < 0 ? "−" + s : s; };
 const fmtN = (n,d=0) => new Intl.NumberFormat("nl-NL",{minimumFractionDigits:d,maximumFractionDigits:d}).format(n||0);
 const parseNum = s => { const v = String(s||"").replace(/[^\d,]/g,"").replace(",","."); return v ? parseFloat(v) : 0; };
 function euroInput(el, onChange){
