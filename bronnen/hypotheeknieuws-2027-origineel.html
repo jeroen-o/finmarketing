@@ -1,0 +1,235 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Hypotheeknieuws 2027</title>
+<style>
+  /* Layout: gestapelde secties op een smal leesformaat, brede kop met accentband */
+  :root{
+    --bg:#f7f8f6;
+    --surface:#ffffff;
+    --ink:#122b2e;
+    --ink-soft:#4b6164;
+    --line:#dde4e1;
+    --accent:#0f5c56;
+    --accent-soft:#e3efe9;
+    --warn-bg:#fdf3e6;
+    --warn-line:#e8b87a;
+    --warn-ink:#7a4a0a;
+    --good:#0f5c56;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0e1716;
+      --surface:#152221;
+      --ink:#e9f1ef;
+      --ink-soft:#a9bdba;
+      --line:#2a3938;
+      --accent:#5fcdb8;
+      --accent-soft:#1b2f2b;
+      --warn-bg:#2a2013;
+      --warn-line:#8a6324;
+      --warn-ink:#f0c27e;
+      --good:#5fcdb8;
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0e1716;
+    --surface:#152221;
+    --ink:#e9f1ef;
+    --ink-soft:#a9bdba;
+    --line:#2a3938;
+    --accent:#5fcdb8;
+    --accent-soft:#1b2f2b;
+    --warn-bg:#2a2013;
+    --warn-line:#8a6324;
+    --warn-ink:#f0c27e;
+    --good:#5fcdb8;
+    color-scheme:dark;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Source Sans 3", Arial, sans-serif;
+    line-height:1.55;
+    padding-left:max(16px, env(safe-area-inset-left,0px));
+    padding-right:max(16px, env(safe-area-inset-right,0px));
+  }
+  h1,h2,h3{font-family:"Source Serif 4", Georgia, serif; font-weight:700; text-wrap:balance; margin:0}
+  p{margin:0 0 .9em}
+  .wrap{max-width:680px; margin:0 auto}
+
+  .hero{
+    margin-top:calc(-1 * env(safe-area-inset-top,0px));
+    padding-top:calc(env(safe-area-inset-top,0px) + 2.2rem);
+    padding-bottom:1.8rem;
+    background:linear-gradient(135deg, var(--accent) 0%, #0b413d 100%);
+    color:#f3f8f6;
+  }
+  .hero-inner{max-width:680px; margin:0 auto}
+  .eyebrow{font-size:.78rem; letter-spacing:.11em; text-transform:uppercase; opacity:.85; margin-bottom:.6rem}
+  .hero h1{font-size:1.9rem; margin-bottom:.5rem}
+  .hero p{opacity:.92; max-width:50ch}
+
+  main{padding:1.6rem 0 2.4rem}
+
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:1.25rem 1.3rem;
+    margin-bottom:1.1rem;
+  }
+  .card h2{font-size:1.18rem; color:var(--accent); margin-bottom:.55rem}
+  .tag{
+    display:inline-block;
+    font-size:.72rem;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    background:var(--accent-soft);
+    color:var(--accent);
+    padding:.2rem .55rem;
+    border-radius:999px;
+    margin-bottom:.6rem;
+  }
+  .card ul{margin:.4rem 0 0; padding-left:1.1rem}
+  .card li{margin-bottom:.4rem}
+  .num{font-variant-numeric:tabular-nums}
+
+  .motto{
+    background:var(--accent-soft);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:1.3rem 1.3rem;
+    margin-bottom:1.1rem;
+  }
+  .motto h2{color:var(--accent); font-size:1.3rem; margin-bottom:.5rem}
+  .motto .lead{font-weight:600; color:var(--ink)}
+
+  .buffer-row{display:flex; gap:.9rem; margin-top:.9rem; flex-wrap:wrap}
+  .buffer-item{
+    flex:1 1 150px;
+    min-width:0;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:.8rem .9rem;
+  }
+  .buffer-item .k{font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft)}
+  .buffer-item .v{font-family:"Source Serif 4", Georgia, serif; font-size:1.25rem; color:var(--good); margin-top:.15rem}
+
+  .note{
+    background:var(--warn-bg);
+    border:1px solid var(--warn-line);
+    border-radius:10px;
+    padding:1.1rem 1.2rem;
+    margin-bottom:1.1rem;
+    font-size:.92rem;
+  }
+  .note strong{color:var(--warn-ink)}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:1.3rem 0 2rem;
+    font-size:.82rem;
+    color:var(--ink-soft);
+  }
+  footer p{margin:0 0 .4rem}
+
+  @media (max-width:480px){
+    .hero h1{font-size:1.55rem}
+    .buffer-row{flex-direction:column}
+  }
+</style>
+
+<div class="hero">
+  <div class="hero-inner wrap">
+    <div class="eyebrow">Hypotheekbond &middot; Nieuwsbrief klanten</div>
+    <h1>Hypotheekbeleid 2027: wat verandert er voor u</h1>
+    <p>Een overzicht van de belangrijkste wijzigingen in de hypotheekregels per 1 januari 2027, en waarom wij dit jaar inzetten op een spaarbuffer in plaats van extra aflossen.</p>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <div class="card">
+    <span class="tag">Leennormen</span>
+    <h2>NIBUD-normen 2027: iets meer leenruimte</h2>
+    <p>Het Nibud adviseert de financieringslastpercentages voor 2027 te baseren op een gemiddelde van de jaren 2023 tot en met 2026, wat de normen stabieler maakt. Door de verwachte loonstijging van <span class="num">3,7%</span> kunnen de meeste huishoudens in 2027 iets meer lenen, ook zonder eigen inkomensstijging.</p>
+    <ul>
+      <li>NHG-grens omhoog naar <span class="num">€ 500.000</span>, en <span class="num">€ 530.000</span> bij volledige besteding aan verduurzaming.</li>
+      <li>Extra leenruimte bij energielabel A++++ kan oplopen tot <span class="num">€ 30.000</span> boven de inkomensnorm.</li>
+      <li>Eenmalige NHG-bijdrage blijft <span class="num">0,4%</span> van het hypotheekbedrag.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <span class="tag">Fiscaal</span>
+    <h2>Hypotheekrenteaftrek: geen afschaffing, wel afbouw bijtelling</h2>
+    <p>De hypotheekrenteaftrek zelf vervalt in 2027 niet. Het maximale aftrektarief in box 1 komt uit op <span class="num">38,16%</span>, iets gunstiger dan in 2026. Wat wel verandert: de aftrek voor de bijtelling eigenwoningforfait (bij een lage of geen restschuld) loopt verder af. In 2027 is nog <span class="num">67,07%</span> van die bijtelling aftrekbaar; dit voordeel daalt met <span class="num">4,8%</span> per jaar tot volledige belasting vanaf 2041.</p>
+    <p>Voor klanten die versneld aflossen met het oog op "schuldenvrij wonen", is dit relevant: een lagere restschuld vermindert dit bijtellingsvoordeel geleidelijk, terwijl de renteaftrek op een resterende lening intact blijft.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">Aflossingsvrij</span>
+    <h2>Verdere beperking aflossingsvrije hypotheken</h2>
+    <p>Geldverstrekkers verscherpen hun acceptatiebeleid voor aflossingsvrij. Rabobank en Obvion hanteren vanaf maart 2027 de pensioentoets al vanaf 15 jaar voor de AOW-leeftijd (nu 10 jaar), en bij een AOW-leeftijd van 67 telt pensioeninkomen dan al mee vanaf 52 jaar.</p>
+    <ul>
+      <li>Nieuw aflossingsvrij lenen blijft bij de meeste grote banken beperkt tot circa <span class="num">30%</span> van de woningwaarde.</li>
+      <li>Rabobank verlaagt vanaf maart 2027 de maximale totale hypotheek vanaf 85 jaar naar <span class="num">70%</span> van de woningwaarde (ABN AMRO hanteert nu 50%).</li>
+      <li>Wijzigingen gelden bij verhuizing, verhoging of oversluiting &mdash; een ongewijzigde bestaande hypotheek blijft buiten schot.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <span class="tag">30-jaarstermijn</span>
+    <h2>Oudere aflossingsvrije hypotheken: aftrek loopt vanaf 2031 af</h2>
+    <p>Sinds 2001 geldt een maximale termijn van 30 jaar voor de hypotheekrenteaftrek. Voor veel klanten met een vóór 2013 afgesloten aflossingsvrije hypotheek loopt die termijn vanaf 2031 ten einde &mdash; los van de wijziging in de bijtellingskorting hierboven. Dit raakt specifiek deze groep, niet hypotheken met verplichte aflossing die binnen 30 jaar worden afgelost.</p>
+    <p>Het kabinet heeft hierover nog geen besluit genomen. Ambtenaren van Financiën noemen onder meer: de aftrek per 2031 laten stoppen, een overgangsregeling tot 2043, verplicht oversluiten naar een vorm met aflossing (met behoud van aftrek), of vooralsnog niets regelen. Voor klanten met een hypotheek van vóór 2013 is 2031 dichterbij dan het lijkt &mdash; wij volgen de besluitvorming en informeren u zodra er meer duidelijkheid is.</p>
+  </div>
+
+  <div class="card">
+    <span class="tag">Funderingsrisico</span>
+    <h2>Funderingsrisico telt vanaf 2027 mee in de hypotheekbeoordeling</h2>
+    <p>Bij een hoog risico op funderingsproblemen rekent de geldverstrekker vanaf 2027 met de verwachte herstelkosten. Dat kan de maximale hypotheek direct verlagen, ook als de woning op dit moment nog geen zichtbare schade vertoont.</p>
+    <ul>
+      <li>Herstelkosten liggen doorgaans tussen <span class="num">€ 100.000</span> en <span class="num">€ 200.000</span> per woning.</li>
+      <li>Bij een appartement in een VvE moeten alle eigenaren meedoen aan funderingsherstel; haakt een deel van de eigenaren af, dan loopt het hele traject vast.</li>
+      <li>Komt herstel niet van de grond, dan kan de woningwaarde fors terugvallen &mdash; in een ernstig geval richting nihil.</li>
+      <li>Koopt of herfinanciert u in een funderingsgevoelig gebied, laat dan vroeg in het traject een funderingsonderzoek uitvoeren; dit bepaalt mede de maximale lening.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <span class="tag">Renteschok</span>
+    <h2>Rentevaste periode afgelopen? Reken op 2 tot 3 keer de maandlast</h2>
+    <p>Veel klanten hebben hun huidige hypotheekrente nog vastgezet op een niveau van <span class="num">1 a 2%</span>. De actuele hypotheekrente ligt rond <span class="num">4 a 5%</span>. Loopt uw rentevaste periode af, dan kan uw maandlast daardoor ruwweg <span class="num">2 tot 3 keer</span> zo hoog uitvallen bij verlenging of oversluiten tegen de huidige rente.</p>
+    <ul>
+      <li>Check tijdig de einddatum van uw rentevaste periode &mdash; liefst 1 tot 2 jaar van tevoren.</li>
+      <li>Een vooraf opgebouwde spaarbuffer vangt dit renteverschil op zonder dat u in de knel komt.</li>
+      <li>Rentemiddeling of een deel vervroegd aflossen bij renteverlenging kan de schok dempen; de precieze uitkomst verschilt per situatie en verstrekker.</li>
+    </ul>
+  </div>
+
+  <div class="motto">
+    <h2>Ons motto blijft: cash is king</h2>
+    <p class="lead">Niet extra aflossen, maar een spaarbuffer opbouwen.</p>
+    <p>Voor flexibiliteit hanteren wij al jaren hetzelfde uitgangspunt, en de ontwikkelingen voor 2027 onderstrepen dat alleen maar: met de aangescherpte regels rond aflossingsvrij, de aflopende bijtellingskorting en de renteschok hierboven is flexibiliteit waardevoller dan een snel dalende hypotheekschuld. Wij adviseren klanten om geleidelijk een buffer op te bouwen die, over een aantal jaren, in de buurt komt van de resterende hypotheekschuld &mdash; in plaats van vervroegd af te lossen. Het voordeel: staat u straks voor de keuze, bijvoorbeeld door strengere acceptatieregels, een verhuizing of de einddatum van een aflossingsvrij deel, dan heeft u de buffer al klaarstaan om alsnog (deels) af te lossen. Aflossen blijft zo een eigen keuze op het moment dat het moet of u het wilt, in plaats van een verplichting die u nu al geld kost.</p>
+    <div class="buffer-row">
+      <div class="buffer-item"><div class="k">Waarom buffer</div><div class="v">Flexibiliteit</div></div>
+      <div class="buffer-item"><div class="k">Waarom niet aflossen</div><div class="v">Behoud aftrek</div></div>
+      <div class="buffer-item"><div class="k">Horizon</div><div class="v">Meerdere jaren</div></div>
+      <div class="buffer-item"><div class="k">Uw keuze</div><div class="v">Aflossen kan altijd nog</div></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Let op &ndash; AFM/compliance:</strong> het 2031-vraagstuk betreft nog geen vaststaand beleid maar ambtelijke opties; vermijd suggestie van een definitief besluit richting klanten. De factor "2 tot 3 keer de maandlast" bij de renteschok is een vuistregel op basis van 1-2% versus 4-5%; de werkelijke stijging hangt af van de individuele hypotheekvorm, resterende looptijd en het moment van herfinanciering &mdash; benoem dit als indicatie, niet als berekening op klantniveau. de aanbeveling "niet aflossen, wel bufferen" is een generieke financiële aanbeveling en kan als (impliciet) advies worden gelezen. Voor individuele klanten is dit alleen passend na een concrete beoordeling van inkomen, risicobereidheid en doelstellingen (Wft-zorgplicht). Ook de bandbreedte van herstelkosten bij funderingsschade (<span class="num">€ 100.000</span>&ndash;<span class="num">€ 200.000</span>) is indicatief en sterk locatie- en woningafhankelijk; vermeld dit expliciet als richtbedrag, niet als harde toezegging. Neem in de definitieve nieuwsbrief een disclaimer op dat dit algemene informatie is en geen persoonlijk advies, en verwijs naar een adviesgesprek.
+  </div>
+
+  <footer>
+    <p>Bronnen: Nibud, Advies hypotheeknormen 2027 (september 2026); Kamerbrief leennormen 2027 (14 oktober 2026); Rijksoverheid/Volkshuisvesting Nederland, "Leennormen 2027: maximale hypotheek iets omhoog" (2 november 2026); Consumentenbond, diverse publicaties aflossingsvrije hypotheek (2026); Rabobank, "Nieuw beleid voor het beoordelen van hypotheken vanaf maart 2027".</p>
+    <p>Tarieven en percentages onder voorbehoud van definitieve besluitvorming; bedragen op aanvraag indien nog niet definitief vastgesteld.</p>
+  </footer>
+</main>
