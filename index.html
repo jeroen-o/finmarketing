@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Marketingbibliotheek Blinqx V&amp;H</title>
 <meta name="description" content="Gratis en freemium marketingmateriaal, klanttools en rekentools van Blinqx Verzekering & Hypotheek en partners, voor adviseurs.">
+<meta name="theme-color" content="#FFCD00">
+<meta property="og:title" content="Marketingbibliotheek Blinqx Verzekering & Hypotheek">
+<meta property="og:description" content="Nieuwsbrieven, campagnes, klanttools en rekentools voor adviseurs. Gratis te gebruiken, in je eigen huisstijl.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 36'%3E%3Cpath d='M16 0l16 9v18l-16 9L0 27V9z' fill='%23FFCD00'/%3E%3Cpath d='M16 7l9 5v12l-9 5-9-5V12z' fill='%23000'/%3E%3C/svg%3E">
 <style>
   /* ============================================================
      Marketingbibliotheek — Blinqx Verzekering & Hypotheek
@@ -207,6 +212,39 @@
   .rc input{accent-color:var(--k);margin-top:3px}
   .rc b{display:block}.rc small{color:var(--muted)}
 
+  /* Uitgelicht, stappen, kalender */
+  .feat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:40px}
+  .fcard{display:flex;flex-direction:column;gap:10px;padding:22px 20px;text-decoration:none;color:inherit;position:relative;transition:transform .15s}
+  .fcard:hover{transform:translateY(-3px)}
+  .fcard .hexi{width:44px;height:50px}
+  .fcard h3{font-size:1.12rem}
+  .fcard p{font-size:.9rem;color:var(--ink-2);margin:0}
+  .fcard .go{margin-top:auto;font-weight:800;font-size:.88rem}
+  .fcard .badge{align-self:flex-start}
+  .fcard.dark{background:var(--k);color:#fff}
+  .fcard.dark p{color:#d7dde5}
+  .fcard.dark .go{color:var(--y)}
+  .steps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:44px}
+  .step{background:#fff;padding:20px;position:relative}
+  .step b.n{display:inline-flex;width:36px;height:40px;background:var(--y);align-items:center;justify-content:center;font-size:1.1rem;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);margin-bottom:8px}
+  .step h3{font-size:1rem;margin-bottom:6px}
+  .step p{font-size:.9rem;margin:0;color:var(--ink-2)}
+  .month-band{background:var(--k);color:#fff;padding:22px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:22px;align-items:center;margin-bottom:44px}
+  .month-band .mname{font-size:2rem;font-weight:800;color:var(--y);line-height:1}
+  .month-band ul{margin:0;padding-left:1.1rem}
+  .month-band a{color:var(--y)}
+  .kal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .kmaand{background:#fff;padding:18px;display:flex;flex-direction:column;gap:10px}
+  .kmaand.nu{box-shadow:inset 0 0 0 3px var(--y)}
+  .kmaand h3{display:flex;justify-content:space-between;align-items:center;font-size:1.15rem}
+  .kact{border-top:1px solid var(--line-2);padding-top:10px}
+  .kact b{display:block;font-size:.95rem}
+  .kact p{font-size:.86rem;color:var(--ink-2);margin:4px 0 6px}
+  .kact .chan a{background:var(--y-soft);text-decoration:none;font-weight:700;font-size:.75rem;padding:4px 8px}
+  .kact .datum{font-size:.75rem;font-weight:800;color:var(--y-ink)}
+  @media (max-width:900px){ .feat-grid,.kal{grid-template-columns:1fr 1fr} .steps3{grid-template-columns:1fr} .month-band{grid-template-columns:1fr} }
+  @media (max-width:600px){ .feat-grid,.kal{grid-template-columns:1fr} }
+
   /* Footer */
   footer.site{background:var(--k);color:#fff;padding:56px 0 28px;margin-top:20px;clip-path:polygon(0 36px,100% 0,100% 100%,0 100%)}
   .fgrid{display:grid;grid-template-columns:1.1fr 1fr;gap:36px}
@@ -221,7 +259,8 @@
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
   .layout>*,.qa>*,.fgrid>*,.hero-grid>*,.detail-head>*{min-width:0}
-  h1,h2,h3{overflow-wrap:anywhere;hyphens:auto}
+  h1,h2,h3{overflow-wrap:break-word}
+  @media (max-width:420px){ h1,h2,h3{overflow-wrap:anywhere} }
   @media (max-width:900px){
     .layout,.qa,.fgrid,.hero-grid{grid-template-columns:1fr}
     .hex-stack{display:none}
@@ -286,13 +325,12 @@
     <a class="brand" href="#/" aria-label="Marketingbibliotheek Blinqx Verzekering &amp; Hypotheek, home"><i class="logo" aria-hidden="true"></i><span>Marketing-<br>bibliotheek</span></a>
     <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="hoofdmenu"><span class="bars" aria-hidden="true"></span> Menu</button>
     <nav class="nav" id="hoofdmenu" aria-label="Hoofdmenu">
-      <a href="#/" data-nav="home">Alles</a>
       <a href="#/?cat=content" data-nav="content">Content</a>
       <a href="#/?cat=campagnes" data-nav="campagnes">Campagnes</a>
       <a href="#/?cat=klanttools" data-nav="klanttools">Klanttools</a>
       <a href="#/?cat=adviseurstools" data-nav="adviseurstools">Adviseurstools</a>
+      <a href="#/kalender" data-nav="kalender">Kalender</a>
       <a href="#/kennisbank" data-nav="kennisbank">Kennisbank</a>
-      <a href="#/disclaimer" data-nav="disclaimer">Disclaimer</a>
       <a href="#/vraag" data-nav="vraag" class="cta">Vraag of wens →</a>
     </nav>
   </div>
@@ -438,6 +476,10 @@ const ITEMS = [
     channels:["Eigen website","Nieuwsbrief","Eigen e-mail"], tags:["klanttekst","website","faq","52+","pensioen","aflossingsvrij"],
     compliance:"Algemene informatie, geen advies. Bankbeleid kan wijzigen: werk de datum onderaan bij en laat de tekst toetsen." },
 
+  { id:"marketingkalender", cat:"content", kind:"kalender", model:"gratis",
+    title:"Marketing- en klantactiviteitenkalender 2027", by:"Blinqx V&H",
+    summary:"Per maand concrete klantactiviteiten met het bijbehorende materiaal: van de nieuwsbrief in januari tot de hypotheekverjaardag in juni en Prinsjesdag in september. Met agendabestand (.ics).",
+    channels:["Agenda","Jaarplanning"], tags:["kalender","jaarplanning","agenda","ics","klantactiviteiten","campagne","prinsjesdag","maand"] },
   { id:"ecards", cat:"content", kind:"kaarten", model:"gratis",
     title:"E-cards in Blinqx-stijl", by:"Blinqx V&H",
     summary:"Tien kaartjes voor klantcontact: verjaardag (“Dat mag gevierd worden!”), bedankt, welkom, super, lekker bezig, thumbs up en meer. Download als PNG voor je mail, WhatsApp of social, of gebruik ze bij de hypotheekverjaardag.",
@@ -1134,7 +1176,34 @@ function viewHome(params){
       </div>
     </div></div></section>`;
 
+  const FEAT = [
+    ["verantwoord-hypotheekrapport","life events","Risico's, besparingen en maximale hypotheek in één rapport. Perfect voor de hypotheekverjaardag.","dark"],
+    ["nieuwsbrief-hypotheekbeleid-2027","news","Kant-en-klaar met je eigen kantoorgegevens. Download als Word of kopieer voor je mail.",""],
+    ["woontoekomst-check","house","Vier vragen voor 55-plussers: blijven of gaan? Antwoorden komen direct bij jou binnen.",""],
+    ["kansentool","target","Hoeveel oversluiters, renteverlengers en verhuizers zitten er in je portefeuille?",""],
+    ["campagne-pensioen","pension","Drie mails voor klanten van 50–57 jaar met een aflossingsvrije hypotheek.",""],
+    ["marketingkalender","calendar","Per maand een klantactiviteit, met het materiaal erbij. Zet het jaar in je agenda.","dark"]
+  ].map(([id,ic,txt,cls])=>{ const it=ITEMS.find(i=>i.id===id); return it ? `<a class="fcard cut ${cls}" href="#/item/${id}"><span class="hexi">${icon(ic,24)}</span>${badge(it.model)}<h3>${esc(it.title)}</h3><p>${esc(txt)}</p><span class="go">Aan de slag →</span></a>` : ""; }).join("");
+  const mNu = new Date().getFullYear() < 2027 ? 1 : new Date().getMonth()+1, kM = KALENDER.find(k=>k.m===mNu);
   app.innerHTML = `<div class="wrap">
+
+    <h2 class="sec-title">Direct <u>aan de slag</u></h2>
+    <p class="sec-sub">De meest gebruikte tools en campagnes voor klantcontact.</p>
+    <div class="feat-grid">${FEAT}</div>
+
+    <div class="month-band">
+      <div><div class="eyebrow" style="margin:0 0 4px">${new Date().getFullYear() < 2027 ? "Start van 2027" : "Deze maand"}</div><div class="mname">${MAANDEN[mNu-1]}</div></div>
+      <ul>${kM.a.map(x=>`<li><b>${esc(x.t)}</b>: ${esc(x.d)}</li>`).join("")}</ul>
+      <a class="btn btn-y" href="#/kalender" style="color:var(--k)">Bekijk de kalender →</a>
+    </div>
+
+    <h2 class="sec-title">Zo <u>werkt</u> het</h2>
+    <p class="sec-sub">Van materiaal naar klantcontact in drie stappen.</p>
+    <div class="steps3">
+      <div class="step cut"><b class="n">1</b><h3>Kies je materiaal</h3><p>Zoek op onderwerp of kies een categorie: nieuwsbrief, campagne, klanttool of kennisbankartikel.</p></div>
+      <div class="step cut"><b class="n">2</b><h3>Maak het van jou</h3><p>Vul je kantoornaam, contactgegevens en huisstijlkleur in. Alles blijft in je browser.</p></div>
+      <div class="step cut"><b class="n">3</b><h3>Verstuur of plaats</h3><p>Via je eigen mail, je website, Blinqx Connect of DFO. Of download als Word of PDF.</p></div>
+    </div>
 
     <h2 class="sec-title">Kies een <u>categorie</u></h2>
     <p class="sec-sub">Acht categorieën, van kant-en-klare content tot bronnen. Klik op een categorie of zoek direct.</p>
@@ -1711,7 +1780,9 @@ function viewBrieven(item){
    ============================================================ */
 const VH = {
   toetsrente: 0.05, looptijd: 30,
-  // Indicatieve woonquotes bij 5% toetsrente (benadering leennormen; geen officiële tabel)
+  // Indicatieve woonquotes rond 4,2% toetsrente (benadering leennormen 2027; geen officiële tabel).
+  // Per procentpunt lagere toetsrente ligt de woonquote ca. 1 procentpunt hoger (en andersom).
+  wqRef: 0.042, wqPerProcent: 1.0,
   wq:    [[25000,.185],[30000,.205],[35000,.22],[40000,.235],[50000,.255],[60000,.265],[70000,.27],[100000,.275],[150000,.28]],
   wqAow: [[20000,.22],[25000,.24],[30000,.26],[35000,.275],[40000,.285],[50000,.30],[60000,.31],[100000,.32]],
   maxLoon: 79400,           // indicatief maximumdagloon op jaarbasis
@@ -1721,11 +1792,13 @@ const VH = {
   opslagPerKlasse: 0.0015,  // indicatief renteverschil per risicoklasse
   boetevrij: 0.10
 };
-function woonquote(inkomen, aow){
+function woonquote(inkomen, aow, toets){
   const t = aow ? VH.wqAow : VH.wq;
-  if (inkomen <= t[0][0]) return t[0][1];
-  for (let i=1;i<t.length;i++){ if (inkomen <= t[i][0]){ const [x0,y0]=t[i-1],[x1,y1]=t[i]; return y0+(y1-y0)*(inkomen-x0)/(x1-x0); } }
-  return t[t.length-1][1];
+  let q;
+  if (inkomen <= t[0][0]) q = t[0][1];
+  else { q = t[t.length-1][1]; for (let i=1;i<t.length;i++){ if (inkomen <= t[i][0]){ const [x0,y0]=t[i-1],[x1,y1]=t[i]; q = y0+(y1-y0)*(inkomen-x0)/(x1-x0); break; } } }
+  const r = toets ?? (typeof VH_TOETS !== "undefined" ? VH_TOETS : VH.toetsrente);
+  return Math.max(0.1, q + (VH.wqRef - r) * VH.wqPerProcent);
 }
 const annJaar = (rente, jaren=VH.looptijd) => { const r = rente/12, n = jaren*12; return r ? 12 * r / (1 - Math.pow(1+r, -n)) : 12/n; };
 let VH_TOETS = VH.toetsrente;
@@ -1780,11 +1853,12 @@ function vhCalc(){
     add("ww","Werkloosheid", nm, ww + ander, schuld, {persIncome:ww,
       toel: X.type==="werknemer" ? `WW: eerste 2 maanden 75%, daarna 70% van het (gemaximeerde) loon, maximaal ${VH.wwMnd} maanden.` : "Als zelfstandig ondernemer heeft u geen recht op WW."});
     // Overlijden
-    const orvAnder = k==="a" ? N(X.orv) : N(X.orv);
+    const orvAnder = N(X.orv);
+    const anderX = k==="a" ? P : A;
     if (pt){
       const nab = ander + N(X.nbp);
       const hypNa = Math.max(0, schuld - orvAnder);
-      add("ov",`Overlijden van ${nm}`, "Nabestaande", nab, hypNa, {orv: orvAnder,
+      add("ov",`Overlijden van ${nm}`, "Nabestaande", nab, hypNa, {orv: orvAnder, verpl: N(anderX.verpl),
         toel:`Inkomen nabestaande ${fmtEUR(ander)}${N(X.nbp)?` plus nabestaandenpensioen ${fmtEUR(N(X.nbp))}`:""}. ${orvAnder?`ORV-uitkering ${fmtEUR(orvAnder)} verlaagt de schuld.`:"Geen ORV opgegeven."} Een eventuele ANW-uitkering is niet meegeteld.`});
     }
   });
@@ -2046,10 +2120,82 @@ function viewWoontoekomst(item, params){
     toast(await copyText(location.href.split("#")[0]+"#/item/"+item.id+(p.toString()?"?"+p:"")) ? "Deellink gekopieerd" : "Kopiëren lukte niet"); };
 }
 
+/* ---------- Marketing- en klantactiviteitenkalender 2027 ---------- */
+const MAANDEN = ["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december"];
+const KALENDER = [
+  { m:1, a:[
+    {t:"Nieuwsbrief: wat verandert er in 2027?", d:"De nieuwe leennormen, NHG-grens en aftrekpercentages gelden vanaf 1 januari. Een goed moment voor je eerste nieuwsbrief van het jaar.", i:["nieuwsbrief-hypotheekbeleid-2027","kennisbank"]},
+    {t:"Renteverlengers van dit jaar in beeld", d:"Breng alle klanten met een aflopende rentevaste periode in 2027 in kaart en plan de gesprekken.", i:["sel-renteverlengers","campagne-rentevast-duurzaam","portefeuillesignalen"]}]},
+  { m:2, a:[
+    {t:"Aangifteseizoen: fiscale vragen beantwoorden", d:"Klanten doen aangifte inkomstenbelasting. Deel uitleg over renteaftrek, eigenwoningforfait en voorlopige teruggave.", i:["kennisbank","nieuwsbrief-hypotheekbeleid-2027"]},
+    {t:"Jaarlijkse update van klantgegevens", d:"Stuur de korte jaarlijkse update (5 kernvragen) aan je hele portefeuille.", i:["stappenscan-52","checklist-publicatie"]}]},
+  { m:3, a:[
+    {t:"Nieuw bankbeleid: pensioen telt eerder mee", d:"Rabobank en Obvion toetsen vanaf maart 2027 al 15 jaar vóór de AOW-leeftijd op pensioeninkomen. Benader klanten van 50–57 jaar.", i:["campagne-pensioen","aflossingsvrij-check","rabobank-beleid"], dt:"2027-03-01"},
+    {t:"Bomen planten met het Hypotheekbos", d:"In maart zijn de bomenplantdagen. Deel het op social en laat zien dat je kantoor groen is.", i:["hypotheekbos"]}]},
+  { m:4, a:[
+    {t:"Voorjaar: verduurzamen", d:"Klanten denken in het voorjaar aan isoleren en zonnepanelen. Wijs op extra leenruimte en rentekorting bij een beter energielabel.", i:["campagne-duurzaam-oversluiten","duurzaamheidsprofiel","klimaatcijfer"]}]},
+  { m:5, a:[
+    {t:"Woningmarkt in beweging: verhuizers", d:"Signaleer klanten die hun woning te koop zetten en help kopers met een feitencheck van hun nieuwe woning.", i:["portefeuillesignalen","pandwise","funderingscijfer"]},
+    {t:"LinkedIn-campagne “Hypotheek vanaf 52”", d:"Start de campagne van zeven posts in vier weken.", i:["linkedin-52","adviseurstoolkit-52"]}]},
+  { m:6, a:[
+    {t:"Hypotheekverjaardag", d:"Verras klanten op de verjaardag van hun hypotheek met een kaartje en een verantwoord hypotheekrapport.", i:["verantwoord-hypotheekrapport","ecards","sel-verjaardagen"]},
+    {t:"Woontoekomst-check voor 55-plussers", d:"Blijven of gaan? Laat oudere klanten in vier vragen aangeven hoe ze later willen wonen.", i:["woontoekomst-check","campagne-verkopen-terughuren"]}]},
+  { m:7, a:[
+    {t:"Zomercheck: overlijdensrisicoverzekering", d:"ORV-premies zijn gedaald. Laat zien wie kan besparen, ook gestopte rokers.", i:["sel-gestopte-rokers","portefeuillesignalen"]}]},
+  { m:8, a:[
+    {t:"Ondernemers in beeld", d:"Benader relaties met een KvK-registratie over aansprakelijkheid, arbeidsongeschiktheid en pensioen.", i:["campagne-kvk"]}]},
+  { m:9, a:[
+    {t:"Prinsjesdag: plannen voor 2028", d:"Op Prinsjesdag (dinsdag 21 september 2027) worden de fiscale plannen bekend. Stuur een korte update over wat dit voor huiseigenaren betekent.", i:["nieuwsbrief-hypotheekbeleid-2027","kennisbank"], dt:"2027-09-21"},
+    {t:"Nibud-advies leennormen 2028", d:"Het Nibud publiceert rond september het advies voor de normen van volgend jaar. Deel wat er verandert voor de maximale hypotheek.", i:["adviseurstools"]}]},
+  { m:10, a:[
+    {t:"Pensioen en aflossingsvrij: 2031 komt dichterbij", d:"Help klanten met een oude aflossingsvrije hypotheek vooruitkijken: kan de hypotheek straks nog betaald worden?", i:["aflossingsvrij-check","campagne-pensioen","hypotheek-straks"]},
+    {t:"Fundering en klimaat", d:"Najaarsstormen en wateroverlast: een goed moment voor het klimaat- en funderingscijfer.", i:["funderingscijfer","klimaatcijfer","woningcijfer"]}]},
+  { m:11, a:[
+    {t:"Leennormen 2028 bekend", d:"De Kamerbrief met de leennormen voor volgend jaar verschijnt in het najaar. Werk je klanttekst en nieuwsbrief bij.", i:["nieuwsbrief-hypotheekbeleid-2027","checklist-publicatie"]},
+    {t:"Portefeuille-scan voor het nieuwe jaar", d:"Bereken hoeveel kansen er in je portefeuille zitten en plan de renteverlengers van volgend jaar.", i:["kansentool","sel-renteverlengers","brochure-verborgen-kansen"]}]},
+  { m:12, a:[
+    {t:"Bedankt en fijne feestdagen", d:"Sluit het jaar persoonlijk af met een kaartje aan je klanten.", i:["ecards"]},
+    {t:"Jaarplanning marketing 2028", d:"Kijk terug op het jaar en plan je campagnes. Dien je wensen voor nieuw materiaal in.", i:["checklist-publicatie"]}]}
+];
+function icsVoor(acts){
+  const pad = n => String(n).padStart(2,"0"), stamp = new Date().toISOString().replace(/[-:]/g,"").slice(0,15)+"Z";
+  const lines = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Blinqx VH//Marketingkalender//NL","CALSCALE:GREGORIAN"];
+  acts.forEach(({m,a},mi)=>a.forEach((x,ai)=>{
+    const d = x.dt ? x.dt.replace(/-/g,"") : `2027${pad(m)}01`;
+    const y = +d.slice(0,4), mo = +d.slice(4,6)-1, da = +d.slice(6,8), nd = new Date(Date.UTC(y,mo,da+1));
+    const end = `${nd.getUTCFullYear()}${pad(nd.getUTCMonth()+1)}${pad(nd.getUTCDate())}`;
+    const esc2 = s => s.replace(/[\\,;]/g, c=>"\\"+c).replace(/\n/g,"\\n");
+    lines.push("BEGIN:VEVENT",`UID:blinqx-kal-${m}-${ai}@marketingbibliotheek`,`DTSTAMP:${stamp}`,`DTSTART;VALUE=DATE:${d}`,`DTEND;VALUE=DATE:${end}`,
+      `SUMMARY:${esc2("Marketing: "+x.t)}`,`DESCRIPTION:${esc2(x.d)}`,"END:VEVENT");
+  }));
+  lines.push("END:VCALENDAR");
+  return lines.join("\r\n");
+}
+const kalLinks = ids => ids.map(id=>ITEMS.find(i=>i.id===id)).filter(Boolean).map(i=>`<a href="#/item/${i.id}">${esc(i.title.replace(/^(Campagne|Selectie): /,""))} →</a>`).join("");
+function viewKalender(){
+  setNav("kalender");
+  const nu = new Date(), mNu = nu.getFullYear() < 2027 ? 1 : nu.getMonth()+1;
+  smallHero([`<b>Kalender</b>`], `
+    <div class="detail-head"><div><span class="badge gratis">Gratis</span> <span class="badge cat">Jaarplanning</span>
+      <h1>Marketing- en klantactiviteitenkalender 2027</h1><p>Per maand een of twee concrete klantactiviteiten, met het materiaal dat je er direct voor kunt gebruiken. Zet ze in één keer in je agenda.</p></div>
+      <div class="btns"><button class="btn btn-k" id="ics-all">${icon("calendar",18)} Hele jaar in mijn agenda (.ics)</button></div></div>`);
+  app.innerHTML = `<div class="wrap"><div class="kal">${KALENDER.map(({m,a})=>`
+    <section class="kmaand cut ${m===mNu?"nu":""}" id="maand-${m}">
+      <h3><span>${MAANDEN[m-1][0].toUpperCase()+MAANDEN[m-1].slice(1)}</span>${m===mNu?`<span class="badge freemium">Eerstvolgend</span>`:""}</h3>
+      ${a.map(x=>`<div class="kact">${x.dt?`<span class="datum">${new Date(x.dt).toLocaleDateString("nl-NL",{day:"numeric",month:"long",year:"numeric"})}</span>`:""}<b>${esc(x.t)}</b><p>${esc(x.d)}</p><div class="chan">${kalLinks(x.i)}</div></div>`).join("")}
+      <button class="btn btn-o btn-sm" data-ics="${m}" style="margin-top:auto;align-self:flex-start">${icon("calendar",16)} In mijn agenda</button>
+    </section>`).join("")}</div>
+    <div class="note" style="margin-top:18px"><strong>Let op:</strong> data van bankbeleid, Prinsjesdag en publicaties zijn indicatief. Controleer ze voordat je communiceert en leg verzending vast in het klantdossier.</div></div>`;
+  $("#ics-all").onclick = () => { download("marketingkalender-2027.ics", icsVoor(KALENDER), "text/calendar"); toast("Agendabestand gedownload"); };
+  $$("[data-ics]").forEach(b=>b.onclick=()=>{ const m=+b.dataset.ics; download(`marketingkalender-2027-${MAANDEN[m-1]}.ics`, icsVoor(KALENDER.filter(k=>k.m===m)), "text/calendar"); toast("Agendabestand gedownload"); });
+  if (mNu) setTimeout(()=>{ const el=document.getElementById("maand-"+mNu); if (el && mNu>1) el.scrollIntoView({block:"center"}); }, 50);
+}
+
 /* ---------- Kennisbank ---------- */
 const KB_THEMES = [...new Set(KB.map(a=>a.th))];
 const kbSlug = a => a.u.replace(/\/+$/,"").split("/").pop();
 const kbState = { q:"", th:"alle" };
+const kbOud = a => /\b(19\d\d|20[01]\d|2020)\b|290\.000|265\.000|levensloop|52%|51%|50,5%/i.test(a.t+" "+a.b);
 function viewKennisbank(item, params){
   setNav("kennisbank");
   const open = (params && params.get("a")) || "";
@@ -2083,7 +2229,7 @@ function viewKennisbank(item, params){
     $("#kb-list").innerHTML = list.length ? list.map(a=>{ const s=kbSlug(a);
       const body = a.b ? a.b.split("\n").map(l=> l.startsWith("• ") ? `<li>${highlight(l.slice(2),T)}</li>` : `<p>${highlight(l,T)}</p>`).join("").replace(/(<li>.*?<\/li>)+/g, m=>`<ul class="feat">${m}</ul>`) : `<p class="hint">Dit onderdeel is een rekentool of overzicht op de oorspronkelijke site.</p>`;
       return `<details class="panel cut kb-a" id="kb-${esc(s)}" ${open===s?"open":""} style="margin-bottom:10px">
-        <summary style="cursor:pointer;font-weight:800;display:flex;justify-content:space-between;gap:12px;align-items:center;list-style:none"><span>${highlight(a.t,T)}</span><span class="badge cat kb-th">${esc(a.th)}</span></summary>
+        <summary style="cursor:pointer;font-weight:800;display:flex;justify-content:space-between;gap:12px;align-items:center;list-style:none"><span>${highlight(a.t,T)}</span><span style="display:flex;gap:6px;flex-wrap:wrap;flex:none">${kbOud(a)?`<span class="badge betaald" title="Bevat jaartallen of bedragen van vóór 2021">Mogelijk verouderd</span>`:""}<span class="badge cat kb-th">${esc(a.th)}</span></span></summary>
         <div style="margin-top:12px;font-size:.95rem">${body}</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
           <button class="btn btn-k btn-sm" data-kbcopy="${esc(s)}">${icon("copy",16)} Kopieer tekst</button>
@@ -2302,10 +2448,11 @@ function route(){
   if (path.startsWith("/item/")){
     const item=ITEMS.find(i=>i.id===path.slice(6));
     if (!item){ location.hash="#/"; return; }
-    ({nieuwsbrief:viewNewsletter, checklist:viewChecklist, aflossingsvrij:viewAflossingsvrij, kansen:viewKansen, signalen:viewSignalen, brieven:viewBrieven, campagne:viewCampagne, selectie:viewSelectie, vhr:viewVhr, woontoekomst:viewWoontoekomst, kaarten:viewKaarten, kennisbank:viewKennisbank}[item.kind]||viewItem)(item, params);
+    ({nieuwsbrief:viewNewsletter, checklist:viewChecklist, aflossingsvrij:viewAflossingsvrij, kansen:viewKansen, signalen:viewSignalen, brieven:viewBrieven, campagne:viewCampagne, selectie:viewSelectie, vhr:viewVhr, woontoekomst:viewWoontoekomst, kaarten:viewKaarten, kennisbank:viewKennisbank, kalender:viewKalender}[item.kind]||viewItem)(item, params);
     document.title = `${item.title} · Marketingbibliotheek Blinqx V&H`;
     window.scrollTo(0,0);
   } else if (path==="/vraag"){ viewVraag(params); document.title="Vraag & wens · Marketingbibliotheek Blinqx V&H"; window.scrollTo(0,0); }
+  else if (path==="/kalender"){ viewKalender(); document.title="Kalender · Marketingbibliotheek Blinqx V&H"; window.scrollTo(0,0); }
   else if (path==="/kennisbank"){ viewKennisbank(null, params); document.title="Kennisbank · Marketingbibliotheek Blinqx V&H"; if(!params.get("a")) window.scrollTo(0,0); }
   else if (path==="/disclaimer"){ viewDisclaimer(); document.title="Disclaimer · Marketingbibliotheek Blinqx V&H"; window.scrollTo(0,0); }
   else { viewHome(params); document.title="Marketingbibliotheek Blinqx V&H"; if(!params.get("cat")) window.scrollTo(0,0); }
