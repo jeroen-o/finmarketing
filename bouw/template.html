@@ -35,6 +35,7 @@
   .logo{display:block;width:150px;height:51px;background:url("data:image/png;base64,__LOGO__") left center/contain no-repeat}
   .logo.inv{filter:invert(1)}
   .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .skip:focus{position:fixed;left:12px;top:12px;width:auto;height:auto;clip:auto;z-index:100;background:var(--k);color:#fff;padding:10px 14px;font-weight:800}
 
   /* Header */
   .top{background:var(--y)}
@@ -319,6 +320,7 @@
 </style>
 </head>
 <body>
+<a href="#app" class="sr skip" onclick="event.preventDefault();document.getElementById('app').focus();document.getElementById('app').scrollIntoView()">Naar de inhoud</a>
 
 <header class="top">
   <div class="wrap">
@@ -359,7 +361,7 @@
       <p>Alle materialen, teksten, tools, rekentools en links op deze site worden kosteloos en zonder enige garantie (“as is”) ter beschikking gesteld door Blinqx Verzekering &amp; Hypotheek en partners. Gebruik is volledig voor eigen rekening en risico. Blinqx en partners zijn niet aansprakelijk voor schade door het gebruik, ook niet bij onjuiste of verouderde informatie.</p>
       <p style="margin:0">Jij blijft als adviseur zelf verantwoordelijk voor de juistheid, actualiteit en passendheid van alles wat je richting klanten communiceert, en voor naleving van Wft, AFM-regels (wervende communicatie, zorgplicht) en AVG. Materialen zijn algemene informatie, geen (financieel) advies. Laat teksten toetsen door je compliance officer. <a href="#/disclaimer">Volledige disclaimer →</a></p>
     </div>
-    <div class="fbottom"><span>© 2026 Blinqx Verzekering &amp; Hypotheek</span><span>Een activiteit van Blinqx Verzekering &amp; Hypotheek</span><span>Tarieven premium-onderdelen: op aanvraag, tenzij anders vermeld</span></div>
+    <div class="fbottom"><span>© 2026 Blinqx Verzekering &amp; Hypotheek</span><span>Een activiteit van Blinqx Verzekering &amp; Hypotheek</span><span>Tarieven premium-onderdelen: op aanvraag, tenzij anders vermeld</span><span>Laatst bijgewerkt: 26 november 2026</span><a href="#/disclaimer">Disclaimer</a></div>
   </div>
 </footer>
 
@@ -934,6 +936,7 @@ function viewHome(params){
       <button class="reset" id="reset">Wis filters</button>
     </div>
     <div class="grid" id="grid"></div>
+    <div id="kb-hits"></div>
   </div>`;
 
   const grid=$("#grid");
@@ -954,6 +957,13 @@ function viewHome(params){
       </article>`).join("")
       : `<div class="empty">Niets gevonden${state.q?` voor “${esc(state.q)}”`:""}. Probeer een ander woord, <button class="reset" id="reset2">wis de filters</button> of <a href="#/vraag?soort=wens">dien een wens in</a>.</div>`;
     $("#reset2")?.addEventListener("click", resetAll);
+    // Kennisbank-treffers
+    const kbHits = T.length ? KB.filter(a=>T.every(x=>norm(a.t+" "+a.b).includes(x))).sort((a,b)=>(T.some(x=>norm(a.t).includes(x))?0:1)-(T.some(x=>norm(b.t).includes(x))?0:1)) : [];
+    const kbBox = $("#kb-hits");
+    if (kbBox) kbBox.innerHTML = kbHits.length ? `<div class="panel cut" style="margin-top:18px"><h2><span class="hexi">${icon("faq",18)}</span>Ook in de kennisbank: ${kbHits.length} ${kbHits.length===1?"artikel":"artikelen"}</h2>
+      <div class="links">${kbHits.slice(0,5).map(a=>`<a href="#/kennisbank?a=${esc(kbSlug(a))}"><span>${highlight(a.t,T)}</span><small>→</small></a>`).join("")}</div>
+      ${kbHits.length>5?`<p class="hint"><a href="#/kennisbank" id="kb-more">Alle ${kbHits.length} artikelen bekijken →</a></p>`:""}</div>` : "";
+    $("#kb-more")?.addEventListener("click", ()=>{ kbState.q = state.q; });
   }
   function resetAll(){ state.q=""; state.cat="alle"; state.model="alle"; state.by="alle"; $("#fq").value=""; $("#hq").value="";
     $$("[data-model]").forEach(x=>x.setAttribute("aria-pressed", x.dataset.model==="alle")); $$("[data-cat]").forEach(x=>x.setAttribute("aria-pressed","false")); $("#fby").value="alle"; setNav("home"); draw(); }
