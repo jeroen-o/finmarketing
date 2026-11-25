@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="only light">
+<meta name="theme-color" content="#000000">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adviseurstoolkit 52+</title>
+<meta name="description" content="Toolkit voor hypotheekadviseurs: LinkedIn-campagne, jaarlijkse informatie-update en nazorgscan, en klanttekst 'Hypotheek vanaf 52 jaar', met eigen logo en kantoorgegevens.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Dennes Roes">
+<link rel="canonical" href="index.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hypotheek vanaf 52">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:title" content="Adviseurstoolkit: hypotheek vanaf 52">
+<meta property="og:description" content="LinkedIn-campagne, hypotheekscan, klanttekst en nieuwsbrief, met je eigen logo en kantoorgegevens. Voor hypotheekadviseurs.">
+<meta property="og:url" content="index.html">
+<meta property="og:image" content="https://dennes-roes.nl/og-toolkit.jpg">
+<meta property="og:image:secure_url" content="https://dennes-roes.nl/og-toolkit.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Adviseurstoolkit hypotheek vanaf 52: LinkedIn-campagne, hypotheekscan, klanttekst en nieuwsbrief">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Adviseurstoolkit: hypotheek vanaf 52">
+<meta name="twitter:description" content="LinkedIn-campagne, hypotheekscan, klanttekst en nieuwsbrief, met je eigen logo en kantoorgegevens. Voor hypotheekadviseurs.">
+<meta name="twitter:image" content="https://dennes-roes.nl/og-toolkit.jpg">
+<style>
+:root{
+  --navy:#000000;--red:#000000;--ink:#222;--mute:#5f6670;--line:#D9D9D9;--soft:#F4F7F9;--sky:#FFF0B3;
+  --orange:#E8741E;--green:#2E8B2E;--bg:#E4EAF1;--card:#fff;--accent:#000000;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;color-scheme:only light}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Calibri,Carlito,"Segoe UI",Arial,sans-serif}
+header{background:#000000;color:#fff;border-bottom:4px solid #000000}
+.hwrap{max-width:1180px;margin:0 auto;padding:16px 16px 0}
+header h1{margin:0;font-size:26px;font-weight:600}
+header p{margin:2px 0 12px;color:#CAD5E3;font-size:15px}
+nav{display:flex;gap:4px;overflow-x:auto}
+nav button{background:transparent;color:#CAD5E3;border:0;border-radius:8px 8px 0 0;padding:10px 16px;font:600 15px Calibri,Carlito,Arial,sans-serif;cursor:pointer;white-space:nowrap}
+nav button[aria-selected="true"]{background:var(--bg);color:var(--navy)}
+main{max-width:1180px;margin:0 auto;padding:20px 16px 60px}
+.tab{display:none}.tab.on{display:block}
+.offer{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:18px;align-items:center;background:#fff;border:2px solid #000000;border-radius:12px;padding:18px 22px;margin-bottom:16px;color:#222}
+.offer h3{margin:0 0 6px;font-size:21px;color:#000000}
+.offer ul{margin:6px 0 0;padding-left:20px}.offer li{margin-bottom:3px}
+.price{background:#000000;color:#fff;border-radius:10px;padding:14px 16px;text-align:center}
+.price .pm{font-size:34px;font-weight:700;line-height:1.1}.price .pm small{font-size:16px;font-weight:400}
+.price .once{font-size:16px;color:#CAD5E3;margin:4px 0 10px}
+.price a{display:block;margin-top:6px}
+@media (max-width:760px){.offer{grid-template-columns:1fr}}
+.mgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.mat{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--navy);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column}
+.mat.c{border-top-color:#000000}.mat.g{border-top-color:var(--green)}.mat.o{border-top-color:var(--orange)}
+.mat h3{margin:0 0 4px;font-size:17px}
+.mat p{margin:0 0 10px;font-size:14.5px;color:var(--mute);flex:1}
+.mat .row{gap:6px}
+.mat a.b,.mat button.b{font-size:13.5px;padding:6px 11px;text-decoration:none;display:inline-block}
+.lbl{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#000000;margin:22px 0 8px}
+.steps{counter-reset:st;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:st;position:relative;padding:8px 0 8px 44px;border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(st);position:absolute;left:0;top:8px;width:30px;height:30px;border-radius:50%;background:#000000;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+.cal td,.cal th{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:14.5px}
+.cal th{background:#000000;color:#fff}
+.cal{border-collapse:collapse;width:100%}
+.chk label{display:flex;gap:8px;font-weight:400;padding:4px 0;font-size:15px}
+@media (max-width:900px){.mgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.mgrid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:16px}
+h2{color:var(--navy);margin:0 0 6px;font-size:22px}
+h3{color:var(--navy);margin:14px 0 6px;font-size:18px}
+.muted{color:var(--mute);font-size:14.5px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px}
+.grid .full{grid-column:1/-1}
+label{display:block;font-weight:600;font-size:14.5px;margin-bottom:3px}
+input[type=text],input[type=url],input[type=email],input[type=tel],input[type=date],select,textarea{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:6px;font:16px Calibri,Carlito,Arial,sans-serif;background:var(--card);color:var(--ink)}
+input[type=color]{width:56px;height:38px;border:1px solid var(--line);border-radius:6px;padding:2px;background:var(--card)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+button.b{background:#000000;color:#fff;border:0;border-radius:6px;padding:8px 14px;font:600 14.5px Calibri,Carlito,Arial,sans-serif;cursor:pointer}
+button.b.alt{background:transparent;color:var(--navy);border:1px solid var(--navy)}
+button.b.red{background:#000000}
+a.b,label.b{display:inline-block;background:#000000;color:#fff;border:1px solid #000000;border-radius:6px;padding:8px 14px;font:600 14.5px Calibri,Carlito,Arial,sans-serif;text-decoration:none}
+a.b.alt,label.b.alt{background:transparent;color:var(--navy);border-color:var(--navy)}
+a.b:hover,button.b:hover{filter:brightness(1.12)}
+.afm{border-left:5px solid var(--orange);background:#fff6ee;color:#3d2a14;padding:10px 14px;border-radius:0 8px 8px 0;font-size:14.5px;line-height:1.45;margin:10px 0}
+.afm b{color:#9a4b0c}
+.ok{border-left:5px solid var(--green);background:#eef7ee;color:#1d3d1d;padding:10px 14px;border-radius:0 8px 8px 0;font-size:14.5px}
+.ph{background:#fff2a8;color:#5a4a00;padding:0 4px;border-radius:3px;font-weight:600}
+/* visitekaartje */
+.vk{display:flex;gap:16px;align-items:center;border:1px solid var(--line);border-left:6px solid var(--accent);border-radius:10px;padding:14px 16px;background:var(--card)}
+.vk img{max-height:60px;max-width:160px;object-fit:contain}
+.vk .nm{font-weight:700;font-size:18px;color:var(--navy)}
+.logoBox{width:100%;min-height:90px;border:2px dashed var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;background:var(--soft);padding:8px}
+.logoBox img{max-height:80px;max-width:100%}
+/* posts */
+.posts{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+.post{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:18px}
+.post pre{white-space:pre-wrap;font:15.5px/1.5 Calibri,Carlito,Arial,sans-serif;background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin:8px 0;max-height:420px;overflow:auto;color:var(--ink)}
+.post canvas{width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
+.meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:14px}
+.pill{background:var(--sky);color:var(--navy);border-radius:12px;padding:2px 10px;font-weight:700;font-size:13px}
+.warn{color:#9a4b0c;font-weight:700}
+/* vragen */
+.q{display:grid;grid-template-columns:24px 1fr;gap:8px;padding:7px 0;border-bottom:1px solid var(--line)}
+.q:last-child{border-bottom:0}
+.q small{display:block;color:var(--mute)}
+.q input{align-self:start;margin-top:4px}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.opt{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:2px 10px;font-size:13.5px}
+.vv{display:block;margin-top:8px;padding-left:12px;border-left:3px solid var(--line);font-size:15px}
+.sig{display:block;margin-top:6px;font-size:13.5px;color:var(--mute)}
+.info52{background:var(--sky);border-left:4px solid #000000;border-radius:0 8px 8px 0;padding:10px 14px;margin:6px 0 10px;font-size:15px}
+.sec h3{margin-top:4px}
+.seg{display:inline-flex;border:1px solid var(--navy);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:transparent;color:var(--navy);padding:8px 14px;font:600 14.5px Calibri,Carlito,Arial,sans-serif;cursor:pointer}
+.seg button.on{background:#000000;color:#fff}
+/* klanttekst */
+#art{background:#fff;color:#222;border-radius:10px;padding:28px 32px;border:1px solid var(--line)}
+#art h1{color:var(--accent);font-size:34px;line-height:1.15;margin:0 0 10px}
+#art h2{color:var(--accent);font-size:23px;margin:28px 0 6px}
+#art .lead{font-size:19px;color:#5f6670}
+#art table{border-collapse:collapse;width:100%;font-size:15.5px}
+#art th{background:var(--accent);color:#fff;text-align:left;padding:7px 10px}
+#art td{border-bottom:1px solid #ddd;padding:7px 10px;vertical-align:top}
+#art .box{background:#FFF0B3;border-radius:8px;padding:14px 18px;margin:12px 0}
+#art .cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:10px 18px;border-radius:6px;margin:6px 8px 6px 0}
+#art details{border:1px solid #ddd;border-radius:8px;padding:9px 14px;margin-bottom:8px}
+#art summary{cursor:pointer;font-weight:700;color:var(--accent)}
+#art .disc{font-size:13.5px;color:#5f6670;border-top:1px solid #ddd;margin-top:30px;padding-top:12px}
+#art .brand{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid var(--accent);padding-bottom:12px;margin-bottom:20px;gap:12px}
+#art .brand img{max-height:56px;max-width:200px}
+.tw{overflow-x:auto}
+@media (max-width:700px){
+  header h1{font-size:20px;line-height:1.25}
+  header p{font-size:13px}
+  nav{flex-wrap:wrap;gap:6px;padding-bottom:10px;overflow:visible}
+  nav button{border-radius:16px;padding:6px 12px;font-size:13.5px;background:rgba(255,255,255,.1)}
+  nav button[aria-selected="true"]{background:#fff;color:#000000}
+  main{padding:14px 12px 50px}
+  .card{padding:14px 14px}
+  .seg{display:flex;flex-wrap:wrap;width:100%}
+  .seg button{flex:1 1 auto}
+  .row .b{flex:1 1 auto;text-align:center}
+  .vk{flex-direction:column;align-items:flex-start}
+  .cal th:nth-child(3),.cal td:nth-child(3){display:none}
+  #art h1{font-size:27px}
+  #art .brand{flex-direction:column;align-items:flex-start}
+  .post pre{max-height:300px}
+}
+@media (max-width:820px){.grid{grid-template-columns:1fr}.post{grid-template-columns:1fr}#art{padding:20px 16px}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Adviseurstoolkit: hypotheek vanaf 52", "description": "LinkedIn-campagne, hypotheekscan, klanttekst en nieuwsbrief voor hypotheekadviseurs, met eigen logo.", "url": "index.html", "inLanguage": "nl-NL", "author": {"@type": "Person", "name": "Dennes Roes"}, "isPartOf": {"@type": "WebSite", "name": "Hypotheek vanaf 52", "url": "https://dennes-roes.nl/"}, "dateModified": "2026-11-18", "image": "https://dennes-roes.nl/og-toolkit.jpg", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}}</script>
+
+<style id="blinqx-stijl">
+  /* Blinqx V&H-huisstijl (overschrijft de oorspronkelijke kleuren en lettertypen) */
+  :root{--navy:#000;--sky:#FFF0B3;--soft:#F4F7F9;--line:#CAD5E3;--bg:#E4EAF1;--orange:#FFCD00;--red:#000;--red-d:#222;
+        --primary:#000;--primary-l:#222;--rule:#000;--focus:#000;--tint:#FFF0B3;--accent-y:#FFCD00}
+  body, body *:not(svg):not(svg *):not(code):not(pre){font-family:"Metropolis","Montserrat","Segoe UI",Helvetica,Arial,sans-serif !important}
+  .bx-bar{background:#FFCD00;color:#000;display:flex;align-items:center;gap:14px;padding:10px 16px;flex-wrap:wrap;position:relative;z-index:1000}
+  .bx-bar img{height:34px;width:auto;display:block}
+  .bx-bar .bx-t{font-weight:800;font-size:14px;border-left:2px solid #000;padding-left:12px}
+  .bx-bar a.bx-back{margin-left:auto;background:#000;color:#fff;text-decoration:none;font-weight:800;padding:8px 12px;font-size:14px}
+  @media print{.bx-bar{display:none}}
+</style>
+</head>
+<body><div class="bx-bar"><a href="../index.html" aria-label="Marketingbibliotheek"><img src="data:image/png;base64,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" alt="Blinqx Verzekering &amp; Hypotheek"></a><span class="bx-t">Adviseurstoolkit 52+</span><a class="bx-back" href="../index.html">← Marketingbibliotheek</a></div>
+<header><div class="hwrap">
+  <p style="margin:0 0 4px;font-size:14px"><a href="../index.html" style="color:#CAD5E3">← Start</a> · <a href="presentatie.html" style="color:#CAD5E3">Presentatie</a></p>
+  <h1>Adviseurstoolkit · hypotheek vanaf 52 jaar</h1>
+  <p>Eerste doelgroep: klanten van 50 tot en met 57 jaar · informatieronde november 2026, organisatie DFO BV</p>
+  <nav role="tablist">
+    <button role="tab" data-t="t0" aria-selected="true">★ Alle materialen</button>
+    <button role="tab" data-t="t1" aria-selected="false">① Kantoorgegevens</button>
+    <button role="tab" data-t="t2" aria-selected="false">② LinkedIn-campagne</button>
+    <button role="tab" data-t="t3" aria-selected="false">③ Klantvragen: jaarlijkse update &amp; nazorgscan</button>
+    <button role="tab" data-t="t4" aria-selected="false">④ Klanttekst 52+</button>
+    <button role="tab" data-t="t5" aria-selected="false">⑤ Nieuwsbrief</button>
+  </nav>
+</div></header>
+
+<main>
+<!-- ============ TAB 0: overzicht ============ -->
+<section class="tab on" id="t0">
+  <div class="card">
+    <h2>Alle marketing- en klantmaterialen op één plek</h2>
+    <p class="muted">Voor de aanpak van je eerste doelgroep, klanten van 50 tot en met 57 jaar. Begin bij stap 1; daarna zijn alle materialen gevuld met je eigen logo en gegevens.</p>
+    <ol class="steps" style="margin-top:10px">
+      <li><b>Vul je kantoorgegevens in</b> (logo, naam, URL, telefoon, e-mail). Nu staan er demogegevens van Dennes Roes in. <span class="row" style="display:inline-flex;margin-left:6px"><button class="b red" data-nieuw type="button" style="font-size:13.5px;padding:6px 12px">＋ Nieuw kantoor invullen</button><a class="b alt" href="#gegevens" data-go="t1" style="font-size:13.5px;padding:6px 12px">Bekijk gegevens</a></span></li>
+      <li><b>Kies je materialen</b> hieronder: LinkedIn, nieuwsbrief, klanttekst, nazorgscan</li>
+      <li><b>Laat je compliance officer meekijken</b> en loop de checklist onderaan door</li>
+      <li><b>Plan je campagne</b> met de kalender en leg alle verzendingen vast in je dossier</li>
+    </ol>
+  </div>
+
+  <div class="offer">
+    <div><h3>Het complete Actiefbeheerscan-toolpakket</h3>
+      <p style="margin:0;color:#5f6670">Deze hypotheekscan als slim formulier, klaar voor gebruik.</p>
+      <ul><li>Zet het formulier <b>op je website</b></li><li>Gebruik het in je <b>mailing of nieuwsbrief</b></li><li>Je ziet <b>direct alle resultaten</b> en weet wie je moet bellen</li></ul>
+    </div>
+    <div class="price"><div class="pm">€ 79,- <small>per maand</small></div><div class="once">+ eenmalig € 495,-<br><span style="font-size:13px">alle prijzen excl. btw</span></div>
+      <a class="b" href="https://formulier.actiefbeheerscan.nl/s/wD106O1z7GoYW1zn" target="_blank" rel="noopener" style="background:#000000;border-color:#000000">Bekijk het voorbeeld</a>
+      <a class="b alt" href="mailto:jeroen.oversteegen@blinqx.tech?subject=Actiefbeheerscan-toolpakket%20afnemen" target="_blank" rel="noopener" style="color:#fff;border-color:#fff">Toolpakket afnemen</a></div>
+  </div>
+
+  <div class="lbl">Voor je klanten · marketing</div>
+  <div class="mgrid">
+    <div class="mat c"><h3>LinkedIn-campagne</h3><p>7 posts in 4 weken, inclusief een poll, met beelden als PNG met je eigen logo (vierkant, liggend of staand).</p><div class="row"><button class="b" data-go="t2" type="button">Open</button></div></div>
+    <div class="mat c"><h3>Nieuwsbrief</h3><p>Hoofdartikel (± 400 woorden), kort blok (± 120 woorden) en een persoonlijke mailing voor 50–57 jaar, met onderwerpregels en preheader.</p><div class="row"><button class="b" data-go="t5" type="button">Open</button></div></div>
+    <div class="mat c"><h3>Klanttekst "Hypotheek vanaf 52 jaar"</h3><p>Webpagina met veelgestelde vragen voor je website. Kopieer als tekst of HTML, of print als PDF.</p><div class="row"><button class="b" data-go="t4" type="button">Open</button></div></div>
+    <div class="mat g"><h3>Stappenscan 52+ en jaarlijkse update</h3><p>Opzet zoals de Actiefbeheerscan (11 stappen, met vervolgvragen en signalen), inclusief de vraag "pensioen telt eerder mee". Of de korte update met 5 kernvragen voor je hele portefeuille. Te versturen als e-mail, vragenlijst of print-formulier.</p><div class="row"><button class="b" data-go="t3" data-mode="scan" type="button">Open</button></div></div>
+    <div class="mat g"><h3>Nazorgscan hypotheken</h3><p>22 vragen in 8 rubrieken voor de doelgroep 50–57 en klanten met signalen. Vragen zelf aan te vinken.</p><div class="row"><button class="b" data-go="t3" data-mode="lang" type="button">Open</button></div></div>
+    <div class="mat g"><h3>Blinqx Actiefbeheerscan</h3><p>Slim formulier dat de klant zelf invult. De antwoorden komen gestructureerd terug, zodat je kunt selecteren en prioriteren. Voor Blinqx-gebruikers komt er een training van een dagdeel, gegeven door Dirk van Haarlem (<a href="https://www.actiefklantbeheer.nl/" target="_blank" rel="noopener">Stichting Actief Klantbeheer</a>). Opleiding: <a href="https://www.impact.nu/opleiding/actief-klantbeheer-praktijk-uitvoering" target="_blank" rel="noopener">Actief klantbeheer: praktijk en uitvoering (Impact)</a>. Toolpakket: € 79,- per maand + eenmalig € 495,- (excl. btw).</p><div class="row"><a class="b" href="https://actiefbeheerscan.nl" target="_blank" rel="noopener">Website</a><a class="b alt" href="https://formulier.actiefbeheerscan.nl/s/wD106O1z7GoYW1zn" target="_blank" rel="noopener">Voorbeeld</a><a class="b" href="mailto:jeroen.oversteegen@blinqx.tech?subject=Actiefbeheerscan-toolpakket%20afnemen" target="_blank" rel="noopener" style="background:#000000;border-color:#000000">Toolpakket afnemen</a></div></div>
+    <div class="mat g"><h3>Hypotheekcheck · hypotheekcijfer</h3><p>De klant krijgt een cijfer van 1 tot 10 voor de betaalbaarheid van de hypotheek: nu, bij het einde van de renteaftrek, de rentevaste periode, AOW en de looptijd, en bij life events zoals arbeidsongeschiktheid, werkloosheid, overlijden en scheiding. Met persoonlijk rapport en tips. Met een Blinqx-account haal je gegevens op via Ockto. Indicatie, geen advies.</p><div class="row"><a class="b" href="https://hypotheekcijfer.nl/bepaal-uw-hypotheekcijfer/" target="_blank" rel="noopener">Start de hypotheekcheck</a></div></div>
+    <div class="mat o"><h3>Gesprekshulp "Hypotheek straks"</h3><p>NVHP-tool voor de klant: kan ik straks nog doorstromen of mijn hypotheek verlengen? Een verkenning, geen advies.</p><div class="row"><a class="b" href="hypotheek-straks/index.html" target="_blank" rel="noopener">Open tool</a></div></div>
+    <div class="mat o"><h3>Klantlinks</h3><p>Voor in je mails en gesprekken: eigen AOW-datum (SVB) en pensioenopbouw (mijnpensioenoverzicht.nl).</p><div class="row"><a class="b" href="https://www.svb.nl" target="_blank" rel="noopener">svb.nl</a><a class="b alt" href="https://www.mijnpensioenoverzicht.nl" target="_blank" rel="noopener">Pensioen</a></div></div>
+    <div class="mat o"><h3>DFO standaarddocumenten</h3><p>Klanttekst onderhoud en nazorg, OTD-paragraaf, brief over abonnement, mail bij wezenlijke wijziging, machtiging incasso. Via DFO BV; compliancevragen via DFO Compliance.</p><div class="row"><a class="b" href="mailto:info@dfobv.nl">DFO BV</a><a class="b alt" href="mailto:info@dfocompliance.nl">DFO Compliance</a></div></div>
+  </div>
+
+  <div class="lbl">Voor je kantoor · bedrijfsvoering</div>
+  <div class="mgrid">
+    <div class="mat"><h3>Presentatie Dennes Roes</h3><p>De zeven vragen over bedrijfsvoering, met cijfers en sprekersnotities. Ook te printen als handout.</p><div class="row"><a class="b" href="presentatie.html" target="_blank" rel="noopener">Open</a></div></div>
+    <div class="mat"><h3>Doelgroep in cijfers</h3><p>± 680.000 huishoudens van 50–57 met een hypotheek; per 1.000 klanten ± 175.</p><div class="row"><a class="b" href="presentatie.html#5" target="_blank" rel="noopener">Dia 5</a><a class="b alt" href="presentatie.html#4" target="_blank" rel="noopener">Alle 45+</a></div></div>
+    <div class="mat"><h3>Kader: moet of mag?</h3><p>Art. 4:20 lid 3 Wft tegenover je eigen nazorgafspraak en de zorgnorm.</p><div class="row"><a class="b" href="presentatie.html#8" target="_blank" rel="noopener">Dia 8</a></div></div>
+    <div class="mat"><h3>Prioriteringsmodel</h3><p>Puntenmodel: prio 1 vóór 1 januari, prio 2 vóór maart 2027.</p><div class="row"><a class="b" href="presentatie.html#12" target="_blank" rel="noopener">Dia 12</a></div></div>
+    <div class="mat"><h3>Taakverdeling en vastlegging</h3><p>Wie doet wat op kantoor, een contactlog, en 3 contactmomenten als de klant niet reageert.</p><div class="row"><a class="b" href="presentatie.html#13" target="_blank" rel="noopener">Taken</a><a class="b alt" href="presentatie.html#14" target="_blank" rel="noopener">Vastleggen</a></div></div>
+    <div class="mat"><h3>Vergoedingsmodellen</h3><p>Abonnement (Basis/Rust/Pro/Plus), vaste fee, uurtarief en uitbesteding door de geldverstrekker.</p><div class="row"><a class="b" href="presentatie.html#15" target="_blank" rel="noopener">Dia 15</a></div></div>
+  </div>
+
+  <div class="lbl">Achtergrond en bronnen</div>
+  <div class="mgrid">
+    <div class="mat"><h3>NVHP · ECB-beleid hypotheken</h3><p>Verwachte maatregelen, tijdlijn en adviezen voor adviseurs.</p><div class="row"><a class="b alt" href="https://www.hypothecairplanner.nl/themas/ecb-beleid-hypotheken" target="_blank" rel="noopener">Lees</a></div></div>
+    <div class="mat"><h3>NVHP · Onderhoud en nazorg</h3><p>Wft-kader, wettelijke en afgesproken diensten, abonnementen, dossiervorming.</p><div class="row"><a class="b alt" href="https://www.hypothecairplanner.nl/themas/onderhoud-en-nazorg" target="_blank" rel="noopener">Lees</a></div></div>
+    <div class="mat"><h3>Rabobank · nieuw beleid</h3><p>Pensioen 15 jaar vooraf en levensverwachting, per maart 2027.</p><div class="row"><a class="b alt" href="https://www.rabobank.nl/particulieren/hypotheek/nieuw-beleid" target="_blank" rel="noopener">Lees</a></div></div>
+  </div>
+
+  <div class="lbl">Campagnekalender · voorstel</div>
+  <div class="card tw">
+    <table class="cal" id="cal"></table>
+    <p class="muted" style="margin-top:8px">De data volgen de startdatum in het tabblad LinkedIn-campagne. Pas de planning aan op je capaciteit (zie het prioriteringsmodel).</p>
+  </div>
+
+  <div class="lbl">Checklist vóór publicatie</div>
+  <div class="card chk">
+    <label><input type="checkbox"> Kantoorgegevens, AFM- en Kifid-nummer zijn ingevuld en kloppen</label>
+    <label><input type="checkbox"> "Kosteloos" staat er alleen als het kennismakingsgesprek echt kosteloos is</label>
+    <label><input type="checkbox"> Het bankbeleid (Rabobank/Obvion, maart 2027) is gecontroleerd en de datum bijgewerkt</label>
+    <label><input type="checkbox"> Dienstverleningsdocument (OTD) en tarievenkaart passen bij wat je communiceert</label>
+    <label><input type="checkbox"> De mailing gaat alleen naar klanten (of mensen met toestemming), met een afmeldlink in commerciële mail</label>
+    <label><input type="checkbox"> De selectie op leeftijd staat in je verwerkingsregister (gerechtvaardigd belang: nazorg)</label>
+    <label><input type="checkbox"> De compliance officer heeft de teksten getoetst</label>
+    <label><input type="checkbox"> Verzending, herinnering en (uitblijvende) reactie worden vastgelegd in het dossier</label>
+    <p class="muted" style="margin-top:6px">⚠ Deze checklist is een hulpmiddel en vervangt geen compliancetoets. Vinkjes worden niet bewaard.</p>
+  </div>
+</section>
+
+<!-- ============ TAB 1 ============ -->
+<section class="tab" id="t1">
+  <div class="card">
+    <div id="demoBar" class="ok" style="margin-bottom:12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap"><span style="flex:1;min-width:220px"><b>Demo:</b> de toolkit is gevuld met voorbeeldgegevens van Dennes Roes en een demologo. Vervang ze door je eigen gegevens, of begin leeg.</span><button class="b red" id="demoClear" type="button">＋ Nieuw kantoor invullen</button></div>
+    <h2>Jouw kantoorgegevens</h2>
+    <p class="muted">Vul je gegevens één keer in. Ze worden automatisch verwerkt in de LinkedIn-posts, de beelden, de klantvragen en de klanttekst.</p>
+    <div class="grid" style="margin-top:12px">
+      <div><label for="f_kantoor">Kantoornaam</label><input type="text" id="f_kantoor" data-k="kantoor" placeholder="Hypotheekadvies De Vries"></div>
+      <div><label for="f_adviseur">Naam adviseur</label><input type="text" id="f_adviseur" data-k="adviseur" placeholder="Anna de Vries"></div>
+      <div><label for="f_functie">Functie / titel</label><input type="text" id="f_functie" data-k="functie" placeholder="Erkend Hypotheekadviseur"></div>
+      <div><label for="f_url">Website (URL)</label><input type="url" id="f_url" data-k="url" placeholder="www.devrieshypotheken.nl"></div>
+      <div><label for="f_tel">Telefoonnummer</label><input type="tel" id="f_tel" data-k="tel" placeholder="010 123 45 67"></div>
+      <div><label for="f_email">E-mailadres</label><input type="email" id="f_email" data-k="email" placeholder="info@devrieshypotheken.nl"></div>
+      <div class="full"><label for="f_scan">Link naar je nazorgscan of afsprakenpagina (optioneel)</label><input type="url" id="f_scan" data-k="scan" placeholder="bijv. je Actiefbeheerscan-link of www.jouwsite.nl/check"></div>
+      <div><label for="f_afm">AFM-vergunningnummer</label><input type="text" id="f_afm" data-k="afm" placeholder="12345678"></div>
+      <div><label for="f_kifid">Kifid-aansluitnummer</label><input type="text" id="f_kifid" data-k="kifid" placeholder="300.012345"></div>
+      <div><label for="f_kosten">Kennismakingsgesprek</label>
+        <select id="f_kosten" data-k="kosten">
+          <option value="">Niet vermelden</option>
+          <option value="kosteloos">Kosteloos en vrijblijvend</option>
+          <option value="tarief">Volgens ons dienstverleningsdocument</option>
+        </select></div>
+      <div><label>Huisstijlkleur</label><div class="row"><input type="color" id="f_kleur" data-k="kleur" value="#000000"><span class="muted">gebruikt in beelden en klanttekst</span></div></div>
+      <div class="full"><label for="f_logo">Logo (PNG, JPG of SVG)</label>
+        <div class="row" style="align-items:stretch"><div class="logoBox" id="logoBox" style="flex:1"><span class="muted">Nog geen logo</span></div>
+        <div style="display:flex;flex-direction:column;gap:8px;justify-content:center"><input type="file" id="f_logo" accept="image/png,image/jpeg,image/svg+xml,image/webp"><button class="b alt" id="logoDel" type="button">Logo verwijderen</button></div></div>
+        <p class="muted" style="margin-top:4px">Tip: een liggend logo met transparante achtergrond werkt het best.</p>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Voorbeeld</h2>
+    <div class="vk" id="vk"></div>
+    <div class="row" style="margin-top:14px">
+      <button class="b alt" id="expJson" type="button">Gegevens bewaren (bestand)</button>
+      <label class="b alt" style="display:inline-block;margin:0;font-weight:600;cursor:pointer">Gegevens laden<input type="file" id="impJson" accept="application/json" style="display:none"></label>
+    </div>
+    <p class="muted" style="margin-top:8px">Privacy: alles blijft in je browser. Er wordt niets verstuurd of opgeslagen. Na het sluiten van de pagina zijn je gegevens weg; bewaar ze zo nodig als bestand en laad ze later weer in.</p>
+  </div>
+</section>
+
+<!-- ============ TAB 2 ============ -->
+<section class="tab" id="t2">
+  <div class="card">
+    <h2>LinkedIn-campagne: "Hypotheek vanaf 52"</h2>
+    <p class="muted">Zeven posts in vier weken voor je eigen LinkedIn-profiel of bedrijfspagina. Doelgroep: (potentiële) klanten van 50 tot en met 57 jaar. Tekst en beeld nemen je kantoorgegevens automatisch over.</p>
+    <div class="grid" style="margin-top:12px">
+      <div><label for="startDate">Startdatum campagne</label><input type="date" id="startDate"></div>
+      <div><label for="fmt">Beeldformaat</label><select id="fmt"><option value="1200x1200">Vierkant 1200 × 1200 (feed)</option><option value="1200x627">Liggend 1200 × 627 (link)</option><option value="1080x1350">Staand 1080 × 1350</option></select></div>
+    </div>
+    <div class="afm"><b>⚠ AFM/compliance:</b> dit is wervende communicatie, en die moet correct, duidelijk en niet misleidend zijn. Bankspecifieke regels staan erin met datum (stand 18-11-2026); controleer ze vóór plaatsing. Beloof geen uitkomsten ("u kunt méér lenen") en zet geen onterechte tijdsdruk. Noem "kosteloos" alleen als dat klopt (zie tabblad ①). Reageer je in de reacties met een persoonlijke aanbeveling, dan is dat advies.</div>
+    <div class="ok"><b>Werkwijze:</b> kopieer de tekst → download het beeld → plaats beide op LinkedIn. Zet de link naar je website bij voorkeur in de <b>eerste reactie</b>, want posts met een link in de tekst krijgen meestal minder bereik.</div>
+  </div>
+  <div class="posts" id="posts"></div>
+</section>
+
+<!-- ============ TAB 3 ============ -->
+<section class="tab" id="t3">
+  <div class="card">
+    <div class="offer">
+    <div><h3>Het complete Actiefbeheerscan-toolpakket</h3>
+      <p style="margin:0;color:#5f6670">De stappenscan 52+ hieronder als slim formulier, klaar voor gebruik.</p>
+      <ul><li>Zet het formulier <b>op je website</b></li><li>Gebruik het in je <b>mailing of nieuwsbrief</b></li><li>Je ziet <b>direct alle resultaten</b> en weet wie je moet bellen</li></ul>
+    </div>
+    <div class="price"><div class="pm">€ 79,- <small>per maand</small></div><div class="once">+ eenmalig € 495,-<br><span style="font-size:13px">alle prijzen excl. btw</span></div>
+      <a class="b" href="https://formulier.actiefbeheerscan.nl/s/wD106O1z7GoYW1zn" target="_blank" rel="noopener" style="background:#000000;border-color:#000000">Bekijk het voorbeeld</a>
+      <a class="b alt" href="mailto:jeroen.oversteegen@blinqx.tech?subject=Actiefbeheerscan-toolpakket%20afnemen" target="_blank" rel="noopener" style="color:#fff;border-color:#fff">Toolpakket afnemen</a></div>
+  </div>
+    <h2>Klantvragen: jaarlijkse informatie-update en nazorgscan hypotheken</h2>
+    <p class="muted">Gebruik de <b>jaarlijkse update</b> (5 kernvragen) voor je hele portefeuille, en de <b>nazorgscan</b> (uitgebreid) voor de eerste doelgroep van 50 tot en met 57 jaar en voor klanten met signalen. Vink aan wat je wilt meesturen.</p>
+    <div class="row" style="margin:12px 0">
+      <div class="seg" id="qmode"><button data-m="scan" class="on" type="button">Stappenscan 52+ (11 stappen)</button><button data-m="kort" type="button">Jaarlijkse update (5 vragen)</button><button data-m="lang" type="button">Nazorgscan (uitgebreid)</button></div>
+      <button class="b alt" id="qAll" type="button">Alles aan/uit</button>
+    </div>
+    <div class="row">
+      <button class="b" id="qMail" type="button">Kopieer als e-mail</button>
+      <button class="b alt" id="qList" type="button">Kopieer als vragenlijst</button>
+      <button class="b red" id="qPrint" type="button">Print / PDF-formulier</button>
+    </div>
+    <div class="afm"><b>⚠ AVG + Wft:</b> vraag alleen wat je nodig hebt voor je dienstverlening (dataminimalisatie). Vraag <b>niet</b> naar gezondheid of medische gegevens: dat zijn bijzondere persoonsgegevens. Leg in het dossier vast wanneer je de vragen hebt verstuurd en of er een reactie kwam. Blijft een reactie uit, stuur dan een herinnering en leg ook dat vast.</div>
+  </div>
+  <div id="qbox"></div>
+</section>
+
+<!-- ============ TAB 4 ============ -->
+<section class="tab" id="t4">
+  <div class="card">
+    <h2>Klanttekst: hypotheek vanaf 52 jaar</h2>
+    <p class="muted">Voor je website, nieuwsbrief of een mailing aan klanten van 50 tot en met 57 jaar. Je logo, kantoornaam en contactgegevens staan er al in.</p>
+    <div class="row" style="margin-top:10px"><button class="b" id="aTxt" type="button">Kopieer tekst</button><button class="b alt" id="aHtml" type="button">Kopieer HTML</button><button class="b red" id="aPrint" type="button">Print / PDF</button></div>
+    <div class="afm"><b>⚠ Compliance:</b> dit is algemene informatie, geen advies. Bankbeleid kan wijzigen: werk de datum onderaan bij en laat de tekst toetsen door je compliance officer.</div>
+  </div>
+  <article id="art"></article>
+</section>
+<!-- ============ TAB 5 ============ -->
+<section class="tab" id="t5">
+  <div class="card">
+    <h2>Concepttekst nieuwsbrief</h2>
+    <p class="muted">Kies de versie die bij je nieuwsbrief past. Onderwerpregel, preheader en afsluiting zijn al gevuld met je kantoorgegevens. Je kunt de tekst plakken in je mailprogramma (Mailchimp, LaPosta, Outlook).</p>
+    <div class="row" style="margin:12px 0">
+      <div class="seg" id="nmode"><button data-m="lang" class="on" type="button">Hoofdartikel (± 400 woorden)</button><button data-m="kort" type="button">Kort blok (± 120 woorden)</button><button data-m="seg" type="button">Persoonlijke mailing 50–57</button><button data-m="scan" type="button">Uitnodiging hypotheekscan</button></div>
+    </div>
+    <div class="row"><button class="b" id="nTxt" type="button">Kopieer tekst</button><button class="b alt" id="nHtml" type="button">Kopieer HTML</button><button class="b red" id="nPrint" type="button">Print / PDF</button></div>
+    <div class="afm"><b>⚠ AFM/AVG:</b> een nieuwsbrief is wervende communicatie: houd het feitelijk en vermeld de datum van de stand van zaken. Verstuur de persoonlijke mailing alleen aan klanten met wie je een klantrelatie hebt, of die toestemming hebben gegeven, en zet een afmeldmogelijkheid in commerciële mailings. Selecteer je op leeftijd, leg dan in je verwerkingsregister vast waarom (gerechtvaardigd belang: nazorg).</div>
+  </div>
+  <div class="card" style="background:#fff;color:#222">
+    <div id="nl"></div>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+"use strict";
+/* ---------- state (in-memory, geen localStorage) ---------- */
+var S={kantoor:'',adviseur:'',functie:'',url:'',tel:'',email:'',scan:'',afm:'',kifid:'',kosten:'',kleur:'#000000',logo:''};
+var logoImg=null;
+var DATUM='18-11-2026';
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function v(k,ph){return S[k]?S[k]:'['+(ph||k)+']'}
+function vh(k,ph){return S[k]?esc(S[k]):'<span class="ph">['+(ph||k)+']</span>'}
+function cleanUrl(u){return (u||'').replace(/^https?:\/\//,'').replace(/\/$/,'')}
+function href(u){if(!u)return '#';return /^https?:\/\//.test(u)?u:'https://'+u}
+function copy(text,btn){
+  function done(){var t=btn.textContent;btn.textContent='Gekopieerd ✓';setTimeout(function(){btn.textContent=t},1500)}
+  function fb(){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){alert('Kopiëren niet gelukt; selecteer de tekst handmatig.')}ta.remove()}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,fb)}else fb();
+}
+function printHtml(title,body,extraCss){
+  var w=window.open('','_blank'); if(!w){alert('Pop-up geblokkeerd: sta pop-ups toe om te printen.');return}
+  w.document.write('<!DOCTYPE html><html lang="nl"><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>:root{--accent:'+S.kleur+'}body{font:15px/1.5 Calibri,Carlito,Arial,sans-serif;color:#222;max-width:780px;margin:24px auto;padding:0 16px}h1,h2,h3{color:'+S.kleur+'}'+(extraCss||'')+'@page{margin:14mm}</style></head><body>'+body+'<script>window.onload=function(){document.querySelectorAll("details").forEach(function(d){d.open=true});setTimeout(function(){window.print()},350)}<\/script></body></html>');
+  w.document.close();
+}
+
+/* ---------- tabs ---------- */
+var tabs=document.querySelectorAll('nav button');
+var HASH={t0:'overzicht',t1:'gegevens',t2:'linkedin',t3:'klantvragen',t4:'klanttekst',t5:'nieuwsbrief'};
+function show(id,noHash){
+  tabs.forEach(function(x){x.setAttribute('aria-selected',x.dataset.t===id?'true':'false')});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('on',t.id===id)});
+  if(id==='t2')renderPosts(); if(id==='t0')renderCal();
+  if(!noHash)history.replaceState(null,'','#'+HASH[id]);
+  window.scrollTo(0,0);
+}
+tabs.forEach(function(b){b.onclick=function(){show(b.dataset.t)}});
+document.addEventListener('click',function(e){var g=e.target.closest('[data-go]');if(!g)return;e.preventDefault();
+  if(g.dataset.mode){var mb=document.querySelector('#qmode button[data-m="'+g.dataset.mode+'"]');if(mb)mb.click()}
+  show(g.dataset.go)});
+
+/* ---------- tab 1 ---------- */
+document.querySelectorAll('[data-k]').forEach(function(el){
+  el.addEventListener('input',function(){S[el.dataset.k]=el.value;renderAll()});
+});
+document.getElementById('f_logo').addEventListener('change',function(e){
+  var f=e.target.files[0]; if(!f)return;
+  if(f.size>3*1024*1024){alert('Logo is groter dan 3 MB; kies een kleiner bestand.');return}
+  var r=new FileReader(); r.onload=function(){setLogo(r.result)}; r.readAsDataURL(f);
+});
+document.getElementById('logoDel').onclick=function(){setLogo('');document.getElementById('f_logo').value=''};
+function setLogo(d){
+  S.logo=d; logoImg=null;
+  if(d){var im=new Image(); im.onload=function(){logoImg=im;renderAll()}; im.src=d;} else renderAll();
+}
+document.getElementById('expJson').onclick=function(){
+  var b=new Blob([JSON.stringify(S,null,1)],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='kantoorgegevens-toolkit.json'; document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);
+};
+document.getElementById('impJson').addEventListener('change',function(e){
+  var f=e.target.files[0]; if(!f)return; var r=new FileReader();
+  r.onload=function(){try{var o=JSON.parse(r.result);Object.keys(S).forEach(function(k){if(typeof o[k]==='string')S[k]=o[k]});
+    document.querySelectorAll('[data-k]').forEach(function(el){el.value=S[el.dataset.k]||(el.type==='color'?'#000000':'')});
+    setLogo(S.logo);}catch(x){alert('Dit bestand kan niet worden gelezen.')}};
+  r.readAsText(f);
+});
+function renderVK(){
+  document.documentElement.style.setProperty('--accent',S.kleur);
+  document.getElementById('logoBox').innerHTML=S.logo?'<img src="'+S.logo+'" alt="Logo">':'<span class="muted">Nog geen logo</span>';
+  document.getElementById('vk').innerHTML=(S.logo?'<img src="'+S.logo+'" alt="Logo">':'')+
+    '<div><div class="nm">'+vh('adviseur','naam adviseur')+'</div><div>'+vh('functie','functie')+(sameKA()?'':' · '+vh('kantoor','kantoornaam'))+'</div>'+
+    '<div class="muted">📞 '+vh('tel','telefoon')+' · ✉️ '+vh('email','e-mail')+' · 🌐 '+(S.url?esc(cleanUrl(S.url)):'<span class="ph">[website]</span>')+'</div></div>';
+}
+
+/* ---------- tab 2: posts ---------- */
+function sameKA(){return S.kantoor&&S.adviseur&&S.kantoor.trim().toLowerCase()===S.adviseur.trim().toLowerCase()}
+function sig(){
+  return '\n\n'+v('adviseur','naam adviseur')+(S.functie?' | '+S.functie:'')+(sameKA()?'':' | '+v('kantoor','kantoornaam'))+
+    '\n📞 '+v('tel','telefoon')+'  ✉️ '+v('email','e-mail')+'\n🌐 '+(S.url?cleanUrl(S.url):'[website]');
+}
+function kostenZin(){return S.kosten==='kosteloos'?' Het kennismakingsgesprek is kosteloos en vrijblijvend.':(S.kosten==='tarief'?' Voor advies gelden onze tarieven volgens ons dienstverleningsdocument.':'')}
+function scanLink(){return S.scan?cleanUrl(S.scan):(S.url?cleanUrl(S.url):'[link naar je check]')}
+var POSTS=[
+ {d:0,doel:'Aandacht: aankondiging',kop:'Tussen 50 en 57?',sub:'Je pensioen telt bij een aantal banken straks eerder mee',
+  t:function(){return 'Ben je tussen de 50 en 57 jaar en heb je plannen met je woning? Dan is dit goed om te weten. 👇\n\nEen aantal geldverstrekkers kijkt bij een hypotheekaanvraag eerder naar je pensioen. Rabobank en Obvion doen dat vanaf maart 2027 al 15 jaar vóór je AOW-leeftijd in plaats van 10 jaar. Is je AOW-leeftijd 67, dan is dat vanaf je 52e.\n\nOmdat je pensioen meestal lager is dan je salaris, kan je maximale hypotheek daardoor lager uitvallen.\n\n✅ Houd je je huidige hypotheek zoals die is? Dan verandert er niets.\n🔎 Wil je de komende jaren verhuizen, verbouwen, verduurzamen of overwaarde gebruiken? Laat je mogelijkheden dan op tijd doorrekenen.\n\nIk denk graag met je mee.'+sig()+'\n\n#hypotheek #pensioen #wonen #50plus'}},
+ {d:3,doel:'Geruststellen: wat wel en niet',kop:'Wat verandert er wél en níet?',sub:'Hypotheek vanaf 52 jaar in vier situaties',
+  t:function(){return 'Sinds het nieuws over strengere hypotheekregels voor 52-plussers krijg ik veel vragen. Daarom een kort overzicht. 👇\n\n🏠 Je houdt je huidige hypotheek → er verandert niets\n🚚 Je wilt verhuizen → de nieuwe regels kunnen gelden\n🔨 Je wilt je hypotheek verhogen (verbouwen, verduurzamen) → de nieuwe regels kunnen gelden\n🔄 Je wilt oversluiten naar een andere bank → de nieuwe regels kunnen gelden\n\nBelangrijk: niet iedere geldverstrekker doet hetzelfde. Elke bank bepaalt zijn eigen beleid, en dat verschil kan voor jou uitmaken.\n\nWeet je niet zeker wat het voor jou betekent? Stuur me gerust een bericht.'+sig()+'\n\n#hypotheek #hypotheekadvies #pensioen'}},
+ {d:7,doel:'Activeren: plannen',kop:'4 plannen om nu al door te rekenen',sub:'Kleiner wonen · verbouwen · verduurzamen · overwaarde',
+  t:function(){return 'Veel mensen tussen 50 en 60 denken na over hoe ze later willen wonen. Herken je een van deze plannen?\n\n1️⃣ Kleiner of gelijkvloers wonen\n2️⃣ Je woning aanpassen, bijvoorbeeld een slaap- en badkamer beneden\n3️⃣ Verduurzamen: isolatie, warmtepomp, zonnepanelen\n4️⃣ Overwaarde gebruiken: pensioen aanvullen of de kinderen helpen\n\nSpeelt er iets van de komende jaren? Laat dan nú doorrekenen wat er kan, en bij welke geldverstrekker. Dan kies je zelf het juiste moment, in plaats van dat de regels het voor je kiezen.'+kostenZin()+sig()+'\n\n#wonen #levensloopbestendig #verduurzamen #hypotheek'}},
+ {d:10,doel:'Aflossingsvrij',kop:'Aflossingsvrije hypotheek?',sub:'Wacht niet tot het einde van de looptijd',
+  t:function(){return 'Heb je een aflossingsvrije hypotheek? Dan zijn je maandlasten laag. Maar aan het eind van de looptijd moet de hele schuld in één keer terug.\n\nWil je de hypotheek dan verlengen of oversluiten, dan kijkt de bank opnieuw of je de lasten kunt dragen, ook met je pensioen. En banken worden voorzichtiger met aflossingsvrij lenen op latere leeftijd.\n\nMijn tip: kijk er ruim van tevoren naar. Bijvoorbeeld naar:\n• (gedeeltelijk) aflossen\n• een deel omzetten naar een aflossende hypotheek\n• extra sparen of beleggen voor aflossing\n\nWat het beste past, verschilt per situatie. Zullen we samen kijken?'+sig()+'\n\n#aflossingsvrij #hypotheek #pensioen'}},
+ {d:14,doel:'Conversie: jaarlijkse check',kop:'Is je hypotheek nog passend?',sub:'Doe de korte jaarlijkse hypotheekcheck',
+  t:function(){return 'Je inkomen verandert, je plannen veranderen, en de regels van banken veranderen ook. Past je hypotheek nog bij jouw situatie?\n\nMet onze korte check beantwoord je vijf vragen:\n✔️ Is je inkomen veranderd, of verwacht je dat?\n✔️ Is je woon- of gezinssituatie veranderd?\n✔️ Heb je plannen met je woning?\n✔️ Wanneer loopt je rentevaste periode af?\n✔️ Weet je hoe je pensioen eruitziet?\n\nWij kijken mee en laten je weten of er aanleiding is voor een gesprek.'+kostenZin()+'\n\n👉 Doe de check: '+scanLink()+sig()+'\n\n#hypotheekcheck #nazorg #hypotheek'}},
+ {d:21,doel:'Risico: partner',kop:'En als één van jullie wegvalt?',sub:'Hypotheek, partner en pensioen in één gesprek',
+  t:function(){return 'Een vraag die we liever niet stellen, maar wel moeten: wat gebeurt er met jullie hypotheek als één van jullie overlijdt?\n\nHet inkomen daalt, maar de woonlasten blijven. Een overlijdensrisicoverzekering wordt op latere leeftijd duurder. En ook je testament en de positie van de kinderen spelen mee.\n\nRond je 52e is een goed moment om dit samen met je hypotheek en pensioen in één keer te bekijken. Dan weet je waar je staat.'+sig()+'\n\n#hypotheek #pensioen #nabestaanden #financieleplanning'}},
+ {d:28,doel:'Interactie: poll',kop:'Hoe woon jij over 10 jaar?',sub:'Hier blijven · kleiner · aanpassen · nog geen idee',poll:['Hier blijven wonen','Kleiner/gelijkvloers wonen','Woning aanpassen','Nog geen idee'],
+  t:function(){return '📊 Korte vraag aan iedereen tussen de 50 en 60: hoe wil jij over 10 jaar wonen?\n\nVeel mensen denken erover na, maar zetten nog geen stap. Terwijl het slim is om je mogelijkheden te kennen voordat je moet kiezen, zeker nu banken eerder naar je pensioen kijken.\n\nStem hieronder en deel gerust je overwegingen in de reacties!'+sig()+'\n\n#wonen #50plus #hypotheek\n\n[LinkedIn-poll met 4 opties: Hier blijven wonen / Kleiner/gelijkvloers wonen / Woning aanpassen / Nog geen idee]'}}
+];
+function fmtDate(d){return d.toLocaleDateString('nl-NL',{weekday:'short',day:'numeric',month:'long',year:'numeric'})}
+function startDefault(){var d=new Date();d.setHours(12,0,0,0);var add=(8-d.getDay())%7||7;d.setDate(d.getDate()+add);return d}
+var sd=document.getElementById('startDate');
+(function(){var d=startDefault();sd.value=d.toISOString().slice(0,10)})();
+sd.addEventListener('input',renderPosts);
+document.getElementById('fmt').addEventListener('input',renderPosts);
+
+function wrap(ctx,text,maxW){var w=text.split(' '),lines=[],l='';w.forEach(function(x){var t=l?l+' '+x:x;if(ctx.measureText(t).width>maxW&&l){lines.push(l);l=x}else l=t});if(l)lines.push(l);return lines}
+function shade(hex,p){var n=parseInt(hex.slice(1),16),r=n>>16,g=n>>8&255,b=n&255;function f(c){return Math.max(0,Math.min(255,Math.round(c+(p<0?c:255-c)*p)))}return 'rgb('+f(r)+','+f(g)+','+f(b)+')'}
+function draw(cv,p){
+  var dims=document.getElementById('fmt').value.split('x').map(Number),W=dims[0],H=dims[1];
+  cv.width=W;cv.height=H;var c=cv.getContext('2d');var F='Calibri, Carlito, "Segoe UI", Arial, sans-serif';
+  var band=Math.round(H*(H<700?0.24:0.17));
+  var g=c.createLinearGradient(0,0,W,H-band);g.addColorStop(0,S.kleur);g.addColorStop(1,shade(S.kleur,-0.35));
+  c.fillStyle=g;c.fillRect(0,0,W,H-band);
+  c.fillStyle='rgba(255,255,255,.07)';c.beginPath();c.arc(W*0.92,H*0.12,W*0.32,0,Math.PI*2);c.fill();
+  var pad=Math.round(W*0.07);
+  c.fillStyle='#fff';c.globalAlpha=.85;c.font='700 '+Math.round(W*0.026)+'px '+F;c.fillText('HYPOTHEEK VANAF 52 JAAR',pad,pad+Math.round(W*0.02));c.globalAlpha=1;
+  var fs=Math.round(W*(H<700?0.062:0.085));c.font='700 '+fs+'px '+F;
+  var lines=wrap(c,p.kop,W-pad*2);var areaH=H-band;var subFs=Math.round(W*(H<700?0.03:0.04));
+  c.font='400 '+subFs+'px '+F;var sl=wrap(c,p.sub,W-pad*2);
+  var total=lines.length*fs*1.1+subFs*0.8+sl.length*subFs*1.3;var y=Math.max(pad*1.9,(areaH-total)/2+fs*0.8);
+  c.font='700 '+fs+'px '+F;c.fillStyle='#fff';lines.forEach(function(l){c.fillText(l,pad,y);y+=fs*1.1});
+  c.fillStyle='#000000';c.fillRect(pad,y-fs*0.55,Math.round(W*0.09),Math.max(5,Math.round(W*0.006)));y+=subFs*0.6;
+  c.font='400 '+subFs+'px '+F;c.fillStyle='rgba(255,255,255,.92)';sl.forEach(function(l){c.fillText(l,pad,y);y+=subFs*1.3});
+  c.fillStyle='#fff';c.fillRect(0,H-band,W,band);c.fillStyle=S.kleur;c.fillRect(0,H-band,W,Math.max(4,Math.round(H*0.006)));
+  var lx=pad,ly=H-band,maxLH=band*0.55,maxLW=W*0.32;
+  if(logoImg){var r=Math.min(maxLW/logoImg.width,maxLH/logoImg.height);var lw=logoImg.width*r,lh=logoImg.height*r;c.drawImage(logoImg,lx,ly+(band-lh)/2,lw,lh)}
+  else{c.fillStyle=S.kleur;c.font='700 '+Math.round(W*0.034)+'px '+F;c.fillText(v('kantoor','kantoornaam'),lx,ly+band/2+W*0.012)}
+  c.textAlign='right';var rx=W-pad;var t1=Math.round(W*0.026),t2=Math.round(W*0.022);
+  c.fillStyle='#000000';c.font='700 '+t1+'px '+F;c.fillText(v('adviseur','naam adviseur'),rx,ly+band/2-t2*0.5);
+  c.fillStyle='#5f6670';c.font='400 '+t2+'px '+F;c.fillText((S.url?cleanUrl(S.url):'[website]')+'  ·  '+v('tel','telefoon'),rx,ly+band/2+t2*1.1);
+  c.textAlign='left';
+}
+function renderPosts(){
+  var box=document.getElementById('posts');var start=new Date(sd.value+'T12:00:00');if(isNaN(start))start=startDefault();
+  box.innerHTML='';
+  POSTS.forEach(function(p,i){
+    var text=p.t();var dt=new Date(start);dt.setDate(dt.getDate()+p.d);
+    var el=document.createElement('div');el.className='card post';
+    var fold=text.split('\n')[0].length>200;
+    el.innerHTML='<div><div class="meta"><span class="pill">Post '+(i+1)+'/'+POSTS.length+'</span><b>'+fmtDate(dt)+'</b><span class="muted">· '+esc(p.doel)+'</span></div>'+
+      '<pre>'+esc(text)+'</pre><div class="meta"><span class="muted">'+text.length+' / 3.000 tekens</span>'+(text.length>3000?'<span class="warn">Te lang voor LinkedIn</span>':'')+(fold?'<span class="warn">Openingszin lang: alleen ±200 tekens zichtbaar vóór "meer"</span>':'')+'</div>'+
+      '<div class="row" style="margin-top:8px"><button class="b" data-a="copy" type="button">Kopieer tekst</button><button class="b alt" data-a="dl" type="button">Download beeld (PNG)</button>'+(S.url||S.scan?'<button class="b alt" data-a="cmt" type="button">Kopieer eerste reactie</button>':'')+'</div></div>'+
+      '<div><canvas aria-label="Beeld bij post '+(i+1)+': '+esc(p.kop)+'"></canvas></div>';
+    box.appendChild(el);
+    var cv=el.querySelector('canvas');draw(cv,p);
+    el.querySelector('[data-a=copy]').onclick=function(){copy(text,this)};
+    el.querySelector('[data-a=dl]').onclick=function(){var a=document.createElement('a');a.download='linkedin-post-'+(i+1)+'.png';a.href=cv.toDataURL('image/png');document.body.appendChild(a);a.click();a.remove()};
+    var cm=el.querySelector('[data-a=cmt]');if(cm)cm.onclick=function(){copy('Meer weten over je mogelijkheden? 👉 '+(i===4?scanLink():cleanUrl(S.url||S.scan)),this)};
+  });
+}
+
+/* ---------- tab 3: vragen ---------- */
+var KORT=[
+ {s:'Jaarlijkse informatie-update',q:[
+  ['Is uw inkomen (of dat van uw partner) het afgelopen jaar veranderd, of verwacht u een verandering?','Nieuwe baan, minder uren, ondernemer geworden, met pensioen'],
+  ['Is uw woon- of gezinssituatie veranderd?','Samenwonen, trouwen, scheiding, overlijden partner, kinderen uit huis'],
+  ['Heeft u de komende jaren plannen met uw woning?','Verhuizen, verbouwen, verduurzamen, overwaarde gebruiken'],
+  ['Weet u wat uw pensioen en AOW-datum zijn, en zijn er wijzigingen in uw pensioen?','Bijvoorbeeld door de nieuwe pensioenregeling (Wtp)'],
+  ['Heeft u vragen over uw hypotheek of wilt u een gesprek?','Bijvoorbeeld over uw rentevaste periode of extra aflossen']]}
+];
+var LANG=[
+ {s:'1. Persoonlijke situatie',q:[
+  ['Is uw gezinssituatie veranderd sinds ons laatste contact?','Samenwonen, trouwen, scheiding, overlijden, kinderen'],
+  ['Zijn er wijzigingen in uw testament, samenlevingscontract of huwelijkse voorwaarden?','']]},
+ {s:'2. Werk en inkomen',q:[
+  ['Is uw inkomen of dat van uw partner veranderd, of verwacht u een verandering?','Andere baan, minder uren, ondernemer, ontslag'],
+  ['Overweegt u eerder te stoppen met werken of minder te gaan werken?',''],
+  ['Wat is uw AOW-datum en die van uw partner?','Op te zoeken via svb.nl']]},
+ {s:'3. Pensioen',q:[
+  ['Heeft u een recent overzicht van uw pensioenopbouw?','mijnpensioenoverzicht.nl of uw UPO'],
+  ['Heeft u bericht gehad van uw pensioenfonds over de overstap naar de nieuwe pensioenregeling (Wtp)?',''],
+  ['Denkt u na over keuzes bij pensionering, zoals een bedrag ineens of hoog-laag?','Dit beïnvloedt uw inkomen en daarmee uw hypotheekmogelijkheden']]},
+ {s:'4. Woning',q:[
+  ['Hoe schat u de huidige waarde van uw woning in, en wanneer is die voor het laatst getaxeerd?',''],
+  ['Wat is het energielabel van uw woning, en heeft u verduurzamingsplannen?',''],
+  ['Is er groot onderhoud nodig of gepland?','Dak, kozijnen, fundering']]},
+ {s:'5. Woonwensen en plannen',q:[
+  ['Hoe wilt u over 5 tot 10 jaar wonen?','Hier blijven, kleiner of gelijkvloers, woning aanpassen, nog geen idee'],
+  ['Heeft u concrete plannen om te verhuizen, verbouwen of overwaarde te gebruiken? Zo ja, wanneer?',''],
+  ['Wilt u (klein)kinderen financieel helpen, bijvoorbeeld met een schenking of lening?','']]},
+ {s:'6. Hypotheek',q:[
+  ['Weet u wanneer uw rentevaste periode afloopt?',''],
+  ['Heeft u een aflossingsvrij deel, en heeft u een plan voor de aflossing aan het eind van de looptijd?',''],
+  ['Heeft u extra afgelost of wilt u dat doen?',''],
+  ['Heeft u spaar- of beleggingsrekeningen of polissen die aan de hypotheek gekoppeld zijn?','']]},
+ {s:'7. Risico\'s',q:[
+  ['Is er een overlijdensrisicoverzekering, en past de dekking nog?',''],
+  ['Kunt u de woonlasten blijven betalen als één van u wegvalt, arbeidsongeschikt raakt of werkloos wordt?','']]},
+ {s:'8. Contact',q:[
+  ['Wilt u een gesprek naar aanleiding van deze vragen?','Ja / nee / later'],
+  ['Hoe wilt u het liefst contact?','Telefoon, e-mail, videobellen, op kantoor'],
+  ['Mogen wij uw antwoorden vastleggen in uw klantdossier?','Om u goed van dienst te kunnen zijn']]}
+];
+var INFO52='Een aantal geldverstrekkers, waaronder Rabobank en Obvion (vanaf maart 2027), houdt bij een hypotheekaanvraag al 15 jaar vóór uw AOW-leeftijd rekening met uw pensioeninkomen. Bij een AOW-leeftijd van 67 is dat vanaf 52 jaar. Omdat het pensioen bij de meeste mensen lager is dan het huidige inkomen, kan uw maximale hypotheek daardoor lager uitvallen. Dit geldt bij een nieuwe hypotheek, een verhoging of oversluiten. Uw huidige hypotheek verandert niet.';
+var SCAN=[
+ {s:'Stap 1 · Inkomen',q:[{v:'Is het (gezamenlijk) inkomen veranderd?',o:['Nee','Ja'],sig:'Verlaagd',vv:{als:'Ja',v:'Het inkomen is nu…',o:['Verhoogd','Verlaagd','Anders, namelijk: …']}}]},
+ {s:'Stap 2 · Hypotheek',q:[{v:'Is de hypotheek aangepast?',o:['Nee','Ja'],vv:{als:'Ja',v:'Wat is er anders?',o:['De hypotheek is verhoogd (extra lening)','Er is extra afgelost','De hypotheekvorm is gewijzigd','Anders, namelijk: …']}}]},
+ {s:'Stap 3 · Woning',q:[{v:'Is er iets veranderd in uw woonsituatie?',o:['Nee','Ja'],vv:{als:'Ja',v:'Wat is er veranderd?',o:['Ik heb verbouwd','Ik heb verduurzaamd','Ik ben verhuisd','Anders, namelijk: …']}}]},
+ {s:'Stap 4 · Gezinssituatie',q:[{v:'Is uw gezinssituatie veranderd?',o:['Nee','Ja'],sig:'Ja',vv:{als:'Ja',v:'Wat is er veranderd?',o:['Een partner is ingetrokken (samenwonen)','Huwelijk of geregistreerd partnerschap','Er is een kind geboren','Scheiding','Overlijden van mijn partner','De kinderen zijn uit huis','Anders, namelijk: …']}}]},
+ {s:'Stap 5 · Pensioen telt eerder mee',info:INFO52,q:[{v:'Was u hiervan op de hoogte?',o:['Ja','Nee'],vv:{als:'altijd',v:'Wilt u weten wat dit voor uw situatie betekent?',o:['Ja, graag','Nee, nu niet'],sig:'Ja, graag'}}]},
+ {s:'Stap 6 · Pensioen en AOW',q:[
+   {v:'Weet u hoe hoog uw pensioen (en dat van uw partner) ongeveer wordt?',t:'Bekijk het op mijnpensioenoverzicht.nl',o:['Ja, ik heb een recent overzicht','Ongeveer','Nee, nog niet bekeken'],sig:'Nee, nog niet bekeken'},
+   {v:'Overweegt u eerder te stoppen met werken of minder te gaan werken?',o:['Nee','Ja'],sig:'Ja',vv:{als:'Ja',v:'Rond welke leeftijd?',open:true}}]},
+ {s:'Stap 7 · Rentevaste periode en aflossing',q:[
+   {v:'Wanneer loopt uw rentevaste periode af?',o:['Binnen 2 jaar','Over 2 tot 5 jaar','Later','Weet ik niet'],sig:'Binnen 2 jaar · Weet ik niet'},
+   {v:'Heeft u een aflossingsvrij deel in uw hypotheek?',o:['Nee','Ja','Weet ik niet'],vv:{als:'Ja',v:'Heeft u een plan om dat aan het einde van de looptijd af te lossen?',o:['Ja, met spaargeld of beleggingen','Ja, door de woning te verkopen','Nog geen plan'],sig:'Nog geen plan'}}]},
+ {s:'Stap 8 · Wensen',q:[{v:'Welke wensen heeft u voor de toekomst?',t:'Meerdere antwoorden zijn mogelijk',meer:true,o:['Verhuizen naar een andere woning','Kleiner of gelijkvloers wonen','De huidige woning verbouwen of aanpassen','Verduurzamen','(Eerder) stoppen met werken','De woonlasten verlagen','Extra aflossen op de hypotheek','Geld vrijmaken uit de overwaarde','Kinderen financieel helpen','Geen specifieke wensen','Anders, namelijk: …'],sig:'Elke wens behalve "geen"',vv:{als:'een wens',v:'Wanneer wilt u dit realiseren?',o:['Binnen 2 jaar','Over 2 tot 5 jaar','Later'],sig:'Binnen 5 jaar'}}]},
+ {s:'Stap 9 · Overige vragen',q:[{v:'Zijn er andere (financiële) vragen waarbij wij u mogen helpen?',open:true}]},
+ {s:'Stap 10 · Contact',q:[{v:'Wilt u dat wij contact met u opnemen?',o:['Ja, graag','Nee, nu niet'],sig:'Ja, graag',vv:{als:'Ja, graag',v:'Hoe heeft u het liefst contact?',o:['Telefoon','E-mail','Videobellen','Op kantoor']}}]},
+ {s:'Stap 11 · Controlevragen',q:[{v:'E-mailadres',open:true},{v:'Telefoonnummer',open:true},{v:'Ik ga ermee akkoord dat mijn antwoorden worden vastgelegd in mijn klantdossier',o:['Akkoord'],meer:true}]}
+];
+function alsL(a){return a==='altijd'?'':(a==='Ja'?'Zo ja: ':'Bij "'+a+'": ')}
+function nq(q){return Array.isArray(q)?{v:q[0],t:q[1]}:q}
+var qmode='scan';var qOff={};
+document.querySelectorAll('#qmode button').forEach(function(b){b.onclick=function(){qmode=b.dataset.m;document.querySelectorAll('#qmode button').forEach(function(x){x.classList.toggle('on',x===b)});renderQ()}});
+function curQ(){return qmode==='scan'?SCAN:(qmode==='kort'?KORT:LANG)}
+function selected(){var out=[];curQ().forEach(function(sec,si){var qs=sec.q.filter(function(q,qi){return !qOff[qmode+si+'_'+qi]}).map(nq);if(qs.length)out.push({s:sec.s,info:sec.info,q:qs})});return out}
+function optsHtml(o,meer){return '<span class="opts">'+o.map(function(x){return '<span class="opt">'+(meer?'☐ ':'○ ')+esc(x)+'</span>'}).join('')+'</span>'}
+function renderQ(){
+  var h='';
+  if(qmode==='scan')h+='<div class="card" style="border-left:5px solid var(--green)"><p style="margin:0"><b>Opzet zoals de Blinqx Actiefbeheerscan:</b> per stap één hoofdvraag (meestal ja/nee). Bij "ja" volgt een vervolgvraag. Stap 5 t/m 7 zijn nieuw voor de doelgroep 50–57. <span class="pill">signaal</span> = aanleiding om te bellen.</p></div>';
+  curQ().forEach(function(sec,si){h+='<div class="card sec"><h3>'+esc(sec.s)+'</h3>'+(sec.info?'<div class="info52">'+esc(sec.info)+'</div>':'');sec.q.forEach(function(q0,qi){var q=nq(q0);var id=qmode+si+'_'+qi;
+    h+='<label class="q" style="font-weight:400"><input type="checkbox" data-q="'+id+'"'+(qOff[id]?'':' checked')+'><span><b style="font-weight:600">'+esc(q.v)+'</b>'+(q.t?'<small>'+esc(q.t)+'</small>':'')+(q.o?optsHtml(q.o,q.meer):'')+(q.open?'<span class="opts"><span class="opt">✎ open antwoord</span></span>':'')+(q.sig?'<span class="sig"><span class="pill">signaal</span> '+esc(q.sig)+'</span>':'')+
+    (q.vv?'<span class="vv">↳ '+(q.vv.als==='altijd'?'':'Bij "'+esc(q.vv.als)+'": ')+'<b style="font-weight:600">'+esc(q.vv.v)+'</b>'+(q.vv.o?optsHtml(q.vv.o,q.vv.meer):'')+(q.vv.open?'<span class="opts"><span class="opt">✎ open antwoord</span></span>':'')+(q.vv.sig?'<span class="sig"><span class="pill">signaal</span> '+esc(q.vv.sig)+'</span>':'')+'</span>':'')+'</span></label>'});h+='</div>'});
+  if(qmode==='scan')h+='<div class="card"><h3 style="margin-top:0">Selectieregel voor opvolging</h3><p style="margin:0">Bel binnen 2 weken bij <b>50–57 jaar + een wens binnen 5 jaar</b>, <b>"Ja, graag" bij stap 5 of 10</b>, <b>aflossingsvrij zonder aflossingsplan</b> of <b>rentevaste periode binnen 2 jaar</b>. Dit sluit aan op het prioriteringsmodel in de presentatie (dia 12).</p></div>';
+  var box=document.getElementById('qbox');box.innerHTML=h;
+  box.querySelectorAll('[data-q]').forEach(function(cb){cb.onchange=function(){qOff[cb.dataset.q]=!cb.checked}});
+}
+document.getElementById('qAll').onclick=function(){var any=false;curQ().forEach(function(sec,si){sec.q.forEach(function(q,qi){if(!qOff[qmode+si+'_'+qi])any=true})});
+  curQ().forEach(function(sec,si){sec.q.forEach(function(q,qi){qOff[qmode+si+'_'+qi]=any})});renderQ()};
+function oTxt(o,meer){return o?'\n   '+o.map(function(x){return (meer?'[ ] ':'( ) ')+x}).join('\n   '):''}
+function qText(numbered){var n=0,t='';selected().forEach(function(sec){t+='\n'+sec.s.toUpperCase()+'\n'+(sec.info?sec.info+'\n':'');sec.q.forEach(function(q){n++;t+=(numbered?n+'. ':'• ')+q.v+(q.t?' ('+q.t+')':'')+oTxt(q.o,q.meer)+(q.open?'\n   ____________________':'')+(q.vv?'\n   → '+alsL(q.vv.als)+q.vv.v+oTxt(q.vv.o,q.vv.meer).replace(/\n   /g,'\n      ')+(q.vv.open?'\n      ____________________':''):'')+'\n'})});return t.trim()}
+document.getElementById('qList').onclick=function(){copy(qText(true),this)};
+document.getElementById('qMail').onclick=function(){
+  var titel=qmode==='scan'?'hypotheekscan':(qmode==='kort'?'jaarlijkse informatie-update':'nazorgscan hypotheek');
+  var t='Onderwerp: Uw '+titel+'\n\nBeste [naam klant],\n\nGraag houden wij uw hypotheek passend bij uw situatie. Daarom vragen wij u '+(qmode==='kort'?'eenmaal per jaar':'')+' een paar korte vragen te beantwoorden. Banken passen hun regels aan, en vooral als u tussen de 50 en 57 jaar bent en plannen heeft met uw woning, is het goed om dat op tijd te weten.\n\n'+qText(true)+'\n\n'+(S.scan?'U kunt de vragen ook online beantwoorden via: '+cleanUrl(S.scan)+'\n\n':'U kunt deze e-mail eenvoudig beantwoorden.\n\n')+'Blijkt uit uw antwoorden dat er aanleiding is voor een gesprek, dan nemen wij contact met u op.'+kostenZin()+'\n\nMet vriendelijke groet,\n\n'+v('adviseur','naam adviseur')+(S.functie?'\n'+S.functie:'')+(sameKA()?'':'\n'+v('kantoor','kantoornaam'))+'\n'+v('tel','telefoon')+' | '+v('email','e-mail')+'\n'+(S.url?cleanUrl(S.url):'[website]');
+  copy(t,this)};
+document.getElementById('qPrint').onclick=function(){
+  var titel=qmode==='scan'?'Hypotheekscan: is uw hypotheek nog passend?':(qmode==='kort'?'Jaarlijkse informatie-update hypotheek':'Nazorgscan hypotheek');var n=0;
+  var b='<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid '+S.kleur+';padding-bottom:10px;margin-bottom:14px">'+(S.logo?'<img src="'+S.logo+'" style="max-height:54px;max-width:200px">':'<b style="font-size:20px;color:'+S.kleur+'">'+esc(v('kantoor','kantoornaam'))+'</b>')+'<div style="text-align:right;font-size:13px;color:#555">'+esc(v('kantoor','kantoornaam'))+'<br>'+esc(v('tel','telefoon'))+' · '+esc(v('email','e-mail'))+'<br>'+esc(S.url?cleanUrl(S.url):'[website]')+'</div></div>';
+  b+='<h1 style="margin:0 0 4px">'+titel+'</h1><p>Naam: ____________________________ &nbsp; Datum: ______________</p>';
+  function po(o,meer){return '<div style="margin:4px 0 0 14px">'+o.map(function(x){return '<div>'+(meer?'☐ ':'○ ')+esc(x)+'</div>'}).join('')+'</div>'}
+  var ln='<div style="border-bottom:1px solid #bbb;height:22px"></div>';
+  selected().forEach(function(sec){b+='<div style="break-inside:avoid"><h3 style="margin:16px 0 4px">'+esc(sec.s)+'</h3>'+(sec.info?'<div style="background:#FFF0B3;border-left:4px solid '+S.kleur+';padding:8px 12px;margin:4px 0 8px;font-size:14px">'+esc(sec.info)+'</div>':'');sec.q.forEach(function(q){n++;b+='<div style="break-inside:avoid;margin-bottom:10px"><b>'+n+'. '+esc(q.v)+'</b>'+(q.t?'<div style="color:#666;font-size:13px">'+esc(q.t)+'</div>':'')+(q.o?po(q.o,q.meer):(q.open?ln:ln+ln))+(q.vv?'<div style="margin:6px 0 0 14px"><i>'+alsL(q.vv.als)+'</i><b>'+esc(q.vv.v)+'</b>'+(q.vv.o?po(q.vv.o,q.vv.meer):ln)+'</div>':'')+'</div>'});b+='</div>'});
+  b+='<p style="font-size:12px;color:#666;margin-top:20px">Uw gegevens gebruiken wij alleen voor onze dienstverlening aan u, volgens onze privacyverklaring.'+(S.afm?' AFM-vergunning '+esc(S.afm)+'.':'')+(S.kifid?' Kifid '+esc(S.kifid)+'.':'')+'</p>';
+  printHtml(titel,b);
+};
+
+/* ---------- tab 4: klanttekst ---------- */
+function renderArt(){
+  var kosten=S.kosten==='kosteloos'?' Het kennismakingsgesprek is kosteloos en vrijblijvend.':(S.kosten==='tarief'?' Voor advies gelden onze tarieven volgens ons dienstverleningsdocument.':'');
+  document.getElementById('art').innerHTML=
+  '<div class="brand">'+(S.logo?'<img src="'+S.logo+'" alt="'+esc(S.kantoor||'Logo')+'">':'<b style="font-size:20px;color:'+S.kleur+'">'+vh('kantoor','kantoornaam')+'</b>')+'<span style="font-size:14px;color:#5f6670">'+vh('tel','telefoon')+' · '+vh('email','e-mail')+'</span></div>'+
+  '<h1>Hypotheek vanaf 52 jaar</h1><p class="lead">Een aantal geldverstrekkers kijkt eerder naar uw pensioen. Er blijven genoeg mogelijkheden, maar heeft u plannen met uw woning, dan loont het om die op tijd te bespreken.</p>'+
+  '<h2>Wat verandert er vanaf 52 jaar?</h2><p>Als u een hypotheek aanvraagt, kijkt de geldverstrekker of u de maandlasten ook later kunt blijven betalen. Tot nu toe telde uw verwachte pensioeninkomen meestal mee vanaf <b>10 jaar</b> vóór uw AOW-leeftijd, dus rond uw 57e.</p>'+
+  '<p>Onder invloed van Europese richtlijnen en toezicht (EBA, ECB en De Nederlandsche Bank) scherpen enkele geldverstrekkers dit aan. <b>Rabobank en Obvion</b> kijken vanaf <b>maart 2027</b> al <b>15 jaar</b> vóór uw AOW-leeftijd naar uw pensioen. Is uw AOW-leeftijd 67, dan is dat vanaf uw <b>52e</b>.</p>'+
+  '<div class="box">Uw eigen AOW-leeftijd vindt u op <a href="https://www.svb.nl" target="_blank" rel="noopener">svb.nl</a>. Die bepaalt wanneer de nieuwe toets voor u begint.</div>'+
+  '<p>Daarnaast kijken sommige geldverstrekkers voortaan ook naar de <b>levensverwachting</b>: hoe hoog is uw hypotheekschuld nog op hoge leeftijd (rond 85 jaar) ten opzichte van de waarde van uw woning? Niet iedere geldverstrekker doet hetzelfde. Er zijn ook aanbieders die (nog) de grens van 10 jaar hanteren.</p>'+
+  '<h2>Voor wie geldt het?</h2><div class="tw"><table><tr><th>Uw situatie</th><th>Gevolg</th></tr><tr><td>U houdt uw huidige hypotheek zoals die is</td><td>Er verandert niets</td></tr><tr><td>U wilt verhuizen en een nieuwe hypotheek</td><td>De nieuwe regels kunnen gelden</td></tr><tr><td>U wilt uw hypotheek verhogen (verbouwen, verduurzamen, overwaarde)</td><td>De nieuwe regels kunnen gelden</td></tr><tr><td>U wilt oversluiten naar een andere geldverstrekker</td><td>De nieuwe regels kunnen gelden</td></tr><tr><td>Uw rentevaste periode loopt af</td><td>Verschilt per geldverstrekker. Vraag het ons</td></tr></table></div>'+
+  '<h2>Wat betekent dit voor u?</h2><p>Uw pensioen is meestal lager dan uw huidige inkomen. Telt uw pensioen eerder mee, dan kan uw <b>maximale hypotheek lager</b> uitvallen dan u verwacht. Hoeveel lager hangt af van uw pensioenopbouw, de AOW-leeftijd van u en uw partner, de woningwaarde en de geldverstrekker. Dat hoeft geen probleem te zijn, maar het is wel prettig om het te weten <i>voordat</i> u een woning koopt of een verbouwing laat plannen.</p>'+
+  '<h2>Plannen met uw woning? Begin op tijd</h2><ul><li><b>Kleiner of gelijkvloers wonen</b>: een woning die past als traplopen of tuinonderhoud lastiger wordt</li><li><b>Verbouwen</b>: bijvoorbeeld een slaapkamer en badkamer beneden</li><li><b>Verduurzamen</b>: isolatie, warmtepomp of zonnepanelen</li><li><b>Overwaarde gebruiken</b>: om uw pensioen aan te vullen of kinderen te helpen</li></ul><p>Speelt een van deze plannen de komende jaren, laat uw mogelijkheden dan <b>nu</b> doorrekenen. Dan weet u wat er kan, bij welke geldverstrekker, en of het slim is om iets eerder of juist later te doen.</p>'+
+  '<h2>Heeft u een aflossingsvrije hypotheek?</h2><p>Een aflossingsvrije hypotheek geeft lage maandlasten, maar aan het eind van de looptijd moet de hele schuld in één keer worden terugbetaald. Wilt u dan verlengen of oversluiten, dan toetst de geldverstrekker opnieuw of u de lasten kunt dragen, ook met uw pensioen. Wacht daarom niet tot het einde van de looptijd. Samen kijken we of (gedeeltelijk) aflossen, omzetten naar een aflossende hypotheek of extra sparen voor u verstandig is.</p>'+
+  '<h2>Een hypotheek als u al met pensioen bent</h2><p>Ook na uw pensioen kunt u een hypotheek krijgen. Er gelden dan andere rekenregels; soms wordt gekeken naar uw werkelijke maandlasten in plaats van een fictieve last. Het bedrag is vaak lager dan toen u werkte, maar er zijn meer mogelijkheden dan veel mensen denken.</p>'+
+  '<h2>Denk ook aan uw partner</h2><p>Wat gebeurt er met de hypotheek als een van u beiden overlijdt? Het inkomen daalt, terwijl de woonlasten blijven. Een overlijdensrisicoverzekering wordt op latere leeftijd duurder en is niet altijd mogelijk. Ook uw testament en de positie van uw kinderen spelen mee.</p>'+
+  '<h2>Wat kunt u nu al doen?</h2><ul><li>Zoek uw <b>AOW-datum</b> op via <a href="https://www.svb.nl" target="_blank" rel="noopener">svb.nl</a></li><li>Bekijk uw <b>pensioenopbouw</b> op <a href="https://www.mijnpensioenoverzicht.nl" target="_blank" rel="noopener">mijnpensioenoverzicht.nl</a></li><li>Pak uw <b>hypotheekgegevens</b> erbij: leningdelen, aflosvorm, einde rentevaste periode</li><li>Bedenk welke <b>plannen</b> u de komende 5 tot 10 jaar met uw woning heeft</li></ul>'+
+  '<div class="box"><p><b>'+vh('kantoor','kantoornaam')+' helpt u graag.</b> Doe onze korte check of plan een gesprek. We rekenen uw situatie door en laten u zien welke mogelijkheden u heeft.'+esc(kosten)+'</p>'+
+  '<a class="cta" href="'+esc(href(S.scan||S.url))+'" target="_blank" rel="noopener">Doe de check</a><a class="cta" style="background:transparent;color:'+S.kleur+';border:2px solid '+S.kleur+'" href="'+(S.email?'mailto:'+esc(S.email):'#')+'">Plan een gesprek</a>'+
+  '<p style="margin-top:8px">Bel '+vh('tel','telefoon')+' of mail '+vh('email','e-mail')+(S.adviseur?' · '+esc(S.adviseur)+(S.functie?', '+esc(S.functie):''):'')+'</p></div>'+
+  '<h2>Veelgestelde vragen</h2>'+
+  '<details><summary>Kan ik na mijn 52e nog een hypotheek krijgen?</summary><p>Ja. Alleen kan het maximale bedrag bij sommige geldverstrekkers lager uitvallen, omdat uw pensioen eerder meetelt.</p></details>'+
+  '<details><summary>Hoeveel kan ik lenen als ik ouder ben dan 52?</summary><p>Dat hangt af van uw inkomen nu, uw verwachte pensioen (en dat van uw partner), de waarde van uw woning en de geldverstrekker. Wij rekenen het precies voor u uit en laten de verschillen tussen geldverstrekkers zien.</p></details>'+
+  '<details><summary>Verandert er iets aan mijn huidige hypotheek?</summary><p>Nee, zolang u niets wijzigt. De nieuwe regels gelden bij een nieuwe hypotheek of bij een aanpassing, zoals verhogen, oversluiten of verhuizen.</p></details>'+
+  '<details><summary>Geldt dit bij alle banken?</summary><p>Nee. Elke geldverstrekker bepaalt zijn eigen beleid. Rabobank en Obvion hebben de grens van 15 jaar aangekondigd per maart 2027; andere geldverstrekkers hanteren andere regels. Het beleid kan bovendien nog veranderen.</p></details>'+
+  '<details><summary>Moet ik nu snel iets doen?</summary><p>Alleen als u de komende jaren plannen heeft met uw woning of hypotheek. Dan is het verstandig om uw mogelijkheden op tijd te laten doorrekenen, zodat u een weloverwogen keuze kunt maken.</p></details>'+
+  '<details><summary>Wat als ik al met pensioen ben?</summary><p>Ook dan is een hypotheek mogelijk, vaak met andere rekenregels. Het bedrag ligt meestal lager dan toen u nog werkte.</p></details>'+
+  '<p class="disc">Deze informatie is algemeen en geen persoonlijk advies. Het beleid van geldverstrekkers verschilt en kan wijzigen. Stand van zaken: '+DATUM+'. Aan deze informatie kunnen geen rechten worden ontleend. '+vh('kantoor','kantoornaam')+' · AFM-vergunningnummer '+vh('afm','nummer')+' · Kifid-aansluitnummer '+vh('kifid','nummer')+'</p>';
+}
+var art=document.getElementById('art');
+document.getElementById('aTxt').onclick=function(){copy(art.innerText,this)};
+document.getElementById('aHtml').onclick=function(){copy(art.innerHTML.trim(),this)};
+document.getElementById('aPrint').onclick=function(){
+  var css='.brand{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid '+S.kleur+';padding-bottom:10px;margin-bottom:16px}.brand img{max-height:54px;max-width:200px}table{border-collapse:collapse;width:100%}th{background:'+S.kleur+';color:#fff;text-align:left;padding:6px 8px}td{border-bottom:1px solid #ddd;padding:6px 8px}.box{background:#FFF0B3;border-radius:8px;padding:12px 16px;margin:10px 0}.cta{display:inline-block;background:'+S.kleur+';color:#fff;text-decoration:none;font-weight:700;padding:8px 14px;border-radius:6px;margin-right:8px}details{margin-bottom:6px}summary{font-weight:700;color:'+S.kleur+'}.disc{font-size:12px;color:#666;border-top:1px solid #ddd;padding-top:8px;margin-top:20px}.ph{background:#fff2a8}';
+  printHtml('Hypotheek vanaf 52 jaar',art.innerHTML,css)};
+
+/* ---------- tab 5: nieuwsbrief ---------- */
+var nmode='lang';
+document.querySelectorAll('#nmode button').forEach(function(b){b.onclick=function(){nmode=b.dataset.m;document.querySelectorAll('#nmode button').forEach(function(x){x.classList.toggle('on',x===b)});renderNL()}});
+function renderNL(){
+  var K=vh('kantoor','kantoornaam'),A=vh('adviseur','naam adviseur'),T=vh('tel','telefoon'),E=vh('email','e-mail'),U=S.url?esc(cleanUrl(S.url)):'<span class="ph">[website]</span>';
+  var link=esc(href(S.scan||S.url)),kost=esc(kostenZin());
+  var head='<p style="font-size:13px;color:#5f6670;margin:0 0 4px"><b>Onderwerpregel</b> (kies er één)</p><ul style="margin:0 0 10px;font-size:15px"><li>Hypotheek vanaf 52 jaar: wat verandert er?</li><li>Plannen met uw woning? Laat ze op tijd doorrekenen</li><li>Uw pensioen telt bij een aantal banken eerder mee</li></ul><p style="font-size:13px;color:#5f6670;margin:0 0 14px"><b>Preheader:</b> Banken kijken eerder naar uw pensioen. Voor wie geldt dat, en wat kunt u nu al doen?</p><hr style="border:0;border-top:1px solid #ddd;margin:0 0 16px">';
+  var brand='<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid '+S.kleur+';padding-bottom:10px;margin-bottom:16px;gap:12px">'+(S.logo?'<img src="'+S.logo+'" alt="'+esc(S.kantoor||'Logo')+'" style="max-height:50px;max-width:200px">':'<b style="font-size:19px;color:'+S.kleur+'">'+K+'</b>')+'<span style="font-size:13px;color:#5f6670">Nieuwsbrief</span></div>';
+  var cta='<p style="margin:16px 0"><a href="'+link+'" target="_blank" rel="noopener" style="display:inline-block;background:'+S.kleur+';color:#fff;text-decoration:none;font-weight:700;padding:10px 18px;border-radius:6px">Doe de hypotheekcheck</a></p>';
+  var sign='<p>Met vriendelijke groet,<br><br><b>'+A+'</b>'+(S.functie?'<br>'+esc(S.functie):'')+(sameKA()?'':'<br>'+K)+'<br>'+T+' · '+E+' · '+U+'</p>';
+  var disc='<p style="font-size:12.5px;color:#5f6670;border-top:1px solid #ddd;padding-top:8px;margin-top:18px">Algemene informatie, geen persoonlijk advies. Het beleid van geldverstrekkers verschilt en kan wijzigen. Stand van zaken: '+DATUM+'. AFM-vergunning '+vh('afm','nummer')+' · Kifid '+vh('kifid','nummer')+' · <span class="ph">[afmeldlink]</span></p>';
+  var h2='style="color:'+S.kleur+';font-size:22px;margin:0 0 8px"';var h3='style="color:'+S.kleur+';font-size:18px;margin:16px 0 4px"';
+  var body;
+  if(nmode==='lang'){
+    body='<h2 '+h2+'>Hypotheek vanaf 52 jaar: uw pensioen telt eerder mee</h2>'+
+    '<p>Bent u tussen de 50 en 57 jaar en heeft u plannen met uw woning? Dan is dit nieuws voor u van belang.</p>'+
+    '<p>Onder invloed van Europese richtlijnen en het toezicht van de ECB en De Nederlandsche Bank kijken geldverstrekkers strenger naar de betaalbaarheid van een hypotheek op de lange termijn. Een aantal banken gaat daarom eerder rekening houden met uw pensioen. <b>Rabobank en Obvion</b> doen dat vanaf <b>maart 2027</b> al 15 jaar vóór uw AOW-leeftijd, in plaats van 10 jaar. Bij een AOW-leeftijd van 67 is dat vanaf uw 52e. Sommige geldverstrekkers kijken daarnaast naar de hoogte van uw schuld op hoge leeftijd.</p>'+
+    '<h3 '+h3+'>Wat betekent dit voor u?</h3>'+
+    '<p>Uw pensioen is meestal lager dan uw salaris. Telt het eerder mee, dan kan uw maximale hypotheek lager uitvallen. <b>Houdt u uw huidige hypotheek zoals die is, dan verandert er niets.</b> De nieuwe regels kunnen wél gelden als u gaat verhuizen, uw hypotheek wilt verhogen voor een verbouwing of verduurzaming, of wilt oversluiten.</p>'+
+    '<h3 '+h3+'>Niet iedere bank doet hetzelfde</h3>'+
+    '<p>Elke geldverstrekker bepaalt zijn eigen beleid, en er zijn ook aanbieders die (nog) de oude grens hanteren. Juist daarom loont het om uw situatie te laten doorrekenen voordat u een beslissing neemt.</p>'+
+    '<h3 '+h3+'>Wat kunt u nu al doen?</h3>'+
+    '<ul><li>Zoek uw AOW-datum op via svb.nl en bekijk uw pensioen op mijnpensioenoverzicht.nl</li><li>Bedenk welke plannen u de komende 5 tot 10 jaar met uw woning heeft</li><li>Heeft u een aflossingsvrije hypotheek? Kijk ruim vóór het einde van de looptijd hoe u die wilt aflossen</li></ul>'+
+    '<p>Wilt u weten wat dit voor u betekent? Doe onze korte hypotheekcheck. Wij kijken mee en nemen contact met u op als er aanleiding is voor een gesprek.'+kost+'</p>'+cta+sign+disc;
+  }else if(nmode==='kort'){
+    body='<h2 '+h2+'>Uw pensioen telt eerder mee bij uw hypotheek</h2>'+
+    '<p>Een aantal banken kijkt bij een hypotheekaanvraag eerder naar uw pensioen. Rabobank en Obvion doen dat vanaf maart 2027 al vanaf ongeveer uw 52e (15 jaar vóór uw AOW-leeftijd). Daardoor kan uw maximale hypotheek lager uitvallen. Uw huidige hypotheek verandert niet, maar heeft u plannen om te verhuizen, verbouwen of verduurzamen? Laat uw mogelijkheden dan op tijd doorrekenen.'+kost+'</p>'+cta+disc;
+  }else if(nmode==='scan'){
+    body='<h2 '+h2+'>Is uw hypotheek nog passend? Doe de korte hypotheekscan</h2>'+
+    '<p>Uw inkomen verandert, uw plannen veranderen, en de regels van banken veranderen ook. Daarom nodigen wij u uit voor onze korte hypotheekscan. In een paar minuten ziet u of uw hypotheek nog past bij uw situatie, en wij zien of er aanleiding is voor een gesprek.</p>'+
+    '<h3 '+h3+'>Waarom juist nu?</h3>'+
+    '<p>Een aantal geldverstrekkers, waaronder Rabobank en Obvion (vanaf maart 2027), houdt bij een hypotheekaanvraag al 15 jaar vóór uw AOW-leeftijd rekening met uw pensioeninkomen. Bij een AOW-leeftijd van 67 is dat vanaf 52 jaar. Omdat het pensioen bij de meeste mensen lager is dan het huidige inkomen, kan uw maximale hypotheek daardoor lager uitvallen. <b>Uw huidige hypotheek verandert niet.</b> Maar wilt u de komende jaren verhuizen, verbouwen, verduurzamen of overwaarde gebruiken, dan is het goed om dat op tijd te weten.</p>'+
+    '<h3 '+h3+'>Wat vragen wij in de scan?</h3>'+
+    '<ul><li>Is uw inkomen, uw woonsituatie of uw gezinssituatie veranderd?</li><li>Weet u hoe hoog uw pensioen ongeveer wordt?</li><li>Wanneer loopt uw rentevaste periode af, en heeft u een aflossingsvrij deel?</li><li>Welke wensen heeft u voor de toekomst, en wanneer?</li></ul>'+
+    '<p>U beantwoordt de vragen met een paar klikken. Een document opzoeken is niet nodig; weet u iets niet, dan kunt u dat gewoon aangeven.</p>'+
+    '<h3 '+h3+'>Wat gebeurt er met uw antwoorden?</h3>'+
+    '<p>Wij bekijken uw antwoorden persoonlijk. Is er aanleiding voor een gesprek, dan nemen wij contact met u op, zoals u dat het liefst heeft. Uw antwoorden leggen wij, met uw akkoord, vast in uw klantdossier en gebruiken wij alleen voor onze dienstverlening aan u.'+kost+'</p>'+
+    cta.replace('Doe de hypotheekcheck','Start de hypotheekscan')+
+    '<p style="font-size:15px">Liever even bellen? Neem gerust contact op via '+T+' of '+E+'.</p>'+sign+disc;
+  }else{
+    body='<p>Beste <span class="ph">[voornaam/aanhef]</span>,</p>'+
+    '<p>U heeft uw hypotheek via ons kantoor afgesloten. Daarom informeren wij u graag persoonlijk over een ontwikkeling die voor u van belang kan zijn.</p>'+
+    '<p>Een aantal geldverstrekkers gaat bij een hypotheekaanvraag eerder kijken naar uw pensioen. Rabobank en Obvion doen dat vanaf maart 2027 al 15 jaar vóór uw AOW-leeftijd. Omdat u tussen de 50 en 57 jaar bent, kan dit gevolgen hebben als u de komende jaren iets aan uw hypotheek wilt veranderen.</p>'+
+    '<p><b>Uw huidige hypotheek blijft zoals die is.</b> Er verandert alleen iets als u gaat verhuizen, verhogen of oversluiten.</p>'+
+    '<p>Om te bepalen of er voor u aanleiding is voor een gesprek, stellen wij u graag vijf korte vragen: over uw inkomen, uw woonsituatie, uw plannen, uw rentevaste periode en uw pensioen.</p>'+cta+
+    '<p>Heeft u geen plannen en geen vragen? Dan hoeft u niets te doen. Wij nemen dit onderwerp mee in ons volgende reguliere contact.'+kost+'</p>'+sign+
+    '<p style="font-size:12.5px;color:#5f6670;border-top:1px solid #ddd;padding-top:8px;margin-top:18px">U ontvangt deze e-mail omdat u klant bent bij '+K+'. Dit is algemene informatie, geen persoonlijk advies. Stand van zaken: '+DATUM+'. AFM-vergunning '+vh('afm','nummer')+' · Kifid '+vh('kifid','nummer')+'</p>'+
+    '<p style="font-size:13px;color:#9a4b0c;background:#fff6ee;padding:8px 10px;border-radius:6px"><b>Tip voor je dossier:</b> leg de verzenddatum vast, stuur na 2–3 weken een herinnering bij geen reactie, en leg ook het uitblijven van een reactie vast (zie de presentatie, vraag 5).</p>';
+  }
+  if(nmode==='scan')head='<p style="font-size:13px;color:#5f6670;margin:0 0 4px"><b>Onderwerpregel</b> (kies er één)</p><ul style="margin:0 0 10px;font-size:15px"><li>Is uw hypotheek nog passend? Doe de korte hypotheekscan</li><li>Uw pensioen telt eerder mee: weet u wat dat voor u betekent?</li><li>Korte hypotheekscan: inkomen, pensioen en woonwensen</li></ul><p style="font-size:13px;color:#5f6670;margin:0 0 14px"><b>Preheader:</b> Een paar klikken en u weet of uw hypotheek nog past bij uw plannen.</p><hr style="border:0;border-top:1px solid #ddd;margin:0 0 16px">';
+  document.getElementById('nl').innerHTML=(nmode==='seg'?'<p style="font-size:13px;color:#5f6670;margin:0 0 4px"><b>Onderwerpregel:</b> Uw hypotheek en uw pensioen: wat verandert er voor u?</p><hr style="border:0;border-top:1px solid #ddd;margin:0 0 16px">':head)+'<div id="nlBody">'+brand+body+'</div>';
+}
+var nlEl=function(){return document.getElementById('nl')};
+document.getElementById('nTxt').onclick=function(){copy(nlEl().innerText,this)};
+document.getElementById('nHtml').onclick=function(){copy(document.getElementById('nlBody').innerHTML.trim(),this)};
+document.getElementById('nPrint').onclick=function(){printHtml('Nieuwsbrief – hypotheek vanaf 52 jaar',nlEl().innerHTML,'.ph{background:#fff2a8}')};
+
+/* ---------- render ---------- */
+function renderAll(){renderVK();renderArt();renderNL();if(document.getElementById('t2').classList.contains('on'))renderPosts()}
+function renderCal(){
+  var st=new Date(sd.value+'T12:00:00');if(isNaN(st))st=startDefault();
+  function d(n){var x=new Date(st);x.setDate(x.getDate()+n);return x.toLocaleDateString('nl-NL',{day:'numeric',month:'short'})}
+  var R=[
+   [0,'Week 1','Nieuwsbrief (hoofdartikel) naar alle klanten · LinkedIn post 1 en 2','Breed informeren, geruststellen','t5'],
+   [7,'Week 2','Persoonlijke mailing + nazorgscan naar 50–57 · LinkedIn post 3 en 4','Uitvragen, plannen in beeld','t3'],
+   [14,'Week 3','Prio 1 bellen · LinkedIn post 5 (jaarlijkse check) · klanttekst live op je website','Gesprekken plannen','t4'],
+   [21,'Week 4','Herinnering aan wie niet reageerde · LinkedIn post 6','Tweede contactmoment','t3'],
+   [28,'Week 5','LinkedIn poll · prio 2 bellen bij signalen','Interactie, opvolgen','t2'],
+   [42,'Week 7','Afsluitende brief bij geen reactie · kort blok in de volgende nieuwsbrief','Vastleggen, borgen','t5'],
+   [null,'Vóór maart 2027','Adviestrajecten afronden, aanvragen vóór de ingangsdatum bij de betreffende geldverstrekker','Advies','']
+  ];
+  var h='<tr><th>Wanneer</th><th>Wat</th><th>Doel</th><th></th></tr>';
+  R.forEach(function(r){h+='<tr><td><b>'+r[1]+'</b>'+(r[0]!==null?'<br><span class="muted">vanaf '+d(r[0])+'</span>':'')+'</td><td>'+esc(r[2])+'</td><td class="muted">'+esc(r[3])+'</td><td>'+(r[4]?'<button class="b alt" style="font-size:13px;padding:4px 10px" data-go="'+r[4]+'" type="button">Open</button>':'')+'</td></tr>'});
+  document.getElementById('cal').innerHTML=h;
+}
+sd.addEventListener('input',renderCal);
+var DEMO={kantoor:'Dennes Roes',adviseur:'Dennes Roes',functie:'Directeur Hypotheekadvies',url:'dennes-roes.nl',tel:'06 51 11 78 93',email:'dennes.roes@blinqx.tech',scan:'https://formulier.actiefbeheerscan.nl/s/wD106O1z7GoYW1zn',afm:'',kifid:'',kosten:'',kleur:'#000000',logo:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NjAiIGhlaWdodD0iMTYwIiB2aWV3Qm94PSIwIDAgNTYwIDE2MCI+CjxyZWN0IHg9IjYiIHk9IjIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjIyIiBmaWxsPSIjMTczNjVEIi8+CjxwYXRoIGQ9Ik0zMCAxMTIgTDY2IDUwIEwxMDIgMTEyIFoiIGZpbGw9IiNmZmYiLz48cmVjdCB4PSI1OCIgeT0iODgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIyNCIgZmlsbD0iI0MwMDAwMCIvPgo8dGV4dCB4PSIxNDgiIHk9Ijc4IiBmb250LWZhbWlseT0iQ2FsaWJyaSwgQ2FybGl0bywgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNTQiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMxNzM2NUQiIGxldHRlci1zcGFjaW5nPSIyIj5ERU5ORVMgUk9FUzwvdGV4dD4KPHRleHQgeD0iMTUwIiB5PSIxMTgiIGZvbnQtZmFtaWx5PSJDYWxpYnJpLCBDYXJsaXRvLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNiIgZmlsbD0iIzVmNjY3MCIgbGV0dGVyLXNwYWNpbmc9IjEiPmh5cG90aGVla2FkdmllczwvdGV4dD4KPHJlY3QgeD0iNDAwIiB5PSI5NiIgd2lkdGg9IjExMCIgaGVpZ2h0PSIzNCIgcng9IjgiIGZpbGw9IiNDMDAwMDAiLz4KPHRleHQgeD0iNDU1IiB5PSIxMjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJDYWxpYnJpLCBDYXJsaXRvLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iI2ZmZiIgbGV0dGVyLXNwYWNpbmc9IjMiPkRFTU88L3RleHQ+Cjwvc3ZnPg=='};
+function applyState(o){Object.keys(S).forEach(function(k){S[k]=(o&&typeof o[k]==='string')?o[k]:(k==='kleur'?'#000000':'')});
+  document.querySelectorAll('[data-k]').forEach(function(el){el.value=S[el.dataset.k]||(el.type==='color'?'#000000':'')});
+  document.getElementById('f_logo').value='';setLogo(S.logo);}
+applyState(DEMO);
+function nieuwKantoor(){applyState(null);show('t1');
+  document.getElementById('demoBar').innerHTML='<span style="flex:1"><b>Nieuw kantoor:</b> vul hieronder je eigen gegevens en logo in. Alle materialen worden direct bijgewerkt.</span><button class="b alt" id="demoBack" type="button">Demo terugzetten</button>';
+  document.getElementById('demoBack').onclick=function(){applyState(DEMO);document.getElementById('demoBar').innerHTML=demoBarHtml;bindDemo()};
+  setTimeout(function(){var f=document.getElementById('f_kantoor');f.focus();f.scrollIntoView({block:'center'})},50);}
+var demoBarHtml=document.getElementById('demoBar').innerHTML;
+function bindDemo(){var b=document.getElementById('demoClear');if(b)b.onclick=nieuwKantoor}
+bindDemo();
+document.querySelectorAll('[data-nieuw]').forEach(function(b){b.onclick=nieuwKantoor});
+renderAll();renderQ();renderCal();
+(function(){var h=location.hash.replace('#','');for(var k in HASH){if(HASH[k]===h){show(k,true);break}}})();
+})();
+</script>
+</body>
+</html>

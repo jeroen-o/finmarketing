@@ -4,6 +4,7 @@ Marketingbibliotheek van Blinqx Verzekering & Hypotheek: gratis en freemium mark
 
 - `index.html`: de complete site in één bestand (geen build-step, geen externe API's, geen localStorage).
 - `brochure.html`: brochure PortefeuilleSignalen (8 pagina's A4, print naar PDF).
+- `toolkit-52/`: Adviseurstoolkit 52+ (toolkit, presentatie en gesprekshulp "Hypotheek straks"), in Blinqx-stijl.
 - `bronnen/`: originele aangeleverde bronbestanden.
 
 ## Inhoud toevoegen

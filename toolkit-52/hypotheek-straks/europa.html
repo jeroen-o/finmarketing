@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hypotheekregels in Europa — Hypotheek straks</title>
+<meta name="description" content="Waar wordt in Europa over gesproken en wat geldt elders? Renteaftrek, aflosplicht en leengrenzen in Duitsland, Zweden, Ierland, België en meer.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" href="index.htmleuropa.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:site_name" content="Hypotheek straks">
+<meta property="og:title" content="Hypotheekregels in Europa — Hypotheek straks">
+<meta property="og:description" content="Waar wordt in Europa over gesproken en wat geldt elders? Renteaftrek, aflosplicht en leengrenzen in Duitsland, Zweden, Ierland, België en meer.">
+<meta property="og:url" content="index.htmleuropa.html">
+<meta property="og:image" content="index.htmlog-afbeelding.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="language" content="nl-NL">
+<style>
+/* Hypotheek straks — stijl
+   Eén laag: alles lijnt uit op de kolom van .wrap en op een vaste maatschaal (4, 8, 12, 16, 24, 32, 48, 64). */
+
+:root{
+  /* NVHP-huisstijl: navy, lichtblauwe vlakken, groen en rood alleen als accent zonder tekst */
+  --primary:#000000; --primary-l:#222222; --ink:#1d2329; --accent:#FFCD00; --rood:#b00038;
+  --bg:#F4F7F9; --tint:#FFF0B3; --surface:#fff; --text:#2b3038; --text-l:#4b525c; --muted:#5f6870;
+  --line:#CAD5E3; --rule:#000000; --focus:#222222; --navy:#000000;
+  --kolom:1080px; --rand:24px; --maat:none; --kop-h:80px; --kop-totaal:var(--kop-h);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+/* De kop blijft bovenaan staan; een anker moet daar onderuit komen. */
+/* Ankers en toetsenbordfocus komen onder de vaste kop uit, ook op mobiel. */
+html{scroll-padding-top:calc(var(--kop-totaal) + 16px)}
+:target,section[id],div[id].card,div[id].tool{scroll-margin-top:calc(var(--kop-totaal) + 16px)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  color:var(--text);background:var(--surface);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--kolom);margin:0 auto;padding:0 var(--rand)}
+a{color:var(--primary)}
+img{max-width:100%}
+b,strong{font-weight:700}
+
+/* zichtbare focus voor toetsenbordgebruik */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,
+summary:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+.skip{position:absolute;left:-9999px;top:0;background:#fff;color:var(--primary);padding:12px 16px;z-index:300;font-weight:700}
+.skip:focus{left:0}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---- typografie ---- */
+h1,h2,h3{color:var(--ink);letter-spacing:-.02em;line-height:1.2;text-wrap:balance}
+h1{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+h2{font-size:28px;font-weight:800;margin-bottom:16px}
+h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.eyebrow{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);font-weight:700;margin-bottom:12px}
+.sub{font-size:16px;color:var(--text-l);max-width:var(--maat);margin-bottom:32px}
+.prose{max-width:var(--maat)}
+.prose p{margin-bottom:16px;color:var(--text-l)}
+.prose ul,.prose ol{margin:0 0 16px 20px;color:var(--text-l)}
+.prose li{margin-bottom:8px}
+.prose h3{margin-top:32px}
+.prose > :first-child{margin-top:0}
+.prose > :last-child{margin-bottom:0}
+.hint{font-size:13px;color:var(--muted);margin-top:4px}
+
+/* ---- knoppen ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 20px;
+  background:var(--primary);color:#fff!important;border:1px solid var(--primary);border-radius:2px;
+  font-family:inherit;font-size:14px;font-weight:600;line-height:1.3;text-align:center;text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--primary-l);border-color:var(--primary-l)}
+.btn.ghost{background:#fff;color:var(--ink)!important;border-color:var(--rule)}
+.btn.ghost:hover{background:var(--bg)}
+.btn[disabled]{opacity:.55;cursor:default}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+
+/* ---- kop van de site ---- */
+.site-kop{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line)}
+.site-kop .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:var(--kop-h)}
+.logo{display:flex;align-items:center;gap:14px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.logo img{display:block;height:56px;width:auto}
+.logo-naam{font-weight:800;font-size:17px;letter-spacing:-.01em;color:var(--primary);line-height:1.2;
+  padding-left:14px;border-left:1px solid var(--line)}
+.logo-naam small{display:block;font-size:11.5px;font-weight:600;letter-spacing:.02em;color:var(--muted)}
+.site-nav{display:flex;gap:24px}
+.site-nav a{display:flex;align-items:center;min-height:var(--kop-h);color:var(--text);text-decoration:none;
+  font-size:14.5px;font-weight:500;white-space:nowrap;box-shadow:inset 0 -2px 0 transparent}
+.site-nav a:hover{color:var(--primary)}
+.site-nav a[aria-current="page"]{color:var(--primary);box-shadow:inset 0 -2px 0 var(--primary)}
+@media (max-width:980px){
+  :root{--kop-h:52px;--kop-totaal:108px}
+  .site-kop .wrap{flex-direction:column;align-items:stretch;gap:0;padding-top:12px}
+  .logo img{height:40px}
+  .logo-naam{font-size:15px}
+  /* Op een smal scherm één regel die opzij schuift, zodat de kop laag blijft. */
+  .site-nav{position:relative;gap:20px;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * var(--rand));padding:0 48px 0 var(--rand);
+    -webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
+  .site-nav::-webkit-scrollbar{display:none}
+  .site-nav a{min-height:44px;font-size:14px}
+}
+
+/* ---- paginakop ---- */
+header.pagehead{border-bottom:1px solid var(--rule);padding:32px 0 48px}
+header.pagehead h1{max-width:24ch;margin-bottom:16px}
+header.pagehead p{color:var(--text-l);font-size:17px;max-width:var(--maat)}
+header.pagehead .crumbs{font-size:13px;color:var(--muted);margin-bottom:24px}
+.crumbs a{color:var(--primary);text-decoration:none}
+.crumbs a:hover{text-decoration:underline}
+
+/* ---- secties: wit, gescheiden door een donkere lijn binnen de kolom ---- */
+section{padding:64px 0}
+main > section + section{padding-top:0}
+main > section + section > .wrap::before{content:"";display:block;border-top:1px solid var(--rule);margin-bottom:64px}
+/* Vaste afstand tussen de blokken in een sectie, in plaats van losse marges per blok. */
+.wrap > :is(.note,.prose,.tabelwrap,.cards,.tool,.hero-cta,.sk-agenda) + :is(.note,.prose,.tabelwrap,.cards,.tool,.hero-cta,p,h3){margin-top:32px}
+.wrap > .tool + .tool{margin-top:16px}
+
+/* ---- kaarten: een raster met vaste tussenruimte; een losse laatste kaart laat geen leeg vak achter ---- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-top:3px solid var(--primary);padding:24px}
+.card h3{margin-bottom:8px}
+.card p,.card ul{font-size:14.5px;color:var(--text-l)}
+.card p + p{margin-top:8px}
+.card ul{margin:8px 0 0 18px}
+.card li{margin-bottom:4px}
+.card :is(p,ul) .zeker{vertical-align:1px}
+.card .zeker-rij{margin:0 0 12px}
+
+/* ---- opvallend blok ---- */
+.note{background:var(--tint);border-left:3px solid var(--primary);padding:16px 24px;font-size:15px;color:var(--text);
+  max-width:none}
+.note p + p{margin-top:8px}
+
+/* ---- tabellen ---- */
+.tabelwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tbl{width:100%;border-collapse:collapse;font-size:15px;background:#fff;border:1px solid var(--line)}
+.tbl caption{text-align:left;font-size:13px;color:var(--muted);padding:0 0 8px}
+.tbl th,.tbl td{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+.tbl thead th{background:var(--bg);color:var(--ink);font-size:13px;font-weight:700;border-bottom-color:var(--rule)}
+.tbl tbody th{font-weight:600;color:var(--ink)}
+.tbl tr:last-child td,.tbl tr:last-child th{border-bottom:none}
+.tbl td.num{white-space:nowrap;font-variant-numeric:tabular-nums}
+.tbl td.groep{background:var(--primary);color:#fff;font-weight:700;font-size:12px;letter-spacing:.06em;
+  text-transform:uppercase;padding:8px 16px}
+.regels tbody th{background:#fff;font-size:15px;min-width:180px}
+@media (max-width:620px){
+  .tabelwrap .tbl{min-width:480px}
+  .tabelwrap .tbl th,.tabelwrap .tbl td{padding:10px 12px;font-size:14.5px}
+  /* De regeltabel wordt op een smal scherm een lijst per onderwerp. */
+  .tabelwrap .tbl.regels{min-width:0}
+  .regels thead{display:none}
+  .regels tr{display:block;border-bottom:1px solid var(--line)}
+  .regels tbody th,.regels td{display:block;border:0;padding:4px 16px}
+  .tabelwrap .regels tbody th{padding-top:16px;font-size:16px}
+  .regels td:last-child{padding-bottom:16px}
+  .regels td[data-label]::before{content:attr(data-label);display:block;font-size:11.5px;font-weight:700;
+    letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+  .tabelwrap .regels td.groep{padding:8px 16px}
+}
+
+/* ---- zekerheidslabels ---- */
+.zeker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.03em;line-height:1.5;padding:2px 8px;
+  border-radius:2px;white-space:nowrap}
+.zeker.b{background:var(--ink);color:#fff}
+.zeker.w{background:#3e6f96;color:#fff}
+.zeker.m{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--rule)}
+
+/* ---- formulieren ---- */
+.field{margin-bottom:16px}
+label{display:block;font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px}
+input,textarea,select{width:100%;min-height:42px;padding:8px 12px;border:1px solid #9aa3ae;border-radius:2px;
+  font-family:inherit;font-size:15px;color:var(--text);background:#fff}
+input:focus,textarea:focus,select:focus{border-color:var(--primary)}
+input[type=checkbox],input[type=radio]{width:auto;min-height:0;padding:0;accent-color:var(--primary)}
+
+/* ---- rekenhulpen van Hypotheekbond ---- */
+.tool{background:#fff;border:1px solid var(--line);border-top:3px solid var(--primary);padding:24px}
+.tool h3{margin-bottom:4px}
+.tool > p{font-size:15px;color:var(--text-l);margin-bottom:16px;max-width:var(--maat)}
+.tool iframe{display:block;width:100%;min-height:820px;border:0}
+.tool-laden{background:var(--bg);padding:16px 24px 24px}
+.tool-uitleg{font-size:14px;color:var(--text-l);margin-bottom:16px;max-width:var(--maat)}
+@media (max-width:700px){
+  .tool{padding:20px 16px}
+  .tool-laden{padding:16px}
+  .tool iframe{min-height:900px}
+}
+
+/* ---- scenariokiezer ---- */
+.sk-raster{display:grid;grid-template-columns:300px minmax(0,1fr);gap:32px;align-items:start}
+.sk-invoer{border:1px solid var(--line);border-top:3px solid var(--primary);padding:24px;background:var(--bg);
+  position:sticky;top:calc(var(--kop-h) + 24px)}
+.sk-invoer h2,.sk-titel{font-size:20px;margin-bottom:16px}
+/* De titel boven de uitkomst staat op dezelfde hoogte als "Uw situatie" in het invoerblok. */
+.sk-titel{padding-top:27px}
+.sk-invoer .field{margin-bottom:12px}
+.sk-invoer h3{font-size:15px;margin:20px 0 4px;padding-top:16px;border-top:1px solid var(--line)}
+.sk-invoer h3 + .hint{margin:0 0 12px}
+/* Drie kaarten met dezelfde rijen; subgrid houdt elke rij in de drie kaarten op gelijke hoogte. */
+.sk-uitkomst{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:16px}
+.sk-kaart{display:grid;grid-row:span 15;grid-template-rows:subgrid;row-gap:0;border:1px solid var(--line);
+  border-top:3px solid var(--line);padding:0 20px 20px;background:#fff;min-width:0}
+.sk-kaart.gekozen{background:var(--tint);border-color:#b9cbe3;border-top-color:var(--primary)}
+.sk-lijst{display:contents}
+.sk-kop{padding:20px 0 4px}
+.sk-kop .zeker{font-size:14px;padding:4px 12px}
+.sk-groep{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--primary);
+  padding:16px 0 6px;border-bottom:1px solid var(--rule);align-self:end}
+.sk-rij{padding:8px 0;border-bottom:1px solid var(--line)}
+.sk-rij dt{font-size:12.5px;color:var(--muted);line-height:1.4}
+.sk-rij dd{font-size:15px;color:var(--ink);font-weight:600;line-height:1.35;font-variant-numeric:tabular-nums}
+.sk-rij.groot dd{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.sk-rij small{font-size:12.5px;font-weight:600;color:var(--text-l);margin-left:4px;letter-spacing:0}
+.sk-signalen{margin:8px 0 16px 18px;font-size:13.5px;color:var(--text)}
+.sk-signalen li{margin-bottom:8px}
+.sk-kaart .btn{width:100%;align-self:end}
+@supports not (grid-template-rows:subgrid){ .sk-kaart{display:flex;flex-direction:column} .sk-groep{align-self:stretch} .sk-kaart .btn{margin-top:auto;align-self:stretch} }
+.sk-acties{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:16px}
+.sk-acties .hint{margin:0}
+.sk-agenda{margin-top:32px;border:1px solid var(--line);border-top:3px solid var(--primary);padding:24px}
+.sk-agenda h2{font-size:22px}
+.sk-agenda ol{margin:0 0 0 20px;max-width:var(--maat)}
+.sk-agenda li{margin-bottom:8px;font-size:15px}
+.sk-agenda .hero-cta{margin-top:24px}
+.sk-naar{display:none;margin-top:8px}
+@media (max-width:1100px){
+  .sk-uitkomst{grid-template-columns:1fr;row-gap:16px}
+  .sk-kaart{display:flex;flex-direction:column}
+  .sk-groep{align-self:stretch}
+  .sk-kaart .btn{width:auto;align-self:flex-start;margin-top:8px}
+}
+@media (max-width:860px){
+  .sk-raster{grid-template-columns:1fr}
+  .sk-invoer{position:static}
+  .sk-titel{padding-top:0}
+  .sk-naar{display:block}
+}
+@media print{ .sk-invoer,.sk-kaart .btn,.sk-acties{display:none} }
+
+/* ---- voet ---- */
+.site-voet{position:relative;overflow:hidden;background:var(--navy);color:#e3edf4;padding:48px 0 88px;font-size:14px}
+.site-voet::after{content:"";position:absolute;left:-15%;bottom:-150px;width:70%;height:210px;border-radius:50%;
+  background:#6aab95;opacity:.85;pointer-events:none}
+.site-voet .wrap{position:relative;z-index:1}
+.voet-raster{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:32px 56px}
+.voet-logo{display:block;width:160px;height:auto;margin-bottom:20px}
+.site-voet a{color:#fff}
+.site-voet p{margin-bottom:12px;max-width:var(--maat)}
+.site-voet p:last-child{margin-bottom:0}
+.site-voet b{color:#fff}
+.site-voet h2{font-size:16px;font-weight:700;color:#fff;letter-spacing:0;margin:0 0 10px}
+.voet-contact{text-align:right}
+@media (max-width:780px){ .voet-raster{grid-template-columns:1fr} .voet-contact{text-align:left} }
+
+/* ---- smalle schermen ---- */
+@media (max-width:780px){
+  :root{--rand:20px}
+  h1{font-size:30px}
+  h2{font-size:24px}
+  header.pagehead{padding:24px 0 40px}
+  header.pagehead p{font-size:16px}
+  header.pagehead .crumbs{margin-bottom:16px}
+  section{padding:48px 0}
+  main > section + section > .wrap::before{margin-bottom:48px}
+  .cards{grid-template-columns:1fr}
+  .card,.sk-invoer,.sk-agenda{padding:20px}
+}
+
+@media print{
+  .site-kop,.hero-cta,.skip{display:none}
+  body{font-size:11pt}
+  a{color:var(--text);text-decoration:none}
+  section{padding:24px 0}
+  main > section + section > .wrap::before{margin-bottom:24px}
+}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebSite",
+   "@id": "index.html#website",
+   "url": "index.html",
+   "name": "Kan ik straks nog doorstromen of mijn hypotheek verlengen?",
+   "inLanguage": "nl",
+   "publisher": {
+    "@id": "index.html#site"
+   }
+  },
+  {
+   "@type": "Organization",
+   "@id": "index.html#site",
+   "name": "Nederlandse Vereniging van Hypothecair Planners (NVHP)",
+   "alternateName": "NVHP",
+   "url": "https://www.hypothecairplanner.nl/",
+   "email": "info@hypothecairplanner.nl",
+   "telephone": "+31332542012",
+   "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "De Wel 14-16",
+    "postalCode": "3871 MV",
+    "addressLocality": "Hoevelaken",
+    "addressCountry": "NL"
+   }
+  },
+  {
+   "@type": "WebPage",
+   "@id": "index.htmleuropa.html#pagina",
+   "url": "index.htmleuropa.html",
+   "name": "Hypotheekregels in Europa — Hypotheek straks",
+   "description": "Waar wordt in Europa over gesproken en wat geldt elders? Renteaftrek, aflosplicht en leengrenzen in Duitsland, Zweden, Ierland, België en meer.",
+   "inLanguage": "nl",
+   "datePublished": "2026-10-19",
+   "dateModified": "2026-10-22",
+   "isPartOf": {
+    "@id": "index.html#website"
+   },
+   "publisher": {
+    "@id": "index.html#site"
+   },
+   "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+     {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "index.html"
+     },
+     {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Regels nu en straks",
+      "item": "index.htmlregels.html"
+     },
+     {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Europa",
+      "item": "index.htmleuropa.html"
+     }
+    ]
+   }
+  },
+  {
+   "@type": "Article",
+   "@id": "index.htmleuropa.html#artikel",
+   "headline": "Hypotheekregels in Europa",
+   "inLanguage": "nl",
+   "datePublished": "2026-10-19",
+   "dateModified": "2026-10-22",
+   "author": {
+    "@id": "index.html#site"
+   },
+   "publisher": {
+    "@id": "index.html#site"
+   },
+   "image": "index.htmlog-afbeelding.png",
+   "about": [
+    "Hypotheekrenteaftrek",
+    "Aflosplicht",
+    "Leennormen",
+    "ECB",
+    "EBA",
+    "Europese hypotheekrichtlijn"
+   ]
+  }
+ ]
+}
+</script>
+
+<style id="blinqx-stijl">
+  /* Blinqx V&H-huisstijl (overschrijft de oorspronkelijke kleuren en lettertypen) */
+  :root{--navy:#000;--sky:#FFF0B3;--soft:#F4F7F9;--line:#CAD5E3;--bg:#E4EAF1;--orange:#FFCD00;--red:#000;--red-d:#222;
+        --primary:#000;--primary-l:#222;--rule:#000;--focus:#000;--tint:#FFF0B3;--accent-y:#FFCD00}
+  body, body *:not(svg):not(svg *):not(code):not(pre){font-family:"Metropolis","Montserrat","Segoe UI",Helvetica,Arial,sans-serif !important}
+  .bx-bar{background:#FFCD00;color:#000;display:flex;align-items:center;gap:14px;padding:10px 16px;flex-wrap:wrap;position:relative;z-index:1000}
+  .bx-bar img{height:34px;width:auto;display:block}
+  .bx-bar .bx-t{font-weight:800;font-size:14px;border-left:2px solid #000;padding-left:12px}
+  .bx-bar a.bx-back{margin-left:auto;background:#000;color:#fff;text-decoration:none;font-weight:800;padding:8px 12px;font-size:14px}
+  @media print{.bx-bar{display:none}}
+</style>
+</head>
+<body><div class="bx-bar"><a href="../../index.html" aria-label="Marketingbibliotheek"><img src="data:image/png;base64,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" alt="Blinqx Verzekering &amp; Hypotheek"></a><span class="bx-t">Gesprekshulp “Hypotheek straks” (NVHP)</span><a class="bx-back" href="../../index.html">← Marketingbibliotheek</a></div>
+<a class="skip" href="#main">Naar de hoofdinhoud</a>
+<header class="site-kop">
+  <div class="wrap">
+    <a href="index.html" class="logo"><img src="nvhp-logo.png" alt="NVHP" width="88" height="56"><span class="logo-naam">Hypotheek straks<small>Regels nu en straks</small></span></a>
+    <nav class="site-nav" aria-label="Hoofdmenu"><a href="index.html">Scenario 2035</a><a href="mijn-scenario.html">Uw scenario</a><a href="verhuisscenario.html">Uw verhuisscenario</a><a href="regels.html">Regels nu en straks</a><a href="europa.html" aria-current="page">Europa</a><a href="rekenhulpen.html">Rekenhulpen</a></nav><script>/* Op een smal scherm schuift het menu naar de actieve pagina. */(function(){var a=document.querySelector(".site-nav [aria-current]");if(a){var n=a.parentNode;if(n.scrollWidth>n.clientWidth)n.scrollLeft=a.offsetLeft-24;}})();</script>
+  </div>
+</header>
+
+<main id="main">
+
+<header class="pagehead">
+  <div class="wrap">
+    <p class="crumbs"><a href="index.html">Home</a> &rsaquo; <a href="regels.html">Regels nu en straks</a> &rsaquo; Europa</p>
+    <div class="eyebrow">Europa &middot; stand 22 oktober 2026</div>
+    <h1>Hypotheekregels in Europa</h1>
+    <p>Wat in Nederland verandert, komt vaak uit Europa of is elders al gewoon. Hier leest u waar in Europa over
+       gesproken wordt, wat andere landen al doen en wat dat voor uw hypotheek kan betekenen.</p>
+  </div>
+</header>
+
+<section id="gesprek">
+  <div class="wrap">
+    <div class="eyebrow">Waar wordt over gesproken</div>
+    <h2>Zes Europese lijnen die uw hypotheek raken</h2>
+    <p class="sub">Bij elke lijn staat hoe zeker die is: <b>besloten</b> (staat vast in regels of toezicht), <b>waarschijnlijk</b> of <b>mogelijk</b> (voorstel, advies of discussie).</p>
+    <div class="cards">
+      <div class="card">
+        <h3>Kapitaaleisen voor banken</h3>
+        <p class="zeker-rij"><span class="zeker b">Besloten</span> regels; het effect op de rente is waarschijnlijk</p>
+        <p>De ECB houdt toezicht op de grootbanken, keurt hun rekenmodellen goed en kan extra kapitaal eisen. Door de Europese regels
+           (CRR3) mag het kapitaal uit eigen rekenmodellen niet te ver onder de standaardmethode komen; die ondergrens
+           loopt op tot 2030. Een hypotheek met weinig overwaarde, lasten die na het pensioen niet te dragen zijn, een
+           schuld die bij overlijden blijft staan, of een woning met een slecht label of klimaatrisico, kost de bank
+           meer kapitaal. Dat kan doorwerken in een hogere rente (waarschijnlijk).</p>
+      </div>
+      <div class="card">
+        <h3>Betaalbaar, ook na uw pensioen</h3>
+        <p class="zeker-rij"><span class="zeker b">Besloten</span></p>
+        <p>De Europese richtsnoeren voor kredietverlening (EBA) vragen banken om te beoordelen of u kunt blijven betalen
+           als de looptijd tot na uw pensioen loopt, en om niet te lenen op de waarde van de woning alleen. Nederlandse
+           banken vullen dat onder meer in met een pensioentoets en grenzen op 85 jaar; dat is bankbeleid, geen
+           Europese regel.</p>
+      </div>
+      <div class="card">
+        <h3>Klimaat in de waardering</h3>
+        <p class="zeker-rij"><span class="zeker b">Besloten</span></p>
+        <p>De ECB verwacht sinds 2020 dat banken ligging en energie-effici&euml;ntie meewegen in de waarde van het
+           onderpand. Een ECB-werkdocument (2025) vindt dat banken gemiddeld al een kleine renteopslag lijken te vragen
+           bij fysiek klimaatrisico, met grote verschillen per bank. Dat is onderzoek, geen standpunt van de ECB.</p>
+      </div>
+      <div class="card">
+        <h3>Zuiniger woningen</h3>
+        <p class="zeker-rij"><span class="zeker b">Besloten</span></p>
+        <p>De Europese gebouwenrichtlijn (EPBD IV) vraagt dat het gemiddelde energieverbruik van de woningvoorraad
+           daalt: 16% in 2030 en 20 tot 22% in 2035 ten opzichte van 2020. Dat is een doel voor de hele voorraad, geen
+           plicht per woning. Er komen renovatiepaspoorten en een herzien energielabel. Een slecht label kan daardoor
+           steeds meer een financieel risico worden (waarschijnlijk).</p>
+      </div>
+      <div class="card">
+        <h3>Betaalbaar wonen en groene hypotheken</h3>
+        <p class="zeker-rij"><span class="zeker m">Mogelijk</span></p>
+        <p>De Europese Commissie presenteerde op 16 december 2025 haar eerste plan voor betaalbaar wonen. Een
+           herziening van de Europese hypotheekrichtlijn, onder meer om groene hypotheken te stimuleren, wordt besproken
+           maar is nog geen wetsvoorstel (stand oktober 2026). Die herziening is niet in een primaire bron van de
+           Commissie gecontroleerd.</p>
+      </div>
+      <div class="card">
+        <h3>Renteaftrek afbouwen</h3>
+        <p class="zeker-rij"><span class="zeker m">Mogelijk</span></p>
+        <p>De IMF-staf adviseerde Nederland op 13 mei 2026 de renteaftrek geleidelijk af te bouwen en de maximale lening
+           te verlagen naar 90% van de woningwaarde. Ook de OESO adviseerde in juli 2025 de aftrek te beperken. Het zijn
+           adviezen; Den Haag beslist.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="landen">
+  <div class="wrap">
+    <div class="eyebrow">Andere landen</div>
+    <h2>Wat elders al geldt</h2>
+    <p class="sub">Een selectie. Regels verschillen per land en veranderen; deze tabel is een momentopname en geen volledig
+       overzicht.</p>
+    <div class="tabelwrap">
+      <table class="tbl regels">
+        <caption>Renteaftrek, aflossing en leengrenzen in een aantal Europese landen. Bronnen onderaan de pagina.</caption>
+        <thead><tr><th scope="col">Land</th><th scope="col">Renteaftrek eigen woning</th><th scope="col">Aflossing en leengrenzen</th><th scope="col">Wat opvalt</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Nederland</th><td data-label="Renteaftrek eigen woning">Ja, hoogstens 37,56%, maximaal 30 jaar</td><td data-label="Aflossing en leengrenzen">Aflossen verplicht voor aftrek sinds 2013; lenen tot 100% van de waarde; grote banken: aflossingsvrij hoogstens 30% bij nieuwe hypotheken (sinds mei tot en met juli 2026)</td><td data-label="Wat opvalt">&ndash;</td></tr>
+          <tr><th scope="row">Duitsland</th><td data-label="Renteaftrek eigen woning">Nee</td><td data-label="Aflossing en leengrenzen">Geen wettelijke leengrens; banken verwachten aflossing binnen de statistische levensverwachting. Er is geen maximumleeftijd, maar vanaf ongeveer 60 jaar wordt goedkeuring lastiger (bankbeleid)</td><td data-label="Wat opvalt">Zonder aftrek is aflossen de norm en is eigen geld gewoon</td></tr>
+          <tr><th scope="row">Zweden</th><td data-label="Renteaftrek eigen woning">Ja, 30% (lager boven een drempel)</td><td data-label="Aflossing en leengrenzen">Wettelijke aflosplicht: 2% per jaar boven 70% van de waarde, 1% tussen 50 en 70%. Lenen tot 90% bij aankoop sinds 1 april 2026 (bijlenen hoogstens 80%); de extra aflosplicht bij een hoge lening ten opzichte van het inkomen is toen afgeschaft</td><td data-label="Wat opvalt">Een wettelijke aflosplicht naar hoogte van de lening, die ook weer kan worden versoepeld</td></tr>
+          <tr><th scope="row">Ierland</th><td data-label="Renteaftrek eigen woning">Gewone aftrek afgebouwd; een tijdelijke belastingkorting op gestegen rente (Mortgage Interest Tax Credit) is verlengd tot en met 2026</td><td data-label="Aflossing en leengrenzen">Leengrens: 4 keer het bruto-inkomen voor starters, 3,5 keer voor doorstromers; tot 90% van de waarde. Banken mogen een deel van de leningen daarboven verstrekken</td><td data-label="Wat opvalt">Grenzen op inkomen &eacute;n waarde, met een kleine uitzonderingsruimte</td></tr>
+          <tr><th scope="row">Belgi&euml;</th><td data-label="Renteaftrek eigen woning">Vlaanderen: geen woonbonus meer voor nieuwe leningen sinds 2020</td><td data-label="Aflossing en leengrenzen">De centrale bank stelt verwachtingen aan leningen met een hoge waarde; banken hanteren eigen leeftijdsbeleid</td><td data-label="Wat opvalt">Afschaffen kan voor nieuwe leningen, met behoud voor bestaande</td></tr>
+          <tr><th scope="row">Verenigd Koninkrijk</th><td data-label="Renteaftrek eigen woning">Nee, afgeschaft in 2000</td><td data-label="Aflossing en leengrenzen">Grote banken: meestal afgelost tussen 75 en 80 jaar; gespecialiseerde aanbieders gaan verder</td><td data-label="Wat opvalt">Leeftijdsgrenzen zijn bankbeleid, maar wel marktstandaard</td></tr>
+          <tr><th scope="row">Denemarken</th><td data-label="Renteaftrek eigen woning">Ja, lager dan in Nederland: ongeveer 33,6% over de eerste DKK 50.000 rente (alleenstaand) en 25,6% daarboven (2026)</td><td data-label="Aflossing en leengrenzen">Een hypotheekinstituut leent hoogstens 80% van de waarde, gefinancierd met obligaties; daarboven een duurdere banklening. Wettelijk minimaal 5% eigen geld. Aflossingsvrij hoogstens 10 jaar en tot 60% van de waarde</td><td data-label="Wat opvalt">Aftrek kan blijven, maar met minder fiscaal voordeel</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="betekenis">
+  <div class="wrap">
+    <div class="eyebrow">Voor u</div>
+    <h2>Wat dit voor uw situatie kan betekenen</h2>
+    <div class="prose">
+      <p>Nederland is een van de weinige landen in Europa met ruime renteaftrek, lenen tot de volle woningwaarde en een
+         groot deel aflossingsvrij; ook Denemarken kent renteaftrek en aflossingsvrij lenen. In veel landen gaat de richting naar minder fiscaal voordeel, meer aflossen en grenzen op
+         inkomen, waarde en leeftijd (waarschijnlijk), al versoepelen sommige landen ook weer, zoals Zweden in 2026. Hoe snel en hoe streng Nederland volgt, is onzeker. Daarom werkt deze site met drie scenario&#39;s.</p>
+    </div>
+    <p><a href="mijn-scenario.html" class="btn">Bekijk uw situatie in drie scenario&#39;s</a></p>
+  </div>
+</section>
+
+<section class="alt" id="bronnen">
+  <div class="wrap">
+    <div class="eyebrow">Verantwoording</div>
+    <h2>Bronnen</h2>
+    <div class="prose">
+      <p>Voor de landen buiten Nederland zijn naast primaire bronnen ook secundaire bronnen gebruikt, zoals vakmedia en
+         sites van adviseurs en banken. Waar een gegeven niet in een primaire bron is gecontroleerd, staat dat erbij.</p>
+      <ul>
+        <li><a href="https://www.riksdagen.se/en/news/articles/2026/mar/4/new-mortgage-rules-to-reduce-thresholds-in-the_cmsfca551a0-b04d-4677-aa67-0aab4f002e56en/" target="_blank" rel="noopener">Riksdag: new mortgage rules (Zweden, 1 april 2026)</a></li>
+        <li><a href="https://www.notar.se/en/blog/2026/new-mortgage-rules" target="_blank" rel="noopener">Notar: new mortgage rules from April 1, 2026</a></li>
+        <li><a href="https://www.centralbank.ie/financial-system/financial-stability/macro-prudential-policy/mortgage-measures" target="_blank" rel="noopener">Central Bank of Ireland: mortgage measures</a></li>
+        <li><a href="https://www.congress.gov/crs-product/R46429" target="_blank" rel="noopener">Congressional Research Service: mortgage interest deduction, internationale vergelijking</a></li>
+        <li><a href="https://www.oecd.org/content/dam/oecd/en/publications/reports/2021/12/mortgage-finance-across-oecd-countries_3ea2ed89/f97d7fe0-en.pdf" target="_blank" rel="noopener">OESO: Mortgage finance across OECD countries</a></li>
+        <li><a href="https://www.oecd.org/content/dam/oecd/en/data/datasets/affordable-housing-database/ph2-2-tax-relief-for-home-ownership.pdf" target="_blank" rel="noopener">OESO: Tax relief for home ownership</a></li>
+        <li><a href="https://housing.ec.europa.eu/european-affordable-housing-plan_en" target="_blank" rel="noopener">Europese Commissie: European Affordable Housing Plan (16 december 2025)</a></li>
+        <li><a href="https://www.pwc.ie/issues/budget/key-measures.html" target="_blank" rel="noopener">PwC: Budget 2026 Ierland, Mortgage Interest Tax Credit</a></li>
+        <li><a href="https://housingnotprofit.org/statement-the-european-unions-affordable-housing-plan/" target="_blank" rel="noopener">European Action Coalition: over het Europese plan voor betaalbaar wonen</a></li>
+        <li><a href="https://www.finance-watch.org/policy-portal/retail-inclusion/a-revised-mortgage-credit-directive/" target="_blank" rel="noopener">Finance Watch: een herziene hypotheekrichtlijn</a></li>
+        <li><a href="https://www.imf.org/en/news/articles/2026/05/13/mcs-051326-the-netherlands-staff-concluding-statement-for-the-2026-aiv-consultation-mission" target="_blank" rel="noopener">IMF: staff concluding statement Nederland, 13 mei 2026</a></li>
+        <li><a href="https://www.oecd.org/en/publications/oecd-economic-surveys-netherlands-2025_2dd1f4aa-en.html" target="_blank" rel="noopener">OESO: Economic Survey Netherlands 2025 (juli 2025)</a></li>
+        <li><a href="https://www.bankingsupervision.europa.eu/ecb/pub/pdf/ssm.202011finalguideonclimate-relatedandenvironmentalrisks~58213f6564.en.pdf" target="_blank" rel="noopener">ECB: Guide on climate-related and environmental risks (november 2020)</a></li>
+        <li><a href="https://www.ecb.europa.eu/pub/pdf/scpwps/ecb.wp3036~43450e2b8f.en.pdf" target="_blank" rel="noopener">ECB Working Paper 3036 (werkdocument, geen ECB-standpunt)</a></li>
+        <li><a href="https://nltimes.nl/2026/05/16/imf-urges-netherlands-overhaul-rent-rules-ease-housing-crisis" target="_blank" rel="noopener">NL Times: IMF-advies over de Nederlandse woningmarkt</a></li>
+        <li><a href="https://www.interhyp.de/ueber-interhyp/presse/interhyp-klaert-mythen-der-baufinanzierung-auf/" target="_blank" rel="noopener">Interhyp: geen maximumleeftijd voor een Baufinanzierung (Duitsland, september 2024)</a></li>
+        <li><a href="https://www.interhyp.de/ratgeber/faq/" target="_blank" rel="noopener">Interhyp FAQ: vanaf 60 jaar daalt de kans op goedkeuring (Duitsland)</a></li>
+        <li><a href="https://danskebank.dk/en/personal/life-events/life-events/housing/guide-to-home-loans" target="_blank" rel="noopener">Danske Bank: guide to home loans (Denemarken: 80% hypotheeklening, minimaal 5% eigen geld)</a></li>
+        <li><a href="https://expatfinance.dk/property/danish-mortgage-system-explained/" target="_blank" rel="noopener">Expat Finance: Danish mortgage system explained (aflossingsvrij en renteaftrek 2026)</a></li>
+        <li><a href="https://www.brightboxfs.co.uk/insights/maximum-age-mortgage-uk/" target="_blank" rel="noopener">Brightbox: maximum age for a mortgage in the UK</a></li>
+        <li>Niet in een primaire bron gecontroleerd: de beoogde herziening van de Europese hypotheekrichtlijn, de verwachtingen van de Belgische centrale bank, en de gegevens over Duitsland, het Verenigd Koninkrijk, Denemarken, Frankrijk en Spanje die op sites van banken, bemiddelaars en adviseurs zijn gebaseerd (secundaire bronnen, met een mogelijk commercieel belang).</li>
+        <li>ECB, EBA en CRR3: zie de bronnen bij <a href="regels.html#bronnen">regels nu en straks</a>.</li>
+      </ul>
+    </div>
+    <div class="note">
+      <b>Let op.</b> Deze pagina is een momentopname en geen volledig of juridisch overzicht. Regels in andere landen
+      veranderen en worden hier vereenvoudigd weergegeven. Het is geen advies.
+    </div>
+  </div>
+</section>
+
+<style>
+.advb{background:var(--tint,#FFF0B3);border-top:4px solid var(--rood,#b00038);padding:28px 0}
+.advb-in{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;align-items:stretch}
+.advb-c{background:#fff;border:1px solid var(--line,#CAD5E3);border-radius:12px;padding:16px 18px}
+.advb .kick{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--rood,#b00038);margin:0 0 6px}
+.advb h2{font-size:22px;margin:0 0 6px}
+.advb p{margin:0 0 8px}
+.advb-btn{display:inline-block;background:var(--rood,#b00038);color:#fff!important;text-decoration:none;font-weight:700;padding:9px 14px;border-radius:8px}
+.advb-price{border:2px solid var(--rood,#b00038);border-radius:8px;padding:8px 12px;margin:6px 0}
+.advb small{color:var(--muted,#5f6870);font-size:13.5px}
+@media (max-width:720px){.advb-in{grid-template-columns:1fr}}
+</style>
+<section class="advb" id="voor-adviseurs">
+  <div class="wrap advb-in">
+    <div class="advb-c">
+      <p class="kick">Voor hypotheekadviseurs</p>
+      <h2>Adviseurstoolkit · gratis</h2>
+      <p>LinkedIn-campagne, hypotheekscan 52+, klanttekst "Hypotheek vanaf 52 jaar" en nieuwsbrief, met je eigen logo en gegevens.</p>
+      <p style="margin:0"><a class="advb-btn" href="../index.html">Open de toolkit →</a></p>
+    </div>
+    <div class="advb-c">
+      <p class="kick">Blinqx · Actiefbeheerscan</p>
+      <div class="advb-price"><b>Compleet toolpakket: € 79,- per maand + eenmalig € 495,- (excl. btw)</b><br><span style="font-size:15px">Op je website, in je mailing of nieuwsbrief; direct alle resultaten.</span></div>
+      <p style="margin:8px 0"><a class="advb-btn" href="mailto:jeroen.oversteegen@blinqx.tech?subject=Actiefbeheerscan-toolpakket%20afnemen" target="_blank" rel="noopener">Toolpakket afnemen</a> &nbsp;<a href="https://formulier.actiefbeheerscan.nl/s/wD106O1z7GoYW1zn" target="_blank" rel="noopener">Bekijk het voorbeeld</a> · <a href="rekenhulpen.html#voor-adviseurs">training en meer</a></p>
+      <small>Commercieel aanbod van Blinqx voor adviseurs; geen aanbeveling van de NVHP.</small>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-voet">
+  <div class="wrap voet-raster">
+    <div>
+      <img class="voet-logo" src="nvhp-logo-wit.png" alt="NVHP, Nederlandse Vereniging van Hypothecair Planners: voor een hypotheek die klopt" width="160" height="100">
+      <p><b>Hypotheek straks</b> is een initiatief van de Nederlandse Vereniging van Hypothecair Planners (NVHP), de
+         beroepsvereniging van Hypothecair Planners. Het is een gesprekshulp over de hypotheekregels van nu en straks, in
+         Nederland en Europa. Deze site verkoopt geen producten en verwijst niet naar een bepaalde geldverstrekker.</p>
+      <p>Alles op deze site is een indicatie of een scenario, stand 22 oktober 2026. Het is geen advies en geen voorspelling,
+         en u kunt er geen rechten aan ontlenen. Bespreek uw situatie met een hypotheekadviseur; of een adviseur een
+         vergunning heeft of onder een vergunning werkt, ziet u in het <a href="https://www.afm.nl/nl-nl/sector/registers" target="_blank" rel="noopener">register van de AFM</a>.</p>
+      <p>Deze site plaatst zelf geen cookies. Wat u invult in Uw scenario en Uw verhuisscenario, blijft in uw browser.
+         De rekenhulpen van Hypotheekbond werken anders: zie <a href="rekenhulpen.html">rekenhulpen</a>. De site wordt
+         gehost door GitHub (GitHub Pages); die verwerkt technische gegevens zoals uw IP-adres.</p>
+    </div>
+    <div class="voet-contact">
+      <h2>Vragen of een correctie?</h2>
+      <p><a href="mailto:info@hypothecairplanner.nl">info@hypothecairplanner.nl</a><br>De Wel 14-16<br>3871 MV Hoevelaken<br>
+         <a href="tel:+31332542012">033&nbsp;&ndash;&nbsp;254&nbsp;20&nbsp;12</a></p>
+      <p><a href="https://www.hypothecairplanner.nl/" target="_blank" rel="noopener">hypothecairplanner.nl</a></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
