@@ -171,7 +171,7 @@ rep('''  app.innerHTML = `<div class="wrap">
     <div class="steps3">
       <div class="step cut"><b class="n">1</b><h3>Kies je materiaal</h3><p>Zoek op onderwerp of kies een categorie: nieuwsbrief, campagne, klanttool of kennisbankartikel.</p></div>
       <div class="step cut"><b class="n">2</b><h3>Maak het van jou</h3><p>Vul je kantoornaam, contactgegevens en huisstijlkleur in. Alles blijft in je browser.</p></div>
-      <div class="step cut"><b class="n">3</b><h3>Verstuur of plaats</h3><p>Via je eigen mail, je website, Blinqx Connect of DFO. Of download als Word of PDF.</p></div>
+      <div class="step cut"><b class="n">3</b><h3>Verstuur of plaats</h3><p>Via je eigen mail, je website of Blinqx Connect. Of download als Word of PDF.</p></div>
     </div>
 
     <h2 class="sec-title">Kies een <u>categorie</u></h2>''')
