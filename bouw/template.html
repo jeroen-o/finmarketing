@@ -421,6 +421,18 @@ function printHtml(title, bodyHtml){
 /*__ICONS__*/
 /*__CARDS__*/
 /*__KB__*/
+/*__TRHK__*/
+/* Financieringslastpercentage (FLP) volgens de Tijdelijke regeling hypothecair krediet 2027.
+   aow: consument heeft AOW-leeftijd bereikt (tabel 2/4); aftrek: debetrente fiscaal aftrekbaar (tabel 1/2, anders 3/4).
+   alleen: alleenstaande met toetsinkomen > € 31.000: FLP bepalen op toetsinkomen + € 18.000. */
+function flp(inkomen, toetsrente, {aow=false, aftrek=true, alleen=false} = {}){
+  const tab = aftrek ? (aow ? TRHK.t2 : TRHK.t1) : (aow ? TRHK.t4 : TRHK.t3);
+  let ink = inkomen;
+  if (alleen && inkomen > TRHK.alleenGrens) ink += TRHK.alleenBedrag;
+  const row = Math.min(tab.length-1, Math.max(0, Math.floor((ink - TRHK.start) / TRHK.stap)));
+  let col = TRHK.renteGrens.findIndex(g => toetsrente <= g + 1e-9); if (col < 0) col = 11;
+  return tab[row][col];
+}
 const CATS = [
   {id:"content",        icon:"news", title:"Content & campagnes",      desc:"Nieuwsbrieven, klantteksten en LinkedIn-campagnes om zelf te versturen of te plaatsen."},
   {id:"campagnes",      icon:"mail", title:"Campagnes & selecties",     desc:"Kant-en-klare campagnes met mailsjablonen en selecties uit PortefeuilleSignalen."},
@@ -1180,11 +1192,14 @@ function afCalc(){
 
   let score = 10; const pts = [];
   const ded = (n, why) => { if (n){ score -= n; pts.push([-n, why]); } };
-  const q = qPens ?? qNu ?? 0;
-  if (q > .35) ded(5.5, "Rentelast na pensioen is meer dan 35% van het bruto inkomen");
-  else if (q > .30) ded(4, "Rentelast na pensioen is 30–35% van het bruto inkomen");
-  else if (q > .25) ded(2.5, "Rentelast na pensioen is 25–30% van het bruto inkomen");
-  else if (q > .20) ded(1, "Rentelast na pensioen is 20–25% van het bruto inkomen");
+  // Maximale woonlast volgens de leennormen 2027 (tabel AOW-gerechtigden, rente niet aftrekbaar)
+  const flpPens = inkPensioen ? flp(inkPensioen, AV.toetsrente, {aow:true, aftrek:false, alleen:!af.partner}) : 0;
+  const maxLastPens = inkPensioen * flpPens;
+  const q = maxLastPens ? rente / maxLastPens : (inkNu ? rente / (inkNu * flp(inkNu, AV.toetsrente, {alleen:!af.partner})) : 0);
+  if (q > 1.4) ded(5.5, "Rentelast na pensioen ligt ruim boven de maximale woonlast volgens de leennormen 2027");
+  else if (q > 1.2) ded(4, "Rentelast na pensioen ligt 20–40% boven de maximale woonlast");
+  else if (q > 1.0) ded(2.5, "Rentelast na pensioen ligt tot 20% boven de maximale woonlast");
+  else if (q > .8) ded(1, "Rentelast na pensioen gebruikt 80–100% van de maximale woonlast");
   if (ltvNa > 1) ded(4, "Schuld (na inzet eigen middelen) is hoger dan de woningwaarde");
   else if (ltvNa > .85) ded(2.5, "Schuld is 85–100% van de woningwaarde");
   else if (ltvNa > .70) ded(1.5, "Schuld is 70–85% van de woningwaarde");
@@ -1195,11 +1210,11 @@ function afCalc(){
   if (dekking >= .5){ score += 1; pts.push([1, "Eigen en verwachte middelen dekken minstens de helft van de schuld"]); }
   if (af.lagerWonen){ score += .5; pts.push([.5, "Bereid om (later) goedkoper te wonen"]); }
   score = Math.max(1, Math.min(10, Math.round(score*10)/10));
-  return { schuld, waarde, eigen, pot, rente, inkNu, inkPensioen, aow, qNu, qPens, ltv, ltvNa, jrTotEinde, leeftijd, leeftijdEinde, aowDatum, einde, dekking, score, pts };
+  return { schuld, waarde, eigen, pot, rente, inkNu, inkPensioen, aow, qNu, qPens, ltv, ltvNa, jrTotEinde, leeftijd, leeftijdEinde, aowDatum, einde, dekking, score, pts, flpPens, maxLastPens, q };
 }
 function afTips(r){
   const t = [];
-  if (r.qPens > .25) t.push("Bespreek of (deels) aflossen of omzetten naar een annuïtaire of lineaire vorm vóór pensioen de lasten betaalbaar houdt.");
+  if (r.q > 1) t.push("Bespreek of (deels) aflossen of omzetten naar een annuïtaire of lineaire vorm vóór pensioen de lasten betaalbaar houdt.");
   if (r.eigen > 0) t.push(`Met eigen middelen (${fmtEUR(r.eigen)}) kan de schuld omlaag; houd wel een buffer aan voor onvoorziene uitgaven.`);
   if (r.jrTotEinde < 10) t.push("De einddatum nadert: begin tijdig met verlengen, oversluiten of aflossen; geldverstrekkers toetsen strenger bij hogere leeftijd.");
   if (r.ltvNa < .6) t.push("Er is relatief veel overwaarde: een verzilver- of seniorenhypotheek of verhuizen naar een goedkopere woning kan een optie zijn.");
@@ -1264,7 +1279,7 @@ function viewAflossingsvrij(item, params){
     const r = afCalc();
     if (!r){ setMres(""); out.innerHTML = `<div class="panel cut"><h2>Uw rapportcijfer</h2><p>Vul uw geboortedatum, de hypotheekschuld, de einddatum en de woningwaarde in. Met inkomen en pensioen wordt het cijfer nauwkeuriger.</p>
       <div class="hex" style="margin:16px auto;background:var(--bg-2);color:var(--muted)"><b style="color:var(--muted)">?</b><span>cijfer</span></div></div>
-      <div class="note"><strong>Hoe werkt het?</strong> We toetsen de rente op ${fmtN(AV.toetsrente*100)}% (referentierente) tegen uw inkomen nu en na pensioen, kijken naar de verhouding schuld/woningwaarde, de einddatum en uw middelen. Uitkomst: een indicatief cijfer van 1 tot 10.</div>`; return; }
+      <div class="note"><strong>Hoe werkt het?</strong> We vergelijken de rentelast (getoetst op ${fmtN(AV.toetsrente*100)}%) met de maximale woonlast na pensioen volgens de leennormen 2027 (financieringslastpercentages voor AOW-gerechtigden), en kijken naar de verhouding schuld/woningwaarde, de einddatum en uw middelen. Uitkomst: een indicatief cijfer van 1 tot 10.</div>`; return; }
     const col = r.score >= 7.5 ? "var(--ok)" : r.score >= 5.5 ? "#b88a00" : "var(--red)";
     setMres(`Rapportcijfer <b>${fmtN(r.score,1)}</b>`, "#af-out");
     const verdict = r.score >= 7.5 ? "Ziet er goed uit" : r.score >= 5.5 ? "Aandacht nodig" : "Actie aanbevolen";
@@ -1278,6 +1293,7 @@ function viewAflossingsvrij(item, params){
       ["Rentelast / inkomen nu", r.qNu!=null?`${fmtN(r.qNu*100,1)}%`:"–"],
       ["Bruto inkomen na pensioen (incl. AOW)", `${fmtEUR(r.inkPensioen)} per jaar`],
       ["Rentelast / inkomen na pensioen", r.qPens!=null?`${fmtN(r.qPens*100,1)}%`:"–"],
+      ["Maximale woonlast na pensioen (leennormen 2027)", r.maxLastPens?`${fmtEUR(r.maxLastPens)} per jaar (${fmtN(r.flpPens*100,1)}%)`:"–"],
       ["Dekking door (verwachte) middelen", `${fmtN(r.dekking*100)}% van de schuld`]
     ];
     out.innerHTML = `
@@ -1296,7 +1312,7 @@ function viewAflossingsvrij(item, params){
           <b style="color:var(--y)">Bespreek de uitkomst${adv.kantoor?` met ${esc(adv.kantoor)}`:" met uw adviseur"}</b>
           <p style="margin:6px 0 0;font-size:.9rem">${[adv.tel&&`T: ${esc(adv.tel)}`, adv.mail&&`E: <a style="color:var(--y)" href="mailto:${esc(adv.mail)}">${esc(adv.mail)}</a>`, adv.web&&`W: ${esc(adv.web)}`].filter(Boolean).join(" · ") || "Uw adviseur kan een exacte berekening voor u maken."}</p>
         </div>
-        <p class="hint">Indicatie, geen advies. Uitgangspunten: toetsrente ${fmtN(AV.toetsrente*100)}%, AOW vanaf ${AV.aowLeeftijd} jaar (indicatief) met ${fmtEUR(r.aow)} bruto per jaar per persoon, vakantiegeld ${fmtN(AV.vakantiegeld*100)}%. Fiscale aftrek, aflossingen op andere leningdelen en overige lasten zijn niet meegenomen.</p>
+        <p class="hint">Indicatie, geen advies. Uitgangspunten: financieringslastpercentages 2027 (Tijdelijke regeling hypothecair krediet, tabel AOW-gerechtigden zonder renteaftrek), toetsrente ${fmtN(AV.toetsrente*100)}%, AOW vanaf ${AV.aowLeeftijd} jaar (indicatief) met ${fmtEUR(r.aow)} bruto per jaar per persoon, vakantiegeld ${fmtN(AV.vakantiegeld*100)}%. Fiscale aftrek, aflossingen op andere leningdelen en overige lasten zijn niet meegenomen.</p>
       </div>
       <div class="actions" style="flex-direction:row;flex-wrap:wrap"><button class="btn btn-y" id="af-print">Print / PDF-rapport</button><button class="btn btn-o" id="af-copy">Kopieer samenvatting</button></div>
       <div class="note" style="margin-top:16px"><strong>Let op, AFM/compliance:</strong> dit is een eigen, vereenvoudigde indicatieve methode (geen leennormtoets en geen kopie van een bestaande rekenkern). Het cijfer is geen advies; communiceer het als gespreksaanleiding. De AOW-bedragen en AOW-leeftijd zijn indicatief en moeten jaarlijks worden bijgewerkt.</div>`;
@@ -1497,12 +1513,7 @@ function viewBrieven(item){
    Eigen, vereenvoudigde indicatieve methode. Alle aannames in VH.
    ============================================================ */
 const VH = {
-  toetsrente: 0.05, looptijd: 30,
-  // Indicatieve woonquotes rond 4,2% toetsrente (benadering leennormen 2027; geen officiële tabel).
-  // Per procentpunt lagere toetsrente ligt de woonquote ca. 1 procentpunt hoger (en andersom).
-  wqRef: 0.042, wqPerProcent: 1.0,
-  wq:    [[25000,.185],[30000,.205],[35000,.22],[40000,.235],[50000,.255],[60000,.265],[70000,.27],[100000,.275],[150000,.28]],
-  wqAow: [[20000,.22],[25000,.24],[30000,.26],[35000,.275],[40000,.285],[50000,.30],[60000,.31],[100000,.32]],
+  toetsrente: 0.05, looptijd: 30,          // referentierente 5% bij rentevast < 10 jaar; looptijd annuïtair 30 jaar
   maxLoon: 79400,           // indicatief maximumdagloon op jaarbasis
   wwPct: 0.70, wwMnd: 24, wgaPct: 0.70,
   aowAlleen: 20100, aowSamen: 13900,
@@ -1510,20 +1521,13 @@ const VH = {
   opslagPerKlasse: 0.0015,  // indicatief renteverschil per risicoklasse
   boetevrij: 0.10
 };
-function woonquote(inkomen, aow, toets){
-  const t = aow ? VH.wqAow : VH.wq;
-  let q;
-  if (inkomen <= t[0][0]) q = t[0][1];
-  else { q = t[t.length-1][1]; for (let i=1;i<t.length;i++){ if (inkomen <= t[i][0]){ const [x0,y0]=t[i-1],[x1,y1]=t[i]; q = y0+(y1-y0)*(inkomen-x0)/(x1-x0); break; } } }
-  const r = toets ?? (typeof VH_TOETS !== "undefined" ? VH_TOETS : VH.toetsrente);
-  return Math.max(0.1, q + (VH.wqRef - r) * VH.wqPerProcent);
-}
 const annJaar = (rente, jaren=VH.looptijd) => { const r = rente/12, n = jaren*12; return r ? 12 * r / (1 - Math.pow(1+r, -n)) : 12/n; };
 let VH_TOETS = VH.toetsrente;
-const verMaand = (inkomen, aow, verpl=0) => Math.max(0, (inkomen * woonquote(inkomen, aow) - verpl) / 12);
-function verantwoord(inkomen, aow, verpl=0){
+/* Maximale bruto maandlast volgens Trhk 2027: toetsinkomen × FLP / 12, min financiële verplichtingen per maand */
+const verMaand = (inkomen, aow, verpl=0, opt={}) => inkomen > 0 ? Math.max(0, (inkomen * flp(inkomen, VH_TOETS, {aow, ...opt}) - verpl) / 12) : 0;
+function verantwoord(inkomen, aow, verpl=0, opt={}){
   if (inkomen <= 0) return 0;
-  return verMaand(inkomen, aow, verpl) * 12 / annJaar(VH_TOETS);
+  return verMaand(inkomen, aow, verpl, opt) * 12 / annJaar(VH_TOETS);
 }
 const klasse = ltv => ltv<=.6?1:ltv<=.7?2:ltv<=.8?3:ltv<=.9?4:ltv<=1?5:6;
 const KLASSE_LBL = ["","≤ 60%","60–70%","70–80%","80–90%","90–100%","> 100%"];
@@ -1543,14 +1547,16 @@ function vhCalc(){
   const age = d => d ? Math.floor(yearsBetween(new Date(d), now)) : null;
   // Toetsrente: werkelijke rente bij ≥ 10 jaar rentevast, anders 5% (vereenvoudigd)
   const rNuIn = N(vh.rente)/100, rvp = N(vh.rvpJaren);
-  VH_TOETS = rNuIn && rvp >= 10 ? rNuIn : VH.toetsrente;
+  // Toetsrente: werkelijke rente bij rentevast ≥ 10 jaar, anders de hoogste van werkelijke rente en 5%
+  VH_TOETS = rNuIn && rvp >= 10 ? rNuIn : Math.max(rNuIn || 0, VH.toetsrente);
   const afvDeel = Math.min(N(vh.afv), schuld), rBruto = rNuIn || VH.toetsrente;
   const brutoMaand = N(vh.bruto) || (afvDeel * rBruto + (schuld - afvDeel) * annJaar(rBruto)) / 12;
   const verplTot = N(A.verpl) + (pt ? N(P.verpl) : 0);
   const res = { schuld, waarde, totaal, brutoMaand, toets: VH_TOETS, scen:[] };
   const add = (groep, titel, wie, inkomen, hyp, extra={}) => {
     const verpl = extra.verpl ?? verplTot;
-    const ver = verantwoord(inkomen, extra.aow, verpl), vm = verMaand(inkomen, extra.aow, verpl);
+    const opt = { alleen: extra.alleen ?? !pt, aftrek: extra.aftrek ?? true };
+    const ver = verantwoord(inkomen, extra.aow, verpl, opt), vm = verMaand(inkomen, extra.aow, verpl, opt);
     const bm = hyp === schuld ? brutoMaand : brutoMaand * (hyp / schuld);
     res.scen.push({ groep, titel, wie, inkomen, hyp, ver, vm, bm, ok: bm <= vm + 0.5, tekort: Math.max(0, hyp - ver), ...extra });
   };
@@ -1576,19 +1582,19 @@ function vhCalc(){
     if (pt){
       const nab = ander + N(X.nbp);
       const hypNa = Math.max(0, schuld - orvAnder);
-      add("ov",`Overlijden van ${nm}`, "Nabestaande", nab, hypNa, {orv: orvAnder, verpl: N(anderX.verpl),
+      add("ov",`Overlijden van ${nm}`, "Nabestaande", nab, hypNa, {orv: orvAnder, verpl: N(anderX.verpl), alleen:true,
         toel:`Inkomen nabestaande ${fmtEUR(ander)}${N(X.nbp)?` plus nabestaandenpensioen ${fmtEUR(N(X.nbp))}`:""}. ${orvAnder?`ORV-uitkering ${fmtEUR(orvAnder)} verlaagt de schuld.`:"Geen ORV opgegeven."} Een eventuele ANW-uitkering is niet meegeteld.`});
     }
   });
   // Pensioen
   const aowBedrag = pt ? VH.aowSamen : VH.aowAlleen;
   const pens = N(A.pens) + aowBedrag + (pt ? N(P.pens) + aowBedrag : 0);
-  add("pe","Pensioen (beiden met pensioen)", pt?"Samen":"Aanvrager", pens, schuld, {aow:true,
+  add("pe","Pensioen (beiden met pensioen)", pt?"Samen":"Aanvrager", pens, schuld, {aow:true, aftrek:false,
     toel:`Pensioen plus indicatief AOW (${fmtEUR(aowBedrag)} bruto per persoon per jaar). Uitgangspunt: geen hypotheekrenteaftrek meer.`});
   // Einde relatie
   if (pt){
     [["a",A],["p",P]].forEach(([k,X])=>{ const nm=X.naam.trim()||(k==="a"?"aanvrager":"partner");
-      add("er",`Einde relatie: ${nm} alleen`, nm, N(X.ink), schuld, {verpl:N(X.verpl), toel:"Kan de hypotheek op eigen inkomen worden voortgezet? Alimentatie is niet meegenomen."}); });
+      add("er",`Einde relatie: ${nm} alleen`, nm, N(X.ink), schuld, {verpl:N(X.verpl), alleen:true, toel:"Kan de hypotheek op eigen inkomen worden voortgezet? Alimentatie is niet meegenomen."}); });
   }
   // Einde looptijd
   const afv = Math.min(N(vh.afv), schuld), verm = N(vh.vermogen);
@@ -1608,7 +1614,8 @@ function vhCalc(){
     res.check = { rNu, rM, jr, jaarBesparing, boete, netto: jaarBesparing*jr - boete, terug: jaarBesparing ? boete/jaarBesparing : null };
   }
   // Maximale hypotheek
-  res.max = { bedrag: verantwoord(totaal), ruimte: verantwoord(totaal) - schuld, nhg: schuld <= VH.nhgGrens };
+  const maxB = verantwoord(totaal, false, verplTot, { alleen: !pt });
+  res.max = { bedrag: maxB, ruimte: maxB - schuld, nhg: schuld <= VH.nhgGrens, flp: flp(totaal, VH_TOETS, { alleen: !pt }) };
   res.ageA = age(A.dob); res.ageP = pt ? age(P.dob) : null;
   return res;
 }
@@ -1739,14 +1746,14 @@ function viewVhr(item, params){
           : `<p class="hint">Vul uw huidige rente en de actuele marktrente in. De actuele marktrente is op aanvraag bij uw adviseur.</p>`)}
       ${card("Uw maximale hypotheek", "", `<p>Op basis van uw huidige bruto huishoudinkomen van <b>${fmtEUR(r.totaal)}</b> is uw indicatieve maximale hypotheek <b>${fmtEUR(mx.bedrag)}</b>.</p>
           <p>${mx.ruimte>=0?`Dat is <b>${fmtEUR(mx.ruimte)}</b> meer dan uw huidige schuld: ruimte voor bijvoorbeeld verduurzamen of verbouwen.`:`Uw huidige schuld ligt <b>${fmtEUR(-mx.ruimte)}</b> boven dit bedrag.`} ${mx.nhg?`Uw schuld valt binnen de NHG-grens van ${fmtEUR(VH.nhgGrens)}.`:""}</p>
-          <p class="hint">Indicatieve benadering van de leennormen bij ${fmtN(VH.toetsrente*100)}% toetsrente en ${VH.looptijd} jaar; geen officiële berekening. Voor een exacte berekening: <a href="https://adviseurstools.nl/" target="_blank" rel="noopener">adviseurstools.nl</a> of uw adviseur.</p>`)}
+          <p class="hint">Berekend met het financieringslastpercentage ${fmtN(mx.flp*100,1)}% uit de leennormen 2027 (Tijdelijke regeling hypothecair krediet, tabellen op advies van het Nibud), toetsrente ${fmtN(r.toets*100,2)}%, annuïtair over ${VH.looptijd} jaar${vh.partner?"":" en met het alleenstaandenbedrag van € 18.000"}. Niet meegenomen: energielabelruimte, studieschuld-normen en overige acceptatieregels van geldverstrekkers. Voor een exacte berekening: <a href="https://adviseurstools.nl/" target="_blank" rel="noopener">adviseurstools.nl</a> of uw adviseur.</p>`)}
       ${card("Gratis woningwaarderapport", "", `<p>Bekijk de feiten over uw woning (fundering, klimaat, geluid en een waarde-indicatie) met PandWise.nl.${vh.adres?` Adres: <b>${esc(vh.adres)}</b>.`:""}</p><a class="btn btn-y btn-sm" href="https://pandwise.nl/" target="_blank" rel="noopener">Open PandWise ↗</a>`)}
       <div style="background:var(--k);color:#fff;padding:18px;margin-bottom:18px">
         <b style="color:var(--y);font-size:1.1rem">Bespreek uw rapport${vh.kantoor?` met ${esc(vh.kantoor)}`:" met uw adviseur"}</b>
         <p style="margin:6px 0 0;font-size:.9rem">${[vh.adviseur&&esc(vh.adviseur), vh.tel&&`T: ${esc(vh.tel)}`, vh.email&&`E: <a style="color:var(--y)" href="mailto:${esc(vh.email)}">${esc(vh.email)}</a>`].filter(Boolean).join(" · ") || "Uw adviseur kan een exacte berekening voor u maken."}</p>
       </div>
-      <p class="hint">Toetsrente in dit rapport: ${fmtN(r.toets*100,2)}% (${r.toets===VH.toetsrente?"5% omdat de rente korter dan 10 jaar vaststaat of niet is opgegeven":"uw rente, omdat die minimaal 10 jaar vaststaat"}). Bruto maandlast ${parseNum(vh.bruto)?"zoals opgegeven":"berekend uit schuld, rente en het aflossingsvrije deel"}.</p>
-      <p class="hint">Dit rapport is een indicatie op basis van uw eigen invoer en vereenvoudigde aannames (o.a. indicatieve woonquotes, WW/WIA-percentages, maximumdagloon en AOW-bedragen). Het is geen advies en geen offerte. Fiscale gevolgen, toeslagen, ANW, alimentatie en kosten zijn niet meegenomen.</p>
+      <p class="hint">Rekennormen: financieringslastpercentages 2027 uit de Tijdelijke regeling hypothecair krediet (Stcrt. 2026, 38415). Bij pensioen tabel voor AOW-gerechtigden zonder renteaftrek; bij alleen verder (overlijden, einde relatie, geen partner) met het alleenstaandenbedrag. Toetsrente: ${fmtN(r.toets*100,2)}% (${(parseNum(vh.rvpJaren)>=10 && parseNum(vh.rente))?"uw rente, omdat die minimaal 10 jaar vaststaat":"de hoogste van uw rente en 5%, omdat de rente korter dan 10 jaar vaststaat of niet is opgegeven"}). Bruto maandlast ${parseNum(vh.bruto)?"zoals opgegeven":"berekend uit schuld, rente en het aflossingsvrije deel"}.</p>
+      <p class="hint">Dit rapport is een indicatie op basis van uw eigen invoer en vereenvoudigde aannames (o.a. WW/WIA-percentages, maximumdagloon en AOW-bedragen). Het is geen advies en geen offerte. Fiscale gevolgen, toeslagen, ANW, alimentatie en kosten zijn niet meegenomen.</p>
     </div>
     <div class="actions" style="flex-direction:row;flex-wrap:wrap;margin-bottom:16px"><button class="btn btn-y" id="vh-print">Print / PDF-rapport</button><button class="btn btn-o" id="vh-word">⬇ Download Word</button></div>
     <div class="note"><strong>Let op, AFM/compliance:</strong> dit is een eigen, vereenvoudigde rekenmethode en géén officiële leennormtoets of nabouw van het originele Verantwoord Hypotheekrapport. Uitkomsten zijn indicatief en mogen niet als advies worden gepresenteerd. Werk de aannames (woonquotes, maximumdagloon, AOW, WW-duur) jaarlijks bij en laat de tool vóór breed gebruik toetsen.</div>`;
