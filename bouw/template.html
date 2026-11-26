@@ -51,7 +51,8 @@
   .hs-logo-pv{display:flex;align-items:center;gap:10px;margin:4px 0 6px}
   .hs-logo-pv img{max-height:56px;max-width:200px;background:#fff;border:1px solid var(--line-2);padding:4px}
   #hs-pv-sq svg,#hs-pv-ls svg{width:100%;height:auto;display:block;border:1px solid var(--line-2)}
-  .nav a#hs-nav.on::after{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-left:6px;vertical-align:middle}
+  .nav a#hs-nav{position:relative}
+  .nav a#hs-nav.on::after{content:"";position:absolute;top:4px;right:0;width:7px;height:7px;border-radius:50%;background:var(--ok)}
   /* Huisstijl van de adviseur in klanttools */
   .logo.hs{background-color:#fff;background-origin:content-box;padding:4px 8px;filter:none}
   body.hs-donker .top,body.hs-donker .top a:not(.cta),body.hs-donker .hero,body.hs-donker .btn-y,body.hs-donker .hexi,body.hs-donker .step b.n,body.hs-donker .mres button,body.hs-donker [style*="background:var(--y)"]{color:#fff}
@@ -2611,7 +2612,7 @@ function viewKennisbank(item, params){
       <button type="submit">Zoek →</button>
     </form>`);
   app.innerHTML = `<div class="wrap">
-    ${KB_GECHECKT?`<div class="note"><strong>Gecontroleerd in november 2026:</strong> alle artikelen zijn nagelopen op de regels voor 2027. Artikelen met verouderde bedragen of regels zijn bijgewerkt (label ‘Bijgewerkt nov. 2026’); vervallen onderwerpen hebben het label ‘Historisch’. Bedragen uit het Belastingplan 2027 zijn voorlopig tot de Eerste Kamer heeft ingestemd. Controleer altijd de actuele situatie voordat je een artikel met klanten deelt.</div>`:`<div class="note"><strong>Let op, deels verouderd:</strong> de artikelen komen uit de Hypotheekbond-kennisbank en zijn niet allemaal actueel. Bedragen, normen en regels kunnen zijn gewijzigd. Controleer de actuele situatie voordat je een artikel met klanten deelt.</div>`}
+    ${KB_GECHECKT?`<div class="note"><strong>Gecontroleerd in november 2026:</strong> alle artikelen zijn nagelopen op de regels voor 2027. Artikelen met verouderde bedragen of regels zijn bijgewerkt (label ‘Bijgewerkt nov. 2026’); vervallen onderwerpen hebben het label ‘Historisch’. Bij artikelen met het label ‘Nog te controleren’ konden we een punt nog niet bevestigen; dat punt staat bij het artikel. Bedragen uit het Belastingplan 2027 zijn voorlopig tot de Eerste Kamer heeft ingestemd. Controleer altijd de actuele situatie voordat je een artikel met klanten deelt.</div>`:`<div class="note"><strong>Let op, deels verouderd:</strong> de artikelen komen uit de Hypotheekbond-kennisbank en zijn niet allemaal actueel. Bedragen, normen en regels kunnen zijn gewijzigd. Controleer de actuele situatie voordat je een artikel met klanten deelt.</div>`}
     <div class="filterbar" style="flex-wrap:wrap">
       <span class="lbl">Thema</span>
       ${["alle",...KB_THEMES].map(th=>`<button class="chip" data-th="${esc(th)}" aria-pressed="${kbState.th===th}">${th==="alle"?"Alle thema's":esc(th)} <span style="opacity:.6">${th==="alle"?KB.length:KB.filter(a=>a.th===th).length}</span></button>`).join("")}
@@ -2634,6 +2635,7 @@ function viewKennisbank(item, params){
       return `<details class="panel cut kb-a" id="kb-${esc(s)}" ${open===s?"open":""} style="margin-bottom:10px">
         <summary style="cursor:pointer;font-weight:800;display:flex;justify-content:space-between;gap:12px;align-items:center;list-style:none"><span>${highlight(a.t,T)}</span><span style="display:flex;gap:6px;flex-wrap:wrap;flex:none">${kbBadge(a)}<span class="badge cat kb-th">${esc(a.th)}</span></span></summary>
         <div style="margin-top:12px;font-size:.95rem">${body}</div>
+        ${a.s==="controleren"&&a.n?`<p class="hint adv-only" style="background:var(--y-soft);padding:8px 10px;margin:8px 0 0"><b>Nog te controleren:</b> ${esc(a.n)}</p>`:""}
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
           <button class="btn btn-k btn-sm" data-kbcopy="${esc(s)}">${icon("copy",16)} Kopieer tekst</button>
           <button class="btn btn-o btn-sm" data-kblink="${esc(s)}">${icon("link",16)} Kopieer link</button>

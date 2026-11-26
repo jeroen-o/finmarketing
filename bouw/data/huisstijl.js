@@ -256,7 +256,15 @@ function viewHuisstijl(){
     <div class="detail-head"><div><span class="badge gratis">Gratis</span> <span class="badge cat">Huisstijl</span><h1>Jouw logo, kleuren en lettertype</h1>
       <p>Stel één keer je huisstijl in. Nieuwsbrief, mailsjablonen, Word-bestanden, prints, social-afbeeldingen en de klantlinks van de tools gebruiken daarna jouw logo, kleuren en lettertype.</p></div></div>`);
   const kl = (k, l, def) => `<div><label class="f" for="hs-${k}">${l}</label><div class="row" style="gap:8px"><input type="color" id="hs-${k}c" value="${HS[k]||def}" aria-label="${l}"><input class="i" id="hs-${k}" data-hs="${k}" value="${esc(HS[k])}" placeholder="${def}" style="margin:0;max-width:130px"></div></div>`;
-  app.innerHTML = `<div class="wrap"><div class="layout">
+  app.innerHTML = `<div class="wrap"><div class="panel cut hs-bewaar" style="display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;justify-content:space-between">
+      <div style="flex:1 1 320px;min-width:0"><h2 style="margin-bottom:6px"><span class="hexi">${icon("download",18)}</span>Bewaar je huisstijl op je pc</h2>
+        <p style="margin:0">Vul je huisstijl één keer in en sla hem op als bestand op je pc. De volgende keer laad je dat bestand en staat alles er weer: logo, kleuren, lettertype en kantoorgegevens. De site zelf bewaart niets.</p></div>
+      <div class="actions" style="flex-direction:row;flex-wrap:wrap;flex:none">
+        <button class="btn btn-y" id="hs-save">${icon("download",16)} Bewaar huisstijl op je pc</button>
+        <label class="btn btn-k" for="hs-load" style="cursor:pointer">Huisstijl laden van je pc</label><input type="file" id="hs-load" accept=".json,application/json" hidden>
+        <button class="btn btn-o btn-sm" id="hs-reset">Terug naar Blinqx-stijl</button>
+      </div></div></div>
+  <div class="wrap"><div class="layout">
     <aside>
       <form class="panel cut" onsubmit="return false">
         <h2><span class="hexi">1</span>Logo</h2>
@@ -281,14 +289,6 @@ function viewHuisstijl(){
           ${[["kantoor","Kantoornaam"],["adviseur","Naam adviseur"],["tel","Telefoon"],["email","E-mail"],["web","Website"]].map(([k,l])=>`<div><label class="f" for="hs-${k}">${l}</label><input class="i" id="hs-${k}" data-hs="${k}" value="${esc(HS[k])}"></div>`).join("")}
         </div>
       </form>
-      <div class="panel cut"><h2><span class="hexi">5</span>Bewaren</h2>
-        <p>Deze site bewaart niets. Download je huisstijl als bestand en laad het de volgende keer in.</p>
-        <div class="actions" style="flex-direction:row;flex-wrap:wrap">
-          <button class="btn btn-y btn-sm" id="hs-save">${icon("download",16)} Download huisstijlbestand</button>
-          <label class="btn btn-o btn-sm" for="hs-load" style="cursor:pointer">Laad huisstijlbestand</label><input type="file" id="hs-load" accept=".json,application/json" hidden>
-          <button class="btn btn-o btn-sm" id="hs-reset">Terug naar Blinqx-stijl</button>
-        </div>
-        <p class="hint">Partijen die een huisstijlbestand aanleveren (bijvoorbeeld een kantoor of een samenwerkingsverband), kunnen dat hier laden.</p></div>
     </aside>
     <section>
       <div class="panel cut"><h2>Voorbeeld: social-afbeelding</h2>
@@ -320,7 +320,7 @@ function viewHuisstijl(){
   $("#hs-font").addEventListener("change", e=>{ HS.font = e.target.value; tekenen(); });
   $("#hs-logo").onchange = async e => { try { HS.logo = await leesBestand(e.target.files[0], 1024*1024); tekenen(); toast("Logo geladen"); } catch(_){} };
   $("#hs-fontFile").onchange = async e => { try { HS.fontData = await leesBestand(e.target.files[0], 600*1024); const ff = new FontFace("HSUpload", `url(${HS.fontData})`); await ff.load(); document.fonts.add(ff); tekenen(); toast("Lettertype geladen"); } catch(_){ HS.fontData = ""; toast("Lettertype laden lukte niet"); } };
-  $("#hs-save").onclick = () => { download(`huisstijl-${slug(HS.kantoor||"kantoor")}.json`, JSON.stringify({ type:"blinqx-huisstijl", versie:1, ...HS }, null, 1), "application/json"); toast("Huisstijlbestand gedownload"); };
+  $("#hs-save").onclick = () => { download(`huisstijl-${slug(HS.kantoor||"kantoor")}-${new Date().toISOString().slice(0,10)}.json`, JSON.stringify({ type:"blinqx-huisstijl", versie:1, ...HS }, null, 1), "application/json"); toast("Huisstijl opgeslagen in je map Downloads"); };
   $("#hs-load").onchange = async e => { const f = e.target.files[0]; if (!f) return;
     try { const j = JSON.parse(await f.text()); if (j.type !== "blinqx-huisstijl") throw 0;
       Object.keys(HS_LEEG).forEach(k=>{ const v = j[k]; HS[k] = typeof v === "string" ? v.slice(0, k==="logo"||k==="fontData" ? 2e6 : 300) : ""; });
