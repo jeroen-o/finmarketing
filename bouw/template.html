@@ -2785,7 +2785,7 @@ function bindUitnodiging(id, defLink){
 
 /* ---------- Social-postbank ---------- */
 const POSTS = [
-  {m:2, t:"Klopt je WOZ-waarde?", ic:"house report", i:"campagne-woz-bezwaar", x:"De WOZ-beschikking valt weer op de mat. Een te hoge WOZ-waarde kost je elk jaar geld: meer OZB en een hoger eigenwoningforfait.\n\nVergelijk je waarde met de buurt via het WOZ-waardeloket. Bezwaar maken is gratis, maar moet binnen zes weken.\n\n👉 {link}", h:"#WOZ #WOZbezwaar #huiseigenaar"},
+  {m:3, t:"Klopt je WOZ-waarde?", ic:"house report", i:"campagne-woz-bezwaar", x:"De WOZ-beschikking valt weer op de mat. Een te hoge WOZ-waarde kost je elk jaar geld: meer OZB en een hoger eigenwoningforfait.\n\nVergelijk je waarde met de buurt via het WOZ-waardeloket. Bezwaar maken is gratis, maar moet binnen zes weken.\n\n👉 {link}", h:"#WOZ #WOZbezwaar #huiseigenaar"},
   {m:11, t:"Verlaag je belastingdruk", ic:"euro", i:"campagne-eindejaar-belasting", x:"Het jaar is bijna voorbij. Wist je dat je met een lijfrente-inleg vóór 31 december nog belasting kunt besparen? En dat box 3 kijkt naar je vermogen op 1 januari?\n\nLaat ons doorrekenen wat het jou oplevert.\n\n👉 {link}", h:"#belasting #lijfrente #eindejaar"},
   {m:6, t:"Box 3 of lijfrente?", ic:"piggybank", i:"box3-lijfrente", x:"Spaar je voor later? Dan maakt het uit wáár je dat doet. Vrij vermogen in box 3 is flexibel, maar je betaalt elk jaar belasting. Met lijfrente is je inleg aftrekbaar, maar zit het geld vast.\n\nBenieuwd wat het verschil voor jou is?\n\n👉 {link}", h:"#pensioen #box3 #lijfrente"},
   {m:1, t:"Leennormen 2027", ic:"percentage", i:"nieuwsbrief-hypotheekbeleid-2027", x:"Nieuw jaar, nieuwe hypotheekregels. Sinds 1 januari gelden de leennormen voor 2027: de NHG-grens is verhoogd naar € 500.000 en veel huishoudens kunnen iets meer lenen.\n\nWat betekent dit voor jouw situatie? We rekenen het graag met je door.\n\n👉 {link}", h:"#hypotheek #leennormen2027 #NHG"},
@@ -2813,6 +2813,7 @@ const POSTS = [
   {m:11, t:"Rentevaste periode loopt af?", ic:"swap", i:"campagne-rentevast-duurzaam", x:"Loopt je rentevaste periode binnen twee jaar af? Wacht niet op het verlengingsvoorstel van de bank. Door op tijd te vergelijken weet je wat je opties zijn, en soms is oversluiten zonder boete mogelijk.\n\nPlan op tijd een gesprek.\n\n👉 {link}", h:"#rentevast #hypotheekrente #oversluiten"},
   {m:12, t:"Bedankt", beeld:"Bedankt he", i:"ecards", x:"Bedankt voor je vertrouwen dit jaar! We kijken ernaar uit om je ook in het nieuwe jaar te helpen met je hypotheek en verzekeringen.\n\nFijne feestdagen en een gezond nieuwjaar!", h:"#bedankt #fijnefeestdagen"}
 ];
+POSTS.sort((a,b)=>a.m-b.m);
 const sp = { kantoor:"", link:"" };
 function postSvg(q, size=1080){
   if (!ICONS[q.ic]) return "";
