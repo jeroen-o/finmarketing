@@ -3,16 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marketingbibliotheek Blinqx V&amp;H</title>
+<title>Marketingbieb.nl · de marketingbibliotheek voor de financieel adviseur</title>
 <meta name="description" content="Gratis en freemium marketingmateriaal, klanttools en rekentools van Blinqx Verzekering & Hypotheek en partners, voor adviseurs.">
 <meta name="theme-color" content="#FFCD00">
-<meta property="og:title" content="Marketingbibliotheek Blinqx Verzekering & Hypotheek">
+<meta property="og:site_name" content="Marketingbieb.nl">
+<meta property="og:title" content="Marketingbieb.nl: de marketingbibliotheek voor de financieel adviseur">
 <meta property="og:description" content="Nieuwsbrieven, campagnes, klanttools en rekentools voor adviseurs. Gratis te gebruiken, in je eigen huisstijl.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 36'%3E%3Cpath d='M16 0l16 9v18l-16 9L0 27V9z' fill='%23FFCD00'/%3E%3Cpath d='M16 7l9 5v12l-9 5-9-5V12z' fill='%23000'/%3E%3C/svg%3E">
 <style>
   /* ============================================================
-     Marketingbibliotheek — Blinqx Verzekering & Hypotheek
+     Marketingbieb.nl — de marketingbibliotheek voor de financieel adviseur
      Standalone: geen build-step, geen externe API's, geen
      localStorage (geschikt voor Google Sites-embed).
      ============================================================ */
@@ -67,6 +68,10 @@
   .top{background:var(--y)}
   .top .wrap{display:flex;align-items:center;gap:18px;min-height:78px;flex-wrap:wrap}
   .brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+  .brand span .bieb{font-weight:800;font-size:.95rem}
+  .brand span .tag{font-style:normal}
+  @media (max-width:1100px){ .brand span .tag{display:none} .brand span .bieb{font-size:.8rem} .top .logo{width:130px} }
+  @media (max-width:560px){ .top .logo{width:118px;height:40px} .brand{gap:8px} .brand span .bieb{font-size:.82rem} .brand span{padding-left:8px} }
   .brand span{font-weight:700;font-size:.8rem;border-left:2px solid var(--k);padding-left:12px;line-height:1.2}
   .nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap;align-items:center}
   .nav a{text-decoration:none;padding:8px 10px;font-size:.9rem;font-weight:700;border-bottom:3px solid transparent}
@@ -351,7 +356,7 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#/" aria-label="Marketingbibliotheek Blinqx Verzekering &amp; Hypotheek, home"><i class="logo" aria-hidden="true"></i><span>Marketing-<br>bibliotheek</span></a>
+    <a class="brand" href="#/" aria-label="Marketingbieb.nl, de marketingbibliotheek voor de financieel adviseur, home"><i class="logo" aria-hidden="true"></i><span><b class="bieb">Marketingbieb.nl</b><i class="tag"><br>voor de financieel adviseur</i></span></a>
     <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="hoofdmenu"><span class="bars" aria-hidden="true"></span> Menu</button>
     <nav class="nav" id="hoofdmenu" aria-label="Hoofdmenu">
       <a href="#/?cat=content" data-nav="content">Content</a>
@@ -910,7 +915,7 @@ function viewHome(params){
   setNav(["content","campagnes","klanttools","adviseurstools"].includes(state.cat) ? state.cat : "home");
   const n = m => ITEMS.filter(i=>i.model===m).length;
   hero.innerHTML = `<section class="hero"><div class="wrap">
-    <div class="crumb"><a href="#/">Home</a> / <b>Marketingbibliotheek</b></div>
+    <div class="crumb"><a href="#/">Home</a> / <b>Marketingbieb.nl: de marketingbibliotheek voor de financieel adviseur</b></div>
     <div class="hero-grid">
       <div>
         <h1>Gratis marketing voor adviseurs die <span class="hl">vooruit denken</span></h1>
@@ -1176,7 +1181,7 @@ function viewItem(item){
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn btn-k btn-sm" id="cp-promo">Kopieer tekst</button></div></div>`:""}
       ${btnCode?`<div class="panel cut"><h2>Knop voor je website of e-mail</h2><div id="btn-demo" style="margin-bottom:10px">${btnCode}</div><div class="code">${esc(btnCode)}</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn btn-k btn-sm" id="cp-btn">Kopieer HTML-code</button><button class="btn btn-o btn-sm" id="cp-btn-rich">Kopieer als knop (voor e-mail)</button></div>
-        ${["pandwise","duurzaamheidsprofiel"].includes(item.id)?`<p class="hint">Zet deze tool met één stukje code op je eigen website of in Google Sites${item.id==="pandwise"?", met je naam, kantoor en logo vooraf ingevuld":""}.</p><a class="btn btn-y btn-sm" href="#/item/insluitcodes?tool=${item.id}">Maak je insluitcode →</a>`:""}</div>`:""}
+        ${["pandwise","duurzaamheidsprofiel","hypotheekcijfer","woningcijfer"].includes(item.id)?`<p class="hint">Zet deze tool met één stukje code op je eigen website of in Google Sites${item.id==="pandwise"?", met je naam, kantoor en logo vooraf ingevuld":""}.</p><a class="btn btn-y btn-sm" href="#/item/insluitcodes?tool=${item.id}">Maak je insluitcode →</a>`:""}</div>`:""}
       ${uitnodigingPanel(item.id)}
       ${item.compliance?`<div class="note"><strong>Let op, AFM/compliance:</strong> ${esc(item.compliance)} Communiceer uitkomsten als indicatie, niet als advies of toezegging.</div>`:""}
     </section></div></div>`;
@@ -2531,7 +2536,7 @@ function icsVoor(acts){
     const y = +d.slice(0,4), mo = +d.slice(4,6)-1, da = +d.slice(6,8), nd = new Date(Date.UTC(y,mo,da+1));
     const end = `${nd.getUTCFullYear()}${pad(nd.getUTCMonth()+1)}${pad(nd.getUTCDate())}`;
     const esc2 = s => s.replace(/[\\,;]/g, c=>"\\"+c).replace(/\n/g,"\\n");
-    lines.push("BEGIN:VEVENT",`UID:blinqx-kal-${m}-${ai}@marketingbibliotheek`,`DTSTAMP:${stamp}`,`DTSTART;VALUE=DATE:${d}`,`DTEND;VALUE=DATE:${end}`,
+    lines.push("BEGIN:VEVENT",`UID:blinqx-kal-${m}-${ai}@marketingbieb.nl`,`DTSTAMP:${stamp}`,`DTSTART;VALUE=DATE:${d}`,`DTEND;VALUE=DATE:${end}`,
       `SUMMARY:${esc2("Marketing: "+x.t)}`,`DESCRIPTION:${esc2(x.d)}`,"END:VEVENT");
   }));
   lines.push("END:VCALENDAR");
@@ -3025,7 +3030,7 @@ function viewVraag(params){
     </aside></div></div>`;
   const compose=()=>{
     const s=SOORTEN.find(x=>x[0]===$("#qf").soort.value)||SOORTEN[0], it=ITEMS.find(i=>i.id===$("#q-item").value), v=id=>$(id).value.trim();
-    return { subj:`[Marketingbibliotheek] ${s[1]}: ${v("#q-ond")}`,
+    return { subj:`[Marketingbieb.nl] ${s[1]}: ${v("#q-ond")}`,
       body:[`Soort: ${s[1]}`,`Item: ${it?it.title:"Algemeen / nieuw onderwerp"}`,"",v("#q-ber"),"","—",`Naam: ${v("#q-naam")}`,v("#q-kant")&&`Kantoor: ${v("#q-kant")}`,`E-mail: ${v("#q-mail")}`,v("#q-tel")&&`Telefoon: ${v("#q-tel")}`].filter(x=>x!==false&&x!==undefined).join("\n") };
   };
   const ok=()=>{
@@ -3062,14 +3067,14 @@ function route(){
     if (!item){ location.hash="#/"; return; }
     ({nieuwsbrief:viewNewsletter, checklist:viewChecklist, aflossingsvrij:viewAflossingsvrij, kansen:viewKansen, signalen:viewSignalen, brieven:viewBrieven, campagne:viewCampagne, selectie:viewSelectie, vhr:viewVhr, woontoekomst:viewWoontoekomst, verzekeringscheck:viewVerzekeringscheck, check:viewCheck, ideeen:viewIdeeen, formulieren:viewFormulieren, form:viewForm, lijfrente:viewLijfrente, box3:viewBox3, insluiten:viewInsluiten, woningwaarde:viewWoningwaarde, kaarten:viewKaarten, kennisbank:viewKennisbank, kalender:viewKalender, social:viewSocial}[item.kind]||viewItem)(item, params);
     socialKnopInHero(item);
-    document.title = `${item.title} · Marketingbibliotheek Blinqx V&H`;
+    document.title = `${item.title} · Marketingbieb.nl`;
     window.scrollTo(0,0);
-  } else if (path==="/vraag"){ viewVraag(params); document.title="Vraag & wens · Marketingbibliotheek Blinqx V&H"; window.scrollTo(0,0); }
-  else if (path==="/kalender"){ viewKalender(); document.title="Kalender · Marketingbibliotheek Blinqx V&H"; window.scrollTo(0,0); }
-  else if (path==="/kennisbank"){ viewKennisbank(null, params); document.title="Kennisbank · Marketingbibliotheek Blinqx V&H"; if(!params.get("a")) window.scrollTo(0,0); }
-  else if (path==="/huisstijl"){ viewHuisstijl(); document.title="Jouw huisstijl · Marketingbibliotheek Blinqx V&H"; window.scrollTo(0,0); }
-  else if (path==="/disclaimer"){ viewDisclaimer(); document.title="Disclaimer · Marketingbibliotheek Blinqx V&H"; window.scrollTo(0,0); }
-  else { viewHome(params); document.title="Marketingbibliotheek Blinqx V&H"; if(!params.get("cat")) window.scrollTo(0,0); }
+  } else if (path==="/vraag"){ viewVraag(params); document.title="Vraag & wens · Marketingbieb.nl"; window.scrollTo(0,0); }
+  else if (path==="/kalender"){ viewKalender(); document.title="Kalender · Marketingbieb.nl"; window.scrollTo(0,0); }
+  else if (path==="/kennisbank"){ viewKennisbank(null, params); document.title="Kennisbank · Marketingbieb.nl"; if(!params.get("a")) window.scrollTo(0,0); }
+  else if (path==="/huisstijl"){ viewHuisstijl(); document.title="Jouw huisstijl · Marketingbieb.nl"; window.scrollTo(0,0); }
+  else if (path==="/disclaimer"){ viewDisclaimer(); document.title="Disclaimer · Marketingbieb.nl"; window.scrollTo(0,0); }
+  else { viewHome(params); document.title="Marketingbieb.nl · de marketingbibliotheek voor de financieel adviseur"; if(!params.get("cat")) window.scrollTo(0,0); }
 }
 document.addEventListener("keydown",e=>{ if(e.key==="/" && !/input|textarea|select/i.test(document.activeElement.tagName)){ const f=$("#fq")||$("#hq"); if(f){ e.preventDefault(); f.focus(); f.scrollIntoView({block:"center"}); } } });
 window.addEventListener("hashchange",route);

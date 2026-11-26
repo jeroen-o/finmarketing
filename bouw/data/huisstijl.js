@@ -339,16 +339,22 @@ function viewHuisstijl(){
 const LIVE_URL = "https://jeroen-o.github.io/finmarketing/";
 const siteBase = () => /^https?:$/.test(location.protocol) ? location.href.split("#")[0] : LIVE_URL;
 const INSLUIT_EXTERN = {
-  pandwise:{ naam:"PandWise: gratis woningwaarderapport", titel:"Woningwaarderapport", hoogte:1400, adres:true,
+  pandwise:{ naam:"PandWise: gratis woningwaarderapport", titel:"Woningwaarderapport", hoogte:1400, adres:true, gegevens:true,
     url:o => "https://pandwise.nl/?embed=1" + [["adviseur",o.adviseur],["kantoor",o.kantoor],["logo",/^https:\/\//i.test(o.logo)?o.logo:""]].filter(x=>x[1]).map(([k,v])=>`&${k}=${encodeURIComponent(v)}`).join("") + (o.adres ? `&q=${encodeURIComponent(o.adres)}&auto=1` : ""),
     info:"Klanten vullen een adres of Funda-link in en zien direct waarde-indicatie, fundering, klimaat en geluid. Met je naam, kantoor en logo staat het rapport op jouw naam." },
+  hypotheekcijfer:{ naam:"Hypotheekcijfer: hypotheekcheck met een cijfer", titel:"Hypotheekcijfer", hoogte:1500,
+    url:() => "https://hypotheekcijfer.nl/bepaal-uw-hypotheekcijfer/",
+    info:"Klanten krijgen een cijfer van 1 tot 10 voor hun hypotheek, per belangrijk moment en per life event, getoetst aan de leennormen 2027. Wil je het rapport op jouw naam (logo, kantoor)? Stel dat in via ‘Voor adviseurs’ op hypotheekcijfer.nl; dat gaat niet via de insluitcode." },
+  woningcijfer:{ naam:"Woningcijfer: hoe toekomstbestendig is de woning?", titel:"Woningcijfer", hoogte:1200, noFrame:true,
+    url:() => "https://www.woningcijfer.nl/",
+    info:"Klanten zien welk cijfer een woning scoort, met de cijfers voor woning, klimaat en fundering. Woningcijfer staat insluiten in een iframe niet toe; gebruik een knop of link." },
   duurzaamheidsprofiel:{ naam:"Duurzaamheidsprofiel", titel:"Duurzaamheidsprofiel", hoogte:1200,
     url:() => "https://duurzaamheidsprofiel.hypotheekbond.nl/",
     info:"Klanten zien op postcode en huisnummer hoe hun woning scoort en welke maatregelen mogelijk zijn, met kosten en besparing." }
 };
 const insluitTools = () => [
   ...Object.entries(INSLUIT_EXTERN).map(([id,t])=>({ id, ...t })),
-  ...ITEMS.filter(i=>KLANT_KINDS.includes(i.kind) && i.kind!=="woningwaarde").map(i=>({ id:i.id, naam:i.title.replace(/^Klantcheck: /,"Klantcheck: "), titel:i.title.replace(/^Klantcheck: /,""), hoogte:1100, eigen:true,
+  ...ITEMS.filter(i=>KLANT_KINDS.includes(i.kind) && i.kind!=="woningwaarde").map(i=>({ id:i.id, naam:i.title.replace(/^Klantcheck: /,"Klantcheck: "), titel:i.title.replace(/^Klantcheck: /,""), hoogte:1100, eigen:true, gegevens:true,
     url:() => { const u = hsLink(siteBase() + "#/item/" + i.id); return u + (u.includes("?") ? "&" : "?") + "embed=1"; }, info:i.summary }))
 ];
 const ins = { tool:"pandwise", hoogte:"", adres:"", vorm:"iframe" };
@@ -367,14 +373,14 @@ function viewInsluiten(item, params){
         <label class="f" for="in-tool">Tool</label>
         <select class="i" id="in-tool"><optgroup label="Gratis tools van Blinqx">${opt(tools.filter(t=>!t.eigen))}</optgroup><optgroup label="Klanttools uit deze bibliotheek">${opt(tools.filter(t=>t.eigen))}</optgroup></select>
         <p class="hint" id="in-info"></p>
-        <h2 style="margin-top:14px"><span class="hexi">2</span>Jouw gegevens</h2>
+        <div id="in-gegevens"><h2 style="margin-top:14px"><span class="hexi">2</span>Jouw gegevens</h2>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 10px">
           ${[["adviseur","Naam adviseur"],["kantoor","Kantoornaam"]].map(([k,l])=>`<div><label class="f" for="in-${k}">${l}</label><input class="i" id="in-${k}" data-in="${k}" value="${esc(HS[k])}"></div>`).join("")}
         </div>
         <label class="f" for="in-logo">Logo-URL (https)</label><input class="i" id="in-logo" data-in="logoUrl" value="${esc(HS.logoUrl)}" placeholder="https://www.jouwkantoor.nl/logo.png">
         <div id="in-adresblok"><label class="f" for="in-adres">Vast adres (optioneel)</label><input class="i" id="in-adres" value="${esc(ins.adres)}" placeholder="Leeg laten: klant vult zelf in"><p class="hint">Handig op een pagina over één woning, bijvoorbeeld bij een aankoopbegeleiding.</p></div>
-        <p class="hint" id="in-hs">Kleuren en lettertype van de klanttools komen uit <a href="#/huisstijl">jouw huisstijl</a>.</p>
-        <h2 style="margin-top:14px"><span class="hexi">3</span>Weergave</h2>
+        <p class="hint" id="in-hs">Kleuren en lettertype van de klanttools komen uit <a href="#/huisstijl">jouw huisstijl</a>.</p></div>
+        <h2 style="margin-top:14px"><span class="hexi" id="in-n3">3</span>Weergave</h2>
         <label class="f" for="in-vorm">Vorm</label>
         <select class="i" id="in-vorm"><option value="iframe">Ingesloten in de pagina (iframe)</option><option value="knop">Knop die de tool opent</option><option value="link">Alleen de link</option></select>
         <label class="f" for="in-h">Hoogte in pixels</label><input class="i" id="in-h" inputmode="numeric" value="${esc(ins.hoogte)}">
@@ -401,8 +407,10 @@ function viewInsluiten(item, params){
   let pvUrl = "";
   const gen = () => {
     const t = tools.find(x=>x.id===ins.tool), h = Math.max(300, Math.min(4000, parseInt(String(ins.hoogte).replace(/\D/g,""))||t.hoogte));
+    const vormSel = $("#in-vorm"); vormSel.querySelector('option[value="iframe"]').disabled = !!t.noFrame;
+    if (t.noFrame && ins.vorm === "iframe"){ ins.vorm = "knop"; vormSel.value = "knop"; }
     const url = t.url({ adviseur:HS.adviseur, kantoor:HS.kantoor, logo:HS.logoUrl, adres:ins.adres.trim() });
-    $("#in-info").textContent = t.info || ""; $("#in-adresblok").hidden = !t.adres; $("#in-hs").hidden = !t.eigen;
+    $("#in-info").textContent = t.info || ""; $("#in-adresblok").hidden = !t.adres; $("#in-hs").hidden = !t.eigen; $("#in-gegevens").hidden = !t.gegevens; $("#in-n3").textContent = t.gegevens ? "3" : "2";
     $("#in-h").placeholder = String(t.hoogte);
     const wie = HS.kantoor ? ` · ${HS.kantoor}` : "", a = s => s.replace(/&/g,"&amp;").replace(/"/g,"&quot;");
     const kleur = hsKleur(), ink = textColorOn(kleur);
@@ -412,7 +420,8 @@ function viewInsluiten(item, params){
       ? `<!-- ${t.titel}${wie} -->\n<a href="${a(url)}" target="_blank" rel="noopener" style="display:inline-block;background:${kleur};color:${ink};font-family:${hsFont().replace(/"/g,"'")};font-weight:bold;text-decoration:none;padding:12px 20px">${esc(t.titel)} →</a>`
       : url;
     $("#in-code").value = code; $("#in-open").href = url;
-    if (url !== pvUrl){ pvUrl = url; $("#in-pv").innerHTML = `<iframe src="${a(url)}" title="Voorbeeld" style="border:0;width:100%;height:${Math.min(h,900)}px;display:block" loading="lazy"></iframe>`; }
+    if (t.noFrame){ pvUrl = ""; $("#in-pv").innerHTML = `<div style="padding:22px">${ins.vorm==="knop" ? code.split("\n")[1] : `<a href="${a(url)}" target="_blank" rel="noopener">${esc(url)}</a>`}<p class="hint" style="margin-top:12px">${esc(t.titel)} kan niet in een iframe op een andere site worden getoond; de knop of link opent de tool in een nieuw venster.</p></div>`; }
+    else if (url !== pvUrl){ pvUrl = url; $("#in-pv").innerHTML = `<iframe src="${a(url)}" title="Voorbeeld" style="border:0;width:100%;height:${Math.min(h,900)}px;display:block" loading="lazy"></iframe>`; }
     else { const f = $("#in-pv iframe"); if (f) f.style.height = Math.min(h,900)+"px"; }
   };
   $("#in-tool").onchange = e => { ins.tool = e.target.value; gen(); };

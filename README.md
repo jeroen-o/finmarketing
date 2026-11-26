@@ -1,6 +1,6 @@
 # finmarketing
 
-Marketingbibliotheek van Blinqx Verzekering & Hypotheek: gratis en freemium marketingmateriaal, campagnes, klanttools en rekentools voor adviseurs.
+Marketingbieb.nl, de marketingbibliotheek voor de financieel adviseur (een activiteit van Blinqx Verzekering & Hypotheek): gratis en freemium marketingmateriaal, campagnes, klanttools en rekentools voor adviseurs.
 
 **Live:** https://jeroen-o.github.io/finmarketing/
 
