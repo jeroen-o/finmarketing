@@ -82,11 +82,16 @@
   .brand{display:flex;align-items:center;gap:14px;text-decoration:none}
   .brand span .bieb{font-weight:800;font-size:.95rem}
   .brand span .tag{font-style:normal;font-size:.74rem}
-  @media (max-width:1279px){ .brand span .tag{display:none} }
+  @media (max-width:1439px){ .brand span .tag{display:none} }
+  @media (min-width:1440px){ .top .wrap{max-width:1400px!important} }
+  @media (min-width:1280px) and (max-width:1439px){ .top .nav a{padding:8px 6px;font-size:.85rem} }
+  @media (min-width:1101px) and (max-width:1279px){ .top .nav a{padding:8px 5px;font-size:.8rem} .top .nav a.cta{padding:9px 10px} }
+  @media (min-width:901px) and (max-width:980px){ .top .nav a{padding:8px 3px;font-size:.74rem} .top .nav a.cta{padding:9px 7px;margin-left:3px} .top .logo{width:104px} }
+  @media (min-width:981px) and (max-width:1100px){ .top .nav a{padding:8px 4px;font-size:.78rem} .top .nav a.cta{padding:9px 8px;margin-left:4px} .top .logo{width:120px} }
   @media (min-width:901px){ .top .wrap{max-width:1300px} }
   @media (min-width:901px) and (max-width:1080px){ .top .brand span{display:none} }
   @media (min-width:1280px){ .top .wrap{max-width:1300px} .top .brand span .bieb{font-size:.88rem} .top .nav a{padding:8px 6px} }
-  @media (max-width:1100px){ .brand span .tag{display:none} .brand span .bieb{font-size:.8rem} .top .logo{width:130px} }
+  @media (max-width:1180px){ .brand span .tag{display:none} .brand span .bieb{font-size:.8rem} .top .logo{width:130px} }
   @media (max-width:560px){ .top .logo{width:118px;height:40px} .brand{gap:8px} .brand span .bieb{font-size:.82rem} .brand span{padding-left:8px} }
   .brand span{font-weight:700;font-size:.8rem;border-left:2px solid var(--k);padding-left:12px;line-height:1.2}
   .nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap;align-items:center}
@@ -147,10 +152,30 @@
   .sig-meer summary{cursor:pointer;font-weight:800;font-size:.85rem;margin-top:6px;list-style:none;display:inline-flex;align-items:center;gap:6px;background:var(--y);padding:6px 10px}
   .sig-meer summary::-webkit-details-marker{display:none}
   .sig-meer summary::after{content:"▾"}.sig-meer[open] summary::after{content:"▴"}
-  .sig-cards{align-items:start}
+  .sig-cards{align-items:stretch;grid-auto-flow:row dense;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+  .sig-cards .cat .h{min-height:46px;align-items:center}
+  .sig-cards .cat .h h3{line-height:1.2}
+  .sig-cards .cat>p{flex:1 1 auto;margin:0}
+  .sig-cards .sig-meer{margin-top:4px}
+  .sig-cards .cat:has(.sig-meer[open]){grid-column:1/-1}
+  .sig-body{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px;margin-top:12px}
+  .sig-body h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 8px}
+  .sel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--selw),1fr));gap:6px}
+  .sel-grid a{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.82rem;padding:8px 10px;font-weight:700;text-decoration:none;min-height:36px;line-height:1.25}
+  @media (max-width:760px){ .sig-body{grid-template-columns:1fr} .sel-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,var(--selw)),1fr))} }
   @media (max-width:640px){ .sig-cards{grid-template-columns:minmax(0,1fr)!important} }
   .rt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px 18px}
   .rt-grid .links a{padding:8px 10px}
+  .sel-promo{display:flex;align-items:center;gap:16px;background:var(--y);color:var(--k);text-decoration:none;padding:16px 20px;margin:0 0 18px}
+  .sel-promo.cut{background:var(--y)}
+  .sel-promo .hexi{background:var(--k);color:var(--y);width:40px;height:46px;flex:none}
+  .sel-promo[hidden]{display:none}
+  .sel-promo .t{display:flex;flex-direction:column;gap:2px;flex:1 1 auto;min-width:0}
+  .sel-promo .t b{font-size:1.05rem}
+  .sel-promo .t span{font-size:.9rem}
+  .sel-promo .btn{flex:none}
+  .sel-promo:hover .btn{background:#222}
+  @media (max-width:640px){ .sel-promo{flex-wrap:wrap} .sel-promo .btn{width:100%} }
   .partners-band{padding:8px 0 30px}
   .partners-band .partners{margin-bottom:10px}
   body.embed .partners-band{display:none!important}
@@ -417,6 +442,7 @@
       <a href="#/" data-nav="home">Home</a>
       <a href="#/?cat=content" data-nav="content">Content</a>
       <a href="#/?cat=campagnes" data-nav="campagnes">Campagnes</a>
+      <a href="#/item/portefeuillesignalen" data-nav="selecties">Selecties</a>
       <a href="#/?cat=klanttools" data-nav="klanttools">Klanttools</a>
       <a href="#/?cat=adviseurstools" data-nav="adviseurstools">Adviseurstools</a>
       <a href="#/kalender" data-nav="kalender">Kalender</a>
@@ -1069,6 +1095,10 @@ function viewHome(params){
       <select id="fby"><option value="alle">Alle aanbieders</option>${[...new Set(ITEMS.map(i=>i.by))].sort().map(b=>`<option ${state.by===b?"selected":""}>${esc(b)}</option>`).join("")}</select>
       <button class="reset" id="reset">Wis filters</button>
     </div>
+    <a class="sel-promo cut" id="sel-promo" href="#/item/portefeuillesignalen" hidden>
+      <span class="hexi">${icon("filter",20)}</span>
+      <span class="t"><b>Bekijk alle selecties</b><span>Ruim 115 kant-en-klare selecties in PortefeuilleSignalen: einde rentevast, topafslag, aflossingsvrij, LTV, verjaardagen en meer. Eén klik en de selectie opent direct.</span></span>
+      <span class="btn btn-k btn-sm">Naar de selecties →</span></a>
     <div class="grid" id="grid"></div>
     <div id="kb-hits"></div>
   </div>`;
@@ -1081,6 +1111,7 @@ function viewHome(params){
     if (T.length) list.sort((a,b)=>b.s-a.s);
     else list.sort((a,b)=>CATS.findIndex(c=>c.id===a.i.cat)-CATS.findIndex(c=>c.id===b.i.cat));
     $("#res-title").textContent = state.cat==="alle" ? (T.length?"Zoekresultaten":"Alle materialen") : catOf(state.cat).title;
+    $("#sel-promo").hidden = state.cat!=="campagnes";
     $("#count").textContent = `${list.length} ${list.length===1?"resultaat":"resultaten"}${T.length?` voor “${state.q.trim()}”`:""}`;
     grid.innerHTML = list.length ? list.map(({i})=>`
       <article class="card cut">
@@ -1595,7 +1626,7 @@ const SELECTIES = [
   {g:"Data verbeteren", d:"Betere data geeft meer en nauwkeurigere kansen.", s:[["Dossiers zonder tariefklasse (NHG of %MW/EW)",3349],["Dossiers zonder WOZ-waarde",3348],["Dossiers zonder taxatie-/marktwaarde",3347]]}
 ];
 function viewSignalen(item){
-  setNav("home");
+  setNav("selecties");
   smallHero([`<a href="#/?cat=leads">Leads &amp; vindbaarheid</a>`, `<b>PortefeuilleSignalen</b>`], `
     <div class="detail-head"><div>${badge(item.model)} <span class="badge cat">Analytisch CRM</span>
       <h1>Je klanten snel en eenvoudig beter in beeld</h1><p>PortefeuilleSignalen signaleert kansen voor klanten om te besparen en meldt dat op tijd. Je ziet niet alleen besparingen, maar ook risicobeperking, een beter klantbeeld en upsell-mogelijkheden. De software doet het werk.</p></div>
@@ -1605,8 +1636,8 @@ function viewSignalen(item){
     <h2 class="sec-title">Onze <u>signalen</u></h2><p class="sec-sub">Acht signalen die automatisch kansen in je portefeuille zichtbaar maken.</p>
     <div class="cats sig-cards">${SIGNALEN.map(([i,t,d,stappen,links])=>`<div class="cat cut" style="cursor:default"><div class="h"><span class="hexi">${icon(i,18)}</span><h3>${esc(t)}</h3></div><p>${esc(d)}</p>
       <details class="sig-meer"><summary>Lees meer: zo werkt het</summary>
-        <ol class="steps" style="margin:8px 0 10px;font-size:.88rem">${stappen.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>
-        <div class="links">${links.map(([l,doel])=>typeof doel==="number"?`<a href="${psSel(doel)}" target="_blank" rel="noopener"><span>${esc(l)}</span><small>↗</small></a>`:/^https?:/.test(doel)?`<a href="${doel}" target="_blank" rel="noopener"><span>${esc(l)}</span><small>↗</small></a>`:doel.startsWith("#sel")?`<a href="${doel}" data-scroll="1"><span>${esc(l)}</span><small>↓</small></a>`:`<a href="${doel}"><span>${esc(l)}</span><small>→</small></a>`).join("")}</div>
+        <div class="sig-body"><div><h4>Zo werkt het</h4><ol class="steps" style="margin:0;font-size:.88rem">${stappen.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></div>
+        <div><h4>Direct naar</h4><div class="links">${links.map(([l,doel])=>typeof doel==="number"?`<a href="${psSel(doel)}" target="_blank" rel="noopener"><span>${esc(l)}</span><small>↗</small></a>`:/^https?:/.test(doel)?`<a href="${doel}" target="_blank" rel="noopener"><span>${esc(l)}</span><small>↗</small></a>`:doel.startsWith("#sel")?`<a href="${doel}" data-scroll="1"><span>${esc(l)}</span><small>↓</small></a>`:`<a href="${doel}"><span>${esc(l)}</span><small>→</small></a>`).join("")}</div></div></div>
         <p class="hint" style="margin:8px 0 0">Selecties met ↗ openen direct in PortefeuilleSignalen (eerst inloggen). <a href="https://verzekeringhypotheek.blinqx.tech/oplossingen/signalen" target="_blank" rel="noopener">Meer over de signalen ↗</a></p></details></div>`).join("")}</div>
     <div class="layout layout-r" style="--rcol:340px">
       <section>
@@ -1629,10 +1660,10 @@ function viewSignalen(item){
       if (!s.length) return "";
       n += s.length;
       return `<div class="panel cut"><h2>${highlight(g.g,T)} <span class="badge" style="margin-left:auto">${s.length}</span></h2>${g.d?`<p class="hint" style="margin:-4px 0 10px">${esc(g.d)}</p>`:""}
-        <div class="chan">${s.map(([x,doel])=>{ const st="font-size:.82rem;padding:6px 10px;font-weight:700;text-decoration:none;";
-          if (typeof doel==="number") return `<a href="${psSel(doel)}" target="_blank" rel="noopener" title="Opent de selectie in PortefeuilleSignalen" style="${st}background:var(--y-soft)">${highlight(x,T)} ↗</a>`;
-          if (doel==="zelf") return `<a href="${PS_ZOEK}" target="_blank" rel="noopener" title="Nog geen kant-en-klare selectie: stel dit zelf in via uitgebreid zoeken" style="${st}background:var(--bg-2);border:1px dashed var(--line)">${highlight(x,T)} · zelf instellen ↗</a>`;
-          return `<a href="${doel}" style="${st}background:var(--y)">${highlight(x,T)} →</a>`;}).join("")}</div></div>`;
+        <div class="sel-grid" style="--selw:${Math.min(330, Math.max(96, Math.max(...s.map(([x])=>x.length))*7.2+44))}px">${s.map(([x,doel])=>{ const st="";
+          if (typeof doel==="number") return `<a href="${psSel(doel)}" target="_blank" rel="noopener" title="Opent de selectie in PortefeuilleSignalen" style="${st}background:var(--y-soft)"><span>${highlight(x,T)}</span><small>↗</small></a>`;
+          if (doel==="zelf") return `<a href="${PS_ZOEK}" target="_blank" rel="noopener" title="Nog geen kant-en-klare selectie: stel dit zelf in via uitgebreid zoeken" style="${st}background:var(--bg-2);border:1px dashed var(--line)"><span>${highlight(x,T)}</span><small>↗</small></a>`;
+          return `<a href="${doel}" style="${st}background:var(--y)"><span>${highlight(x,T)}</span><small>→</small></a>`;}).join("")}</div></div>`;
     }).join("") || `<div class="empty">Geen selectie gevonden. <a href="#/vraag?item=portefeuillesignalen&soort=wens">Vraag een selectie op maat aan</a>.</div>`;
     $("#sel-n").textContent = T.length ? `${n} van ${total} selecties` : `${total} selecties (een deel van het volledige overzicht)`;
   };
