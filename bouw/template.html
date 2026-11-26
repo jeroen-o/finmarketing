@@ -34,6 +34,7 @@
   mark{background:var(--y-soft);color:inherit;padding:0 1px}
   .logo{display:block;width:150px;height:51px;background:url("data:image/png;base64,__LOGO__") left center/contain no-repeat}
   .logo.inv{filter:invert(1)}
+  body.klantmodus .adv-only{display:none!important}
   .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
   .skip:focus{position:fixed;left:12px;top:12px;width:auto;height:auto;clip:auto;z-index:100;background:var(--k);color:#fff;padding:10px 14px;font-weight:800}
 
@@ -153,6 +154,7 @@
   .detail-head p{max-width:70ch;margin:0}
   .detail-head .btns{display:flex;gap:8px;flex-wrap:wrap}
   .layout{display:grid;grid-template-columns:350px minmax(0,1fr);gap:22px;align-items:start}
+  .layout.layout-r{grid-template-columns:minmax(0,1fr) var(--rcol,330px)}
   .panel{background:#fff;padding:20px;margin-bottom:18px}
   .panel.cut{clip-path:polygon(var(--cut) 0,100% 0,100% 100%,0 100%,0 var(--cut))}
   .panel h2{font-size:1.05rem;margin-bottom:10px;display:flex;gap:8px;align-items:center}
@@ -263,7 +265,7 @@
   h1,h2,h3{overflow-wrap:break-word}
   @media (max-width:420px){ h1,h2,h3{overflow-wrap:anywhere} }
   @media (max-width:900px){
-    .layout,.qa,.fgrid,.hero-grid{grid-template-columns:1fr}
+    .layout,.qa,.fgrid,.hero-grid{grid-template-columns:1fr !important}
     .hex-stack{display:none}
     .sticky{position:static}
   }
@@ -1261,7 +1263,7 @@ function viewAflossingsvrij(item, params){
         <div class="checks"><label><input type="checkbox" data-a="lagerWonen" ${af.lagerWonen?"checked":""}> Ik ben bereid later goedkoper te gaan wonen</label></div>
         <p class="hint">Uw gegevens blijven in dit tabblad en worden niet opgeslagen of verstuurd. Gebruik bij twijfel fictieve gegevens.</p>
       </form>
-      <details class="panel cut"><summary style="font-weight:800;cursor:pointer">Voor adviseurs: deel met je kantoornaam</summary>
+      <details class="panel cut adv-only"><summary style="font-weight:800;cursor:pointer">Voor adviseurs: deel met je kantoornaam</summary>
         <p class="hint">Maak een link waarmee klanten de tool met jouw kantoorgegevens openen.</p>
         <label class="f" for="ad-k">Kantoornaam</label><input class="i" id="ad-k" value="${esc(adv.kantoor)}">
         <label class="f" for="ad-t">Telefoon</label><input class="i" id="ad-t" value="${esc(adv.tel)}">
@@ -1434,7 +1436,7 @@ function viewSignalen(item){
   app.innerHTML = `<div class="wrap">${DISC_SHORT}
     <h2 class="sec-title">Onze <u>signalen</u></h2><p class="sec-sub">Acht signalen die automatisch kansen in je portefeuille zichtbaar maken.</p>
     <div class="cats">${SIGNALEN.map(([i,t,d])=>`<div class="cat cut" style="cursor:default"><div class="h"><span class="hexi">${icon(i,18)}</span><h3>${esc(t)}</h3></div><p>${esc(d)}</p></div>`).join("")}</div>
-    <div class="layout" style="grid-template-columns:minmax(0,1fr) 340px">
+    <div class="layout layout-r" style="--rcol:340px">
       <section>
         <div class="results-head"><h2>Voorbeeldselecties</h2><span class="count" id="sel-n"></span></div>
         <div class="filterbar"><label class="sr" for="sel-q">Zoek een selectie</label><input type="search" id="sel-q" placeholder="Zoek op relaties… bijv. aflosvrij, LTV, jarig, ORV"></div>
@@ -1481,7 +1483,7 @@ function viewBrieven(item){
   const total = BRIEVEN.reduce((n,g)=>n+g.s.length,0);
   app.innerHTML = `<div class="wrap">${DISC_SHORT}
     <div class="note"><strong>Let op, verouderd:</strong> de brieven en brochures komen uit 2015 of eerder. Normen, regels, rentes en verwijzingen (o.a. naar de Nationale Hypotheekbond en oude AFM-brochures) zijn waarschijnlijk niet meer actueel. Actualiseer elke brief en laat hem toetsen vóór gebruik. Wij aanvaarden geen aansprakelijkheid voor kwaliteit, inhoud of herkomst.</div>
-    <div class="layout" style="grid-template-columns:minmax(0,1fr) 320px">
+    <div class="layout layout-r" style="--rcol:320px">
       <section>
         <div class="results-head"><h2>Alle brieven en brochures</h2><span class="count" id="b-n"></span></div>
         <div class="filterbar"><label class="sr" for="b-q">Zoek een brief</label><input type="search" id="b-q" placeholder="Zoek… bijv. rentevast, verhuizen, polis, familie"></div>
@@ -1674,7 +1676,7 @@ function viewVhr(item, params){
         <label class="f" for="vh-adres">Adres woning (voor het woningwaarderapport)</label><input class="i" id="vh-adres" data-vk="adres" value="${esc(vh.adres)}" placeholder="Straat 1, 1234 AB Plaats">
         <p class="hint">Gegevens blijven in dit tabblad en worden niet opgeslagen of verstuurd. Gebruik bij twijfel fictieve gegevens.</p>
       </form>
-      <details class="panel cut"><summary style="font-weight:800;cursor:pointer">Voor adviseurs: kantoorgegevens op het rapport</summary>
+      <details class="panel cut adv-only"><summary style="font-weight:800;cursor:pointer">Voor adviseurs: kantoorgegevens op het rapport</summary>
         ${[["kantoor","Kantoornaam"],["adviseur","Naam adviseur"],["tel","Telefoon"],["email","E-mail"]].map(([k,l])=>`<label class="f" for="vh-${k}">${l}</label><input class="i" id="vh-${k}" data-vk="${k}" value="${esc(vh[k])}">`).join("")}
         <div class="actions" style="margin-top:10px"><button type="button" class="btn btn-k btn-sm" id="vh-link">Kopieer deellink met kantoorgegevens</button></div>
       </details>
@@ -1802,10 +1804,10 @@ function viewWoontoekomst(item, params){
     <div class="detail-head"><div>${badge(item.model)} <span class="badge cat">Vragenlijst</span>
       <h1>De woontoekomst-check</h1><p>Blijven of gaan? Vier vragen over hoe je later wilt wonen.</p></div>
       ${adv.kantoor||adv.naam?`<div class="btns"><span class="badge" style="font-size:.8rem;padding:8px 12px">Aangeboden door ${esc(advLabel)}</span></div>`:""}</div>`);
-  app.innerHTML = `<div class="wrap">${DISC_SHORT}<div class="layout" style="grid-template-columns:minmax(0,1fr) 330px">
+  app.innerHTML = `<div class="wrap">${DISC_SHORT}<div class="layout layout-r" style="--rcol:330px">
     <section><div class="panel cut" id="wtc" style="max-width:720px;padding:28px"></div></section>
     <aside>
-      <details class="panel cut" ${adv.mail?"":"open"}><summary style="font-weight:800;cursor:pointer">Voor adviseurs: maak je eigen link</summary>
+      <details class="panel cut adv-only" ${adv.mail?"":"open"}><summary style="font-weight:800;cursor:pointer">Voor adviseurs: maak je eigen link</summary>
         <p class="hint">De antwoorden gaan naar jouw e-mailadres. Deel de link in je nieuwsbrief, mail of op je website.</p>
         <label class="f" for="wa-n">Naam adviseur</label><input class="i" id="wa-n" value="${esc(adv.naam)}">
         <label class="f" for="wa-k">Kantoornaam</label><input class="i" id="wa-k" value="${esc(adv.kantoor)}">
@@ -2054,7 +2056,7 @@ Met vriendelijke groet,
 const um = { aanhef:"Beste [naam]", adviseur:"", kantoor:"", tel:"", link:"" };
 function uitnodigingPanel(id, defLink){
   const u = UITNODIGING[id]; if (!u) return "";
-  return `<div class="panel cut" id="um-panel"><h2><span class="hexi">${icon("mail",18)}</span>Uitnodigingsmail voor je klanten</h2>
+  return `<div class="panel cut adv-only" id="um-panel"><h2><span class="hexi">${icon("mail",18)}</span>Uitnodigingsmail voor je klanten</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0 10px">
       ${[["aanhef","Aanhef"],["adviseur","Naam adviseur"],["kantoor","Kantoornaam"],["tel","Telefoon"]].map(([k,l])=>`<div><label class="f" for="um-${k}">${l}</label><input class="i" id="um-${k}" data-um="${k}" value="${esc(um[k])}"></div>`).join("")}
     </div>
@@ -2343,6 +2345,7 @@ $("#menu-btn").addEventListener("click", () => { const n = $("#hoofdmenu"), open
 
 /* ---------- Router ---------- */
 function route(){
+  { const q = new URLSearchParams((location.hash.split("?")[1])||""); document.body.classList.toggle("klantmodus", /^#\/item\//.test(location.hash) && ["kantoor","adviseur","mail"].some(k=>q.get(k))); }
   setMres(""); $("#hoofdmenu").classList.remove("open"); $("#menu-btn").setAttribute("aria-expanded","false");
   { const m = (location.hash.match(/^#\/item\/([^?]+)/)||[])[1], fa = document.getElementById("f-ask");
     if (fa){ fa.hidden = !m; if (m) fa.querySelector("a").href = "#/vraag?item=" + m; } }
