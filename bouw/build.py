@@ -24,3 +24,8 @@ for k, n in {'↻': 'repeat', '⌂': 'moving', '↓': 'percentage', '✓': 'chec
     bt = bt.replace('<span class="ic hex">' + k + '</span>', '<span class="ic hex">' + svg(n) + '</span>')
 open(os.path.join(R, 'brochure.html'), 'w', encoding='utf-8').write(bt)
 print('gebouwd: index.html', len(t), '| brochure.html', len(bt))
+import subprocess, shutil
+if shutil.which('node'):
+    subprocess.run(['node', os.path.join(B, 'seo.js')], check=True)
+else:
+    print('let op: node ontbreekt, SEO-pagina\'s niet bijgewerkt')

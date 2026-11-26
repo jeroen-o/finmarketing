@@ -32,3 +32,8 @@ Marketingbieb.nl, de marketingbibliotheek voor de financieel adviseur (een activ
 
 ## Disclaimer
 Alle materialen en tools zijn indicatief en worden "as is" ter beschikking gesteld; gebruik is voor eigen rekening en risico. Zie de disclaimer op de site.
+
+## SEO en GEO
+`python3 bouw/build.py` draait daarna automatisch `node bouw/seo.js` (vereist Playwright). Dat maakt crawlbare pagina's naast de app:
+`item/<id>/`, `kennisbank/<slug>/`, `categorie/<id>/`, plus `sitemap.xml`, `robots.txt`, `llms.txt`, `assets/og.png` en `assets/logo.png`.
+Kennisbankartikelen die niet zijn bijgewerkt verwijzen met een canonical-link naar de Hypotheekbond-kennisbank; artikelen met de status ‘controleren’ staan op noindex.

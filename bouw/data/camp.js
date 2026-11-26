@@ -332,4 +332,4 @@ Met vriendelijke groet,
 CAMP.forEach(c => ITEMS.push({ id:c.id, cat:"campagnes", kind:"campagne", model:"freemium", title:"Campagne: "+c.title, by:"PortefeuilleSignalen",
   summary:c.summary, channels:["Eigen e-mail","Blinqx Connect","Word"], tags:["campagne",...c.tags], data:c }));
 SEL.forEach(s => ITEMS.push({ id:s.id, cat:"campagnes", kind:"selectie", model:"freemium", title:"Selectie: "+s.title, by:"PortefeuilleSignalen",
-  summary:s.tekst.join(" ").slice(0,220)+(s.tekst.join(" ").length>220?"…":""), channels:["PortefeuilleSignalen"], tags:["selectie",...s.tags], data:s }));
+  summary:(t=>t.length>220?t.slice(0,220)+"…":t)((s.tekst.join(" ")+" "+(s.punten||[]).join("; ")).trim()), channels:["PortefeuilleSignalen"], tags:["selectie",...s.tags], data:s }));
