@@ -176,6 +176,15 @@
   .sel-promo .btn{flex:none}
   .sel-promo:hover .btn{background:#222}
   @media (max-width:640px){ .sel-promo{flex-wrap:wrap} .sel-promo .btn{width:100%} }
+  /* woontoekomst-check: design naar bijmij.nl */
+  .bm-card{--bm-gold:#b7893a;--bm-gold-text:#8a6420;--bm-tint:#f4ecdb;--bm-navy:#16233b;--bm-line:#e7e0d3;max-width:760px;background:#fff;border:1px solid var(--bm-line);border-radius:18px;box-shadow:0 20px 50px -28px rgba(22,35,59,.28);padding:clamp(22px,4vw,44px)!important;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+  .bm-card h2{font-family:Fraunces,"Iowan Old Style","Palatino Linotype",Georgia,serif;font-weight:500;color:var(--bm-navy);letter-spacing:-.01em}
+  .bm-card .bm-h{display:block;font-size:clamp(1.6rem,3.6vw,2.3rem);line-height:1.15;margin:0 0 14px}.bm-card h2 em{font-style:normal;color:var(--bm-gold)}
+  .bm-eyebrow{display:flex;align-items:center;gap:12px;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--bm-gold-text);margin-bottom:14px}
+  .bm-eyebrow::before{content:"";width:28px;height:1px;background:var(--bm-gold)}
+  .bm-lead{color:#5c6577;font-size:1.05rem}.bm-callout{background:var(--bm-tint);border-radius:12px;padding:16px 20px;margin:16px 0 22px}
+  .bm-card .btn{border-radius:999px;padding:13px 24px}.bm-card .btn-k{background:var(--bm-gold);color:#fff}.bm-card .btn-o{border:1px solid var(--bm-line);color:var(--bm-navy)}
+  .bm-card .wtc-opt{border-radius:12px!important}.bm-card .progress i{background:var(--bm-gold)}
   .partners-band{padding:8px 0 30px}
   .partners-band .partners{margin-bottom:10px}
   body.embed .partners-band{display:none!important}
@@ -2017,7 +2026,8 @@ function viewCheck(item, params){
         <label class="f" for="ca-k">Kantoornaam</label><input class="i" id="ca-k" value="${esc(adv.kantoor)}">
         <label class="f" for="ca-t">Telefoon</label><input class="i" id="ca-t" value="${esc(adv.tel)}">
         <label class="f" for="ca-m">E-mail voor de uitkomsten</label><input class="i" id="ca-m" type="email" value="${esc(adv.mail)}">
-        <div class="actions" style="margin-top:10px"><button class="btn btn-k btn-sm" id="ca-link">Kopieer deellink</button></div>
+        <div class="actions" style="margin-top:10px;flex-direction:row;flex-wrap:wrap"><button class="btn btn-k btn-sm" id="ca-link">Kopieer deellink</button>${exportKnop("ca-html")}</div>
+        ${EXPORT_UITLEG}
       </details>
       ${uitnodigingPanel(item.id)}
       <div class="note"><strong>Let op:</strong> deze check is een hulpmiddel en geen advies. Er wordt niets opgeslagen; versturen gaat via uw eigen mailprogramma. Vul geen medische gegevens in.</div>
@@ -2089,6 +2099,7 @@ function viewCheck(item, params){
   const deellink = () => { const q=new URLSearchParams(); [["adviseur","#ca-n"],["kantoor","#ca-k"],["tel","#ca-t"],["mail","#ca-m"]].forEach(([k,id])=>{ const v=$(id).value.trim(); if(v) q.set(k,v); }); return location.href.split("#")[0]+"#/item/"+item.id+(q.toString()?"?"+q:""); };
   bindUitnodiging(item.id, deellink);
   $("#ca-link").onclick = async () => toast(await copyText(deellink()) ? "Deellink gekopieerd" : "Kopiëren lukte niet");
+  bindExport("#ca-html", { n:"#ca-n", k:"#ca-k", t:"#ca-t", m:"#ca-m" }, cfg => checkHtml(C, cfg), item.id);
 }
 
 /* ---------- Formulierenbank ---------- */
@@ -2138,7 +2149,8 @@ function viewForm(item, params){
         <label class="f" for="fa-k">Kantoornaam</label><input class="i" id="fa-k" value="${esc(adv.kantoor)}">
         <label class="f" for="fa-t">Telefoon</label><input class="i" id="fa-t" value="${esc(adv.tel)}">
         <label class="f" for="fa-m">E-mail voor de antwoorden</label><input class="i" id="fa-m" type="email" value="${esc(adv.mail)}">
-        <div class="actions" style="margin-top:10px"><button class="btn btn-k btn-sm" id="fa-link">Kopieer deellink</button></div>
+        <div class="actions" style="margin-top:10px;flex-direction:row;flex-wrap:wrap"><button class="btn btn-k btn-sm" id="fa-link">Kopieer deellink</button>${exportKnop("fa-html")}</div>
+        ${EXPORT_UITLEG}
       </details>
       <div class="note"><strong>Privacy:</strong> er wordt niets opgeslagen; versturen gaat via het eigen mailprogramma van de klant.</div>
     </aside></div></div>`;
@@ -2190,6 +2202,7 @@ function viewForm(item, params){
   $("#fm-print").onclick = () => printHtml(f.titel, `<div style="padding:6px">${formHtml(f)}<p style="font-family:Arial;font-size:12px;margin-top:20px">Naam: ______________________ &nbsp; Telefoon: ______________</p></div>`);
   $("#fa-link").onclick = async () => { const q=new URLSearchParams(); [["adviseur","#fa-n"],["kantoor","#fa-k"],["tel","#fa-t"],["mail","#fa-m"]].forEach(([k,id])=>{ const v=$(id).value.trim(); if(v) q.set(k,v); });
     toast(await copyText(location.href.split("#")[0]+"#/item/"+item.id+(q.toString()?"?"+q:"")) ? "Deellink gekopieerd" : "Kopiëren lukte niet"); };
+  bindExport("#fa-html", { n:"#fa-n", k:"#fa-k", t:"#fa-t", m:"#fa-m" }, cfg => formExportHtml(f, cfg), item.id);
 }
 
 /* ---------- Lijfrente-rekenhulp ---------- */
@@ -2462,7 +2475,8 @@ function viewVerzekeringscheck(item, params){
         <label class="f" for="va-k">Kantoornaam</label><input class="i" id="va-k" value="${esc(adv.kantoor)}">
         <label class="f" for="va-t">Telefoon</label><input class="i" id="va-t" value="${esc(adv.tel)}">
         <label class="f" for="va-m">E-mail voor de uitkomsten</label><input class="i" id="va-m" type="email" value="${esc(adv.mail)}">
-        <div class="actions" style="margin-top:10px"><button class="btn btn-k btn-sm" id="va-link">Kopieer deellink</button></div>
+        <div class="actions" style="margin-top:10px;flex-direction:row;flex-wrap:wrap"><button class="btn btn-k btn-sm" id="va-link">Kopieer deellink</button>${exportKnop("va-html")}</div>
+        ${EXPORT_UITLEG}
       </details>
       ${uitnodigingPanel("verzekeringscheck")}
       <div class="note"><strong>Let op:</strong> deze check is een hulpmiddel en geen advies. De polisvoorwaarden van uw verzekeraar zijn leidend. Er wordt niets opgeslagen; versturen gaat via uw eigen mailprogramma.</div>
@@ -2544,6 +2558,7 @@ function viewVerzekeringscheck(item, params){
   const deellink = () => { const p=new URLSearchParams(); [["adviseur","#va-n"],["kantoor","#va-k"],["tel","#va-t"],["mail","#va-m"]].forEach(([k,id])=>{ const v=$(id).value.trim(); if(v) p.set(k,v); }); return location.href.split("#")[0]+"#/item/verzekeringscheck"+(p.toString()?"?"+p:""); };
   bindUitnodiging("verzekeringscheck", deellink);
   $("#va-link").onclick = async () => toast(await copyText(deellink()) ? "Deellink gekopieerd" : "Kopiëren lukte niet");
+  bindExport("#va-html", { n:"#va-n", k:"#va-k", t:"#va-t", m:"#va-m" }, cfg => checkHtml(VC_ALS_CHECK(), cfg), "check-opstal-inboedel");
 }
 
 /* ---------- Tool: De woontoekomst-check ---------- */
@@ -2568,7 +2583,7 @@ function viewWoontoekomst(item, params){
       <h1>De woontoekomst-check</h1><p>Blijven of gaan? Vier vragen over hoe je later wilt wonen.</p></div>
       ${adv.kantoor||adv.naam?`<div class="btns"><span class="badge" style="font-size:.8rem;padding:8px 12px">Aangeboden door ${esc(advLabel)}</span></div>`:""}</div>`);
   app.innerHTML = `<div class="wrap">${DISC_SHORT}<div class="layout layout-r" style="--rcol:330px">
-    <section><div class="panel cut" id="wtc" style="max-width:720px;padding:28px"></div></section>
+    <section><div class="panel bm-card" id="wtc"></div></section>
     <aside>
       <details class="panel cut adv-only" ${adv.mail?"":"open"}><summary style="font-weight:800;cursor:pointer">Voor adviseurs: maak je eigen link</summary>
         <p class="hint">De antwoorden gaan naar jouw e-mailadres. Deel de link in je nieuwsbrief, mail of op je website.</p>
@@ -2577,7 +2592,6 @@ function viewWoontoekomst(item, params){
         <label class="f" for="wa-m">E-mail voor de antwoorden</label><input class="i" id="wa-m" type="email" value="${esc(adv.mail)}">
         <div class="actions" style="margin-top:10px;flex-direction:row;flex-wrap:wrap"><button class="btn btn-k btn-sm" id="wa-link">Kopieer deellink</button><button class="btn btn-y btn-sm" id="wa-html">${icon("download",16)} Download HTML voor je website</button></div>
         <p class="hint">Met de HTML-download zet je de check direct op je eigen website: één bestand, met jouw naam, kantoor, e-mailadres en <a href="#/huisstijl">huisstijl</a> (logo, kleuren, lettertype). Upload het als pagina, of plak de inhoud in een HTML-blok. De antwoorden komen via het mailprogramma van de klant bij jou binnen.</p>
-        <p class="hint">Voor een Google Sites-embed: open de link in een nieuw tabblad (mailto werkt niet altijd in een iframe).</p>
       </details>
       ${uitnodigingPanel("woontoekomst-check")}
       <div class="note"><strong>Let op, AVG:</strong> de check vraagt alleen naam, telefoon en een optionele toelichting, met expliciete toestemming. Er wordt niets opgeslagen; versturen gaat via het mailprogramma van de klant. Vraag geen medische gegevens.</div>
@@ -2589,9 +2603,10 @@ function viewWoontoekomst(item, params){
   const body = () => ["Antwoorden woontoekomst-check","",...WTC_Q.flatMap(q=>[q.title,line(q),""]),`Naam: ${wtc.naam||"—"}`,`Telefoon: ${wtc.tel||"—"}`,...(wtc.opm?["","Toelichting:",wtc.opm]:[])].join("\n");
   const render = () => {
     if (wtc.step === -1){
-      root.innerHTML = `<div class="eyebrow" style="color:var(--y-ink)">De woontoekomst-check</div>
-        <h2 style="font-size:1.6rem;margin-bottom:12px">Blijven of gaan? Vier vragen over hoe jij later wilt wonen.</h2>
-        <p>Bijna negen op de tien huiseigenaren van 55 jaar en ouder hebben nagedacht over hoe ze later willen wonen. De helft heeft daar nog niets mee gedaan. Een aantal geldverstrekkers kijkt eerder en strenger naar je inkomen na pensionering. Verandert er niets aan je hypotheek, dan merk je daar niets van. Heb je plannen met je woning, dan wil je dit weten voordat je een stap zet.</p>
+      root.innerHTML = `<div class="bm-eyebrow">De woontoekomst-check</div>
+        <h2 class="bm-h">Blijven of gaan? <em>Vier vragen</em><br>over hoe jij later wilt wonen.</h2>
+        <p class="bm-lead">Bijna negen op de tien huiseigenaren van 55 jaar en ouder hebben nagedacht over hoe ze later willen wonen. De helft heeft daar nog niets mee gedaan.</p>
+        <div class="bm-callout">Een aantal geldverstrekkers kijkt eerder en strenger naar je inkomen na pensionering. <b>Verandert er niets aan je hypotheek, dan merk je daar niets van.</b> Heb je plannen met je woning, dan wil je dit weten voordat je een stap zet.</div>
         <button class="btn btn-k" id="wtc-start">Begin met vraag 1 →</button>
         <p class="hint">Ongeveer drie minuten. Geen cijfers, geen verplichtingen. Aan het eind beslis je zelf of je de antwoorden verstuurt.</p>`;
       $("#wtc-start").onclick = () => { wtc.step = 0; render(); }; return;
@@ -2635,10 +2650,7 @@ function viewWoontoekomst(item, params){
   };
   render();
   bindUitnodiging("woontoekomst-check", () => { const p=new URLSearchParams(); [["adviseur","#wa-n"],["kantoor","#wa-k"],["mail","#wa-m"]].forEach(([k,id])=>{ const v=$(id).value.trim(); if(v) p.set(k,v); }); return location.href.split("#")[0]+"#/item/woontoekomst-check"+(p.toString()?"?"+p:""); });
-  $("#wa-html").onclick = () => { const v = id => $(id).value.trim(), mail = v("#wa-m");
-    if (!mail){ toast("Vul eerst het e-mailadres voor de antwoorden in"); $("#wa-m").focus(); return; }
-    const html = woontoekomstHtml({ adviseur:v("#wa-n"), kantoor:v("#wa-k"), mail, tel:HS.tel, kleur:HS.kleur, kleur2:HS.kleur2, font:HS.fontData?hsFont():((HS.font||HS.fontEigen)?fontStack(HS.font,HS.fontEigen):""), logo:HS.logo||HS.logoUrl, fontFace:hsFontFace() });
-    download(`woontoekomst-check${v("#wa-k")?"-"+slug(v("#wa-k")):""}.html`, html, "text/html"); toast("HTML gedownload: zet het bestand op je website"); };
+  bindExport("#wa-html", { n:"#wa-n", k:"#wa-k", m:"#wa-m" }, cfg => woontoekomstHtml(cfg), "woontoekomst-check");
   $("#wa-link").onclick = async () => { const p = new URLSearchParams(); [["adviseur","#wa-n"],["kantoor","#wa-k"],["mail","#wa-m"]].forEach(([k,id])=>{ const v=$(id).value.trim(); if(v) p.set(k,v); });
     toast(await copyText(location.href.split("#")[0]+"#/item/"+item.id+(p.toString()?"?"+p:"")) ? "Deellink gekopieerd" : "Kopiëren lukte niet"); };
 }
@@ -3153,6 +3165,7 @@ function viewSelectie(item){
 
 /*__HS__*/
 /*__EXPORT__*/
+/*__EXPORT2__*/
 
 /* ---------- Disclaimer ---------- */
 function viewDisclaimer(){
