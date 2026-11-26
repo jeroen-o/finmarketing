@@ -37,3 +37,6 @@ Alle materialen en tools zijn indicatief en worden "as is" ter beschikking geste
 `python3 bouw/build.py` draait daarna automatisch `node bouw/seo.js` (vereist Playwright). Dat maakt crawlbare pagina's naast de app:
 `item/<id>/`, `kennisbank/<slug>/`, `categorie/<id>/`, plus `sitemap.xml`, `robots.txt`, `llms.txt`, `assets/og.png` en `assets/logo.png`.
 Kennisbankartikelen die niet zijn bijgewerkt verwijzen met een canonical-link naar de Hypotheekbond-kennisbank; artikelen met de status ‘controleren’ staan op noindex.
+
+## Campagnedownloads
+De Word- en pdf-sjablonen in `bronnen/campagnes/` worden gemaakt uit `bouw/downloads/*.md` met `python3 bouw/maak_downloads.py` (vereist pandoc en LibreOffice). Pas de tekst aan in het .md-bestand en draai het script opnieuw.
