@@ -35,6 +35,29 @@
   .logo{display:block;width:150px;height:51px;background:url("data:image/png;base64,__LOGO__") left center/contain no-repeat}
   .logo.inv{filter:invert(1)}
   body.klantmodus .adv-only{display:none!important}
+  /* Delen op social media */
+  body.so-open{overflow:hidden}
+  .so-dlg{position:fixed;inset:0;background:rgba(0,16,35,.55);z-index:80;display:flex;align-items:flex-start;justify-content:center;padding:4vh 16px;overflow:auto}
+  .so-dlg[hidden]{display:none}
+  .so-box{background:#fff;width:100%;max-width:980px;padding:20px 22px 22px;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+  .so-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+  .so-head h2{font-size:1.35rem}
+  .so-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px;margin-top:12px}
+  .so-img{line-height:0;border:1px solid var(--line-2);background:var(--bg-2);margin-top:8px}
+  .so-img svg{width:100%;height:auto;display:block}
+  .hs-logo-pv{display:flex;align-items:center;gap:10px;margin:4px 0 6px}
+  .hs-logo-pv img{max-height:56px;max-width:200px;background:#fff;border:1px solid var(--line-2);padding:4px}
+  #hs-pv-sq svg,#hs-pv-ls svg{width:100%;height:auto;display:block;border:1px solid var(--line-2)}
+  .nav a#hs-nav.on::after{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-left:6px;vertical-align:middle}
+  /* Huisstijl van de adviseur in klanttools */
+  .logo.hs{background-color:#fff;background-origin:content-box;padding:4px 8px;filter:none}
+  body.hs-donker .top,body.hs-donker .top a:not(.cta),body.hs-donker .hero,body.hs-donker .btn-y,body.hs-donker .hexi,body.hs-donker .step b.n,body.hs-donker .mres button,body.hs-donker [style*="background:var(--y)"]{color:#fff}
+  body.hs-donker .brand span{border-left-color:#fff}
+  body.hs-donker .pbox.prem .p,body.hs-donker .mres b,body.hs-donker footer h2,body.hs-donker footer a,body.hs-donker .badge.betaald,body.hs-donker .preview-bar b,body.hs-donker .fcard.dark .go,body.hs-donker .disc h2,body.hs-donker .disc a,body.hs-donker .disc p strong{color:#fff}
+  @media (min-width:901px){ .top .nav{gap:0} .top .nav a{padding:8px 7px;font-size:.86rem} .top .nav a.cta{padding:10px 12px;margin-left:6px} }
+  @media (min-width:901px) and (max-width:1100px){ .top .nav a{padding:8px 5px;font-size:.8rem} .top .brand{gap:8px} .top .brand span{font-size:.7rem;padding-left:8px} }
+  .detail-head .btns .badge{white-space:normal;max-width:100%;overflow-wrap:anywhere;text-align:left}
+  @media (max-width:760px){ .so-grid{grid-template-columns:1fr} .so-dlg{padding:0} .so-box{min-height:100%;padding:16px} .hs-pv2{grid-template-columns:1fr!important} }
   .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
   .skip:focus{position:fixed;left:12px;top:12px;width:auto;height:auto;clip:auto;z-index:100;background:var(--k);color:#fff;padding:10px 14px;font-weight:800}
 
@@ -335,6 +358,7 @@
       <a href="#/?cat=adviseurstools" data-nav="adviseurstools">Adviseurstools</a>
       <a href="#/kalender" data-nav="kalender">Kalender</a>
       <a href="#/kennisbank" data-nav="kennisbank">Kennisbank</a>
+      <a href="#/huisstijl" data-nav="huisstijl" id="hs-nav">Huisstijl</a>
       <a href="#/vraag" data-nav="vraag" class="cta">Vraag of wens →</a>
     </nav>
   </div>
@@ -394,6 +418,7 @@ function download(filename, content, mime){
   document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(url); a.remove();},500);
 }
 async function copyText(text){
+  if (typeof hsLinkify === "function") text = hsLinkify(text);
   try{ await navigator.clipboard.writeText(text); return true; }
   catch(e){
     const ta=document.createElement("textarea"); ta.value=text; ta.style.cssText="position:fixed;opacity:0"; document.body.appendChild(ta); ta.select();
@@ -413,7 +438,7 @@ async function copyRich(html, plain, fallbackEl){
 function printHtml(title, bodyHtml){
   const w = window.open("", "_blank");
   if (!w){ toast("Pop-up geblokkeerd: sta pop-ups toe om te printen"); return; }
-  w.document.write(`<!doctype html><html lang="nl"><head><meta charset="utf-8"><title>${esc(title)}</title><style>body{margin:0;font-family:Arial,Helvetica,sans-serif}@page{margin:14mm}</style></head><body>${bodyHtml}<script>window.onload=function(){setTimeout(function(){window.print()},250)}<\/script></body></html>`);
+  w.document.write(`<!doctype html><html lang="nl"><head><meta charset="utf-8"><title>${esc(title)}</title><style>${typeof hsFontFace==="function"?hsFontFace():""}body{margin:0;font-family:${typeof hsFont==="function"?hsFont():"Arial,Helvetica,sans-serif"}}@page{margin:14mm}</style></head><body>${typeof hsKop==="function"?hsKop():""}${bodyHtml}<script>window.onload=function(){setTimeout(function(){window.print()},250)}<\/script></body></html>`);
   w.document.close();
 }
 
@@ -804,12 +829,13 @@ const terms = q => norm(q).split(/[\s,]+/).filter(Boolean);
 function textColorOn(hex){ const h=hex.replace("#",""); const r=parseInt(h.substr(0,2),16),g=parseInt(h.substr(2,2),16),b=parseInt(h.substr(4,2),16); return (0.299*r+0.587*g+0.114*b)>160?"#000000":"#ffffff"; }
 function renderNewsletter({outer=true, forWord=false} = {}){
   const d=state.nb, acc=d.kleur||"#000000", onAcc=textColorOn(acc), tagCol = onAcc==="#ffffff" ? acc : "#000000";
-  const F="font-family:Arial,Helvetica,sans-serif;", kantoor=d.kantoor.trim()||"[Naam kantoor]";
+  const F=`font-family:${hsFont().replace(/"/g,"'")};`, kantoor=d.kantoor.trim()||"[Naam kantoor]", logo=hsLogoSrc(true);
   const p=t=>`<p style="${F}margin:0 0 12px;font-size:15px;line-height:1.55;color:#1d2b3a;">${esc(t)}</p>`;
   const ul=a=>a.length?`<ul style="${F}margin:4px 0;padding-left:20px;font-size:15px;line-height:1.55;color:#1d2b3a;">${a.map(b=>`<li style="margin:0 0 6px;">${esc(b)}</li>`).join("")}</ul>`:"";
   let h="";
   if (outer) h+=`<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f4f7f9;"><tr><td align="center" style="padding:24px 12px;">`;
   h+=`<table role="presentation" ${forWord?'width="100%"':'width="640"'} cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:640px;background:#ffffff;border:1px solid #e4eaf1;border-collapse:collapse;">`;
+  if (logo) h+=`<tr><td style="padding:18px 28px;background:#ffffff;"><img src="${esc(logo)}" alt="${esc(kantoor)}" height="52" style="height:52px;width:auto;max-width:260px;display:block;border:0;"></td></tr>`;
   h+=`<tr><td style="background:${acc};padding:28px 28px 24px;">
     <p style="${F}margin:0 0 8px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:${onAcc};">${esc(kantoor)} &middot; Nieuwsbrief</p>
     <h1 style="${F}margin:0 0 10px;font-size:26px;line-height:1.25;color:${onAcc};font-weight:bold;">${esc(NB.title)}</h1>
@@ -858,7 +884,7 @@ function newsletterPlain(){
 function wordDocument(){
   return `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>${esc(NB.title)}</title>
 <!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml><![endif]-->
-<style>@page{size:21cm 29.7cm;margin:1.8cm} body{font-family:Arial,Helvetica,sans-serif} table{border-collapse:collapse}</style></head><body>${renderNewsletter({outer:false,forWord:true})}</body></html>`;
+<style>@page{size:21cm 29.7cm;margin:1.8cm} body{font-family:${hsFont()}} table{border-collapse:collapse}</style></head><body>${renderNewsletter({outer:false,forWord:true})}</body></html>`;
 }
 
 /* ============================================================
@@ -1005,6 +1031,13 @@ const HOWTO = {
   connect:{label:"Blinqx Connect", steps:["Klik op <b>Kopieer HTML-code</b>.","Maak in Blinqx Connect een nieuwe mailing aan en kies de HTML-/broncodeweergave van de editor.","Plak de code, controleer het voorbeeld en kies je doelgroep.","Geen HTML-weergave? Gebruik <b>Kopieer voor e-mail</b> en plak in de gewone editor."]},
   word:{label:"Word / print", steps:["Klik op <b>Download Word</b> of <b>Print / PDF</b>.","Pas in Word desgewenst teksten aan en voeg je logo toe.","Bewaar als .docx of PDF voor print, bijlage of archief."]}
 };
+function nbSocial(s){
+  openSocial({ titel:s.title, tekst:[...s.paras, ...s.bullets.map(b=>"• "+b)].join("\n\n").replace(/\n\n• /g,"\n• "), tags:[s.tag,"hypotheek","leennormen"], link:HS.web });
+  const sel = document.createElement("div"); sel.className = "so-art";
+  sel.innerHTML = `<label class="f" for="so-artsel">Artikel uit de nieuwsbrief</label><select class="i" id="so-artsel">${NB.sections.map(x=>`<option value="${x.id}" ${x.id===s.id?"selected":""}>${esc(x.tag)}: ${esc(x.title)}</option>`).join("")}</select>`;
+  $("#so-dlg .tabs").before(sel);
+  $("#so-artsel").onchange = e => nbSocial(NB.sections.find(x=>x.id===e.target.value));
+}
 function viewNewsletter(item){
   setNav("content");
   smallHero([`<a href="#/?cat=content">Content &amp; campagnes</a>`, `<b>${esc(item.title)}</b>`], `
@@ -1045,6 +1078,7 @@ function viewNewsletter(item){
             <button class="btn btn-o" id="a-html">Kopieer HTML-code</button>
             <button class="btn btn-o" id="a-txt">Kopieer platte tekst</button>
             <button class="btn btn-o" id="a-print">Print / PDF</button>
+            <button class="btn btn-o" id="a-social">${icon("share",16)} Deel een artikel op social</button>
             <button class="btn btn-o" id="a-dl">⬇ Download HTML</button>
           </div>
           <p class="hint">Gebruik voor eigen rekening en risico. Controleer cijfers en bankbeleid vóór verzending. Downloaden geblokkeerd in een ingesloten pagina? Open de site in een nieuw tabblad.</p>
@@ -1082,6 +1116,7 @@ function viewNewsletter(item){
   $("#a-html").onclick=async()=>toast(await copyText(`<!-- Nieuwsbrief: ${NB.title} -->\n`+renderNewsletter())?"HTML-code gekopieerd":"Kopiëren lukte niet");
   $("#a-txt").onclick=async()=>toast(await copyText(newsletterPlain())?"Platte tekst gekopieerd":"Kopiëren lukte niet");
   $("#a-print").onclick=()=>printHtml(NB.title, renderNewsletter({outer:false}));
+  $("#a-social").onclick=()=>{ const s=NB.sections.find(x=>d.secties[x.id])||NB.sections[0]; nbSocial(s); };
 }
 
 /* ---------- Detail: checklist ---------- */
@@ -2563,11 +2598,13 @@ function viewKennisbank(item, params){
         <div style="margin-top:12px;font-size:.95rem">${body}</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
           <button class="btn btn-k btn-sm" data-kbcopy="${esc(s)}">${icon("copy",16)} Kopieer tekst</button>
-          <button class="btn btn-o btn-sm" data-kblink="${esc(s)}">${icon("share",16)} Kopieer link</button>
+          <button class="btn btn-o btn-sm" data-kblink="${esc(s)}">${icon("link",16)} Kopieer link</button>
+          <button class="btn btn-o btn-sm" data-kbsocial="${esc(s)}">${icon("share",16)} Deel op social</button>
           <a class="btn btn-o btn-sm" href="${esc(a.u)}" target="_blank" rel="noopener">Origineel ↗</a>
         </div></details>`; }).join("")
       : `<div class="empty">Geen artikel gevonden. <a href="#/vraag?item=kennisbank&soort=wens">Vraag een artikel aan</a>.</div>`;
     $$("[data-kbcopy]").forEach(b=>b.onclick=async()=>{ const a=KB.find(x=>kbSlug(x)===b.dataset.kbcopy); toast(await copyText(`${a.t}\n\n${a.b}`)?"Tekst gekopieerd":"Kopiëren lukte niet"); });
+    $$("[data-kbsocial]").forEach(b=>b.onclick=()=>{ const a=KB.find(x=>kbSlug(x)===b.dataset.kbsocial); openSocial({ titel:a.t, tekst:(a.b||"").replace(/^• /gm,"• "), tags:[a.th,"hypotheek"], link:HS.web||a.u }); });
     $$("[data-kblink]").forEach(b=>b.onclick=async()=>{ toast(await copyText(location.href.split("#")[0]+"#/kennisbank?a="+b.dataset.kblink)?"Link gekopieerd":"Kopiëren lukte niet"); });
   };
   draw();
@@ -2704,15 +2741,16 @@ function uitnodigingPanel(id, defLink){
     </div>
     <p class="hint" style="margin:8px 0 4px"><b>Onderwerp:</b> ${esc(u.o)}</p>
     <div class="promo" id="um-txt"></div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn btn-k btn-sm" id="um-copy">${icon("copy",16)} Kopieer mail</button><button class="btn btn-o btn-sm" id="um-word">${icon("download",16)} Word</button></div></div>`;
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn btn-k btn-sm" id="um-copy">${icon("copy",16)} Kopieer mail</button><button class="btn btn-o btn-sm" id="um-word">${icon("download",16)} Word</button><button class="btn btn-o btn-sm" id="um-social">${icon("share",16)} Deel op social</button></div></div>`;
 }
 function bindUitnodiging(id, defLink){
   const u = UITNODIGING[id]; if (!u || !$("#um-panel")) return;
   const fill = () => u.x.replace(/\{(aanhef|adviseur|kantoor|tel)\}/g, (_,k)=> um[k].trim() || ({aanhef:"Beste [naam]",adviseur:"[Naam adviseur]",kantoor:"[Kantoornaam]",tel:"[telefoon]"}[k]))
-                       .replace("{link}", defLink());
+                       .replace("{link}", hsLink(defLink()));
   const draw = () => $("#um-txt").textContent = fill();
   $$("[data-um]").forEach(el=>el.addEventListener("input",()=>{ um[el.dataset.um]=el.value; draw(); }));
   $("#um-copy").onclick = async () => toast(await copyText(`Onderwerp: ${u.o}\n\n${fill()}`) ? "Mail gekopieerd" : "Kopiëren lukte niet");
+  $("#um-social").onclick = () => openSocial({ titel:u.o, tekst:tekstVanSjabloon(u.x.replace(/^.*\{link\}.*$/m,"")), link:hsLink(defLink()), tags:ITEMS.find(x=>x.id===id)?.tags||[] });
   $("#um-word").onclick = () => { download(`uitnodiging-${id}.doc`, "\ufeff"+tplWord({naam:u.o, onderwerp:u.o, tekst:fill()}), "application/msword"); toast("Word-bestand gedownload"); };
   draw();
 }
@@ -2749,6 +2787,10 @@ const POSTS = [
 ];
 const sp = { kantoor:"", link:"" };
 function postSvg(q, size=1080){
+  if (!ICONS[q.ic]) return "";
+  return brandSvg({ titel:q.t, ic:q.ic, w:1080, h:1080, maat: size==="100%" ? "100%" : null });
+}
+function postSvgOud(q, size=1080){
   const i = ICONS[q.ic]; if (!i) return "";
   const words = q.t.split(" "), lines = []; let cur = "";
   words.forEach(w=>{ if ((cur+" "+w).trim().length > 16){ if (cur) lines.push(cur); cur = w; } else cur = (cur+" "+w).trim(); }); if (cur) lines.push(cur);
@@ -2781,7 +2823,7 @@ function viewSocial(item){
         <div><label class="f" for="sp-k">Kantoornaam (onder de post)</label><input class="i" id="sp-k" value="${esc(sp.kantoor)}"></div>
         <div><label class="f" for="sp-l">Link (website of afsprakenpagina)</label><input class="i" id="sp-l" value="${esc(sp.link)}" placeholder="www.jouwkantoor.nl"></div>
       </div>
-      <p class="hint">Tip: zet de link op LinkedIn in de eerste reactie in plaats van in de post; dat geeft vaak meer bereik.</p></div>
+      <p class="hint">Tip: zet de link op LinkedIn in de eerste reactie in plaats van in de post; dat geeft vaak meer bereik. Met ‘Delen &amp; formaten’ krijg je teksten voor LinkedIn, Facebook en Instagram en afbeeldingen in vier formaten. <a href="#/huisstijl">Eigen logo, kleuren en lettertype →</a></p></div>
     <div class="grid" id="sp-grid"></div>
     <div class="note" style="margin-top:18px"><strong>Let op, AFM/compliance:</strong> posts zijn wervende communicatie: correct, duidelijk en niet misleidend. Beloof geen uitkomsten, controleer bedragen en bankbeleid vóór plaatsing en vermeld bij acties de voorwaarden. Reageren met een persoonlijk advies in de reacties is advies; verwijs liever naar een gesprek.</div></div>`;
   const txt = q => q.x.replace("{link}", sp.link.trim() || "[link naar je website]").replace(/\n\n👉 \[link naar je website\]$/, sp.link.trim() ? "" : "\n\n👉 [link naar je website]") + (sp.kantoor.trim() ? `\n\n${sp.kantoor.trim()}` : "") + `\n\n${q.h}`;
@@ -2793,8 +2835,10 @@ function viewSocial(item){
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:auto">
         <button class="btn btn-k btn-sm" data-sp="${i}">${icon("copy",16)} Kopieer tekst</button>
         ${q.ic ? `<button class="btn btn-o btn-sm" data-png="${i}">${icon("download",16)} Afbeelding</button>` : CARDS[q.beeld]?`<a class="btn btn-o btn-sm" download="post-${slug(q.t)}.png" href="data:image/png;base64,${CARDS[q.beeld][1]}">${icon("download",16)} Afbeelding</a>`:""}
+        <button class="btn btn-y btn-sm" data-sosh="${i}">${icon("share",16)} Delen &amp; formaten</button>
         <a class="btn btn-o btn-sm" href="#/item/${q.i}">Materiaal →</a>
       </div></article>`).join("");
+    $$("[data-sosh]").forEach(b=>b.onclick=()=>{ const q=POSTS[+b.dataset.sosh]; openSocial({ titel:q.t, tekst:q.x.replace(/\n*👉 \{link\}\s*$/,"").trim(), tags:q.h.split(/\s+/), ic:q.ic||kiesIcoon(q.t), link:sp.link||HS.web||"" }); });
     $$("[data-sp]").forEach(b=>b.onclick=async()=>toast(await copyText(txt(POSTS[+b.dataset.sp]))?"Post gekopieerd":"Kopiëren lukte niet"));
     $$("[data-png]").forEach(b=>b.onclick=async()=>{ const q=POSTS[+b.dataset.png];
       try{ const url = await svgNaarPng(postSvg(q,1080)); const a=Object.assign(document.createElement("a"),{href:url,download:`post-${slug(q.t)}.png`}); document.body.appendChild(a); a.click(); a.remove(); toast("Afbeelding gedownload (1080 × 1080)"); }
@@ -2828,14 +2872,14 @@ function fillTpl(txt){
   return txt.replace(/\{(aanhef|kantoor|adviseur|tel|email|web)\}/g, (_,k)=> v(k) || ({aanhef:"Beste [naam]",kantoor:"[Kantoornaam]",adviseur:"[Naam adviseur]",tel:"[telefoon]",email:"[e-mail]",web:"[website]"}[k]));
 }
 function tplHtml(txt){
-  const F="font-family:Arial,Helvetica,sans-serif;color:#1d2b3a;font-size:15px;line-height:1.55;";
+  const F=`font-family:${hsFont().replace(/"/g,"'")};color:#1d2b3a;font-size:15px;line-height:1.55;`;
   const blocks = fillTpl(txt).split(/\n{2,}/);
   return blocks.map(b=>{
     const lines = b.split("\n");
     let h="", list=[];
     const flush=()=>{ if(list.length){ h+=`<ul style="${F}margin:0 0 12px;padding-left:20px">${list.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`; list=[]; } };
     lines.forEach(l=>{
-      if (l.startsWith("## ")){ flush(); h+=`<p style="${F}margin:14px 0 4px;font-weight:bold;color:#000">${esc(l.slice(3))}</p>`; }
+      if (l.startsWith("## ")){ flush(); h+=`<p style="${F}margin:14px 0 4px;font-weight:bold;color:${hsKopKleur()}">${esc(l.slice(3))}</p>`; }
       else if (l.startsWith("- ")) list.push(l.slice(2));
       else { flush(); if (l.trim()) h+=`<p style="${F}margin:0 0 ${lines.length>1?"2":"12"}px">${esc(l)}</p>`; }
     });
@@ -2844,13 +2888,13 @@ function tplHtml(txt){
 }
 const tplPlain = txt => fillTpl(txt).replace(/^## /gm,"").replace(/^- /gm,"• ");
 function tplWord(s){
-  return `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>${esc(s.naam)}</title><!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]--><style>@page{size:21cm 29.7cm;margin:2cm} body{font-family:Arial,Helvetica,sans-serif}</style></head><body><p style="font-family:Arial;font-size:12px;color:#56677c">Onderwerp: ${esc(fillTpl(s.onderwerp))}</p>${tplHtml(s.tekst)}</body></html>`;
+  return `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>${esc(s.naam)}</title><!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]--><style>@page{size:21cm 29.7cm;margin:2cm} body{font-family:${hsFont()}}</style></head><body>${hsKop(true)}<p style="font-family:Arial;font-size:12px;color:#56677c">Onderwerp: ${esc(fillTpl(s.onderwerp))}</p>${tplHtml(s.tekst)}</body></html>`;
 }
 function tplPanel(list, prefix){
   return `<div class="panel cut"><h2><span class="hexi">${icon("document",18)}</span>Jouw gegevens in de sjablonen</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0 12px">
         ${[["kantoor","Kantoornaam"],["adviseur","Naam adviseur"],["tel","Telefoon"],["email","E-mail"],["aanhef","Aanhef"]].map(([k,l])=>`<div><label class="f" for="kg-${k}">${l}</label><input class="i" id="kg-${k}" data-kg="${k}" value="${esc(kg[k])}"></div>`).join("")}
-      </div><p class="hint">Blijft alleen in dit tabblad. Lege velden blijven als [placeholder] staan.</p></div>
+      </div><p class="hint">Blijft alleen in dit tabblad. Lege velden blijven als [placeholder] staan. <a href="#/huisstijl">Logo, kleuren en lettertype instellen →</a></p></div>
     ${list.map((s,i)=>`<div class="panel cut">
       <h2>${esc(s.naam)}</h2>
       <p class="hint" style="margin:-4px 0 10px"><b>Onderwerp:</b> <span data-subj="${i}">${esc(fillTpl(s.onderwerp))}</span></p>
@@ -2860,6 +2904,7 @@ function tplPanel(list, prefix){
         <button class="btn btn-k btn-sm" data-act="mail" data-i="${i}">Kopieer voor e-mail</button>
         <button class="btn btn-o btn-sm" data-act="txt" data-i="${i}">Kopieer tekst</button>
         <button class="btn btn-o btn-sm" data-act="print" data-i="${i}">Print / PDF</button>
+        <button class="btn btn-o btn-sm" data-act="social" data-i="${i}">${icon("share",16)} Deel op social</button>
       </div></div>`).join("")}`;
 }
 function bindTpl(list, prefix){
@@ -2868,7 +2913,8 @@ function bindTpl(list, prefix){
   $$("[data-act]").forEach(b=>b.onclick=async()=>{
     const s=list[+b.dataset.i], fn=slug(prefix+"-"+s.naam);
     if (b.dataset.act==="word"){ download(fn+".doc","﻿"+tplWord(s),"application/msword"); toast("Word-bestand gedownload"); }
-    if (b.dataset.act==="mail") toast(await copyRich(tplHtml(s.tekst), tplPlain(s.tekst), $(`[data-prev="${b.dataset.i}"]`))?"Gekopieerd: plak in je e-mail":"Kopiëren lukte niet");
+    if (b.dataset.act==="mail") toast(await copyRich(hsKop(true)+tplHtml(s.tekst), tplPlain(s.tekst), $(`[data-prev="${b.dataset.i}"]`))?"Gekopieerd: plak in je e-mail":"Kopiëren lukte niet");
+    if (b.dataset.act==="social") openSocial({ titel:fillTpl(s.onderwerp), tekst:tekstVanSjabloon(s.tekst), tags:ITEMS.find(x=>x.id===prefix)?.tags||[], link:HS.web });
     if (b.dataset.act==="txt") toast(await copyText(`Onderwerp: ${fillTpl(s.onderwerp)}\n\n${tplPlain(s.tekst)}`)?"Tekst gekopieerd":"Kopiëren lukte niet");
     if (b.dataset.act==="print") printHtml(s.naam, `<div style="padding:10px">${tplHtml(s.tekst)}</div>`);
   });
@@ -2923,6 +2969,8 @@ function viewSelectie(item){
     </section></div></div>`;
   if (s.sjablonen) bindTpl(s.sjablonen, item.id);
 }
+
+/*__HS__*/
 
 /* ---------- Disclaimer ---------- */
 function viewDisclaimer(){
@@ -3000,7 +3048,8 @@ $("#menu-btn").addEventListener("click", () => { const n = $("#hoofdmenu"), open
 
 /* ---------- Router ---------- */
 function route(){
-  { const q = new URLSearchParams((location.hash.split("?")[1])||""); document.body.classList.toggle("klantmodus", /^#\/item\//.test(location.hash) && ["kantoor","adviseur","mail"].some(k=>q.get(k))); }
+  { const q = new URLSearchParams((location.hash.split("?")[1])||""); document.body.classList.toggle("klantmodus", /^#\/item\//.test(location.hash) && ["kantoor","adviseur","mail","kleur","logo"].some(k=>q.get(k))); }
+  pasThemaToe();
   setMres(""); $("#hoofdmenu").classList.remove("open"); $("#menu-btn").setAttribute("aria-expanded","false");
   { const m = (location.hash.match(/^#\/item\/([^?]+)/)||[])[1], fa = document.getElementById("f-ask");
     if (fa){ fa.hidden = !m; if (m) fa.querySelector("a").href = "#/vraag?item=" + m; } }
@@ -3009,11 +3058,13 @@ function route(){
     const item=ITEMS.find(i=>i.id===path.slice(6));
     if (!item){ location.hash="#/"; return; }
     ({nieuwsbrief:viewNewsletter, checklist:viewChecklist, aflossingsvrij:viewAflossingsvrij, kansen:viewKansen, signalen:viewSignalen, brieven:viewBrieven, campagne:viewCampagne, selectie:viewSelectie, vhr:viewVhr, woontoekomst:viewWoontoekomst, verzekeringscheck:viewVerzekeringscheck, check:viewCheck, ideeen:viewIdeeen, formulieren:viewFormulieren, form:viewForm, lijfrente:viewLijfrente, box3:viewBox3, woningwaarde:viewWoningwaarde, kaarten:viewKaarten, kennisbank:viewKennisbank, kalender:viewKalender, social:viewSocial}[item.kind]||viewItem)(item, params);
+    socialKnopInHero(item);
     document.title = `${item.title} · Marketingbibliotheek Blinqx V&H`;
     window.scrollTo(0,0);
   } else if (path==="/vraag"){ viewVraag(params); document.title="Vraag & wens · Marketingbibliotheek Blinqx V&H"; window.scrollTo(0,0); }
   else if (path==="/kalender"){ viewKalender(); document.title="Kalender · Marketingbibliotheek Blinqx V&H"; window.scrollTo(0,0); }
   else if (path==="/kennisbank"){ viewKennisbank(null, params); document.title="Kennisbank · Marketingbibliotheek Blinqx V&H"; if(!params.get("a")) window.scrollTo(0,0); }
+  else if (path==="/huisstijl"){ viewHuisstijl(); document.title="Jouw huisstijl · Marketingbibliotheek Blinqx V&H"; window.scrollTo(0,0); }
   else if (path==="/disclaimer"){ viewDisclaimer(); document.title="Disclaimer · Marketingbibliotheek Blinqx V&H"; window.scrollTo(0,0); }
   else { viewHome(params); document.title="Marketingbibliotheek Blinqx V&H"; if(!params.get("cat")) window.scrollTo(0,0); }
 }

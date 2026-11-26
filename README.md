@@ -20,6 +20,7 @@ Marketingbibliotheek van Blinqx Verzekering & Hypotheek: gratis en freemium mark
 1. Pas `bouw/template.html` of de data in `bouw/data/` aan:
    - `ITEMS` (catalogus), `KALENDER`, `POSTS` en de tools staan in `bouw/template.html`;
    - campagnes/selecties in `bouw/data/camp.js`, nieuwsbrief in `bouw/data/nb.js`, kennisbank in `bouw/data/kb.js`.
+   - extra campagnes, klantchecks en tools in `bouw/data/extra.js` en `extra2.js`; huisstijl (logo, kleuren, lettertype) en delen op social media in `bouw/data/huisstijl.js`.
 2. Bouw opnieuw: `python3 bouw/build.py`
 3. Commit en push; GitHub Pages publiceert automatisch.
 
