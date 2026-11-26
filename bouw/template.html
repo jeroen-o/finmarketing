@@ -122,6 +122,17 @@
   .disc.compact p{font-size:.86rem;margin:0}
 
   /* Section titles */
+  .fpartners{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;border-top:1px solid rgba(255,255,255,.18);padding:20px 0;margin-top:22px}
+  .fpartners h3{color:var(--y);font-size:1.05rem;margin:0;flex:1 1 100%}
+  .fpartners a.fp{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;flex:1 1 300px;min-width:0}
+  .fpartners a.fp img{height:46px;width:auto;max-width:150px;background:#fff;padding:5px 8px;flex:none}
+  .fpartners a.fp:hover span{text-decoration:underline}
+  .plogo{height:64px;width:auto;max-width:240px;background:#fff;padding:8px 12px;display:block}
+  .partners{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:44px}
+  .partners .pc{background:#fff;padding:22px;display:flex;flex-direction:column;gap:10px}
+  .partners .pc img{height:70px;width:auto;max-width:100%;object-fit:contain;align-self:flex-start}
+  .partners .pc .links{margin-top:auto}
+  @media (max-width:760px){ .partners{grid-template-columns:1fr} }
   .sec-title{text-align:center;margin:8px 0 6px;font-size:clamp(1.5rem,3vw,2.1rem)}
   .sec-title u{text-decoration:none;background:linear-gradient(transparent 60%,var(--y) 60%,var(--y) 90%,transparent 90%)}
   .sec-sub{text-align:center;max-width:70ch;margin:0 auto 26px;color:var(--ink-2);font-size:.95rem}
@@ -388,6 +399,7 @@
         <p><b>Blinqx Verzekering &amp; Hypotheek</b><br>Hullenbergweg 109<br>1101 CL Amsterdam, NL<br>T: <a href="tel:+31207582111">020 - 758 21 11</a><br><a href="https://verzekeringhypotheek.blinqx.tech/" target="_blank" rel="noopener">verzekeringhypotheek.blinqx.tech</a></p>
       </div>
     </div>
+    <div class="fpartners adv-only" id="fpartners"></div>
     <div class="fdisc">
       <p id="f-ask" hidden style="margin:0 0 12px"><a class="btn btn-y btn-sm" href="#/vraag">Vraag over dit item →</a></p>
       <h3 style="color:var(--y);font-size:1.05rem;margin-bottom:8px">Gebruik volledig voor eigen rekening en risico</h3>
@@ -474,7 +486,7 @@ const CATS = [
   {id:"klanttools",     icon:"calculate", title:"Klanttools",                desc:"Gratis cijfers en checks voor je klanten: hypotheek, woning, fundering, klimaat, duurzaamheid."},
   {id:"adviseurstools", icon:"advisor", title:"Adviseurstools",            desc:"Rekentools en vergelijkers voor je eigen adviespraktijk."},
   {id:"leads",          icon:"target", title:"Leads & vindbaarheid",      desc:"Word gevonden door consumenten, laat zien dat je groen bent en ontdek kansen in je portefeuille."},
-  {id:"kantoor",        icon:"company", title:"Kantoor & compliance",      desc:"Bedrijfsvoering, standaarddocumenten en de checklist vóór publicatie."},
+  {id:"kantoor",        icon:"company", title:"Kantoor, compliance & opleiding", desc:"Bedrijfsvoering, opleidingen en masterclasses, compliance, standaarddocumenten en de checklist vóór publicatie."},
   {id:"bronnen",        icon:"library", title:"Bronnen & klantlinks",      desc:"Achtergrond, beleidsbronnen en handige links voor in je mails en gesprekken."}
 ];
 const MODELS = {gratis:"Gratis", freemium:"Freemium", betaald:"Betaald", aanvraag:"Op aanvraag"};
@@ -756,6 +768,7 @@ const ITEMS = [
 /*__FORMS__*/
 /*__EXTRA__*/
 /*__EXTRA2__*/
+/*__PARTNERS__*/
 /*__NB__*/
 
 const CHECKLIST = [
@@ -964,6 +977,13 @@ function viewHome(params){
       <div class="step cut"><b class="n">3</b><h3>Verstuur of plaats</h3><p>Via je eigen mail, je website of Blinqx Connect. Of download als Word of PDF.</p></div>
     </div>
 
+    <h2 class="sec-title">Partners voor <u>kennis en compliance</u></h2><p class="sec-sub">Voor opleidingen, compliance, documenten en masterclasses verwijzen we je graag door.</p>
+    <div class="partners">
+      <div class="pc cut"><img src="${PARTNER_LOGO.dfo}" alt="DFO, dienstverlening voor financiële ondernemers"><h3>Opleidingen, compliance en documenten</h3><p>Bureau DFO helpt bij permanente educatie, compliance, modeldocumenten en contracten, en bij webinars en contentproductie.</p>
+        <div class="links"><a href="#/item/dfo"><span>Over DFO</span><small>→</small></a><a href="#/item/dfo-nazorgcalculator"><span>Gratis calculator nazorgabonnement</span><small>→</small></a></div></div>
+      <div class="pc cut"><img src="${PARTNER_LOGO.nvhp}" alt="NVHP, Nederlandse Vereniging van Hypothecair Planners"><h3>Masterclasses en thema's</h3><p>De NVHP (Hypothecairplanner.nl) biedt masterclasses over actuele onderwerpen en per thema achtergrond, webinars en standaardteksten.</p>
+        <div class="links"><a href="#/item/nvhp-masterclasses"><span>Masterclasses</span><small>→</small></a><a href="#/item/nvhp-themas"><span>Thema's voor het hypotheekadvies</span><small>→</small></a></div></div>
+    </div>
     <h2 class="sec-title">Kies een <u>categorie</u></h2>
     <p class="sec-sub">Acht categorieën, van kant-en-klare content tot bronnen. Klik op een categorie of zoek direct.</p>
     <div class="cats">${CATS.map(c=>`<button class="cat cut" data-cat="${c.id}" aria-pressed="${state.cat===c.id}">
@@ -1154,7 +1174,7 @@ function viewItem(item){
   smallHero([`<a href="#/?cat=${c.id}">${esc(c.title)}</a>`, `<b>${esc(item.title)}</b>`], `
     <div class="detail-head"><div>${badge(item.model)} <span class="badge cat">${esc(c.title)}</span>
       <h1>${esc(item.title)}</h1><p>${esc(item.summary)}</p></div>
-      <div class="btns">${mainUrl?`<a class="btn btn-k" href="${esc(mainUrl)}" target="_blank" rel="noopener">Openen ↗</a>`:""}</div></div>`);
+      <div class="btns">${item.logo&&PARTNER_LOGO[item.logo]?`<img src="${PARTNER_LOGO[item.logo]}" alt="${esc(item.by)}" class="plogo">`:""}${mainUrl?`<a class="btn btn-k" href="${esc(mainUrl)}" target="_blank" rel="noopener">Openen ↗</a>`:""}</div></div>`);
 
   const priceBlock = (item.free||item.premium) ? `<div class="panel cut"><h2>${item.premium?"Wat is gratis, wat niet?":"Wat is gratis?"}</h2>
     <div class="pricing" ${item.premium?"":'style="grid-template-columns:1fr"'}>
@@ -3078,6 +3098,7 @@ function route(){
 }
 document.addEventListener("keydown",e=>{ if(e.key==="/" && !/input|textarea|select/i.test(document.activeElement.tagName)){ const f=$("#fq")||$("#hq"); if(f){ e.preventDefault(); f.focus(); f.scrollIntoView({block:"center"}); } } });
 window.addEventListener("hashchange",route);
+vulFooterPartners();
 route();
 </script>
 </body>
