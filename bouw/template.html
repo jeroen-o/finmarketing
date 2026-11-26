@@ -221,6 +221,11 @@
   .filterbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:#fff;padding:12px;margin-bottom:18px}
   .filterbar .lbl{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-right:2px}
   .filterbar input[type=search]{flex:1 1 240px;min-width:0;padding:9px 12px;border:1px solid var(--line);background:#fff}
+  .filterbar .zoekveld{display:flex;flex:1 1 280px;min-width:0}
+  .filterbar .zoekveld input[type=search]{flex:1 1 auto;border-right:0}
+  .zoekknop{flex:none;border:0;background:var(--k);color:#fff;font-weight:800;padding:0 16px;cursor:pointer;font-size:.92rem}
+  .zoekknop:hover{background:#222}
+  @media (max-width:560px){ .filterbar .zoekveld{flex:1 1 100%} .filterbar input[type=search]{font-size:16px;padding:11px 12px} .zoekknop{padding:0 14px} }
   .filterbar select{padding:8px 10px;border:1px solid var(--line);background:#fff;font-weight:600;font-size:.88rem}
   .chip{border:1px solid var(--line);background:#fff;padding:7px 12px;cursor:pointer;font-size:.85rem;font-weight:700}
   .chip[aria-pressed="true"]{background:var(--k);border-color:var(--k);color:#fff}
@@ -1055,7 +1060,7 @@ function viewHome(params){
         <p class="lead">Nieuwsbrieven, campagnes, klanttools en rekentools van Blinqx Verzekering &amp; Hypotheek en partners. Verstuur ze vanuit je eigen mail, zet ze op je website of gebruik ze via Blinqx Connect. Download als Word of kopieer met één klik.</p>
         <form class="searchbar" id="hero-search" role="search">
           <label class="sr" for="hq">Zoeken in de bibliotheek</label>
-          <input id="hq" type="search" placeholder="Waar ben je naar op zoek? Bijv. pensioen, fundering, LinkedIn" value="${esc(state.q)}" autocomplete="off">
+          <input id="hq" type="search" enterkeyhint="search" placeholder="Waar ben je naar op zoek? Bijv. pensioen, fundering, LinkedIn" value="${esc(state.q)}" autocomplete="off">
           <button type="submit">Zoek →</button>
         </form>
         <div class="popular"><b>Populair:</b>${["nieuwsbrief","campagne","52+","aflossingsvrij","inboedel","fundering","LinkedIn","rekentool"].map(t=>`<button type="button" data-pop="${esc(t)}">${esc(t)}</button>`).join("")}</div>
@@ -1109,7 +1114,7 @@ function viewHome(params){
     </div>
     <div class="filterbar">
       <label class="sr" for="fq">Zoeken</label>
-      <input id="fq" type="search" placeholder="Zoek op titel, onderwerp of partner… (toets /)" value="${esc(state.q)}" autocomplete="off">
+      <span class="zoekveld"><input id="fq" type="search" enterkeyhint="search" placeholder="Zoek op titel, onderwerp of partner… (toets /)" value="${esc(state.q)}" autocomplete="off"><button type="button" class="zoekknop" id="fq-go" aria-label="Zoeken">Zoek →</button></span>
       <span class="lbl">Model</span>
       ${["alle",...Object.keys(MODELS)].map(m=>`<button class="chip" data-model="${m}" aria-pressed="${state.model===m}">${m==="alle"?"Alles":MODELS[m]}</button>`).join("")}
       <span class="vsep"></span>
@@ -1177,8 +1182,11 @@ function viewHome(params){
   draw();
   const syncQ = v => { state.q=v; $("#fq").value=v; $("#hq").value=v; draw(); };
   $("#fq").addEventListener("input", e=>syncQ(e.target.value));
+  const toonResultaten = () => { syncQ($("#fq").value); $("#fq").blur(); $("#hq").blur(); setTimeout(()=>($("#page-hits").innerHTML ? $("#page-hits") : $("#grid")).scrollIntoView({behavior:"smooth", block:"start"}), 80); };
+  $("#fq").addEventListener("keydown", e=>{ if (e.key==="Enter"){ e.preventDefault(); toonResultaten(); } });
+  $("#fq-go").addEventListener("click", toonResultaten);
   $("#hq").addEventListener("input", e=>syncQ(e.target.value));
-  $("#hero-search").addEventListener("submit", e=>{ e.preventDefault(); $("#resultaten").scrollIntoView({behavior:"smooth"}); });
+  $("#hero-search").addEventListener("submit", e=>{ e.preventDefault(); $("#hq").blur(); $("#resultaten").scrollIntoView({behavior:"smooth"}); });
   $$("[data-pop]").forEach(b=>b.onclick=()=>{ syncQ(b.dataset.pop); $("#resultaten").scrollIntoView({behavior:"smooth"}); });
   $$("[data-model]").forEach(b=>b.onclick=()=>{ state.model=b.dataset.model; $$("[data-model]").forEach(x=>x.setAttribute("aria-pressed", x===b)); draw(); });
   $$("[data-cat]").forEach(b=>b.onclick=()=>{ state.cat = state.cat===b.dataset.cat ? "alle" : b.dataset.cat;
@@ -1684,7 +1692,7 @@ function viewSignalen(item){
     <div class="layout layout-r" style="--rcol:340px">
       <section>
         <div class="results-head"><h2>Voorbeeldselecties</h2><span class="count" id="sel-n"></span></div>
-        <div class="filterbar"><label class="sr" for="sel-q">Zoek een selectie</label><input type="search" id="sel-q" placeholder="Zoek op relaties… bijv. aflosvrij, LTV, jarig, ORV"></div>
+        <div class="filterbar"><label class="sr" for="sel-q">Zoek een selectie</label><span class="zoekveld"><input type="search" id="sel-q" enterkeyhint="search" placeholder="Zoek op relaties… bijv. aflosvrij, LTV, jarig, ORV"><button type="button" class="zoekknop" id="sel-go" aria-label="Zoeken">Zoek →</button></span></div>
         <div id="sel-list"></div>
       </section>
       <aside class="sticky">
@@ -1710,6 +1718,9 @@ function viewSignalen(item){
     $("#sel-n").textContent = T.length ? `${n} van ${total} selecties` : `${total} selecties (een deel van het volledige overzicht)`;
   };
   $("#sel-q").addEventListener("input", draw); draw();
+  const selToon = () => { draw(); $("#sel-q").blur(); setTimeout(()=>$("#sel-list").scrollIntoView({behavior:"smooth", block:"start"}), 80); };
+  $("#sel-q").addEventListener("keydown", e=>{ if (e.key==="Enter"){ e.preventDefault(); selToon(); } });
+  $("#sel-go").addEventListener("click", selToon);
   $$("[data-scroll]").forEach(x=>x.onclick=e=>{ e.preventDefault(); $("#sel-list").scrollIntoView({behavior:"smooth"}); });
 }
 
@@ -2784,7 +2795,7 @@ function viewKennisbank(item, params){
       <h1>Hypotheek kennisbank</h1><p>${KB.length} korte uitlegartikelen over hypotheken, wonen en fiscaliteit. Handig om te delen met klanten of als naslag in het adviesgesprek.</p></div></div>
     <form class="searchbar" id="kb-form" role="search" onsubmit="return false" style="margin-top:6px">
       <label class="sr" for="kb-q">Zoek in de kennisbank</label>
-      <input id="kb-q" type="search" placeholder="Zoek bijv. boeterente, erfpacht, NHG, bouwdepot…" value="${esc(kbState.q)}" autocomplete="off">
+      <input id="kb-q" type="search" enterkeyhint="search" placeholder="Zoek bijv. boeterente, erfpacht, NHG, bouwdepot…" value="${esc(kbState.q)}" autocomplete="off">
       <button type="submit">Zoek →</button>
     </form>`);
   app.innerHTML = `<div class="wrap">
@@ -2827,7 +2838,7 @@ function viewKennisbank(item, params){
   draw();
   if (open) setTimeout(()=>{ const el=document.getElementById("kb-"+open); el && el.scrollIntoView({block:"start"}); }, 50);
   $("#kb-q").addEventListener("input", e=>{ kbState.q=e.target.value; draw(); });
-  $("#kb-form").addEventListener("submit", ()=>$("#kb-title").scrollIntoView({behavior:"smooth"}));
+  $("#kb-form").addEventListener("submit", ()=>{ $("#kb-q").blur(); $("#kb-title").scrollIntoView({behavior:"smooth"}); });
   $$("[data-th]").forEach(b=>b.onclick=()=>{ kbState.th=b.dataset.th; $$("[data-th]").forEach(x=>x.setAttribute("aria-pressed", x===b)); draw(); });
 }
 
