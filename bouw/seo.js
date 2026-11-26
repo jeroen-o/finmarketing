@@ -113,7 +113,7 @@ const MODEL = { gratis: "Gratis", freemium: "Freemium", betaald: "Betaald", aanv
       badges: `<span class="badge">${esc(a.th)}</span>${label ? `<span class="badge">${label}</span>` : ""}`,
       canonical: eigen ? url : a.u, noindex,
       cta: { href: `/#/kennisbank?a=${slug}`, label: "Bekijk in de kennisbank" },
-      body: `<div class="card">${html}</div><p class="note">Bron: <a href="${esc(a.u)}" rel="noopener">Hypotheekbond-kennisbank</a>${eigen ? "; tekst gecontroleerd en bijgewerkt door Marketingbieb.nl (november 2026)" : ""}. Algemene informatie, geen persoonlijk advies.</p>`,
+      body: `<div class="card">${html}</div><p class="note">Bron: <a href="${esc(a.u)}" rel="noopener">Hypotheekbond-kennisbank</a>${eigen ? "; tekst gecontroleerd en bijgewerkt door Marketingbieb.nl (november 2026)" : ""}. Algemene informatie, geen persoonlijk advies.</p>${a.q && a.q.length ? `<p class="note"><b>Gecontroleerd met:</b> <br>${a.q.map(u => `<a href="${esc(u)}" rel="noopener">${esc(u.replace(/^https?:\/\/(www\.)?/, ""))}</a>`).join("<br>")}</p>` : ""}`,
       jsonld: [{ "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: a.t, acceptedAnswer: { "@type": "Answer", text: a.b.replace(/\n/g, " ") } }] }] }));
     kbIdx.push({ a, slug, label, noindex });
     if (!noindex && eigen) sitemap.push({ loc: url, pri: "0.5" });
