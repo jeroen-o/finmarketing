@@ -380,6 +380,7 @@ function viewInsluiten(item, params){
         <label class="f" for="in-logo">Logo-URL (https)</label><input class="i" id="in-logo" data-in="logoUrl" value="${esc(HS.logoUrl)}" placeholder="https://www.jouwkantoor.nl/logo.png">
         <div id="in-adresblok"><label class="f" for="in-adres">Vast adres (optioneel)</label><input class="i" id="in-adres" value="${esc(ins.adres)}" placeholder="Leeg laten: klant vult zelf in"><p class="hint">Handig op een pagina over één woning, bijvoorbeeld bij een aankoopbegeleiding.</p></div>
         <p class="hint" id="in-hs">Kleuren en lettertype van de klanttools komen uit <a href="#/huisstijl">jouw huisstijl</a>.</p></div>
+        <p class="hint">Voorbeeld van rekentools op een eigen site: <a href="#/item/demo-hypotheek-kantoor">Demo-hypotheek-kantoor.nl</a>.</p>
         <h2 style="margin-top:14px"><span class="hexi" id="in-n3">3</span>Weergave</h2>
         <label class="f" for="in-vorm">Vorm</label>
         <select class="i" id="in-vorm"><option value="iframe">Ingesloten in de pagina (iframe)</option><option value="knop">Knop die de tool opent</option><option value="link">Alleen de link</option></select>
