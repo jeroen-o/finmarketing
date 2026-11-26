@@ -3229,7 +3229,7 @@ function viewHome(params){
 
   const FEAT = [
     ["woontoekomst-check","house","Vier vragen voor 55-plussers: blijven of gaan? Antwoorden komen direct bij jou binnen.","dark"],
-    ["verantwoord-hypotheekrapport","life events","Risico's, besparingen en maximale hypotheek in één rapport. Perfect voor de jaarlijkse hypotheekcheck.",""],
+    ["social-posts","share","Kant-en-klare posts voor LinkedIn, Facebook en Instagram, met afbeeldingen in je eigen huisstijl.",""],
     ["nieuwsbrief-hypotheekbeleid-2027","news","Kant-en-klaar met je eigen kantoorgegevens. Download als Word of kopieer voor je mail.",""],
     ["kansentool","target","Hoeveel oversluiters, renteverlengers en verhuizers zitten er in je portefeuille?",""],
     ["campagne-pensioen","pension","Drie mails voor klanten van 50–57 jaar met een aflossingsvrije hypotheek.",""],
@@ -5122,7 +5122,7 @@ function viewSocial(item){
         <div><label class="f" for="sp-k">Kantoornaam (onder de post)</label><input class="i" id="sp-k" value="${esc(sp.kantoor)}"></div>
         <div><label class="f" for="sp-l">Link (website of afsprakenpagina)</label><input class="i" id="sp-l" value="${esc(sp.link)}" placeholder="www.jouwkantoor.nl"></div>
       </div>
-      <p class="hint">Tip: zet de link op LinkedIn in de eerste reactie in plaats van in de post; dat geeft vaak meer bereik. Met ‘Delen &amp; formaten’ krijg je teksten voor LinkedIn, Facebook en Instagram en afbeeldingen in vier formaten. <a href="#/huisstijl">Eigen logo, kleuren en lettertype →</a></p></div>
+      <p class="hint">Tip: zet de link op LinkedIn in de eerste reactie in plaats van in de post; dat geeft vaak meer bereik. Met ‘Delen &amp; formaten’ krijg je teksten voor LinkedIn, Facebook en Instagram en afbeeldingen in vier formaten. <a href="#/huisstijl" style="font-weight:800">Eigen logo, kleuren en lettertype →</a></p></div>
     <div class="grid" id="sp-grid"></div>
     <div class="note" style="margin-top:18px"><strong>Let op, AFM/compliance:</strong> posts zijn wervende communicatie: correct, duidelijk en niet misleidend. Beloof geen uitkomsten, controleer bedragen en bankbeleid vóór plaatsing en vermeld bij acties de voorwaarden. Reageren met een persoonlijk advies in de reacties is advies; verwijs liever naar een gesprek.</div></div>`;
   const txt = q => q.x.replace("{link}", sp.link.trim() || "[link naar je website]").replace(/\n\n👉 \[link naar je website\]$/, sp.link.trim() ? "" : "\n\n👉 [link naar je website]") + (sp.kantoor.trim() ? `\n\n${sp.kantoor.trim()}` : "") + `\n\n${q.h}`;
