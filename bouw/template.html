@@ -35,6 +35,8 @@
   .logo{display:block;width:150px;height:51px;background:url("data:image/png;base64,__LOGO__") left center/contain no-repeat}
   .logo.inv{filter:invert(1)}
   body.klantmodus .adv-only{display:none!important}
+  body.embed header.top,body.embed footer.site,body.embed .crumb,body.embed #f-ask{display:none!important}
+  body.embed .hero.small{padding-top:18px}
   /* Delen op social media */
   body.so-open{overflow:hidden}
   .so-dlg{position:fixed;inset:0;background:rgba(0,16,35,.55);z-index:80;display:flex;align-items:flex-start;justify-content:center;padding:4vh 16px;overflow:auto}
@@ -1174,7 +1176,7 @@ function viewItem(item){
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn btn-k btn-sm" id="cp-promo">Kopieer tekst</button></div></div>`:""}
       ${btnCode?`<div class="panel cut"><h2>Knop voor je website of e-mail</h2><div id="btn-demo" style="margin-bottom:10px">${btnCode}</div><div class="code">${esc(btnCode)}</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn btn-k btn-sm" id="cp-btn">Kopieer HTML-code</button><button class="btn btn-o btn-sm" id="cp-btn-rich">Kopieer als knop (voor e-mail)</button></div>
-        ${item.id==="pandwise"?`<p class="hint">PandWise kun je ook volledig insluiten op je website of Google Sites, met je kantoorgegevens vooraf ingevuld; zie de supportpagina bij Links.</p>`:""}</div>`:""}
+        ${["pandwise","duurzaamheidsprofiel"].includes(item.id)?`<p class="hint">Zet deze tool met één stukje code op je eigen website of in Google Sites${item.id==="pandwise"?", met je naam, kantoor en logo vooraf ingevuld":""}.</p><a class="btn btn-y btn-sm" href="#/item/insluitcodes?tool=${item.id}">Maak je insluitcode →</a>`:""}</div>`:""}
       ${uitnodigingPanel(item.id)}
       ${item.compliance?`<div class="note"><strong>Let op, AFM/compliance:</strong> ${esc(item.compliance)} Communiceer uitkomsten als indicatie, niet als advies of toezegging.</div>`:""}
     </section></div></div>`;
@@ -2207,7 +2209,7 @@ function viewWoningwaarde(item, params){
         <p>Plaats het rapport op je website of in Google Sites met deze code. Met je naam en kantoor erbij staat het rapport op jouw naam; met een adres wordt het direct berekend.</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 10px"><div><label class="f" for="ww-adv">Adviseur</label><input class="i" id="ww-adv"></div><div><label class="f" for="ww-kan">Kantoor</label><input class="i" id="ww-kan"></div></div>
         <textarea class="i" id="ww-code" rows="3" readonly style="font-family:monospace;font-size:.8rem"></textarea>
-        <div class="actions" style="flex-direction:row;flex-wrap:wrap"><button class="btn btn-o btn-sm" id="ww-copy" type="button">Kopieer insluitcode</button></div></div>
+        <div class="actions" style="flex-direction:row;flex-wrap:wrap"><button class="btn btn-o btn-sm" id="ww-copy" type="button">Kopieer insluitcode</button><a class="btn btn-o btn-sm" href="#/item/insluitcodes?tool=pandwise">Meer opties →</a></div></div>
       <div class="fcard cut dark"><span class="hexi">${icon("house report",24)}</span><h3>RWWR-woningwaarderapport</h3>
         <p>Werk je met PortefeuilleSignalen? Dan is het up-to-date woningwaarderapport van RWWR gratis beschikbaar voor je klanten.</p>
         <a class="btn btn-y btn-sm" href="https://www.rwwr.nl" target="_blank" rel="noopener" style="align-self:flex-start;color:#000">Bekijk RWWR ↗</a>
@@ -3049,6 +3051,7 @@ $("#menu-btn").addEventListener("click", () => { const n = $("#hoofdmenu"), open
 /* ---------- Router ---------- */
 function route(){
   { const q = new URLSearchParams((location.hash.split("?")[1])||""); document.body.classList.toggle("klantmodus", /^#\/item\//.test(location.hash) && ["kantoor","adviseur","mail","kleur","logo"].some(k=>q.get(k))); }
+  document.body.classList.toggle("embed", /^#\/item\//.test(location.hash) && /[?&]embed=1\b/.test(location.hash));
   pasThemaToe();
   setMres(""); $("#hoofdmenu").classList.remove("open"); $("#menu-btn").setAttribute("aria-expanded","false");
   { const m = (location.hash.match(/^#\/item\/([^?]+)/)||[])[1], fa = document.getElementById("f-ask");
@@ -3057,7 +3060,7 @@ function route(){
   if (path.startsWith("/item/")){
     const item=ITEMS.find(i=>i.id===path.slice(6));
     if (!item){ location.hash="#/"; return; }
-    ({nieuwsbrief:viewNewsletter, checklist:viewChecklist, aflossingsvrij:viewAflossingsvrij, kansen:viewKansen, signalen:viewSignalen, brieven:viewBrieven, campagne:viewCampagne, selectie:viewSelectie, vhr:viewVhr, woontoekomst:viewWoontoekomst, verzekeringscheck:viewVerzekeringscheck, check:viewCheck, ideeen:viewIdeeen, formulieren:viewFormulieren, form:viewForm, lijfrente:viewLijfrente, box3:viewBox3, woningwaarde:viewWoningwaarde, kaarten:viewKaarten, kennisbank:viewKennisbank, kalender:viewKalender, social:viewSocial}[item.kind]||viewItem)(item, params);
+    ({nieuwsbrief:viewNewsletter, checklist:viewChecklist, aflossingsvrij:viewAflossingsvrij, kansen:viewKansen, signalen:viewSignalen, brieven:viewBrieven, campagne:viewCampagne, selectie:viewSelectie, vhr:viewVhr, woontoekomst:viewWoontoekomst, verzekeringscheck:viewVerzekeringscheck, check:viewCheck, ideeen:viewIdeeen, formulieren:viewFormulieren, form:viewForm, lijfrente:viewLijfrente, box3:viewBox3, insluiten:viewInsluiten, woningwaarde:viewWoningwaarde, kaarten:viewKaarten, kennisbank:viewKennisbank, kalender:viewKalender, social:viewSocial}[item.kind]||viewItem)(item, params);
     socialKnopInHero(item);
     document.title = `${item.title} · Marketingbibliotheek Blinqx V&H`;
     window.scrollTo(0,0);

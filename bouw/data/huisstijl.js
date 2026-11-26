@@ -223,6 +223,7 @@ function openSocial(bron){
 
 /* Bron voor het deelvenster per item */
 function socialBron(item){
+  if (item.kind === "insluiten") return null;
   const base = location.href.split("#")[0], link = hsLink(base + "#/item/" + item.id);
   const tags = item.tags || [];
   if (item.kind === "campagne" || item.kind === "selectie"){
@@ -332,4 +333,94 @@ function viewHuisstijl(){
   $("#hs-vlcopy").onclick = async () => toast(await copyText($("#hs-voorbeeldlink").value) ? "Link gekopieerd" : "Kopiëren lukte niet");
   $("#hs-try").onclick = () => openSocial({ titel:"Verlaag je belastingdruk vóór 31 december", tekst:tekstVanSjabloon(CAMP.find(c=>c.id==="campagne-eindejaar-belasting")?.sjablonen[0].tekst || ""), tags:["belasting","lijfrente","eindejaar"], ic:"euro" });
   tekenen();
+}
+
+/* ---------- Insluitcodes ---------- */
+const LIVE_URL = "https://jeroen-o.github.io/finmarketing/";
+const siteBase = () => /^https?:$/.test(location.protocol) ? location.href.split("#")[0] : LIVE_URL;
+const INSLUIT_EXTERN = {
+  pandwise:{ naam:"PandWise: gratis woningwaarderapport", titel:"Woningwaarderapport", hoogte:1400, adres:true,
+    url:o => "https://pandwise.nl/?embed=1" + [["adviseur",o.adviseur],["kantoor",o.kantoor],["logo",/^https:\/\//i.test(o.logo)?o.logo:""]].filter(x=>x[1]).map(([k,v])=>`&${k}=${encodeURIComponent(v)}`).join("") + (o.adres ? `&q=${encodeURIComponent(o.adres)}&auto=1` : ""),
+    info:"Klanten vullen een adres of Funda-link in en zien direct waarde-indicatie, fundering, klimaat en geluid. Met je naam, kantoor en logo staat het rapport op jouw naam." },
+  duurzaamheidsprofiel:{ naam:"Duurzaamheidsprofiel", titel:"Duurzaamheidsprofiel", hoogte:1200,
+    url:() => "https://duurzaamheidsprofiel.hypotheekbond.nl/",
+    info:"Klanten zien op postcode en huisnummer hoe hun woning scoort en welke maatregelen mogelijk zijn, met kosten en besparing." }
+};
+const insluitTools = () => [
+  ...Object.entries(INSLUIT_EXTERN).map(([id,t])=>({ id, ...t })),
+  ...ITEMS.filter(i=>KLANT_KINDS.includes(i.kind) && i.kind!=="woningwaarde").map(i=>({ id:i.id, naam:i.title.replace(/^Klantcheck: /,"Klantcheck: "), titel:i.title.replace(/^Klantcheck: /,""), hoogte:1100, eigen:true,
+    url:() => { const u = hsLink(siteBase() + "#/item/" + i.id); return u + (u.includes("?") ? "&" : "?") + "embed=1"; }, info:i.summary }))
+];
+const ins = { tool:"pandwise", hoogte:"", adres:"", vorm:"iframe" };
+function viewInsluiten(item, params){
+  setNav("klanttools");
+  if (params?.get?.("tool")) ins.tool = params.get("tool");
+  smallHero([`<a href="#/?cat=klanttools">Klanttools</a>`, `<b>Insluitcodes</b>`], `
+    <div class="detail-head"><div>${badge(item.model)} <span class="badge cat">Eigen website</span><h1>Tools op je eigen website</h1><p>Kies een tool, vul je gegevens in en kopieer de code. Plak die op je website, in Google Sites, WordPress of Wix. Zo gebruiken klanten de tool op jouw site, op jouw naam.</p></div></div>`);
+  const tools = insluitTools();
+  if (!tools.find(t=>t.id===ins.tool)) ins.tool = "pandwise";
+  const opt = (lst) => lst.map(t=>`<option value="${t.id}" ${t.id===ins.tool?"selected":""}>${esc(t.naam)}</option>`).join("");
+  app.innerHTML = `<div class="wrap"><div class="layout">
+    <aside>
+      <form class="panel cut" onsubmit="return false">
+        <h2><span class="hexi">1</span>Kies de tool</h2>
+        <label class="f" for="in-tool">Tool</label>
+        <select class="i" id="in-tool"><optgroup label="Gratis tools van Blinqx">${opt(tools.filter(t=>!t.eigen))}</optgroup><optgroup label="Klanttools uit deze bibliotheek">${opt(tools.filter(t=>t.eigen))}</optgroup></select>
+        <p class="hint" id="in-info"></p>
+        <h2 style="margin-top:14px"><span class="hexi">2</span>Jouw gegevens</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 10px">
+          ${[["adviseur","Naam adviseur"],["kantoor","Kantoornaam"]].map(([k,l])=>`<div><label class="f" for="in-${k}">${l}</label><input class="i" id="in-${k}" data-in="${k}" value="${esc(HS[k])}"></div>`).join("")}
+        </div>
+        <label class="f" for="in-logo">Logo-URL (https)</label><input class="i" id="in-logo" data-in="logoUrl" value="${esc(HS.logoUrl)}" placeholder="https://www.jouwkantoor.nl/logo.png">
+        <div id="in-adresblok"><label class="f" for="in-adres">Vast adres (optioneel)</label><input class="i" id="in-adres" value="${esc(ins.adres)}" placeholder="Leeg laten: klant vult zelf in"><p class="hint">Handig op een pagina over één woning, bijvoorbeeld bij een aankoopbegeleiding.</p></div>
+        <p class="hint" id="in-hs">Kleuren en lettertype van de klanttools komen uit <a href="#/huisstijl">jouw huisstijl</a>.</p>
+        <h2 style="margin-top:14px"><span class="hexi">3</span>Weergave</h2>
+        <label class="f" for="in-vorm">Vorm</label>
+        <select class="i" id="in-vorm"><option value="iframe">Ingesloten in de pagina (iframe)</option><option value="knop">Knop die de tool opent</option><option value="link">Alleen de link</option></select>
+        <label class="f" for="in-h">Hoogte in pixels</label><input class="i" id="in-h" inputmode="numeric" value="${esc(ins.hoogte)}">
+      </form>
+    </aside>
+    <section>
+      <div class="panel cut"><h2>Jouw code</h2>
+        <textarea class="i" id="in-code" rows="7" readonly style="font-family:ui-monospace,Consolas,monospace;font-size:.8rem;min-height:150px"></textarea>
+        <div class="actions" style="flex-direction:row;flex-wrap:wrap"><button class="btn btn-y btn-sm" id="in-copy" type="button">${icon("copy",16)} Kopieer code</button><button class="btn btn-o btn-sm" id="in-copyurl" type="button">${icon("link",16)} Kopieer alleen de link</button><a class="btn btn-o btn-sm" id="in-open" target="_blank" rel="noopener">Open los ↗</a></div></div>
+      <div class="panel cut"><h2>Zo plaats je de code</h2>
+        <div class="tabs" role="tablist">${["Google Sites","WordPress","Wix","Overige sites"].map((l,i)=>`<button class="tab" role="tab" data-intab="${i}" aria-selected="${i===0}">${l}</button>`).join("")}</div>
+        <div id="in-uitleg"></div></div>
+      <div class="panel cut" style="padding:0;overflow:hidden"><div class="preview-bar" style="padding:10px 16px"><span><b>Voorbeeld</b> zoals op jouw site</span></div><div id="in-pv"></div></div>
+      <div class="note"><strong>Let op:</strong> je plaatst een tool op je eigen website; jij blijft verantwoordelijk voor hoe je die aanbiedt (gebruik voor eigen rekening en risico). De uitkomsten zijn indicaties, geen advies. Vermeld in je privacyverklaring dat je een ingesloten tool van een derde gebruikt als die gegevens verwerkt.</div>
+    </section></div></div>`;
+  const UITLEG = [
+    ["Open je pagina in Google Sites.","Kies rechts <b>Invoegen → Insluiten</b> en daarna het tabblad <b>Code insluiten</b>.","Plak de code en klik op <b>Volgende → Invoegen</b>.","Sleep het blok groter, zodat de hele tool zichtbaar is, en publiceer de site."],
+    ["Open de pagina in de editor.","Voeg een blok <b>Aangepaste HTML</b> (Custom HTML) toe.","Plak de code en klik op <b>Bijwerken</b> of <b>Publiceren</b>.","Werkt een iframe niet in je thema? Kies dan vorm ‘Knop die de tool opent’."],
+    ["Klik in de editor op <b>Toevoegen → Insluiten (Embed code) → HTML insluiten</b>.","Kies <b>Code</b> en plak de code.","Maak het blok breed en hoog genoeg en publiceer."],
+    ["Plak de code in de HTML van je pagina, op de plek waar de tool moet komen.","Bij een websitebouwer: zoek naar ‘HTML’, ‘Embed’ of ‘Code insluiten’.","Laat je site beheren door een webbureau? Stuur hun de code."]
+  ];
+  const tab = i => { $$("[data-intab]").forEach(t=>t.setAttribute("aria-selected", +t.dataset.intab===i)); $("#in-uitleg").innerHTML = `<ol class="steps">${UITLEG[i].map(s=>`<li>${s}</li>`).join("")}</ol>`; };
+  $$("[data-intab]").forEach(t=>t.onclick=()=>tab(+t.dataset.intab)); tab(0);
+  let pvUrl = "";
+  const gen = () => {
+    const t = tools.find(x=>x.id===ins.tool), h = Math.max(300, Math.min(4000, parseInt(String(ins.hoogte).replace(/\D/g,""))||t.hoogte));
+    const url = t.url({ adviseur:HS.adviseur, kantoor:HS.kantoor, logo:HS.logoUrl, adres:ins.adres.trim() });
+    $("#in-info").textContent = t.info || ""; $("#in-adresblok").hidden = !t.adres; $("#in-hs").hidden = !t.eigen;
+    $("#in-h").placeholder = String(t.hoogte);
+    const wie = HS.kantoor ? ` · ${HS.kantoor}` : "", a = s => s.replace(/&/g,"&amp;").replace(/"/g,"&quot;");
+    const kleur = hsKleur(), ink = textColorOn(kleur);
+    const code = ins.vorm === "iframe"
+      ? `<!-- ${t.titel}${wie} -->\n<iframe src="${a(url)}" title="${a(t.titel)}" width="100%" height="${h}" style="border:0;width:100%;max-width:1200px;display:block;margin:0 auto" loading="lazy" allow="clipboard-write; web-share"></iframe>`
+      : ins.vorm === "knop"
+      ? `<!-- ${t.titel}${wie} -->\n<a href="${a(url)}" target="_blank" rel="noopener" style="display:inline-block;background:${kleur};color:${ink};font-family:${hsFont().replace(/"/g,"'")};font-weight:bold;text-decoration:none;padding:12px 20px">${esc(t.titel)} →</a>`
+      : url;
+    $("#in-code").value = code; $("#in-open").href = url;
+    if (url !== pvUrl){ pvUrl = url; $("#in-pv").innerHTML = `<iframe src="${a(url)}" title="Voorbeeld" style="border:0;width:100%;height:${Math.min(h,900)}px;display:block" loading="lazy"></iframe>`; }
+    else { const f = $("#in-pv iframe"); if (f) f.style.height = Math.min(h,900)+"px"; }
+  };
+  $("#in-tool").onchange = e => { ins.tool = e.target.value; gen(); };
+  $("#in-vorm").value = ins.vorm; $("#in-vorm").onchange = e => { ins.vorm = e.target.value; gen(); };
+  $("#in-h").oninput = e => { ins.hoogte = e.target.value; gen(); };
+  $("#in-adres").onchange = e => { ins.adres = e.target.value; gen(); };
+  $$("[data-in]").forEach(el=>el.addEventListener("change", ()=>{ const k = el.dataset.in, v = el.value.trim(); if (k==="logoUrl" && v && !/^https:\/\//i.test(v)){ toast("Logo-URL moet met https:// beginnen"); return; } HS[k] = v; hsSync(); gen(); }));
+  $("#in-copy").onclick = async () => toast(await copyText($("#in-code").value) ? "Code gekopieerd" : "Kopiëren lukte niet");
+  $("#in-copyurl").onclick = async () => toast(await copyText($("#in-open").href) ? "Link gekopieerd" : "Kopiëren lukte niet");
+  gen();
 }
