@@ -189,6 +189,10 @@
   .page-hits a{display:flex;align-items:center;gap:12px;background:#fff;padding:12px 16px;text-decoration:none;color:var(--ink)}
   .page-hits a:hover{background:var(--y-soft)}
   .page-hits a>span:nth-child(2){flex:1 1 auto;min-width:0}.page-hits small{display:block;color:var(--muted);font-size:.8rem}
+  .zoek-hulp{background:var(--y-soft);padding:10px 14px;margin:0 0 14px;font-size:.92rem}
+  .linkbtn{background:none;border:0;padding:0;font:inherit;font-weight:800;text-decoration:underline;cursor:pointer;color:inherit}
+  .zoek-sug{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin-top:14px}
+  .zoek-sug span{font-size:.8rem;font-weight:800;color:var(--muted)}
   .partners-band{padding:8px 0 30px}
   .partners-band .partners{margin-bottom:10px}
   body.embed .partners-band{display:none!important}
@@ -936,11 +940,42 @@ function haystack(i){
   };
 }
 const HAY = new Map(ITEMS.map(i=>[i.id, haystack(i)]));
-function scoreItem(i, terms){
+/* Woordvormen: brieven -> brief, huizen -> huis, verzekeringen -> verzekering, posts -> post */
+function vormen(t){
+  const v = new Set([t]);
+  if (t.length > 4){
+    if (/ven$/.test(t)) v.add(t.slice(0,-3)+"f");
+    if (/zen$/.test(t)) v.add(t.slice(0,-3)+"s");
+    if (/en$/.test(t)) { v.add(t.slice(0,-2)); if (/(.)\1en$/.test(t)) v.add(t.slice(0,-3)); }
+    if (/s$/.test(t)) v.add(t.slice(0,-1));
+    if (/'s$/.test(t)) v.add(t.slice(0,-2));
+  }
+  return [...v];
+}
+/* Typfouten: dichtstbijzijnde woord uit de teksten van de site (Damerau-Levenshtein, max. 1 of 2) */
+let VOCAB = null; const CORR = new Map();
+function afstand(a, b){
+  if (Math.abs(a.length-b.length) > 2) return 9;
+  const d = Array.from({length:a.length+1}, (_,i)=>[i, ...Array(b.length).fill(0)]); for (let j=1;j<=b.length;j++) d[0][j]=j;
+  for (let i=1;i<=a.length;i++) for (let j=1;j<=b.length;j++){ const c = a[i-1]===b[j-1]?0:1;
+    d[i][j] = Math.min(d[i-1][j]+1, d[i][j-1]+1, d[i-1][j-1]+c); if (i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1]) d[i][j]=Math.min(d[i][j], d[i-2][j-2]+1); }
+  return d[a.length][b.length];
+}
+function corrigeer(t){
+  if (t.length < 4 || /\d/.test(t)) return null;
+  if (CORR.has(t)) return CORR.get(t);
+  if (!VOCAB){ const tel = new Map(); for (const h of HAY.values()) for (const w of (h.t+" "+h.g+" "+h.r).split(/[^a-z0-9]+/)) if (w.length>=4) tel.set(w,(tel.get(w)||0)+1); VOCAB = tel; }
+  if (VOCAB.has(t)) { CORR.set(t, null); return null; }
+  const max = t.length >= 7 ? 2 : 1; let best = null, bd = 9, bc = 0;
+  for (const [w, c] of VOCAB){ if (w[0]!==t[0] && t.length<6) continue; const d = afstand(t, w); if (d<=max && (d<bd || (d===bd && c>bc))) { best=w; bd=d; bc=c; } }
+  CORR.set(t, best); return best;
+}
+let LAATSTE_CORRECTIES = [];
+function scoreItem(i, terms, gew, deels){
   if (!terms.length) return 1;
-  const h = HAY.get(i.id); let total = 0;
+  const h = HAY.get(i.id); let total = 0, raak = 0;
   for (const t of terms){
-    const alts = [t, ...(SYN[t]||[]).map(norm)];
+    const alts = [...vormen(t), ...(SYN[t]||[]).map(norm)];
     let best = 0;
     for (const a of alts){
       const w = a===t ? 1 : .6;
@@ -948,10 +983,21 @@ function scoreItem(i, terms){
       else if (h.g.includes(a)) best = Math.max(best, 3*w);
       else if (h.r.includes(a)) best = Math.max(best, 1*w);
     }
-    if (!best) return 0;
-    total += best;
+    if (!best){
+      const c = corrigeer(t);
+      if (c){ if (h.t.includes(c)) best = 4; else if (h.g.includes(c)) best = 2.4; else if (h.r.includes(c)) best = .8; }
+      if (!best){ if (deels) continue; return 0; }
+      if (!LAATSTE_CORRECTIES.some(x=>x[0]===t)) LAATSTE_CORRECTIES.push([t, c]);
+    }
+    raak++; total += best * (gew ? gew[t] || 1 : 1);
   }
-  return total;
+  return deels ? (raak ? total + raak * 100 : 0) : total;
+}
+/* Zeldzame woorden wegen zwaarder: gewicht = 1 + ln(N / (1 + aantal items met het woord)) */
+function termGewicht(T){
+  const g = {}, N = ITEMS.length;
+  for (const t of T){ let df = 0; for (const i of ITEMS) if (scoreItem(i, [t])) df++; g[t] = 1 + Math.log(N / (1 + df)); }
+  return g;
 }
 function highlight(text, terms){
   let out = esc(text);
@@ -966,7 +1012,8 @@ function highlight(text, terms){
   merged.forEach(([a,b])=>{ res += esc(text.slice(pos,a)) + "<mark>" + esc(text.slice(a,b)) + "</mark>"; pos=b; });
   return res + esc(text.slice(pos));
 }
-const terms = q => norm(q).split(/[\s,]+/).filter(Boolean);
+const STOP = new Set("de het een en of van voor op in aan met naar bij om te tot uit over als dan dat die dit is zijn ben was wat hoe waar wie welke wanneer waarom ik je jij u uw mijn jouw onze ons we wij hun zij kan kun kunnen wil wilt moet mag zou ook nog er niet geen wel meer veel".split(" "));
+const terms = q => { const t = norm(q).split(/[\s,?!.:;()"]+/).filter(Boolean); const zonder = t.filter(w=>!STOP.has(w)); return zonder.length ? zonder : t; };
 
 /* ============================================================
    NIEUWSBRIEF-RENDER (e-mailveilig: inline styles + tabellen)
@@ -1115,7 +1162,7 @@ function viewHome(params){
     <div class="filterbar">
       <label class="sr" for="fq">Zoeken</label>
       <span class="zoekveld"><input id="fq" type="search" enterkeyhint="search" placeholder="Zoek op titel, onderwerp of partner… (toets /)" value="${esc(state.q)}" autocomplete="off"><button type="button" class="zoekknop" id="fq-go" aria-label="Zoeken">Zoek →</button></span>
-      <span class="lbl">Model</span>
+      <span class="lbl">Prijs</span>
       ${["alle",...Object.keys(MODELS)].map(m=>`<button class="chip" data-model="${m}" aria-pressed="${state.model===m}">${m==="alle"?"Alles":MODELS[m]}</button>`).join("")}
       <span class="vsep"></span>
       <label class="sr" for="fby">Aanbieder</label>
@@ -1130,6 +1177,7 @@ function viewHome(params){
       <span class="hexi">${icon("filter",20)}</span>
       <span class="t"><b>Bekijk alle selecties</b><span>Ruim 115 kant-en-klare selecties in PortefeuilleSignalen: einde rentevast, topafslag, aflossingsvrij, LTV, verjaardagen en meer. Eén klik en de selectie opent direct.</span></span>
       <span class="btn btn-k btn-sm">Naar de selecties →</span></a>
+    <div id="zoek-hulp"></div>
     <div id="page-hits"></div>
     <div class="grid" id="grid"></div>
     <div id="kb-hits"></div>
@@ -1148,8 +1196,16 @@ function viewHome(params){
   const grid=$("#grid");
   function draw(){
     const T = terms(state.q);
-    let list = ITEMS.map(i=>({i, s:scoreItem(i,T)})).filter(x=>x.s>0 &&
+    LAATSTE_CORRECTIES = [];
+    const GEW = T.length > 1 ? termGewicht(T) : null;
+    let DEELS = false;
+    let list = ITEMS.map(i=>({i, s:scoreItem(i,T,GEW)})).filter(x=>x.s>0 &&
       (state.cat==="alle"||x.i.cat===state.cat) && (state.model==="alle"||x.i.model===state.model) && (state.by==="alle"||x.i.by===state.by));
+    if (!list.length && T.length > 1){
+      DEELS = true;
+      list = ITEMS.map(i=>({i, s:scoreItem(i,T,GEW,true)})).filter(x=>x.s>0 &&
+        (state.cat==="alle"||x.i.cat===state.cat) && (state.model==="alle"||x.i.model===state.model) && (state.by==="alle"||x.i.by===state.by));
+    }
     if (T.length) list.sort((a,b)=>b.s-a.s);
     else { const onder = i => { const k = ONDERAAN.indexOf(i.id); return k<0 ? -1 : k; };
       list.sort((a,b)=>CATS.findIndex(c=>c.id===a.i.cat)-CATS.findIndex(c=>c.id===b.i.cat) || onder(a.i)-onder(b.i)); }
@@ -1157,6 +1213,9 @@ function viewHome(params){
     $("#sel-promo").hidden = state.cat!=="campagnes";
     $("#web-promo").hidden = state.cat!=="adviseurstools";
     $("#count").textContent = `${list.length} ${list.length===1?"resultaat":"resultaten"}${T.length?` voor “${state.q.trim()}”`:""}`;
+    const corr = LAATSTE_CORRECTIES.filter(x=>x[1]);
+    const bedoeld = corr.length ? T.map(t=>{ const c = corr.find(x=>x[0]===t); return c ? c[1] : t; }).join(" ") : "";
+    $("#zoek-hulp").innerHTML = DEELS && list.length ? `<p class="zoek-hulp">Geen resultaten met álle woorden. Dit zijn de beste treffers met een deel ervan.</p>` : corr.length && list.length ? `<p class="zoek-hulp">Bedoelde je <button type="button" class="linkbtn" data-zoek="${esc(bedoeld)}">“${esc(bedoeld)}”</button>? Hieronder staan de resultaten daarvoor.</p>` : "";
     grid.innerHTML = list.length ? list.map(({i})=>`
       <article class="card cut">
         <div class="meta">${badge(i.model)}<span class="badge cat">${esc(catOf(i.cat).title)}</span></div>
@@ -1164,8 +1223,10 @@ function viewHome(params){
         <p>${highlight(i.summary,T)}</p>
         <div class="foot"><span>${esc(i.by)}</span><span class="go">${i.kind==="nieuwsbrief"?"Personaliseren & downloaden":i.kind==="checklist"?"Afvinken":"Bekijken"} →</span></div>
       </article>`).join("")
-      : `<div class="empty">Niets gevonden${state.q?` voor “${esc(state.q)}”`:""}. Probeer een ander woord, <button class="reset" id="reset2">wis de filters</button> of <a href="#/vraag?soort=wens">dien een wens in</a>.</div>`;
+      : `<div class="empty">Niets gevonden${state.q?` voor “${esc(state.q)}”`:""}${state.model!=="alle"||state.by!=="alle"||state.cat!=="alle"?" met de huidige filters":""}. Probeer een ander woord, <button class="reset" id="reset2">wis de filters</button> of <a href="#/vraag?soort=wens">dien een wens in</a>.
+         <div class="zoek-sug"><span>Veel gezocht:</span>${["hypotheekrente","pensioen","nieuwsbrief","social posts","selecties","rekentools","woontoekomst","ORV","WOZ","verduurzamen","huisstijl","kennisbank"].map(w=>`<button type="button" class="chip" data-zoek="${w}">${w}</button>`).join("")}</div></div>`;
     $("#reset2")?.addEventListener("click", resetAll);
+    $$("[data-zoek]").forEach(b=>b.onclick=()=>{ syncQ(b.dataset.zoek); });
     // Kennisbank-treffers
     const kbHits = T.length ? KB.filter(a=>T.every(x=>norm(a.t+" "+a.b).includes(x))).sort((a,b)=>(T.some(x=>norm(a.t).includes(x))?0:1)-(T.some(x=>norm(b.t).includes(x))?0:1)) : [];
     const pgBox = $("#page-hits");
