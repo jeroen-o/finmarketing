@@ -2,7 +2,7 @@
 
 Marketingbieb.nl, de marketingbibliotheek voor de financieel adviseur (een activiteit van Blinqx Verzekering & Hypotheek): gratis en freemium marketingmateriaal, campagnes, klanttools en rekentools voor adviseurs.
 
-**Live:** https://jeroen-o.github.io/finmarketing/
+**Live:** https://marketingbieb.nl/
 
 ## Wat staat waar
 - `index.html`: de complete site in één bestand (geen build-step nodig om te hosten, geen externe API's, geen localStorage; geschikt voor Google Sites-embed).

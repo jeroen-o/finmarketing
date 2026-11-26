@@ -336,7 +336,7 @@ function viewHuisstijl(){
 }
 
 /* ---------- Insluitcodes ---------- */
-const LIVE_URL = "https://jeroen-o.github.io/finmarketing/";
+const LIVE_URL = "https://marketingbieb.nl/";
 const siteBase = () => /^https?:$/.test(location.protocol) ? location.href.split("#")[0] : LIVE_URL;
 const INSLUIT_EXTERN = {
   pandwise:{ naam:"PandWise: gratis woningwaarderapport", titel:"Woningwaarderapport", hoogte:1400, adres:true, gegevens:true,
