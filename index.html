@@ -1368,6 +1368,1316 @@ ITEMS.push({ id:"actie-ideeen-schade", cat:"campagnes", kind:"ideeen", model:"gr
   summary:"Veertien kant-en-klare actie-ideeën voor schadeklanten, met het beste moment, de doelgroep en het materiaal: van wintersport en AVP tot SVI, studenten, e-bikes, stormseizoen en uitvaart.",
   channels:["Jaarplanning","Eigen e-mail"], tags:["schadeverzekeringen","acties","ideeën","jaarplanning","wintersport","avp","svi","e-bike","storm","rechtsbijstand","uitvaart","studenten"] });
 
+/* Formulierenbank: vragenlijsten (bron: digitale formulieren Actiefbeheerscan.nl, Blinqx V&H) */
+const FORMS = [
+{
+"id": "form-jaarlijkse-nazorg",
+"titel": "Jaarlijkse nazorg: is er iets veranderd?",
+"sub": "Een korte jaarlijkse uitvraag: inkomen, hypotheek, woning, gezin en wensen.",
+"thema": "Nazorg & hypotheek",
+"intro": "",
+"stappen": [
+{
+"titel": "Inkomen",
+"vragen": [
+{
+"v": "Is het (gezamenlijk) inkomen veranderd?",
+"t": "een",
+"o": [
+"Nee",
+"Ja"
+]
+}
+]
+},
+{
+"titel": "Hypotheek",
+"vragen": [
+{
+"v": "Is de hypotheek aangepast?",
+"t": "een",
+"o": [
+"Nee",
+"Ja"
+]
+}
+]
+},
+{
+"titel": "Woning",
+"vragen": [
+{
+"v": "Is er iets veranderd in de woonsituatie?",
+"t": "een",
+"o": [
+"Nee",
+"Ja"
+]
+}
+]
+},
+{
+"titel": "Gezinssituatie",
+"vragen": [
+{
+"v": "Is de gezinssituatie veranderd?",
+"t": "een",
+"o": [
+"Nee",
+"Ja"
+]
+}
+]
+},
+{
+"titel": "Wensen",
+"vragen": [
+{
+"v": "Welke wensen zijn er voor de toekomst?",
+"t": "meer",
+"s": "Meerdere antwoorden zijn mogelijk",
+"o": [
+"Verhuizen naar een andere woning",
+"De huidige woning verbouwen",
+"(Eerder) stoppen met werken",
+"De woonlasten verlagen",
+"Extra aflossen op de hypotheek",
+"Geld vrijmaken uit de overwaarde",
+"Geen specifieke wensen",
+"Anders, namelijk:"
+]
+}
+]
+},
+{
+"titel": "Overige vragen",
+"vragen": [
+{
+"v": "Zijn er andere (financiële) vragen waarbij wij mogen helpen?",
+"t": "open"
+}
+]
+}
+]
+},
+{
+"id": "form-status-hypotheek",
+"titel": "Hypotheekcheck: past je hypotheek nog?",
+"sub": "Is er iets veranderd in inkomen, werk, vermogen, woning of gezin? Dan is het tijd voor een check.",
+"thema": "Nazorg & hypotheek",
+"intro": "Een hypotheek afsluiten doe je niet zomaar, het is een beslissing die je voor een lange termijn neemt. De kans is groot dat er tijdens de looptijd omstandigheden zijn die ertoe kunnen leiden dat het tussentijds aanpassen van de hypotheek voor jou een slimme keuze is. Denk maar eens aan de sterk flucturerende hypotheekrentes of een verandering in je inkomen. En misschien is je persoonlijke situatie wel gewijzigd?\n\nBeantwoord in de volgende stappen de vragen en wij gaan na of je je hypotheek kunt verbeteren.",
+"stappen": [
+{
+"titel": "Relatie en gezin",
+"vragen": [
+{
+"v": "Is er in je relatie iets veranderd? Of verwacht je binnenkort een verandering?",
+"t": "een",
+"o": [
+"Ik ben getrouwd, of ga binnenkort trouwen",
+"Ik heb nu een geregistreerde partner of krijg die binnenkort",
+"Ik ben gaan samenwonen, of ga dat binnenkort doen",
+"Ik ben gescheiden of ga scheiden",
+"Ik heb of verwacht een extra kind",
+"Nee, geen wijzigingen"
+]
+}
+]
+},
+{
+"titel": "Inkomen, vermogen en wonen",
+"vragen": [
+{
+"v": "Is er iets veranderd in je (gezins)inkomen?",
+"t": "een",
+"o": [
+"Ja, dat is hoger geworden",
+"Ja, dat is lager geworden",
+"Nee"
+]
+},
+{
+"v": "Is er iets in je werksituatie veranderd? Of gaat dat mogelijk binnenkort gebeuren?",
+"t": "meer",
+"o": [
+"Ja, ik ben van werkgever veranderd, of ga dat doen",
+"Ik ben zelfstandig ondernemer geworden, of ben dat van plan",
+"Ik ben werkloos geworden, of dreig dat te worden",
+"Ik ben (deels) arbeidsongeschikt verklaard",
+"Ik ben of ga binnenkort met (vroeg)pensioen",
+"Nee, geen wijzigingen",
+"Anders, namelijk:"
+]
+},
+{
+"v": "Hoe ontwikkelt je vermogen zich? En heb je (of verwacht je) financiële problemen?",
+"t": "meer",
+"o": [
+"Mijn vermogen is toegenomen (spaargeld, aandelen, onroerend goed)",
+"Mijn vermogen is afgenomen",
+"Mijn schuld is toegenomen (pers.lening, creditcard, enz.)",
+"Mijn schuld is gedaald",
+"Ik heb een erfenis ontvangen",
+"Ik heb een schenking ontvangen of gedaan",
+"Ik kom (structureel) maandelijks financieel niet uit",
+"Mijn pensioen is versoberd of verbeterd",
+"Geen wijzigingen",
+"Andere wijzigingen:"
+]
+},
+{
+"v": "Is er iets veranderd omtrent je woning? Of heb je daar plannen voor?",
+"t": "meer",
+"o": [
+"Mijn woning is in waarde gestegen.",
+"Mijn woning is in waarde gedaald.",
+"Ik heb mijn woning verbouwd (of denk daarover na)of aangepast (of ben dat van plan)",
+"Ik heb mijn woning energiezuiniger gemaakt (of denk daarover na)",
+"Ik heb een 2e woning gekocht (of denk daarover na)",
+"Ik ben verhuisd (of ben dat van plan)",
+"Nee, geen (grote) wijzingingen",
+"Andere wijzigingen:"
+]
+}
+]
+}
+]
+},
+{
+"id": "form-extra-aflossen",
+"titel": "Aflossingsvrije hypotheek: op termijn nog betaalbaar?",
+"sub": "Voor klanten met (deels) aflossingsvrij: einde looptijd, woningwaarde, inkomen en vermogen.",
+"thema": "Nazorg & hypotheek",
+"intro": "Mogelijk los jij (een deel van) jouw hypotheek niet maandelijks af. Voor veel hypotheken stopt de hypotheekrenteaftrek in 2031. De vraag is of jij het netto maandbedrag van jouw hypotheek dan nog kunt betalen? Het verlengen van de hypotheek of een nieuwe hypotheek afsluiten op de einddatum van de hypotheek is niet altijd mogelijk en zal afhangen van factoren als; de restschuld op de eindatum, jouw (pensioen)inkomen, de waarde van jouw woning en jouw middelen om de hypotheekschuld mogelijk te kunnen verlagen. Vul onderstaande vragen in en wij gaan graag voor je na of jouw hypotheek mogelijk aanpassing behoeft.",
+"stappen": [
+{
+"titel": "Hypotheekgegevens",
+"vragen": [
+{
+"v": "Heb jij je 1e hypotheek afgesloten vóór 1 januari 2013?",
+"t": "een",
+"o": [
+"Nee",
+"Ja",
+"Dat weet ik niet"
+]
+},
+{
+"v": "Heb jij een leningdeel waarop je niet aflost?",
+"t": "een",
+"s": "Maak een keuze. De grootte van de hypotheekschuld blijft voor dat deel dus elk jaar gelijk.",
+"o": [
+"Ja, een aflossingsvrije lening",
+"Ja, een spaarhypotheek",
+"Ja, een leven- of beleggingshypotheek",
+"Een combinatie van bovenstaande",
+"Nee, ik los mijn hypotheek volledig af"
+]
+},
+{
+"v": "Wanneer loopt je aflossingsvrije hypotheek af?",
+"t": "een",
+"o": [
+"Binnen 5 jaar",
+"Binnen 10 jaar",
+"Binnen 15 jaar",
+"Over meer dan 15 jaar"
+]
+},
+{
+"v": "Hoe hoog is het aflossingsvrije hypotheek(deel) ten opzichte van de huidige waarde van je woning?",
+"t": "een",
+"s": "Maak een keuze. (voorbeeld: aflossingsvrije deel = € 100.000 | woningwaarde = € 400.000 => 100/400 = 25%)",
+"o": [
+"Schuld is minder dan 50%",
+"Schuld is meer dan 50%",
+"Weet ik niet precies"
+]
+}
+]
+},
+{
+"titel": "Woning",
+"vragen": [
+{
+"v": "Hoeveel is je woning waard ten opzichte van het totaal van je hypotheekschuld?",
+"t": "een",
+"s": "Maak een keuze. (voorbeeld: totale hypotheek = € 300.000 | woningwaarde = € 400.000 => 400/300 = 133%)",
+"o": [
+"Tot 20% meer",
+"Meer dan 20% meer",
+"De hypotheek is hoger dan de woningwaarde",
+"Weet ik niet"
+]
+},
+{
+"v": "Ben je van plan de woning te verkopen vóór of rond de einddatum van de hypotheek?",
+"t": "een",
+"o": [
+"Ja, voor een kleinere woning of huren",
+"Ja, wegens vertrek naar het buitenland",
+"Nee, ik wil hier blijven wonen"
+]
+}
+]
+},
+{
+"titel": "Inkomen en vermogen",
+"vragen": [
+{
+"v": "Hoeveel bedraagt op dit moment je bruto jaarinkomen (incl. eventuele partner) ten opzichte van het aflossingsvrije hypotheekdeel?",
+"t": "een",
+"o": [
+"Minder dan 20%",
+"Meer dan 20%",
+"Weet ik niet"
+]
+},
+{
+"v": "Heb je vermogen beschikbaar om de hypotheekschuld te verlagen ?",
+"t": "een",
+"o": [
+"Ja, tot maximaal € 25.000",
+"Ja, tot maximaal € 50.000",
+"Ja, tot maximaal € 100.000",
+"Ja, meer dan € 100.000",
+"Nee"
+]
+},
+{
+"v": "Hoeveel bedraagt na je pensioen je bruto jaarinkomen (inclusief dat van je eventuele partner) ten opzichte van het aflossingsvrije hypotheekdeel?",
+"t": "een",
+"s": "Maak een keuze. Het gaat om totaal van AOW + werkgeverspensioen*, plus eventuele lijfrente inkomsten (* zie: www.mijnpensioenoverzicht.nl)",
+"o": [
+"Minder dan 20%",
+"Meer dan 20%",
+"Weet ik niet"
+]
+},
+{
+"v": "Ben je in staat om te sparen? Of eventueel bereid maandelijks alsnog (een deel van) je hypotheek af te lossen?",
+"t": "meer",
+"s": "Meerdere antwoorden mogelijk",
+"o": [
+"Ja, ik houd maandelijks geld over",
+"Ja, ik wil (misschien) wel extra aflossen",
+"Nee, dit kan of wil ik niet"
+]
+},
+{
+"v": "Wat is je leeftijd?",
+"t": "een",
+"o": [
+"Jonger dan 50",
+"Tussen 50 en 57",
+"Ouder dan 57"
+]
+}
+]
+},
+{
+"titel": "Aflossingsvrije hypotheek",
+"vragen": [
+{
+"v": "Hoe kunnen we je verder helpen?",
+"t": "meer",
+"o": [
+"Ik wil graag een check op mijn schadeverzekeringen",
+"Ik wil graag een check op mijn hypotheek",
+"Ik wil graag een check op mijn lopende leningen",
+"Anders, namelijk"
+]
+}
+],
+"sub": "Kunnen wij (ter controle) jouw naam en adres ontvangen?"
+}
+]
+},
+{
+"id": "form-gerust-pensioen",
+"titel": "Pensioenscan: gerust met pensioen?",
+"sub": "Inzicht in werkgever, pensioenopbouw en inkomen na pensionering.",
+"thema": "Pensioen & inkomen",
+"intro": "Je pensioeninkomen kan bestaan uit 3 'pijlers'. De 1e pijler is het pensioen dat je ontvangt van de overheid (AOW). De 2e pijler is het pensioen dat je via je werkgever opbouwt en de 3e pijler is het pensioen dat je 'privé' hebt opgebouwd via bijvoorbeeld een lijfrenteverzekering (of andere spaartegoeden). Jouw pensioeninkomen is niet alleen van belang om later prettig te kunnen leven maar is bijvoorbeeld ook van belang bij overlijden (voor je nabestaanden) of bij het kunnen aanvragen of verlengen van een hypotheek. Geldverstrekkers nemen daarbij al vanaf de 57-jarige leeftijd het pensioeninkomen mee in hun beoordeling. Vul onderstaande vragen in en wij gaan graag voor je na of jouw pensioenvoorziening aanpassing behoeft.",
+"stappen": [
+{
+"titel": "Algemeen",
+"vragen": [
+{
+"v": "Ben je na je 15e levensjaar in Nederland komen wonen?",
+"t": "een",
+"s": "Maak een keuze. Voor elk jaar dat je niet in Nederland hebt gewoond, 50 jaar voor je pensioendatum, word je 2% gekort op de AOW uitkering.",
+"o": [
+"Nee",
+"Ja"
+]
+},
+{
+"v": "Ben je na je 25e levensjaar 1 of meerdere keren van werkgever veranderd?",
+"t": "een",
+"o": [
+"Nee",
+"Nee, ik ben altijd (zelfstandig) ondernemer geweest",
+"Ja, 1 keer",
+"Ja, meerdere keren",
+"Ja, maar ik ben nu (zelfstandig) ondernemer"
+]
+},
+{
+"v": "Heb je pensioen opgebouwd via je werkgever of als zelfstandig ondernemer?",
+"t": "een",
+"o": [
+"Via mijn werkgever",
+"Als zelfstandige via een lijfrente (bancair of verzekering)",
+"Beide",
+"Geen van beide"
+]
+},
+{
+"v": "Ben je 1 of meerdere keren gescheiden in je leven?",
+"t": "een",
+"o": [
+"Nee",
+"Nee, ik ben nooit gehuwd geweest",
+"Ja"
+]
+},
+{
+"v": "Heb je een relatie?",
+"t": "een",
+"o": [
+"Nee",
+"Ja, we wonen apart van elkaar",
+"Ja, we wonen samen zonder samenlevingsovereenkomst",
+"Ja, we wonen samen met een samenlevingsovereenkomst",
+"Ja, we zijn gehuwd",
+"Ja, we heb een geregistreerd partnerschap"
+]
+}
+]
+},
+{
+"titel": "Werkgever",
+"vragen": [
+{
+"v": "Weet jij wat voor pensioenregeling jouw werkgever aanbiedt?",
+"t": "een",
+"o": [
+"Een beschikbare premieregeling",
+"Een beschikbare premieregeling",
+"Ik bouw (aanvullend) pensioen op via een lijfrente (verzekering of bancair)",
+"Dat weet ik niet"
+]
+},
+{
+"v": "Weet jij wat voor pensioenregelingen jouw voormalige werkgevers aanboden?",
+"t": "meer",
+"o": [
+"Een middelloonregeling",
+"Een beschikbare premieregeling",
+"Ik bouw (aanvullend) pensioen op via een lijfrente (verzekering of bancair)",
+"Dat weet ik niet",
+"Ik heb maar 1 werkgever gehad"
+]
+},
+{
+"v": "Hebben jouw huidige werkgever de pensioenregeling tijdens jouw dienstverband (grondig) gewijzigd?",
+"t": "een",
+"o": [
+"Nee",
+"Ja",
+"Dat weet ik niet"
+]
+}
+]
+},
+{
+"titel": "Inkomen",
+"vragen": [
+{
+"v": "Ben je momenteel zzp’er, freelancer of ondernemer?",
+"t": "een",
+"o": [
+"Nee",
+"Ja"
+]
+},
+{
+"v": "Zijn er perioden geweest na je 25e levensjaar waarin je substantieel minder bent gaan verdienen?",
+"t": "een",
+"o": [
+"Nee",
+"Ja, een korte periode",
+"Ja, een langere periode van meerdere jaren"
+]
+}
+]
+},
+{
+"titel": "Contactgegevens",
+"vragen": [
+{
+"v": "Hoe kunnen we je verder helpen?",
+"t": "meer",
+"o": [
+"Ik wil graag een check op mijn schadeverzekeringen",
+"Ik wil graag een check op mijn hypotheek",
+"Ik wil graag een check op mijn lopende leningen",
+"Anders, namelijk"
+]
+}
+],
+"sub": "Kunnen wij (ter controle) jouw naam en adres ontvangen?"
+}
+]
+},
+{
+"id": "form-uitvaartverzekering",
+"titel": "Uitvaartkosten-scan",
+"sub": "Zijn de uitvaartkosten gedekt? Vragen over bestaande verzekeringen en financiële middelen.",
+"thema": "Leven & nabestaanden",
+"intro": "",
+"stappen": [
+{
+"titel": "Uitvaartkosten scan",
+"vragen": [
+{
+"v": "Heb je momenteel een uitvaartverzekering?",
+"t": "een",
+"o": [
+"Nee",
+"Ja",
+"Dat weet ik niet"
+]
+}
+],
+"info": "Een sterfgeval in de familie, daar denk je liever niet aan. Toch is het goed af en toe wel even stil te staan bij het onvermijdelijke. Kunnen de nabestaanden de kosten van een uitvaart betalen? Vaak worden deze kosten te laag ingeschat.\n\nMet een uitvaartverzekering (of begrafenisverzekering) voorkom je dat je nabestaanden moeten opdraaien voor de kosten, als er onvoldoende spaargeld is. Vul onderstaande vragen in en wij gaan graag voor je na of financiële zaken rondom een overlijden aanpassing behoeven."
+},
+{
+"titel": "Financiële middelen",
+"vragen": [
+{
+"v": "Zijn er voldoende middelen om een uitvaart van jou en/of je gezinsleden te betalen?",
+"t": "een",
+"s": "Maak een keuze. Een uitvaart kost minimaal € 7.500,-",
+"o": [
+"Nee",
+"Ja",
+"Dat weet ik niet"
+]
+},
+{
+"v": "Wil je meer informatie over een uitvaartverzekering?",
+"t": "een",
+"o": [
+"Nee",
+"Ja"
+]
+}
+]
+},
+{
+"titel": "Contactgegevens",
+"vragen": [
+{
+"v": "Hoe kunnen we je verder helpen?",
+"t": "meer",
+"o": [
+"Ik wil graag een check op mijn schadeverzekeringen",
+"Ik wil graag een check op mijn hypotheek",
+"Ik wil graag een check op mijn lopende leningen",
+"Anders, namelijk"
+]
+}
+],
+"sub": "Graag ontvangen we (ter controle) de volgende gegevens:"
+}
+]
+},
+{
+"id": "form-schadeverzekering",
+"titel": "Schadeverzekeringen-scan",
+"sub": "Gezin, woning, auto, inzittenden (OIV of SVI) en overige verzekeringen in één scan.",
+"thema": "Schadeverzekeringen",
+"intro": "Een eenmaal gesloten schadeverzekering behoeft een periodieke toets om te beoordelen of de dekking nog wel aansluit bij (veranderingen in) jouw situatie. Het kan na verloop van tijd gebeuren dat je onderverzekerd bent of oververzekerd, bijvoorbeeld omdat dekkingen elkaar overlappen.",
+"stappen": [
+{
+"titel": "Gezin en inkomen",
+"vragen": [
+{
+"v": "Is je gezinssituatie gewijzigd of is er een kind 18 jaar geworden?",
+"t": "een",
+"o": [
+"Nee",
+"Ja, namelijk"
+]
+},
+{
+"v": "Is je (gezamenlijke) bruto-inkomen gewijzigd?",
+"t": "een",
+"s": "Maak een keuze. Bijvoorbeeld als gevolg van de Corona crisis.",
+"o": [
+"Nee",
+"Ja namelijk"
+]
+}
+]
+},
+{
+"titel": "Woning",
+"vragen": [
+{
+"v": "Heb je verbouwd of staat er een verbouwing gepland?",
+"t": "een",
+"o": [
+"Nee",
+"Ja, namelijk"
+]
+},
+{
+"v": "Verhuur jij (een deel van) je woning wel eens tijdelijk?",
+"t": "een",
+"s": "Maak een keuze. Denk bijvoorbeeld aan platforms zoals Airbnb",
+"o": [
+"Nee",
+"Ja, namelijk"
+]
+},
+{
+"v": "Heb je energiebesparende maatregelen getroffen of ben je dat van plan?",
+"t": "een",
+"s": "Maak een keuze. Denk bijvoorbeeld aan zonnepanelen, HR ketel, enz.",
+"o": [
+"Nee",
+"Ja, namelijk"
+]
+},
+{
+"v": "Heb je een substantieel deel van je interieur vervangen of ben je van plan dat te gaan doen?",
+"t": "een",
+"o": [
+"Nee",
+"Ja, namelijk"
+]
+}
+]
+},
+{
+"titel": "Auto",
+"vragen": [
+{
+"v": "Hoe is je auto verzekerd?",
+"t": "een",
+"o": [
+"WA",
+"WA + beperkt casco",
+"All Risk",
+"Anders, namelijk"
+]
+},
+{
+"v": "Ben je (veel) meer of minder kilometers gaan rijden in de afgelopen jaren?",
+"t": "een",
+"s": "Bij een verandering graag het totaal aantal jaarlijkse kilometers vermelden",
+"o": [
+"Nee",
+"Ja, vermeld de jaarlijks kilometers"
+]
+},
+{
+"v": "Hoe oud is je auto?",
+"t": "een",
+"o": [
+"0 tot 5 jaar",
+"5 tot 10 jaar",
+"Ouder dan 10 jaar"
+]
+}
+]
+},
+{
+"titel": "Ongevallen inzittendenverzekering (OIV) en schadeverzekering inzittenden (SVI)",
+"vragen": [
+{
+"v": "Heb je al eens nagedacht over een ongevallen inzittendenverzekering (OIV) of een schadeverzekering inzittenden (SVI)?",
+"t": "een",
+"o": [
+"Ja, dat heb ik geregeld in mijn verzekering",
+"Nee, daar heb ik geen interesse in",
+"Nooit over nagedacht",
+"Ik weet onvoldoende wat het inhoudt"
+]
+}
+],
+"info": "Passagiers kunnen schade altijd claimen op de WA-verzekering van de bestuurder of op die van de tegenpartij. Medische kosten zijn, zowel voor de bestuurder als de passagiers, gedekt via de zorgverzekering.\n\nEen inzittendenverzekering is vooral belangrijk voor de bestuurder die zelf een ongeluk veroorzaakt. Via de inzittendenverzekering kun je dan een groot deel van die schade verhalen.\n\nEen ongevallen inzittendenverzekering (OIV) keert een vast bedrag uit bij invaliditeit of overlijden van de inzittenden van de auto door een verkeersongeval. Deze uitkering staat los van de werkelijk geleden schade.\n\nEen schadeverzekering inzittenden (SVI) is iets duurder dan een ongevallen inzittendenverzekering, maar de dekking is veel uitgebreider. Deze verzekering is vooral nuttig voor mensen die graag zoveel mogelijk risico uitsluiten. \n\nEen schadeverzekering inzittenden keert de werkelijke schade uit na een ongeval. De vaststelling van die schade gaat op dezelfde manier als bij de WA-verzekering. De schuldvraag speelt bij de schade-inzittendenverzekering echter niet mee voor de uitkering."
+},
+{
+"titel": "Overig",
+"vragen": [
+{
+"v": "Wil je dat kostbaarheden ook buitenshuis verzekerd zijn tegen beschadiging, verlies en diefstal?",
+"t": "een",
+"s": "Maak een keuze. Denk aan smartphones, tablets, laptops, kleding, sieraden.",
+"o": [
+"Ja",
+"Nee",
+"Ik heb er onvoldoende zicht op wat er standaard al meeverzekerd is"
+]
+},
+{
+"v": "Ga je vaker of op een andere manier op vakantie?",
+"t": "een",
+"s": "Maak een keuze. Denk hierbij bijvoorbeeld aan nieuwe vakantielanden, dure kleding in de bagage, gevaarlijke of bijzondere sporten of de ziektekostendekking in dure landen.",
+"o": [
+"Nee",
+"Ja, namelijk"
+]
+},
+{
+"v": "Vind je dat je voldoende beschermd bent tegen juridische claims of conflicten?",
+"t": "een",
+"o": [
+"Ja",
+"Nee",
+"Daar heb ik onvoldoende zicht op"
+]
+},
+{
+"v": "Heb je behoefte aan meer informatie of advies omtrent schadepreventie?",
+"t": "een",
+"o": [
+"Ja",
+"Nee"
+]
+}
+]
+},
+{
+"titel": "Contactgegevens",
+"vragen": [
+{
+"v": "Hoe kunnen we je verder helpen?",
+"t": "meer",
+"o": [
+"Ik wil graag een check op mijn schadeverzekeringen",
+"Ik wil graag een check op mijn hypotheek",
+"Ik wil graag een check op mijn lopende leningen",
+"Anders, namelijk"
+]
+}
+],
+"sub": "Kunnen wij (ter controle) jouw naam en adres ontvangen?"
+}
+]
+},
+{
+"id": "form-bedrijfsverzekering",
+"titel": "Bedrijfsverzekeringen-scan",
+"sub": "Voor ondernemers: werknemers, eigenaren, omzet, schade-, aansprakelijkheids- en inkomensverzekeringen en oudedagsvoorziening.",
+"thema": "Zakelijk",
+"intro": "Met jouw bedrijf loop je risico’s. Soms kun je deze zelf dragen, maar vaak is het nodig risico’s te verzekeren. Wij vinden het belangrijk om een goede risicoanalyse te maken. Met de quickscan krijg je van ons heldere antwoorden op belangrijke vragen. Bijvoorbeeld of je verzekeringen nog passen bij je huidige bedrijfssituatie? Sluiten ze nog aan op de wet- en regelgeving? En kun je besparen op de kosten voor de verzekeringen? Vul onderstaande vragen in en wij gaan graag voor je na of de bedrijfsverzekeringen aanpassing behoeven.",
+"stappen": [
+{
+"titel": "Algemeen",
+"vragen": [
+{
+"v": "Wat zijn de kernactiviteiten van het bedrijf?",
+"t": "open",
+"s": "Omschrijf de belangrijkste werkzaamheden, handel, productie, binnen- en of buitenlandse activiteiten"
+},
+{
+"v": "Zijn er belangrijke wijzigingen geweest in de bedrijfsvoering?",
+"t": "een",
+"s": "Maak een keuze. Denk hierbij aan wijziging van bedrijfsactiviteiten, omzetverandering, im- en export van/naar buiten de EU, overnames etc.",
+"o": [
+"Nee",
+"Ja, namelijk"
+]
+}
+]
+},
+{
+"titel": "Werknemers",
+"vragen": [
+{
+"v": "Hoeveel werknemers zijn er?",
+"t": "open",
+"s": "Vul een getal in. Ga uit van de situatie zoals die was aan het einde van het laatste boekjaar"
+},
+{
+"v": "Hoeveel bedroeg het totale jaarloon voor de werknemers in loondienst (SV-loon)?",
+"t": "open",
+"s": "Vul een bedrag in. Ga uit van de situatie zoals die was aan het einde van het laatste boekjaar"
+},
+{
+"v": "Hoeveel werknemers waren er niet in loondienst?",
+"t": "open",
+"s": "Vul een getal in"
+},
+{
+"v": "Hoeveel % bedroeg het ziekteverzuim onder de werknemers in loondienst?",
+"t": "open",
+"s": "Vul een percentage in. Ga uit van de situatie zoals die was aan het einde van het laatste boekjaar"
+}
+]
+},
+{
+"titel": "Eigenaars/DGA's/Firmanten",
+"vragen": [
+{
+"v": "Hoeveel eigenaren/DGA's/firmanten zijn er?",
+"t": "open",
+"s": "Vul een getal in. Ga uit van de situatie zoals die was aan het einde van het laatste boekjaar"
+},
+{
+"v": "Hoeveel bedroeg het totale jaarloon van eigenaren / DGA's / Firmanten",
+"t": "open",
+"s": "Vul een bedrag in. Ga uit van de situatie zoals die was aan het einde van het laatste boekjaar"
+}
+]
+},
+{
+"titel": "Omzet en winst",
+"vragen": [
+{
+"v": "Hoeveel bedroeg de jaaromzet?",
+"t": "open",
+"s": "Vul een bedrag in. Ga uit van de situatie zoals die was aan het einde van het laatste boekjaar"
+},
+{
+"v": "Hoeveel bedroeg de bruto winst ? (jaaromzet minus kosten)",
+"t": "open",
+"s": "Vul een bedrag in. Ga uit van de situatie zoals die was aan het einde van het laatste boekjaar"
+}
+]
+},
+{
+"titel": "Schadeverzekeringen",
+"vragen": [
+{
+"v": "Bezit je bedrijf personenauto's",
+"t": "een",
+"o": [
+"Nee",
+"Ja, vul een aantal in"
+]
+},
+{
+"v": "Bezit je bedrijf bestelauto's?",
+"t": "een",
+"o": [
+"Nee",
+"Ja, vul een aantal in"
+]
+},
+{
+"v": "Bezit je bedrijf vrachtauto's?",
+"t": "een",
+"o": [
+"Nee",
+"Ja, vul een aantal in"
+]
+},
+{
+"v": "Heeft het bedrijf een rechtsbijstandverzekering?",
+"t": "een",
+"o": [
+"Nee",
+"Ja"
+]
+}
+]
+},
+{
+"titel": "Aansprakelijkheidsverzekeringen",
+"vragen": [
+{
+"v": "Heeft je bedrijf een beroepsaansprakelijkheidsverzekering en/of bestuurdersaansprakelijkheidsverzekering?",
+"t": "een",
+"o": [
+"Nee",
+"Ja, beroepsaansprakelijkheid",
+"Ja, bestuurdersaansprakelijkheid",
+"Ja, beide"
+]
+},
+{
+"v": "Is de bruto-winst het afgelopen jaar (sterk) gewijzigd?",
+"t": "een",
+"o": [
+"Nee",
+"Ja, vul het verschil in met vorig jaar"
+]
+}
+]
+},
+{
+"titel": "Inkomensverzekeringen",
+"vragen": [
+{
+"v": "Heeft het bedrijf een ziekteverzuimverzekering?",
+"t": "een",
+"o": [
+"Nee",
+"Ja, vul de jaarpremie in"
+]
+},
+{
+"v": "Is het bedrijf eigen risicodrager voor de WGA?",
+"t": "een",
+"o": [
+"Nee",
+"Ja, vul de jaarpremie in"
+]
+},
+{
+"v": "Heeft het bedrijf een WIA verzekering? (hiaat of plus)",
+"t": "een",
+"o": [
+"Nee",
+"Ja, vul de jaarpremie in"
+]
+},
+{
+"v": "Hebben de eigenaren / DGA's / Firmanten een arbeidsongeschiktheidsverzekering",
+"t": "een",
+"o": [
+"Nee",
+"Ja, vul de (gemiddelde) jaarpremie in"
+]
+}
+]
+},
+{
+"titel": "Oudedagsvoorzieningen",
+"vragen": [
+{
+"v": "Heeft het bedrijf het overlijden van werknemers verzekerd?",
+"t": "een",
+"o": [
+"Nee",
+"Ja, als nabestaandenpensioen in de (verplichte of verzekerde) pensioenregeling",
+"Ja, als een separate collectieve overlijdensrisicoverzekering",
+"Anders namelijk:"
+]
+},
+{
+"v": "Heeft het bedrijf (ouderdoms)pensioen verzekerd voor de werknemers?",
+"t": "een",
+"o": [
+"Nee",
+"Ja, totale jaarpremie pensioenverzekering: €",
+"Ja, wij zijn verplicht aangesloten bij een bedrijfs(tak)penioenfonds",
+"Anders, namelijk"
+]
+}
+]
+},
+{
+"titel": "Contactgegevens",
+"vragen": [
+{
+"v": "Hoe kunnen we je verder helpen?",
+"t": "meer",
+"o": [
+"Ik wil graag een check op mijn schadeverzekeringen",
+"Ik wil graag een check op mijn hypotheek",
+"Ik wil graag een check op mijn lopende leningen",
+"Anders, namelijk"
+]
+}
+],
+"sub": "Kunnen wij (ter controle) je naam en adres ontvangen?"
+}
+]
+},
+{
+"id": "form-autoverzekering",
+"titel": "Autoverzekering-scan: goedkoper of beter?",
+"sub": "Privé- en gezinsauto's, aanvullende dekkingen en OIV of SVI.",
+"thema": "Schadeverzekeringen",
+"intro": "Via de onderstaande vragen beoordelen we of je huidige autoverzekering nog het beste past bij jouw situatie. Deze service kost € 25.- en is gratis als deze verzekering loopt via ons kantoor of als je hem hierna bij ons onderbrengt.",
+"stappen": [
+{
+"titel": "Auto prive",
+"vragen": [
+{
+"v": "Hoe oud is je auto?",
+"t": "een",
+"o": [
+"0 tot 5 jaar",
+"5 tot 10 jaar",
+"Ouder dan 10 jaar"
+]
+},
+{
+"v": "Hoe is je auto verzekerd?",
+"t": "een",
+"o": [
+"WA",
+"WA + beperkt casco",
+"All risk",
+"Anders, namelijk:"
+]
+},
+{
+"v": "Reed je het afgelopen jaar veel meer of minder kilometers dan daarvoor?",
+"t": "een",
+"o": [
+"Ongeveer hetzelfde",
+"Minder, namelijk",
+"Meer, namelijk"
+]
+},
+{
+"v": "Gebruik je je auto wel eens 'zakelijk'?",
+"t": "meer",
+"s": "Maak een keuze. Denk aan personen- of goederenvervoer",
+"o": [
+"Nee",
+"Ja, voor het bezorgen van pakjes of maaltijden",
+"Ja, voor personenvervoer tegen betaling",
+"Anders, namelijk"
+]
+}
+]
+},
+{
+"titel": "Auto gezin",
+"vragen": [
+{
+"v": "Wordt je auto binnen het gezin regelmatig door een kind gebruikt?",
+"t": "een",
+"o": [
+"Nee / n.v.t.",
+"Ja, namelijk"
+]
+},
+{
+"v": "Beschikt je gezin over meerdere auto's?",
+"t": "een",
+"s": "Maak een keuze. Dit gaat over mensen binnen jouw huishouden (zelfde adres)",
+"o": [
+"Nee (er is 1 auto)",
+"Ja, namelijk"
+]
+}
+]
+},
+{
+"titel": "Aanvullende verzekeringen",
+"vragen": [
+{
+"v": "Heb je pechhulp meeverzekerd?",
+"t": "een",
+"o": [
+"Ja",
+"Nee",
+"Dat weet ik niet",
+"Ik kan niet beoordelen of dat verstandig is voor mij"
+]
+},
+{
+"v": "Heb je verkeersrechtsbijstand verzekerd?",
+"t": "een",
+"s": "Maak keuze",
+"o": [
+"Ja",
+"Nee",
+"Dat weet ik niet",
+"Ik kan niet beoordelen of dat verstandig is voor mij"
+]
+}
+]
+},
+{
+"titel": "Ongevallen inzittendenverzekering (OIV) en schadeverzekering inzittenden (SVI)",
+"vragen": [
+{
+"v": "Heb je al eens nagedacht over een ongevallen inzittendenverzekering (OIV) of een schadeverzekering inzittenden (SVI)?",
+"t": "een",
+"o": [
+"Ja, dat heb ik geregeld in mijn verzekering",
+"Nee, daar heb ik geen interesse in",
+"Nooit over nagedacht",
+"Ik weet onvoldoende wat het inhoudt"
+]
+}
+],
+"info": "Passagiers kunnen schade altijd claimen op de WA-verzekering van de bestuurder of op die van de tegenpartij. Medische kosten zijn, zowel voor de bestuurder als de passagiers, gedekt via de zorgverzekering.\n\nEen inzittendenverzekering is vooral belangrijk voor de bestuurder die zelf een ongeluk veroorzaakt. Via de inzittendenverzekering kun je dan een groot deel van die schade verhalen.\n\nEen ongevallen inzittendenverzekering (OIV) keert een vast bedrag uit bij invaliditeit of overlijden van de inzittenden van de auto door een verkeersongeval. Deze uitkering staat los van de werkelijk geleden schade.\n\nEen schadeverzekering inzittenden (SVI) is iets duurder dan een ongevallen inzittendenverzekering, maar de dekking is veel uitgebreider. Deze verzekering is vooral nuttig voor mensen die graag zoveel mogelijk risico uitsluiten. \n\nEen schadeverzekering inzittenden keert de werkelijke schade uit na een ongeval. De vaststelling van die schade gaat op dezelfde manier als bij de WA-verzekering. De schuldvraag speelt bij de schade-inzittendenverzekering echter niet mee voor de uitkering."
+},
+{
+"titel": "Contactgegevens",
+"vragen": [
+{
+"v": "Hoe kunnen we je verder helpen?",
+"t": "meer",
+"o": [
+"Ik wil graag een check op mijn schadeverzekeringen",
+"Ik wil graag een check op mijn hypotheek",
+"Ik wil graag een check op mijn lopende leningen",
+"Anders, namelijk"
+]
+}
+],
+"sub": "Kunnen wij (ter controle) jouw naam en adres ontvangen?"
+}
+]
+},
+{
+"id": "form-klanttevredenheid",
+"titel": "Klanttevredenheidsonderzoek",
+"sub": "Hoe tevreden zijn klanten over de adviseur, de informatievoorziening en de dienstverlening?",
+"thema": "Kantoor & kwaliteit",
+"intro": "",
+"stappen": [
+{
+"titel": "Klanttevredenheidsonderzoek, ben je tevreden over ons?",
+"vragen": [
+{
+"v": "Wat is voor jou de belangrijkste reden geweest om voor ons kantoor te kiezen? (meerdere keuzes mogelijk)",
+"t": "meer",
+"o": [
+"Persoonlijke band met adviseur",
+"Tarief van onze dienstverlening",
+"Kwaliteit van onze dienstverlening",
+"Verwijzing/ reputatie van ons kantoor in mijn familie-/vrienden-/kennissenkring",
+"Verwijzing in mijn familie-/vrienden-/kennissenkring",
+"Prettige eerste kennismaking tijdens oriënterend gesprek",
+"Promotie via social media",
+"Anders namelijk.."
+]
+}
+]
+},
+{
+"titel": "Onze adviseur",
+"vragen": [
+{
+"v": "Hoe tevreden ben je over je adviseur?",
+"t": "een",
+"o": [
+"Zeer tevreden",
+"Tevreden",
+"Redelijk tevreden",
+"Ontevreden",
+"Zeer ontevreden"
+]
+},
+{
+"v": "Wil je je mening over onze adviseur toelichten?",
+"t": "open",
+"s": "Schrijf een toelichting"
+}
+]
+},
+{
+"titel": "Informatievoorziening",
+"vragen": [
+{
+"v": "Wat vind je van onze informatievoorziening?",
+"t": "een",
+"s": "Denk aan onze nieuwsbrief, emails, brieven, persoonlijk contact",
+"o": [
+"Zeer goed",
+"Goed",
+"Matig",
+"Slecht",
+"Zeer slecht"
+]
+},
+{
+"v": "Vind je dat we jou vaak genoeg en pro actief informeren?",
+"t": "een",
+"o": [
+"Zeer goed",
+"Goed",
+"Voldoende",
+"Matig",
+"Slecht"
+]
+},
+{
+"v": "Wil je jouw mening over onze informatievoorziening toelichten?",
+"t": "open",
+"s": "Schrijf een toelichting"
+}
+]
+},
+{
+"titel": "Overige vragen",
+"vragen": [
+{
+"v": "Als je telefonisch contact hebt gehad met ons; Hoe heb je dat contact ervaren?",
+"t": "een",
+"o": [
+"Prettig, mijn vragen werden goed en duidelijk beantwoord",
+"Voldoende, ik werd geholpen",
+"Moeizaam, ik ben niet geholpen en/of mijn vragen zijn niet naar wens beantwoord",
+"Ik heb het afgelopen jaar gene contact gehad"
+]
+},
+{
+"v": "Heb je nog opmerkingen of suggesties die je ons wilt meegeven?",
+"t": "een",
+"o": [
+"Nee",
+"Ja, schrijf een toelichting"
+]
+},
+{
+"v": "Hoe beoordeel je in het algemeen onze dienstverlening?",
+"t": "score",
+"s": "Score"
+}
+]
+},
+{
+"titel": "Klanttevredenheidsonderzoek",
+"vragen": [
+{
+"v": "Kunnen we je verder helpen?",
+"t": "meer",
+"o": [
+"Ik wil graag een check op mijn schadeverzekeringen",
+"Ik wil graag een check op mijn hypotheek",
+"Ik wil graag een check op mijn lopende leningen",
+"Anders, namelijk"
+]
+}
+],
+"sub": "Kunnen wij (ter controle) jouw naam en adres ontvangen?"
+}
+]
+}
+];
+
+/* ============================================================
+   EXTRA: blijven wonen & verzorgd achterblijven, pensioensparen/lijfrente, formulierenbank
+   ============================================================ */
+const EXTRA_CAMP = [
+{ id:"campagne-blijven-wonen", title:"Kunnen je partner en kinderen in het huis blijven wonen? Blijven ze verzorgd achter?", short:"Blijven wonen en verzorgd achterblijven",
+  summary:"De vraag die elke ouder zich stelt: kunnen mijn partner en kinderen in ons huis blijven wonen als ik overlijd of arbeidsongeschikt raak, en blijven ze goed verzorgd achter? Voor huurders én huiseigenaren.",
+  waarom:["Bij overlijden of langdurige arbeidsongeschiktheid daalt het inkomen vaak flink, terwijl de huur of hypotheek gewoon doorloopt. De ANW-uitkering is beperkt en inkomensafhankelijk, een nabestaandenpensioen is niet altijd geregeld en ondernemers hebben geen wettelijk vangnet.",
+    "Voor gezinnen met kinderen is dit de kernvraag: kan het gezin in de vertrouwde omgeving blijven wonen? Met een paar concrete cijfers maak je het bespreekbaar, en vaak blijkt een overlijdensrisicoverzekering of inkomensvoorziening goed betaalbaar."],
+  blokken:[["Huiseigenaren",["Verantwoord hypotheekrapport: overlijden en AO per partner","Overlijdensrisicoverzekering afgestemd op de hypotheek","Woonlasten- of arbeidsongeschiktheidsverzekering","Testament en voogdij"]],["Huurders",["Woonlastencheck: huur als deel van het inkomen","Nabestaandenpensioen en ANW in kaart","Overlijdensrisicoverzekering voor het inkomen","Buffer en vaste lasten"]]],
+  doelgroep:["Gezinnen met kinderen","Samenwonenden met één hoofdinkomen","Ondernemers en zzp'ers","Huurders én huiseigenaren"],
+  watDoen:"Stel de vraag concreet: kunnen je partner en kinderen in het huis blijven wonen? Bied de woonlastencheck (huur) of het verantwoord hypotheekrapport (koop) aan, en bespreek daarna de nabestaandencheck.",
+  stappen:[["Mail","Stuur de mail voor huurders of voor huiseigenaren."],["Inzicht","Laat de klant de woonlastencheck of het rapport invullen, of vul het samen in."],["Gesprek","Bespreek de uitkomst, de nabestaanden en eventuele voorzieningen."],["Vastleggen","Leg advies en keuze vast, ook als de klant niets regelt."]],
+  sjablonen:[
+    {naam:"Mail: huiseigenaren", onderwerp:"Kunnen uw partner en kinderen in uw huis blijven wonen?", tekst:`{aanhef},
+
+Het is een vraag die veel ouders zich stellen: kunnen mijn partner en kinderen in ons huis blijven wonen als mij iets overkomt? En blijven ze goed verzorgd achter?
+
+## Wat gebeurt er met uw hypotheek?
+Bij overlijden of langdurige arbeidsongeschiktheid daalt het inkomen vaak, terwijl de hypotheek gewoon doorloopt. Met het verantwoord hypotheekrapport ziet u per situatie of de hypotheek betaalbaar blijft, voor u én voor uw partner.
+
+## En verder?
+- Wat ontvangt uw partner aan nabestaandenpensioen of ANW?
+- Is er een overlijdensrisicoverzekering, en sluit die nog aan op de hypotheek?
+- Is er een testament met een voogd voor uw kinderen?
+
+Wij bekijken het graag samen met u, in alle rust. Bel ons op {tel} of reageer op deze mail.
+
+Met vriendelijke groet,
+
+{adviseur}
+{kantoor}`},
+    {naam:"Mail: huurders", onderwerp:"Kunnen uw partner en kinderen in uw huis blijven wonen?", tekst:`{aanhef},
+
+Kunnen uw partner en kinderen in uw huis blijven wonen als u overlijdt of langdurig arbeidsongeschikt raakt? De huur en de vaste lasten lopen dan gewoon door, terwijl het inkomen vaak daalt.
+
+## Doe de woonlastencheck
+In een paar minuten ziet u welk deel van het inkomen naar de huur gaat, nu en als een inkomen wegvalt:
+[link naar de woonlastencheck]
+
+## Blijven ze verzorgd achter?
+Daarnaast bekijken we graag wat uw partner ontvangt aan nabestaandenpensioen of ANW, en of een overlijdensrisicoverzekering zinvol is. Bel ons op {tel}.
+
+Met vriendelijke groet,
+
+{adviseur}
+{kantoor}`}],
+  links:[{label:"Klantcheck: woonlasten", url:"#/item/check-woonlasten"},{label:"Klantcheck: nabestaanden", url:"#/item/check-nabestaanden"},{label:"Verantwoord hypotheekrapport", url:"#/item/verantwoord-hypotheekrapport"}],
+  tags:["blijven wonen","nabestaanden","overlijden","arbeidsongeschiktheid","huur","hypotheek","gezin","kinderen","orv","verzorgd achterblijven"],
+  compliance:"Benader dit onderwerp met tact. Advies over ORV, AOV en woonlastenverzekeringen vraagt een volledige klantinventarisatie (Wft-zorgplicht)." },
+
+{ id:"campagne-pensioensparen", title:"Extra pensioen sparen: nu of nooit? Maak optimaal gebruik van de fiscale voordelen", short:"Extra pensioensparen en lijfrenteaftrek",
+  summary:"Met lijfrente of een lijfrenterekening spaar je fiscaal voordelig extra voor je pensioen: de inleg is aftrekbaar binnen je jaarruimte en reserveringsruimte. Wie niet benut, verliest ruimte. Help klanten vóór het einde van het jaar.",
+  waarom:["Veel mensen hebben een pensioentekort, zeker ondernemers, zzp'ers, mensen met een onderbroken loopbaan en wie parttime werkt. Met een lijfrenteverzekering, -rekening of -beleggingsrecht kun je fiscaal voordelig bijsparen: de inleg is aftrekbaar van het inkomen in box 1, binnen de jaarruimte.",
+    "Niet-benutte jaarruimte van eerdere jaren kun je beperkt inhalen via de reserveringsruimte, maar oude ruimte vervalt na verloop van tijd. Daarom is het ‘nu of nooit’: wie dit jaar wil aftrekken, moet vóór 31 december inleggen. Hoe eerder je begint, hoe meer je profiteert van rendement op rendement."],
+  blokken:[["Het fiscale voordeel",["Inleg aftrekbaar in box 1 (binnen de jaarruimte)","Teruggave tegen je marginale tarief","Vermogen valt niet in box 3","Uitkering later belast, vaak tegen een lager tarief"]],["Voor wie?",["Ondernemers en zzp'ers zonder pensioenregeling","Werknemers met een pensioentekort of parttime","Wie een (hoge) eindejaarsuitkering of bonus krijgt","Wie onbenutte ruimte uit eerdere jaren heeft"]]],
+  doelgroep:["Ondernemers en zzp'ers","Klanten van 40–60 jaar met een mogelijk pensioentekort","Benaderen in oktober–december (vóór 31 december)"],
+  watDoen:"Wijs klanten op hun jaarruimte en reserveringsruimte, laat zien wat extra sparen oplevert met de lijfrente-rekenhulp en help ze vóór 31 december in te leggen.",
+  stappen:[["Mail","Stuur in oktober of november de mail ‘nu of nooit’."],["Rekenen","Bereken de jaarruimte (rekenhulp Belastingdienst) en laat het effect zien met de lijfrente-rekenhulp."],["Advies","Kies samen een passend product en zorg dat de inleg vóór 31 december binnen is."],["Vastleggen","Leg het advies en de keuze vast."]],
+  sjablonen:[
+    {naam:"Mail: nu of nooit", onderwerp:"Extra pensioen sparen met belastingvoordeel: vóór 31 december", tekst:`{aanhef},
+
+Wist u dat u met extra pensioensparen belasting kunt besparen? Met een lijfrenteverzekering, -rekening of -beleggingsrecht is uw inleg aftrekbaar van uw inkomen, binnen uw zogeheten jaarruimte.
+
+## Waarom nu?
+- Wilt u de aftrek dit jaar benutten, dan moet de inleg vóór 31 december binnen zijn.
+- Ruimte die u in eerdere jaren niet heeft gebruikt, kunt u beperkt inhalen. Oude ruimte vervalt na verloop van tijd.
+- Hoe eerder u begint, hoe langer uw geld kan renderen.
+
+## Wat levert het op?
+Uw inleg levert een belastingteruggave op tegen uw hoogste belastingtarief. Later betaalt u belasting over de uitkering, vaak tegen een lager tarief omdat uw inkomen dan lager is.
+
+Benieuwd wat het voor u betekent? Wij berekenen graag uw jaarruimte en het voordeel. Bel ons op {tel} of reageer op deze mail.
+
+Met vriendelijke groet,
+
+{adviseur}
+{kantoor}`},
+    {naam:"Mail voor ondernemers en zzp'ers", onderwerp:"Ondernemer? Regel uw pensioen fiscaal slim", tekst:`{aanhef},
+
+Als ondernemer bouwt u niet automatisch pensioen op. De AOW alleen is voor de meeste mensen niet genoeg om de levensstandaard vast te houden.
+
+## Fiscaal voordelig bijsparen
+Met lijfrente is uw inleg aftrekbaar van uw winst of inkomen, binnen uw jaarruimte. Heeft u in eerdere jaren niets ingelegd? Dan kunt u een deel inhalen via de reserveringsruimte.
+
+## Doe het vóór 31 december
+Wilt u dit jaar profiteren van de aftrek, dan moet de inleg vóór 31 december binnen zijn. Wij rekenen graag voor u uit hoeveel ruimte u heeft en wat het oplevert.
+
+Bel ons op {tel} of reageer op deze mail.
+
+Met vriendelijke groet,
+
+{adviseur}
+{kantoor}`},
+    {naam:"Klanttekst: wat is lijfrenteaftrek?", onderwerp:"Lijfrenteaftrek: zo werkt het", tekst:`## Lijfrenteaftrek: zo werkt het
+Met lijfrente spaart u extra voor uw pensioen. De inleg is aftrekbaar van uw inkomen in box 1, zolang u binnen uw jaarruimte blijft. Over de uitkering betaalt u later inkomstenbelasting.
+
+## Jaarruimte en reserveringsruimte
+Hoeveel u mag aftrekken, hangt af van uw inkomen en uw pensioenopbouw via een werkgever (jaarruimte). Heeft u ruimte uit eerdere jaren niet gebruikt? Dan kunt u die onder voorwaarden inhalen (reserveringsruimte). Met de rekenhulp van de Belastingdienst berekent u uw ruimte.
+
+## Waarom het loont
+- U krijgt belasting terug tegen uw hoogste tarief.
+- Het gespaarde vermogen valt niet in box 3.
+- Na pensionering is uw inkomen vaak lager, waardoor u minder belasting betaalt over de uitkering.
+
+## Let op
+Het geld is vastgezet voor een aanvulling op uw inkomen; eerder opnemen kan alleen onder voorwaarden en kost vaak belasting. Laat u adviseren over wat bij u past.` }],
+  links:[{label:"Lijfrente-rekenhulp", url:"#/item/lijfrente-rekenhulp"},{label:"Rekenhulp jaarruimte (Belastingdienst)", url:"https://www.belastingdienst.nl/wps/wcm/connect/nl/aftrek-en-kortingen/content/hulpmiddel-lijfrentepremie-2016-en-daarna"},{label:"Mijnpensioenoverzicht.nl", url:"https://www.mijnpensioenoverzicht.nl"}],
+  tags:["pensioen","lijfrente","lijfrenteaftrek","jaarruimte","reserveringsruimte","pensioentekort","zzp","ondernemer","31 december","belastingvoordeel"],
+  compliance:"Lijfrenteproducten zijn financiële producten onder de Wft; advies vraagt een volledige inventarisatie. Fiscale regels en tarieven wijzigen jaarlijks; noem de jaarruimte alleen na berekening. Beloof geen rendement." }
+];
+EXTRA_CAMP.forEach(c => { CAMP.push(c); ITEMS.push({ id:c.id, cat:"campagnes", kind:"campagne", model:"gratis", title:"Campagne: "+c.title, by:"Blinqx V&H",
+  summary:c.summary, channels:["Eigen e-mail","Blinqx Connect","Word"], tags:["campagne",...c.tags], data:c }); });
+
+ITEMS.push({ id:"lijfrente-rekenhulp", cat:"klanttools", kind:"lijfrente", model:"gratis",
+  title:"Lijfrente-rekenhulp: wat levert extra pensioensparen op?", by:"Blinqx V&H",
+  summary:"Bereken het fiscale voordeel van lijfrente: inleg, belastingteruggave, netto kosten, opgebouwd kapitaal en de netto aanvulling per maand na pensioen. Met een indicatie van de jaarruimte.",
+  channels:["Eigen website","Eigen e-mail","Klantgesprek"], tags:["pensioen","lijfrente","lijfrenteaftrek","jaarruimte","rekentool","belastingvoordeel","pensioentekort","zzp"] });
+
+/* ---------- Formulierenbank ---------- */
+ITEMS.push({ id:"formulierenbank", cat:"scans", kind:"formulieren", model:"gratis",
+  title:"Formulierenbank: digitale klantformulieren", by:"Blinqx V&H · Actiefbeheerscan",
+  summary:"Negen kant-en-klare klantformulieren in Blinqx-stijl: jaarlijkse nazorg, hypotheekcheck, aflossingsvrij, pensioen, uitvaart, schade, bedrijf, auto en klanttevredenheid. Gebruik ze direct, maak zelf een formulier met de teksten, of werk met Actiefbeheerscan.nl.",
+  channels:["Eigen website","Eigen e-mail","Actiefbeheerscan"], tags:["formulieren","digitale formulieren","vragenlijst","actiefbeheerscan","nazorg","klantformulier","scan","webformulier"] });
+FORMS.forEach(f => ITEMS.push({ id:f.id, cat:"scans", kind:"form", model:"gratis", title:"Formulier: "+f.titel, by:"Blinqx V&H · Actiefbeheerscan",
+  summary:f.sub, channels:["Eigen website","Eigen e-mail","Actiefbeheerscan"], tags:["formulier","vragenlijst","actiefbeheerscan",f.thema.toLowerCase()], data:f }));
+
 const NB = {
   title: "Hypotheekbeleid 2027: wat verandert er voor u",
   intro: "Een overzicht van de belangrijkste wijzigingen in de hypotheekregels per 1 januari 2027, en waarom een spaarbuffer in veel situaties meer flexibiliteit biedt dan extra aflossen.",
@@ -2562,6 +3872,192 @@ function viewCheck(item, params){
   $("#ca-link").onclick = async () => toast(await copyText(deellink()) ? "Deellink gekopieerd" : "Kopiëren lukte niet");
 }
 
+/* ---------- Formulierenbank ---------- */
+const ABS_URL = "https://www.actiefbeheerscan.nl/digitale-formulieren/";
+const formTekst = f => [f.titel, "", f.intro, ""].concat(f.stappen.flatMap((s,i)=>[`${i+1}. ${s.titel}`, ...(s.info?[s.info]:[]), ...s.vragen.map(q=>`- ${q.v}${q.s?` (${q.s})`:""}${q.o?"\n    "+q.o.map(o=>(q.t==="meer"?"☐ ":"○ ")+o).join("\n    "):q.t==="score"?"\n    Cijfer 1 t/m 10":"\n    ____________________"}`), ""])).join("\n");
+const formHtml = f => `<h1 style="font-family:Arial;font-size:20px">${esc(f.titel)}</h1>${f.intro?`<p style="font-family:Arial;font-size:13px">${esc(f.intro).replace(/\n/g,"<br>")}</p>`:""}` +
+  f.stappen.map((s,i)=>`<h2 style="font-family:Arial;font-size:15px;margin-top:16px">${i+1}. ${esc(s.titel)}</h2>${s.info?`<p style="font-family:Arial;font-size:12px">${esc(s.info)}</p>`:""}` + s.vragen.map(q=>`<p style="font-family:Arial;font-size:13px;margin:10px 0 2px"><b>${esc(q.v)}</b>${q.s?`<br><span style="color:#666">${esc(q.s)}</span>`:""}</p>${q.o?q.o.map(o=>`<p style="font-family:Arial;font-size:13px;margin:0 0 0 12px">${q.t==="meer"?"☐":"○"} ${esc(o)}</p>`).join(""):q.t==="score"?`<p style="font-family:Arial;font-size:13px;margin:0 0 0 12px">Cijfer 1 t/m 10: ____</p>`:`<p style="font-family:Arial;font-size:13px;margin:0 0 0 12px">______________________________________</p>`}`).join("")).join("");
+function viewFormulieren(item){
+  setNav("home");
+  smallHero([`<a href="#/?cat=scans">Klantscans &amp; vragenlijsten</a>`, `<b>Formulierenbank</b>`], `
+    <div class="detail-head"><div>${badge(item.model)} <span class="badge cat">Formulieren</span><h1>Formulierenbank: digitale klantformulieren</h1><p>Regelmatig contact met je klanten, zonder veel werk: negen kant-en-klare vragenlijsten voor nazorg, pensioen, uitvaart, schade, zakelijk en klanttevredenheid.</p></div></div>`);
+  const themas = [...new Set(FORMS.map(f=>f.thema))];
+  app.innerHTML = `<div class="wrap">
+    <h2 class="sec-title">Twee manieren om ze te <u>gebruiken</u></h2><p class="sec-sub">Kies wat bij je kantoor past. Je kunt ook beginnen met de ene en later overstappen.</p>
+    <div class="feat-grid" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+      <div class="fcard cut"><span class="hexi">${icon("document",24)}</span><span class="badge gratis">Gratis</span><h3>Zelf een formulier maken met de teksten</h3>
+        <p>Open een formulier hieronder en kopieer de vragen of download ze als Word. Zet ze in je eigen formuliertool (bijvoorbeeld in je website, mailprogramma of klantportaal), of gebruik het formulier direct hier: klanten vullen het in en sturen de uitkomst via hun eigen mail naar jou.</p>
+        <ul class="feat"><li>Alle teksten vrij aan te passen</li><li>Direct te delen met je eigen deellink</li><li>Geen dashboard: antwoorden komen per mail binnen</li></ul></div>
+      <div class="fcard cut dark"><span class="hexi">${icon("graph",24)}</span><span class="badge betaald">Betaald</span><h3>Actiefbeheerscan.nl gebruiken</h3>
+        <p>Slimme webformulieren met jouw logo en kleuren. Antwoorden komen gestructureerd binnen, zodat je direct ziet wie je moet bellen. Templates aanpassen of eigen formulieren toevoegen kan ook.</p>
+        <ul class="feat"><li>Op je website, in mailings en nieuwsbrieven</li><li>Alle resultaten in één overzicht</li><li>€ 79,- per maand + eenmalig € 495,- (excl. btw); vraag naar de proefperiode</li></ul>
+        <a class="btn btn-y btn-sm" href="${ABS_URL}" target="_blank" rel="noopener" style="align-self:flex-start;color:#000">Bekijk Actiefbeheerscan ↗</a></div>
+    </div>
+    ${themas.map(th=>`<h2 style="font-size:1.25rem;margin:8px 0 12px">${esc(th)}</h2><div class="grid" style="margin-bottom:24px">${FORMS.filter(f=>f.thema===th).map(f=>`<article class="card cut">
+      <div class="meta"><span class="badge gratis">Gratis</span><span class="badge cat">${f.stappen.length} stappen · ${f.stappen.reduce((n,s)=>n+s.vragen.length,0)} vragen</span></div>
+      <h3><a href="#/item/${f.id}">${esc(f.titel)}</a></h3><p>${esc(f.sub)}</p>
+      <div class="foot"><span>Actiefbeheerscan</span><span class="go">Bekijken &amp; gebruiken →</span></div></article>`).join("")}</div>`).join("")}
+    <div class="note"><strong>Let op, AVG:</strong> vraag alleen wat je nodig hebt voor je dienstverlening, vraag niet naar gezondheid en leg vast wanneer je een formulier hebt verstuurd en of er een reactie kwam.</div></div>`;
+}
+function viewForm(item, params){
+  setNav("home");
+  const f = item.data, st = ck[item.id] || (ck[item.id] = { step:-1, a:{}, naam:"", tel:"", opm:"", consent:false });
+  const adv = { naam: params.get("adviseur")||"", kantoor: params.get("kantoor")||"", mail: params.get("mail")||"", tel: params.get("tel")||"" };
+  const advLabel = [adv.naam, adv.kantoor && (adv.naam?`van ${adv.kantoor}`:adv.kantoor)].filter(Boolean).join(" ") || "mijn adviseur";
+  smallHero([`<a href="#/item/formulierenbank">Formulierenbank</a>`, `<b>${esc(f.titel)}</b>`], `
+    <div class="detail-head"><div><span class="badge gratis">Gratis</span> <span class="badge cat">${esc(f.thema)}</span><h1>${esc(f.titel)}</h1><p>${esc(f.sub)}</p></div>
+      ${adv.kantoor||adv.naam?`<div class="btns"><span class="badge" style="font-size:.8rem;padding:8px 12px">Aangeboden door ${esc(advLabel)}</span></div>`:""}</div>`);
+  app.innerHTML = `<div class="wrap"><div class="layout layout-r" style="--rcol:330px">
+    <section><div class="panel cut" id="fm" style="padding:24px"></div></section>
+    <aside>
+      <div class="panel cut adv-only"><h2><span class="hexi">${icon("document",18)}</span>Zelf gebruiken</h2>
+        <p class="hint" style="margin-top:0">Kopieer de vragen voor je eigen formuliertool, of download ze als Word.</p>
+        <div class="actions"><button class="btn btn-k btn-sm" id="fm-copy">${icon("copy",16)} Kopieer alle vragen</button><button class="btn btn-o btn-sm" id="fm-word">${icon("download",16)} Word</button><button class="btn btn-o btn-sm" id="fm-print">Print als papieren formulier</button></div>
+        <p class="hint">Liever slimme formulieren met een overzicht van alle antwoorden? <a href="${ABS_URL}" target="_blank" rel="noopener">Gebruik Actiefbeheerscan.nl ↗</a></p></div>
+      <details class="panel cut adv-only"><summary style="font-weight:800;cursor:pointer">Deel dit formulier met je klanten</summary>
+        <label class="f" for="fa-n">Naam adviseur</label><input class="i" id="fa-n" value="${esc(adv.naam)}">
+        <label class="f" for="fa-k">Kantoornaam</label><input class="i" id="fa-k" value="${esc(adv.kantoor)}">
+        <label class="f" for="fa-t">Telefoon</label><input class="i" id="fa-t" value="${esc(adv.tel)}">
+        <label class="f" for="fa-m">E-mail voor de antwoorden</label><input class="i" id="fa-m" type="email" value="${esc(adv.mail)}">
+        <div class="actions" style="margin-top:10px"><button class="btn btn-k btn-sm" id="fa-link">Kopieer deellink</button></div>
+      </details>
+      <div class="note"><strong>Privacy:</strong> er wordt niets opgeslagen; versturen gaat via het eigen mailprogramma van de klant.</div>
+    </aside></div></div>`;
+  const root = $("#fm"), N = f.stappen.length;
+  const opt = (name, val, on, multi) => `<button type="button" data-q="${name}" data-v="${esc(val)}" data-m="${multi?1:0}" style="text-align:left;padding:10px 14px;border:1px solid ${on?"var(--k)":"var(--line)"};background:${on?"var(--y-soft)":"#fff"};box-shadow:${on?"inset 0 0 0 1px var(--k)":"none"};font-weight:${on?800:500};cursor:pointer">${multi?(on?"☑ ":"☐ "):""}${esc(val)}</button>`;
+  const antw = (si,qi) => st.a[si+"."+qi];
+  const samenvatting = () => [f.titel,""].concat(f.stappen.flatMap((s,si)=>[s.titel, ...s.vragen.map((q,qi)=>{ const a=antw(si,qi); return ` - ${q.v}: ${Array.isArray(a)?a.join("; "):(a||"—")}`; }), ""]), [`Naam: ${st.naam||"—"}`, `Telefoon: ${st.tel||"—"}`], st.opm?["","Toelichting:",st.opm]:[]).join("\n");
+  const render = () => {
+    if (st.step === -1){
+      root.innerHTML = `<div class="eyebrow" style="color:var(--y-ink)">${esc(f.thema)}</div><h2 style="font-size:1.5rem;margin-bottom:10px">${esc(f.titel)}</h2>
+        ${(f.intro||f.sub).split(/\n\n+/).map(x=>`<p>${esc(x)}</p>`).join("")}
+        <ul class="feat">${f.stappen.map(s=>`<li>${esc(s.titel)}</li>`).join("")}</ul><button class="btn btn-k" id="fm-start" style="margin-top:12px">Start →</button>`;
+      $("#fm-start").onclick = () => { st.step = 0; render(); }; return;
+    }
+    if (st.step < N){
+      const s = f.stappen[st.step];
+      root.innerHTML = `<div style="font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase">Stap ${st.step+1} van ${N+1}</div><div class="progress"><i style="width:${(st.step+1)/(N+1)*100}%"></i></div>
+        <h2 style="font-size:1.35rem;margin-bottom:6px">${esc(s.titel)}</h2>${s.sub?`<p class="hint" style="margin-top:0">${esc(s.sub)}</p>`:""}${s.info?s.info.split(/\n\n+/).map(x=>`<p>${esc(x)}</p>`).join(""):""}
+        ${s.vragen.map((q,qi)=>{ const a=antw(st.step,qi), nm=st.step+"."+qi; return `<div style="border-top:1px solid var(--line-2);padding:12px 0"><p style="margin:0 0 2px;font-weight:700">${esc(q.v)}</p>${q.s?`<p class="hint" style="margin:0 0 8px">${esc(q.s)}</p>`:""}
+          ${q.o ? `<div style="display:flex;flex-direction:column;gap:6px">${q.o.map(o=>opt(nm,o, q.t==="meer"?(Array.isArray(a)&&a.includes(o)):a===o, q.t==="meer")).join("")}</div>`
+            : q.t==="score" ? `<div style="display:flex;gap:6px;flex-wrap:wrap">${[1,2,3,4,5,6,7,8,9,10].map(n=>opt(nm,String(n),a===String(n),false)).join("")}</div>`
+            : `<textarea class="i" data-open="${nm}" style="min-height:60px">${esc(a||"")}</textarea>`}</div>`; }).join("")}
+        <div style="display:flex;justify-content:space-between;gap:10px;margin-top:16px"><button class="btn btn-o" id="fm-back">Terug</button><button class="btn btn-k" id="fm-next">Volgende</button></div>`;
+      $$("#fm [data-q]").forEach(b=>b.onclick=()=>{ const k=b.dataset.q, v=b.dataset.v;
+        if (b.dataset.m==="1"){ const arr = Array.isArray(st.a[k]) ? st.a[k] : []; st.a[k] = arr.includes(v) ? arr.filter(x=>x!==v) : arr.concat(v); } else st.a[k]=v;
+        const y=window.scrollY; render(); window.scrollTo(0,y); });
+      $$("#fm [data-open]").forEach(el=>el.oninput=()=>st.a[el.dataset.open]=el.value);
+      $("#fm-back").onclick=()=>{ st.step--; render(); root.scrollIntoView({block:"start"}); };
+      $("#fm-next").onclick=()=>{ st.step++; render(); root.scrollIntoView({block:"start"}); };
+      return;
+    }
+    root.innerHTML = `<div class="eyebrow" style="color:var(--y-ink)">Bijna klaar</div><h2 style="font-size:1.5rem;margin-bottom:10px">Controleren en versturen</h2>
+      <div class="promo" style="max-height:280px;overflow:auto">${esc(samenvatting())}</div>
+      <label class="f" for="fm-naam">Uw naam *</label><input class="i" id="fm-naam" value="${esc(st.naam)}">
+      <label class="f" for="fm-tel">Telefoon (niet verplicht)</label><input class="i" id="fm-tel" type="tel" value="${esc(st.tel)}">
+      <label class="f" for="fm-opm">Toelichting (niet verplicht)</label><textarea class="i" id="fm-opm" style="min-height:60px">${esc(st.opm)}</textarea>
+      <div class="checks"><label><input type="checkbox" id="fm-ok" ${st.consent?"checked":""}> Ik vind het goed dat ${esc(advLabel)} deze antwoorden ontvangt en contact met mij opneemt.</label></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn btn-k" id="fm-send">Stuur naar ${adv.naam||adv.kantoor?esc(advLabel):"mijn adviseur"} →</button><button class="btn btn-o" id="fm-cp">Kopieer</button><button class="btn btn-o" id="fm-back">Terug</button></div>
+      <p class="hint">Versturen opent een bericht in uw eigen e-mailprogramma. Er wordt niets opgeslagen.</p>`;
+    $("#fm-naam").oninput=e=>st.naam=e.target.value; $("#fm-tel").oninput=e=>st.tel=e.target.value; $("#fm-opm").oninput=e=>st.opm=e.target.value; $("#fm-ok").onchange=e=>st.consent=e.target.checked;
+    $("#fm-back").onclick=()=>{ st.step=N-1; render(); };
+    $("#fm-cp").onclick=async()=>toast(await copyText(samenvatting())?"Gekopieerd":"Kopiëren lukte niet");
+    $("#fm-send").onclick=()=>{ if(!st.naam.trim()||!st.consent){ toast("Vul uw naam in en geef toestemming"); return; }
+      location.href=`mailto:${encodeURIComponent(adv.mail)}?subject=${encodeURIComponent(f.titel+" – "+st.naam)}&body=${encodeURIComponent(samenvatting())}`; toast("Uw mailprogramma wordt geopend"); };
+  };
+  render();
+  $("#fm-copy").onclick = async () => toast(await copyText(formTekst(f)) ? "Alle vragen gekopieerd" : "Kopiëren lukte niet");
+  $("#fm-word").onclick = () => { download(`formulier-${slug(f.titel)}.doc`, "\ufeff"+`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>${esc(f.titel)}</title><style>@page{size:21cm 29.7cm;margin:2cm}</style></head><body>${formHtml(f)}</body></html>`, "application/msword"); toast("Word-bestand gedownload"); };
+  $("#fm-print").onclick = () => printHtml(f.titel, `<div style="padding:6px">${formHtml(f)}<p style="font-family:Arial;font-size:12px;margin-top:20px">Naam: ______________________ &nbsp; Telefoon: ______________</p></div>`);
+  $("#fa-link").onclick = async () => { const q=new URLSearchParams(); [["adviseur","#fa-n"],["kantoor","#fa-k"],["tel","#fa-t"],["mail","#fa-m"]].forEach(([k,id])=>{ const v=$(id).value.trim(); if(v) q.set(k,v); });
+    toast(await copyText(location.href.split("#")[0]+"#/item/"+item.id+(q.toString()?"?"+q:"")) ? "Deellink gekopieerd" : "Kopiëren lukte niet"); };
+}
+
+/* ---------- Lijfrente-rekenhulp ---------- */
+const LR = {
+  // Indicatieve parameters (controleer jaarlijks): jaarruimte = 30% × premiegrondslag − 6,27 × factor A
+  pct: 0.30, factorAMult: 6.27, franchise: 19172, maxInkomen: 137800,
+  schijven: [[38883, 0.3575],[78426, 0.3756],[Infinity, 0.495]]   // indicatieve tarieven box 1 (2026)
+};
+const lr = { leeftijd:"45", pensioen:"68", inkomen:"60.000", factorA:"0", jaarruimte:"", inleg:"", rendement:"4", tariefNu:"", tariefLater:"19", duur:"20" };
+function lrCalc(){
+  const N = parseNum, ink = N(lr.inkomen), A = N(lr.factorA);
+  const pg = Math.max(0, Math.min(ink, LR.maxInkomen) - LR.franchise);
+  const ruimteEst = Math.max(0, LR.pct * pg - LR.factorAMult * A);
+  const ruimte = N(lr.jaarruimte) || ruimteEst;
+  const inleg = N(lr.inleg) || Math.round(ruimte);
+  const tNu = lr.tariefNu ? N(lr.tariefNu)/100 : (LR.schijven.find(s=>ink<=s[0])||LR.schijven[2])[1];
+  const tLater = N(lr.tariefLater)/100, r = N(lr.rendement)/100, jaren = Math.max(0, N(lr.pensioen) - N(lr.leeftijd)), duur = Math.max(1, N(lr.duur)||20);
+  const fv = (bedrag, n) => r ? bedrag * ((Math.pow(1+r, n) - 1) / r) * (1+r) : bedrag * n;
+  const kapitaal = fv(inleg, jaren), kapitaalLater = fv(inleg, Math.max(0, jaren-5));
+  const ru = 0.02, uitkJaar = kapitaal * (ru / (1 - Math.pow(1+ru, -duur)));
+  const nettoMaand = uitkJaar * (1 - tLater) / 12;
+  return { ruimteEst, ruimte, inleg, boven: inleg > ruimte + 1, tNu, tLater, teruggave: inleg * tNu, nettoKosten: inleg * (1 - tNu), jaren, kapitaal, kapitaalLater,
+    totaalIn: inleg * jaren, totaalTerug: inleg * tNu * jaren, uitkJaar, nettoMaand, duur, eigen: !!N(lr.jaarruimte) };
+}
+function viewLijfrente(item){
+  setNav("klanttools");
+  smallHero([`<a href="#/?cat=klanttools">Klanttools</a>`, `<b>Lijfrente-rekenhulp</b>`], `
+    <div class="detail-head"><div>${badge(item.model)} <span class="badge cat">Rekenhulp</span><h1>Wat levert extra pensioensparen op?</h1><p>Met lijfrente is uw inleg aftrekbaar binnen de jaarruimte. Zie wat u terugkrijgt, wat het u netto kost en wat het later oplevert. Wilt u dit jaar aftrekken? Dan moet de inleg vóór 31 december binnen zijn.</p></div></div>`);
+  const fld = (k,l,eur=true,ph="") => `<div><label class="f" for="lr-${k}">${l}</label><input class="i" id="lr-${k}" data-lr="${k}" ${eur?"data-eur":""} inputmode="${eur?"numeric":"decimal"}" placeholder="${ph}" value="${esc(lr[k])}"></div>`;
+  app.innerHTML = `<div class="wrap"><div class="layout">
+    <aside><form class="panel cut" onsubmit="return false">
+      <h2><span class="hexi">1</span>Uw situatie</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 10px">
+        ${fld("leeftijd","Leeftijd nu",false)}${fld("pensioen","Pensioenleeftijd",false)}
+        ${fld("inkomen","Bruto jaarinkomen (box 1)")}${fld("factorA","Factor A werkgever",false,"0 bij geen pensioen")}
+      </div>
+      <p class="hint">Factor A staat op uw UPO; zonder werkgeverspensioen (bijv. zzp) is die 0.</p>
+      <h2 style="margin-top:14px"><span class="hexi">2</span>Inleg en aannames</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 10px">
+        ${fld("jaarruimte","Jaarruimte (rekenhulp)",true,"leeg = schatting")}${fld("inleg","Inleg per jaar",true,"leeg = jaarruimte")}
+        ${fld("rendement","Rendement % per jaar",false)}${fld("tariefNu","Belastingtarief nu %",false,"leeg = schatting")}
+        ${fld("tariefLater","Tarief na pensioen %",false)}${fld("duur","Uitkeringsduur (jaren)",false)}
+      </div>
+      <p class="hint"><a href="https://www.belastingdienst.nl/wps/wcm/connect/nl/aftrek-en-kortingen/content/hulpmiddel-lijfrentepremie-2016-en-daarna" target="_blank" rel="noopener">Bereken uw exacte jaarruimte met de rekenhulp van de Belastingdienst ↗</a></p>
+      <button type="button" class="btn btn-o btn-sm" id="lr-demo">Vul voorbeeld in</button>
+    </form>
+    ${uitnodigingPanel("lijfrente-rekenhulp")}</aside>
+    <section id="lr-out"></section></div></div>`;
+  const out = $("#lr-out");
+  const draw = () => {
+    const r = lrCalc();
+    setMres(`Netto per maand na pensioen: <b>${fmtEUR(r.nettoMaand)}</b>`, "#lr-out");
+    const rij = (k,v,b) => `<tr style="border-top:1px solid var(--line-2)"><td style="padding:8px 0;color:var(--muted)">${k}</td><td style="padding:8px 0;text-align:right;font-weight:${b?800:700}">${v}</td></tr>`;
+    out.innerHTML = `<div class="panel cut">
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px">
+        <div class="pbox"><b>Belastingteruggave per jaar</b><div class="p">${fmtEUR(r.teruggave)}</div></div>
+        <div class="pbox"><b>Opgebouwd kapitaal</b><div class="p">${fmtEUR(r.kapitaal)}</div></div>
+        <div class="pbox prem"><b>Netto per maand na pensioen</b><div class="p">${fmtEUR(r.nettoMaand)}</div></div>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:.92rem">
+        ${rij(r.eigen?"Jaarruimte (uw invoer)":"Jaarruimte (indicatieve schatting)", fmtEUR(r.ruimte)+" per jaar")}
+        ${rij("Inleg per jaar", fmtEUR(r.inleg))}
+        ${rij(`Belastingteruggave (${fmtN(r.tNu*100,2)}%)`, fmtEUR(r.teruggave)+" per jaar")}
+        ${rij("Wat het u netto kost", fmtEUR(r.nettoKosten)+" per jaar", true)}
+        ${rij(`Looptijd tot pensioen`, `${fmtN(r.jaren)} jaar`)}
+        ${rij("Totaal ingelegd", fmtEUR(r.totaalIn))}
+        ${rij("Totaal aan belastingteruggave", fmtEUR(r.totaalTerug))}
+        ${rij(`Opgebouwd kapitaal bij ${fmtN(parseNum(lr.rendement),1)}% rendement`, fmtEUR(r.kapitaal), true)}
+        ${rij(`Bruto uitkering over ${fmtN(r.duur)} jaar`, fmtEUR(r.uitkJaar)+" per jaar")}
+        ${rij(`Netto na belasting (${fmtN(r.tLater*100,1)}%)`, fmtEUR(r.nettoMaand)+" per maand", true)}
+      </table>
+      ${r.boven?`<p class="note" style="margin-top:12px"><strong>Let op:</strong> de inleg is hoger dan de jaarruimte. Alleen het deel binnen de jaarruimte (en eventuele reserveringsruimte) is aftrekbaar.</p>`:""}
+      <div style="background:var(--y);padding:16px;margin-top:14px"><b>Nu of nooit?</b> Begint u 5 jaar later, dan bouwt u bij dezelfde inleg ongeveer <b>${fmtEUR(r.kapitaal - r.kapitaalLater)}</b> minder kapitaal op. En wilt u dit jaar aftrekken, dan moet de inleg vóór 31 december binnen zijn.</div>
+      <div class="actions" style="flex-direction:row;flex-wrap:wrap;margin-top:14px"><button class="btn btn-o btn-sm" id="lr-copy">Kopieer samenvatting</button><button class="btn btn-o btn-sm" id="lr-print">Print / PDF</button></div>
+      <p class="hint">Indicatief. Uitgangspunten: jaarruimte-schatting met 30% van de premiegrondslag minus 6,27 × factor A, franchise ${fmtEUR(LR.franchise)} en maximum ${fmtEUR(LR.maxInkomen)} (controleer de actuele bedragen); belastingtarief nu ${lr.tariefNu?"uw invoer":"geschat op basis van indicatieve tarieven box 1 2026"}; inleg aan het begin van elk jaar; uitkering annuïtair tegen 2%. Geen rekening gehouden met kosten, inflatie, reserveringsruimte, heffingskortingen of box 3. Rendement is niet gegarandeerd.</p>
+    </div>
+    <div class="note"><strong>Let op, AFM/compliance:</strong> lijfrenteproducten vallen onder de Wft; advies vraagt een volledige inventarisatie. Beloof geen rendement en noem de jaarruimte alleen na berekening.</div>`;
+    const sam = () => `Lijfrente-rekenhulp\nJaarruimte: ${fmtEUR(r.ruimte)} (${r.eigen?"invoer":"schatting"})\nInleg per jaar: ${fmtEUR(r.inleg)}\nBelastingteruggave per jaar: ${fmtEUR(r.teruggave)}\nNetto kosten per jaar: ${fmtEUR(r.nettoKosten)}\nOpgebouwd kapitaal na ${fmtN(r.jaren)} jaar: ${fmtEUR(r.kapitaal)}\nNetto per maand na pensioen (${fmtN(r.duur)} jaar): ${fmtEUR(r.nettoMaand)}\n\nIndicatie, geen advies.`;
+    $("#lr-copy").onclick = async () => toast(await copyText(sam()) ? "Samenvatting gekopieerd" : "Kopiëren lukte niet");
+    $("#lr-print").onclick = () => printHtml("Lijfrente-rekenhulp", `<pre style="font-family:Arial;font-size:13px;white-space:pre-wrap">${esc(sam())}</pre>`);
+  };
+  $$("[data-lr]").forEach(el=>{ const k=el.dataset.lr; if (el.hasAttribute("data-eur")) euroInput(el, ()=>{ lr[k]=el.value; draw(); }); else el.addEventListener("input", ()=>{ lr[k]=el.value; draw(); }); });
+  $("#lr-demo").onclick = () => { Object.assign(lr, { leeftijd:"42", pensioen:"68", inkomen:"72.000", factorA:"0", jaarruimte:"", inleg:"5.000", rendement:"4", tariefNu:"", tariefLater:"19", duur:"20" }); viewLijfrente(item); toast("Voorbeeld ingevuld"); };
+  bindUitnodiging("lijfrente-rekenhulp", () => location.href.split("#")[0] + "#/item/lijfrente-rekenhulp");
+  draw();
+}
+
 /* ---------- Actie-ideeën schade ---------- */
 function viewIdeeen(item){
   setNav("campagnes");
@@ -2820,6 +4316,7 @@ const KALENDER = [
     {t:"Jaarlijkse update van klantgegevens", d:"Stuur de korte jaarlijkse update (5 kernvragen) aan je hele portefeuille.", i:["stappenscan-52","checklist-publicatie"]},
     {t:"Jaarlijkse check opstal & inboedel", d:"Laat klanten in drie minuten checken of hun woning en inboedel nog goed verzekerd zijn. Verbouwingen, zonnepanelen en dure aankopen komen zo op tijd boven.", i:["verzekeringscheck","campagne-opstal-inboedel"]}]},
   { m:3, a:[
+    {t:"Kunnen partner en kinderen blijven wonen?", d:"Voor huurders en huiseigenaren: blijven ze verzorgd achter bij overlijden of arbeidsongeschiktheid?", i:["campagne-blijven-wonen","check-nabestaanden"]},
     {t:"Woonlasten bij overlijden en arbeidsongeschiktheid", d:"Voor kopers én huurders: blijven de woonlasten betaalbaar als een inkomen wegvalt?", i:["check-woonlasten","campagne-woonlasten-inkomen","verantwoord-hypotheekrapport"]},
     {t:"Nieuw bankbeleid: pensioen telt eerder mee", d:"Rabobank en Obvion toetsen vanaf maart 2027 al 15 jaar vóór de AOW-leeftijd op pensioeninkomen. Benader klanten van 50–57 jaar.", i:["campagne-pensioen","aflossingsvrij-check","rabobank-beleid"], dt:"2027-03-01"},
     {t:"Bomen planten met het Hypotheekbos", d:"In maart zijn de bomenplantdagen. Deel het op social en laat zien dat je kantoor groen is.", i:["hypotheekbos"]}]},
@@ -2842,6 +4339,7 @@ const KALENDER = [
     {t:"Prinsjesdag: plannen voor 2028", d:"Op Prinsjesdag (dinsdag 21 september 2027) worden de fiscale plannen bekend. Stuur een korte update over wat dit voor huiseigenaren betekent.", i:["nieuwsbrief-hypotheekbeleid-2027","kennisbank"], dt:"2027-09-21"},
     {t:"Nibud-advies leennormen 2028", d:"Het Nibud publiceert rond september het advies voor de normen van volgend jaar. Deel wat er verandert voor de maximale hypotheek.", i:["adviseurstools"]}]},
   { m:10, a:[
+    {t:"Pensioen: extra sparen met lijfrente", d:"Laat klanten met een pensioentekort zien wat lijfrente oplevert. Vooral voor ondernemers en zzp'ers.", i:["lijfrente-rekenhulp","campagne-pensioensparen"]},
     {t:"Wintersport voorbereiden", d:"Check vóór het seizoen of wintersport, ski-uitrusting en medische kosten in het buitenland verzekerd zijn.", i:["campagne-wintersport"]},
     {t:"SVI in plaats van ongevallen inzittenden", d:"Leg het verschil uit bij de prolongatie van autopolissen.", i:["campagne-svi"]},
     {t:"Pensioen en aflossingsvrij: 2031 komt dichterbij", d:"Help klanten met een oude aflossingsvrije hypotheek vooruitkijken: kan de hypotheek straks nog betaald worden?", i:["aflossingsvrij-check","campagne-pensioen","hypotheek-straks"]},
@@ -2851,6 +4349,7 @@ const KALENDER = [
     {t:"Leennormen 2028 bekend", d:"De Kamerbrief met de leennormen voor volgend jaar verschijnt in het najaar. Werk je klanttekst en nieuwsbrief bij.", i:["nieuwsbrief-hypotheekbeleid-2027","checklist-publicatie"]},
     {t:"Portefeuille-scan voor het nieuwe jaar", d:"Bereken hoeveel kansen er in je portefeuille zitten en plan de renteverlengers van volgend jaar.", i:["kansentool","sel-renteverlengers","brochure-verborgen-kansen"]}]},
   { m:12, a:[
+    {t:"Nu of nooit: lijfrente vóór 31 december", d:"Wie dit jaar wil aftrekken, moet de inleg vóór 31 december binnen hebben. Stuur de ‘nu of nooit’-mail begin december.", i:["campagne-pensioensparen","lijfrente-rekenhulp"], dt:"2027-12-01"},
     {t:"Bedankt en fijne feestdagen", d:"Sluit het jaar persoonlijk af met een kaartje aan je klanten.", i:["ecards"]},
     {t:"Jaarplanning marketing 2028", d:"Kijk terug op het jaar en plan je campagnes. Dien je wensen voor nieuw materiaal in.", i:["checklist-publicatie"]}]}
 ];
@@ -3040,6 +4539,17 @@ Met vriendelijke groet,
 
 {adviseur}
 {kantoor}`},
+  "lijfrente-rekenhulp": {o:"Extra pensioen sparen met belastingvoordeel", x:`{aanhef},
+
+Met extra pensioensparen via lijfrente kunt u belasting besparen: uw inleg is aftrekbaar binnen uw jaarruimte. Met deze rekenhulp ziet u wat u terugkrijgt, wat het u netto kost en wat het later oplevert:
+{link}
+
+Wilt u dit jaar nog profiteren? Dan moet de inleg vóór 31 december binnen zijn. Wij rekenen het graag precies voor u uit; bel ons op {tel}.
+
+Met vriendelijke groet,
+
+{adviseur}
+{kantoor}`},
   "hypotheekcijfer": {o:"Kunt u uw hypotheek blijven betalen?", x:`{aanhef},
 
 Kunt u uw hypotheek blijven betalen, ook als u met pensioen gaat of uw rentevaste periode afloopt? Met de gratis hypotheekcheck krijgt u een hypotheekcijfer van 1 tot 10, met een persoonlijk rapport:
@@ -3091,6 +4601,8 @@ const POSTS = [
   {m:10, t:"SVI of ongevallenverzekering?", ic:"car", i:"campagne-svi", x:"Bij een ongeluk waarbij je zelf schuld hebt, is je eigen letselschade niet gedekt door de verplichte WA-verzekering. Een schadeverzekering inzittenden (SVI) vergoedt de werkelijke schade van jou en je passagiers. Een ongevallenverzekering keert alleen een vast bedrag uit.\n\nWeet jij wat jouw autopolis dekt?\n\n👉 {link}", h:"#autoverzekering #SVI #verkeersveiligheid"},
   {m:3, t:"Huur of hypotheek blijven betalen?", ic:"life events", i:"check-woonlasten", x:"Wat gebeurt er met je woonlasten als je partner overlijdt of jij langdurig arbeidsongeschikt raakt? Het inkomen daalt vaak, de huur of hypotheek loopt gewoon door.\n\nDoe de woonlastencheck en weet waar je staat.\n\n👉 {link}", h:"#woonlasten #arbeidsongeschiktheid #goedgeregeld"},
   {m:11, t:"Goed geregeld voor je naasten?", ic:"heart", i:"check-nabestaanden", x:"Het is geen makkelijk onderwerp, maar het geeft rust: weten dat je naasten goed verzorgd achterblijven. Is je uitvaart verzekerd, en past de verzekering nog bij de huidige kosten? Een naturaverzekering groeit meestal mee met de prijzen; bij een kapitaalverzekering kan het bedrag te laag blijken.\n\nWe bespreken het graag met je, in alle rust.\n\n👉 {link}", h:"#uitvaartverzekering #nabestaanden #goedgeregeld"},
+  {m:3, t:"Kunnen je partner en kinderen blijven wonen?", ic:"house", i:"campagne-blijven-wonen", x:"Kunnen je partner en kinderen in jullie huis blijven wonen als jou iets overkomt? Bij overlijden of arbeidsongeschiktheid daalt het inkomen vaak, terwijl de huur of hypotheek gewoon doorloopt.\n\nWeet waar je staat en zorg dat ze goed verzorgd achterblijven. We kijken graag met je mee.\n\n👉 {link}", h:"#goedgeregeld #nabestaanden #wonen"},
+  {m:12, t:"Pensioen sparen: nu of nooit", ic:"piggybank", i:"lijfrente-rekenhulp", x:"Extra sparen voor je pensioen én belasting terugkrijgen? Met lijfrente is je inleg aftrekbaar binnen je jaarruimte. Wil je dit jaar nog profiteren? Dan moet je inleg vóór 31 december binnen zijn.\n\nBereken wat het jou oplevert.\n\n👉 {link}", h:"#pensioen #lijfrente #belastingvoordeel"},
   {m:7, t:"Betaal je te veel voor je ORV?", ic:"orv", i:"sel-gestopte-rokers", x:"De premies voor overlijdensrisicoverzekeringen zijn de afgelopen jaren flink gedaald. Heb je je ORV al een tijd geleden afgesloten, of ben je gestopt met roken? Dan kun je mogelijk besparen.\n\nWe zoeken het graag voor je uit.\n\n👉 {link}", h:"#overlijdensrisicoverzekering #besparen #verzekeren"},
   {m:8, t:"Ondernemer? Check je risico's", ic:"company", i:"campagne-kvk", x:"Als ondernemer regel je veel zelf, ook je inkomen bij ziekte en je pensioen. Is je bedrijf goed verzekerd tegen aansprakelijkheid? En wat gebeurt er met je hypotheek als je arbeidsongeschikt raakt?\n\nPlan een vrijblijvende check.\n\n👉 {link}", h:"#ondernemer #zzp #aov"},
   {m:9, t:"Prinsjesdag", ic:"calendar", i:"nieuwsbrief-hypotheekbeleid-2027", x:"Vandaag is het Prinsjesdag. De plannen voor volgend jaar worden bekend, ook voor huiseigenaren. Wat verandert er voor jouw hypotheek, renteaftrek of eigenwoningforfait?\n\nWe zetten de belangrijkste punten voor je op een rij.\n\n👉 {link}", h:"#prinsjesdag #hypotheek #wonen"},
@@ -3360,7 +4872,7 @@ function route(){
   if (path.startsWith("/item/")){
     const item=ITEMS.find(i=>i.id===path.slice(6));
     if (!item){ location.hash="#/"; return; }
-    ({nieuwsbrief:viewNewsletter, checklist:viewChecklist, aflossingsvrij:viewAflossingsvrij, kansen:viewKansen, signalen:viewSignalen, brieven:viewBrieven, campagne:viewCampagne, selectie:viewSelectie, vhr:viewVhr, woontoekomst:viewWoontoekomst, verzekeringscheck:viewVerzekeringscheck, check:viewCheck, ideeen:viewIdeeen, kaarten:viewKaarten, kennisbank:viewKennisbank, kalender:viewKalender, social:viewSocial}[item.kind]||viewItem)(item, params);
+    ({nieuwsbrief:viewNewsletter, checklist:viewChecklist, aflossingsvrij:viewAflossingsvrij, kansen:viewKansen, signalen:viewSignalen, brieven:viewBrieven, campagne:viewCampagne, selectie:viewSelectie, vhr:viewVhr, woontoekomst:viewWoontoekomst, verzekeringscheck:viewVerzekeringscheck, check:viewCheck, ideeen:viewIdeeen, formulieren:viewFormulieren, form:viewForm, lijfrente:viewLijfrente, kaarten:viewKaarten, kennisbank:viewKennisbank, kalender:viewKalender, social:viewSocial}[item.kind]||viewItem)(item, params);
     document.title = `${item.title} · Marketingbibliotheek Blinqx V&H`;
     window.scrollTo(0,0);
   } else if (path==="/vraag"){ viewVraag(params); document.title="Vraag & wens · Marketingbibliotheek Blinqx V&H"; window.scrollTo(0,0); }

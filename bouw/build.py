@@ -11,7 +11,7 @@ t = rd('template.html')
 t = t.replace('__LOGO__', logo).replace('__CONTACT__', 'jeroen.oversteegen@blinqx.tech')
 trhk = json.loads(rd('data/trhk2027.json')); trhk.update({'alleenGrens': 31000, 'alleenBedrag': 18000})
 t = t.replace('/*__TRHK__*/', 'const TRHK = ' + json.dumps(trhk, separators=(',', ':')) + ';')
-for ph, f in [('/*__CAMP__*/', 'camp.js'), ('/*__SCHADE__*/', 'schade.js'), ('/*__NB__*/', 'nb.js'), ('/*__ICONS__*/', 'icons.js'), ('/*__CARDS__*/', 'cards.js'), ('/*__KB__*/', 'kb.js')]:
+for ph, f in [('/*__CAMP__*/', 'camp.js'), ('/*__SCHADE__*/', 'schade.js'), ('/*__FORMS__*/', 'formulieren.js'), ('/*__EXTRA__*/', 'extra.js'), ('/*__NB__*/', 'nb.js'), ('/*__ICONS__*/', 'icons.js'), ('/*__CARDS__*/', 'cards.js'), ('/*__KB__*/', 'kb.js')]:
     t = t.replace(ph, rd('data/' + f))
 open(os.path.join(R, 'index.html'), 'w', encoding='utf-8').write(t)
 
