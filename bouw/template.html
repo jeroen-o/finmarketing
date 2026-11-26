@@ -711,6 +711,25 @@ const ITEMS = [
     compliance:"Berekeningen zijn indicatief; de werkelijke rente na de rentevaste periode kan afwijken." },
 
   /* ---------- Leads & vindbaarheid ---------- */
+  { id:"hypotheekrente-tools", cat:"klanttools", kind:"item", model:"freemium",
+    title:"Hypotheekrente-tools: renteoverzicht, rente top 5 en topafslag", by:"Blinqx V&H · Hypotheekbond",
+    url:"https://d7d0405f-f9e2-411b-b5fc-5d9314853eb4.tools.hypotheekbond.nl/renteoverzicht",
+    summary:"Actuele hypotheekrentes vergelijken op je eigen website: het renteoverzicht van alle aanbieders, de rente top 5, de topafslag (lagere rente door een lagere risicoklasse) en de spaarrente top 10. Elke tool opent in een apart tabblad.",
+    free:["Demo van alle hypotheekrente-tools","Hypotheekrente-app.nl: actuele rentes op je telefoon"],
+    premium:["De tools op je eigen website, in je eigen huisstijl (eerste twee maanden gratis)"], priceLabel:"Op je website", price:"Op aanvraag",
+    useCases:["Bezoekers van je website de actuele hypotheekrente laten vergelijken","Renteverlengers laten zien wat oversluiten kan opleveren","Topafslag: klanten met een lagere risicoklasse benaderen"],
+    links:[{label:"Renteoverzicht", url:"https://d7d0405f-f9e2-411b-b5fc-5d9314853eb4.tools.hypotheekbond.nl/renteoverzicht"},{label:"Volledig renteoverzicht", url:"https://d7d0405f-f9e2-411b-b5fc-5d9314853eb4.tools.hypotheekbond.nl/renteoverzicht/all"},{label:"Rente top 5", url:"https://35ede3cc-22ff-4b8d-9e03-8eade5bc00df.tools.hypotheekbond.nl/rente-top-5"},{label:"Topafslag", url:"https://79352705-6aac-4d69-bdcf-b5f53bcc7561.tools.hypotheekbond.nl/topafslag"},{label:"Spaarrente top 10", url:"https://a858ca8c-d5c5-4e6e-afe4-bc43ec7ce039.tools.hypotheekbond.nl/spaar-rente"},{label:"Hypotheekrente-app.nl", url:"https://www.hypotheekrente-app.nl/"},{label:"Hypotheekrente API voor je eigen tools", url:"#/item/hypotheekrente-api"},{label:"Alle 23 rekentools voor je website", url:"#/item/websitetools-2-maanden"}],
+    channels:["Eigen website","Klantgesprek"], tags:["hypotheekrente","rente","hypotheekrentes","renteoverzicht","rente vergelijken","rentetarieven","rente top 5","topafslag","spaarrente","actuele rente","rentetool","hypotheekrente-app"],
+    compliance:"Rentes zijn indicatief en kunnen dagelijks wijzigen; de daadwerkelijke rente hangt af van de situatie van de klant en de acceptatie door de geldverstrekker." },
+  { id:"hypotheekrente-api", cat:"adviseurstools", kind:"item", model:"aanvraag",
+    title:"Hypotheekrente API en hypotheek-webservices", by:"Holland Webservices · Nationale Hypotheekbond",
+    url:"https://www.hypotheekrente-api.nl/",
+    summary:"Actuele hypotheekrentetarieven van banken, verzekeraars en regiepartijen in één API, plus webservices voor maximale hypotheek, NHG, LTV, LTI, inkomen en meer. Voor ontwikkelaars die zelf een hypotheektool, websitetool of app bouwen.",
+    contents:["Hypotheekrente API: altijd de actuele hypotheekrentetarieven van verschillende aanbieders","Maximale hypotheek API","Bruto netto API","NHG API","Belasting API","Maximum LTV API en maximum LTI API","Inkomen bepalen API en ondernemersinkomen bepalen API","Rente top 5 API","Annuïteiten API en lineaire API","Postcode API","HDN import API, en meer in de API-catalogus","Voorbeeldtoepassing: hypotheekrente-app.nl"],
+    premium:["Toegang tot de API's en webservices"], priceLabel:"API-toegang", price:"Op aanvraag",
+    useCases:["Actuele hypotheekrentes tonen op je eigen website of in je eigen app","Eigen rekentools bouwen met officiële rekenregels","Rentes koppelen aan je CRM of klantportaal"],
+    links:[{label:"Hypotheekrente-api.nl", url:"https://www.hypotheekrente-api.nl/"},{label:"Hypotheek API-catalogus (Swagger)", url:"https://api.hypotheekbond.nl/"},{label:"Voorbeeld: hypotheekrente-app.nl", url:"https://www.hypotheekrente-app.nl/"},{label:"Hypotheekrente-tools (kant-en-klaar)", url:"#/item/hypotheekrente-tools"},{label:"Informatie: Jeroen Oversteegen", url:"mailto:jeroen.oversteegen@blinqx.tech?subject=Hypotheekrente%20API"}],
+    channels:["Eigen website","Eigen app","Software"], tags:["hypotheekrente","rente","api","hypotheekrente api","hypotheekrente-api","webservices","rente api","ontwikkelaars","developer","maximale hypotheek api","nhg api","holland webservices","swagger"] },
   { id:"websitetools-2-maanden", cat:"leads", kind:"item", model:"freemium",
     title:"Websitetools: twee maanden gratis", by:"Blinqx V&H", url:"https://verzekeringhypotheek.blinqx.tech/partners/rekentools-voor-op-de-website",
     summary:"Rekentools voor je eigen website, in je eigen huisstijl: van websitebezoeker naar afspraak. De eerste twee maanden gratis.",
@@ -718,7 +737,7 @@ const ITEMS = [
     premium:["Doorlopend gebruik na de proefperiode"], priceLabel:"Na 2 maanden", price:"Op aanvraag",
     contents:["23 rekentools in zes groepen: hypotheek berekenen, rentes vergelijken, aflossen & besparen, sparen & verzekeren, woning & verduurzamen en klantinzicht","Maximale hypotheek: “Hoeveel kan ik lenen?”","Hypotheekbespaarcheck: betaal ik niet te veel?","Rentes vergelijken op je eigen website","Inventarisatieformulier: gegevens direct in je dossier"],
     rekentools:true,
-    links:[{label:"Rekentools voor op de website (Blinqx V&H)", url:"https://verzekeringhypotheek.blinqx.tech/partners/rekentools-voor-op-de-website"},{label:"Aanvragen via het vraagformulier", url:"#/vraag?item=websitetools-2-maanden&soort=premium"},{label:"Info: Milan Akavia (milan.akavia@blinqx.tech)", url:"mailto:milan.akavia@blinqx.tech?subject=Rekentools%20voor%20op%20de%20website"},{label:"Info: Jeroen Oversteegen (jeroen.oversteegen@blinqx.tech)", url:"mailto:jeroen.oversteegen@blinqx.tech?subject=Rekentools%20voor%20op%20de%20website"}],
+    links:[{label:"Rekentools voor op de website (Blinqx V&H)", url:"https://verzekeringhypotheek.blinqx.tech/partners/rekentools-voor-op-de-website"},{label:"Aanvragen via het vraagformulier", url:"#/vraag?item=websitetools-2-maanden&soort=premium"},{label:"Hypotheekrente API (zelf bouwen)", url:"#/item/hypotheekrente-api"},{label:"Info: Milan Akavia (milan.akavia@blinqx.tech)", url:"mailto:milan.akavia@blinqx.tech?subject=Rekentools%20voor%20op%20de%20website"},{label:"Info: Jeroen Oversteegen (jeroen.oversteegen@blinqx.tech)", url:"mailto:jeroen.oversteegen@blinqx.tech?subject=Rekentools%20voor%20op%20de%20website"}],
     channels:["Eigen website"], tags:["websitetools","rekentools","website","leads","maximale hypotheek","hypotheekcheck","proefperiode","gratis","twee maanden"],
     compliance:"Controleer de actuele voorwaarden van de proefperiode voordat je die communiceert." },
   { id:"brochure-verborgen-kansen", cat:"leads", kind:"item", model:"gratis",
@@ -852,7 +871,7 @@ const SYN = {
   "duurzaam":["duurzaamheid","verduurzaming","energie"], "energie":["duurzaamheid","energielabel"],
   "social":["linkedin"], "aflosvrij":["aflossingsvrij"], "aflossingsvrij":["aflosvrij"], "brief":["brieven"], "campagnes":["campagne"], "mail":["e-mail","nieuwsbrief","mailing"], "nieuwsbrief":["mailing"],
   "rekenen":["rekentool","calculator"], "calculator":["rekentool"], "acceptatie":["voorwaarden"],
-  "huis":["woning"], "woning":["huis"], "compliance":["afm","wft","avg","dfo"], "dfo":["dfobv","bureau dfo"], "dfobv":["dfo"], "nvhp":["hypothecairplanner","hypothecair planner"], "hypothecairplanner":["nvhp"], "opleiding":["opleidingen","masterclass","pe"], "opleidingen":["opleiding","masterclass"], "masterclass":["masterclasses","opleiding"], "pe":["permanente educatie","opleiding"], "afm":["compliance"],
+  "huis":["woning"], "woning":["huis"], "compliance":["afm","wft","avg","dfo"], "hypotheekrente":["rente","renteoverzicht","rente-api"], "rentes":["rente","hypotheekrente"], "api":["webservices","koppeling"], "dfo":["dfobv","bureau dfo"], "dfobv":["dfo"], "nvhp":["hypothecairplanner","hypothecair planner"], "hypothecairplanner":["nvhp"], "opleiding":["opleidingen","masterclass","pe"], "opleidingen":["opleiding","masterclass"], "masterclass":["masterclasses","opleiding"], "pe":["permanente educatie","opleiding"], "afm":["compliance"],
   "fundering":["funderingsrisico"], "klimaat":["klimaatrisico"], "rente":["renteschok","rentes"], "word":["nieuwsbrief"]
 };
 function haystack(i){
