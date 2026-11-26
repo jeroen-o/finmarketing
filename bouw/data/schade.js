@@ -302,6 +302,6 @@ const IDEEEN = [
   {t:"Rechtsbijstand", wanneer:"bij een nieuwe baan, verbouwing of scheiding", d:"Wijs op hulp bij juridische geschillen, bijvoorbeeld met een aannemer of werkgever.", i:"verzekeringscheck"},
   {t:"Ondernemers", wanneer:"het hele jaar", d:"Aansprakelijkheid, arbeidsongeschiktheid en inventaris voor zzp'ers en ondernemers.", i:"campagne-kvk"}
 ];
-ITEMS.push({ id:"actie-ideeen-schade", cat:"campagnes", kind:"ideeen", model:"gratis", title:"Actie-ideeën schadeverzekeringen en inkomen", by:"Blinqx V&H",
+ITEMS.push({ id:"actie-ideeen-schade", cat:"campagnes", kind:"ideeen", model:"gratis", title:"Actie-ideeën door het jaar: schade, inkomen, wonen en fiscaal", by:"Blinqx V&H",
   summary:"Veertien kant-en-klare actie-ideeën voor schadeklanten, met het beste moment, de doelgroep en het materiaal: van wintersport en AVP tot SVI, studenten, e-bikes, stormseizoen en uitvaart.",
   channels:["Jaarplanning","Eigen e-mail"], tags:["schadeverzekeringen","acties","ideeën","jaarplanning","wintersport","avp","svi","e-bike","storm","rechtsbijstand","uitvaart","studenten"] });
