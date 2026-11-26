@@ -5912,9 +5912,9 @@ const INSLUIT_EXTERN = {
   woningcijfer:{ naam:"Woningcijfer: hoe toekomstbestendig is de woning?", titel:"Woningcijfer", hoogte:1200, noFrame:true,
     url:() => "https://www.woningcijfer.nl/",
     info:"Klanten zien welk cijfer een woning scoort, met de cijfers voor woning, klimaat en fundering. Woningcijfer staat insluiten in een iframe niet toe; gebruik een knop of link." },
-  woningverzilveraar:{ naam:"Woningverzilveraar: verzilverhypotheken vergelijken (NVHP)", titel:"Woningverzilveraar", hoogte:1800,
-    url:() => "https://woningverzilveraar.nl/",
-    info:"Senioren zien hoeveel overwaarde ze kunnen opnemen en welke verzilverhypotheken bij hen passen: a.s.r., MUNT, Vandaag, ABN AMRO, ZilverHuis, SocioHypotheek en SVn. De NVHP houdt aanbod en voorwaarden actueel; via de iframe staat op je site altijd de nieuwste versie." },
+  woningverzilveraar:{ naam:"Woningverzilveraar: verzilverhypotheken vergelijken (NVHP)", titel:"Woningverzilveraar", hoogte:1000, gegevens:true, contact:true,
+    url:o => "https://woningverzilveraar.nl/?embed=1" + [["kantoor",o.kantoor],["adviseur",o.adviseur],["logo",/^https:\/\//i.test(o.logo)?o.logo:""],["kleur",/^#[0-9a-f]{6}$/i.test(o.kleur||"")?o.kleur:""],["web",/^https?:\/\//i.test(o.web||"")?o.web:""],["email",o.email],["tel",o.tel]].filter(x=>x[1]).map(([k,v])=>`&${k}=${encodeURIComponent(v)}`).join(""),
+    info:"Senioren zien hoeveel overwaarde ze kunnen opnemen en welke verzilverhypotheken bij hen passen: a.s.r., MUNT, Vandaag, ABN AMRO, ZilverHuis, SocioHypotheek en SVn. De NVHP houdt aanbod en voorwaarden actueel; via de iframe staat op je site altijd de nieuwste versie. Op jouw site staat ‘Aangeboden door’ met je naam en logo, en de knop ‘Neem contact op’ gaat naar jou in plaats van naar de NVHP. Zonder contactgegevens vervalt die knop." },
   duurzaamheidsprofiel:{ naam:"Duurzaamheidsprofiel", titel:"Duurzaamheidsprofiel", hoogte:1200,
     url:() => "https://duurzaamheidsprofiel.hypotheekbond.nl/",
     info:"Klanten zien op postcode en huisnummer hoe hun woning scoort en welke maatregelen mogelijk zijn, met kosten en besparing." }
@@ -5945,6 +5945,9 @@ function viewInsluiten(item, params){
           ${[["adviseur","Naam adviseur"],["kantoor","Kantoornaam"]].map(([k,l])=>`<div><label class="f" for="in-${k}">${l}</label><input class="i" id="in-${k}" data-in="${k}" value="${esc(HS[k])}"></div>`).join("")}
         </div>
         <label class="f" for="in-logo">Logo-URL (https)</label><input class="i" id="in-logo" data-in="logoUrl" value="${esc(HS.logoUrl)}" placeholder="https://www.jouwkantoor.nl/logo.png">
+        <div id="in-contactblok"><label class="f" for="in-web">Website (voor de knop ‘Neem contact op’)</label><input class="i" id="in-web" data-in="web" value="${esc(HS.web)}" placeholder="https://www.jouwkantoor.nl/contact">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 10px"><div><label class="f" for="in-email">E-mail</label><input class="i" id="in-email" data-in="email" type="email" value="${esc(HS.email)}"></div><div><label class="f" for="in-tel">Telefoon</label><input class="i" id="in-tel" data-in="tel" type="tel" value="${esc(HS.tel)}"></div></div>
+        <p class="hint">De knop gebruikt de website; zonder website het e-mailadres, anders het telefoonnummer. Je huisstijlkleur wordt de accentkleur.</p></div>
         <div id="in-adresblok"><label class="f" for="in-adres">Vast adres (optioneel)</label><input class="i" id="in-adres" value="${esc(ins.adres)}" placeholder="Leeg laten: klant vult zelf in"><p class="hint">Handig op een pagina over één woning, bijvoorbeeld bij een aankoopbegeleiding.</p></div>
         <p class="hint" id="in-hs">Kleuren en lettertype van de klanttools komen uit <a href="#/huisstijl">jouw huisstijl</a>.</p></div>
         <p class="hint">Voorbeeld van rekentools op een eigen site: <a href="#/item/demo-hypotheek-kantoor">Demo-hypotheek-kantoor.nl</a>.</p>
@@ -5977,8 +5980,8 @@ function viewInsluiten(item, params){
     const t = tools.find(x=>x.id===ins.tool), h = Math.max(300, Math.min(4000, parseInt(String(ins.hoogte).replace(/\D/g,""))||t.hoogte));
     const vormSel = $("#in-vorm"); vormSel.querySelector('option[value="iframe"]').disabled = !!t.noFrame;
     if (t.noFrame && ins.vorm === "iframe"){ ins.vorm = "knop"; vormSel.value = "knop"; }
-    const url = t.url({ adviseur:HS.adviseur, kantoor:HS.kantoor, logo:HS.logoUrl, adres:ins.adres.trim() });
-    $("#in-info").textContent = t.info || ""; $("#in-adresblok").hidden = !t.adres; $("#in-hs").hidden = !t.eigen; $("#in-gegevens").hidden = !t.gegevens; $("#in-n3").textContent = t.gegevens ? "3" : "2";
+    const url = t.url({ adviseur:HS.adviseur, kantoor:HS.kantoor, logo:HS.logoUrl, adres:ins.adres.trim(), kleur:HS.kleur ? hsKleur() : "", web:HS.web, email:HS.email, tel:HS.tel });
+    $("#in-info").textContent = t.info || ""; $("#in-adresblok").hidden = !t.adres; $("#in-contactblok").hidden = !t.contact; $("#in-hs").hidden = !t.eigen; $("#in-gegevens").hidden = !t.gegevens; $("#in-n3").textContent = t.gegevens ? "3" : "2";
     $("#in-h").placeholder = String(t.hoogte);
     const wie = HS.kantoor ? ` · ${HS.kantoor}` : "", a = s => s.replace(/&/g,"&amp;").replace(/"/g,"&quot;");
     const kleur = hsKleur(), ink = textColorOn(kleur);
@@ -5996,7 +5999,7 @@ function viewInsluiten(item, params){
   $("#in-vorm").value = ins.vorm; $("#in-vorm").onchange = e => { ins.vorm = e.target.value; gen(); };
   $("#in-h").oninput = e => { ins.hoogte = e.target.value; gen(); };
   $("#in-adres").onchange = e => { ins.adres = e.target.value; gen(); };
-  $$("[data-in]").forEach(el=>el.addEventListener("change", ()=>{ const k = el.dataset.in, v = el.value.trim(); if (k==="logoUrl" && v && !/^https:\/\//i.test(v)){ toast("Logo-URL moet met https:// beginnen"); return; } HS[k] = v; hsSync(); gen(); }));
+  $$("[data-in]").forEach(el=>el.addEventListener("change", ()=>{ const k = el.dataset.in, v = el.value.trim(); if (k==="logoUrl" && v && !/^https:\/\//i.test(v)){ toast("Logo-URL moet met https:// beginnen"); return; } if (k==="web" && v && !/^https?:\/\//i.test(v)){ toast("Website moet met https:// beginnen"); return; } HS[k] = v; hsSync(); gen(); }));
   $("#in-copy").onclick = async () => toast(await copyText($("#in-code").value) ? "Code gekopieerd" : "Kopiëren lukte niet");
   $("#in-copyurl").onclick = async () => toast(await copyText($("#in-open").href) ? "Link gekopieerd" : "Kopiëren lukte niet");
   gen();
