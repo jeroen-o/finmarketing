@@ -537,7 +537,7 @@ const ITEMS = [
 
   { id:"marketingkalender", cat:"content", kind:"kalender", model:"gratis",
     title:"Marketing- en klantactiviteitenkalender 2027", by:"Blinqx V&H",
-    summary:"Per maand concrete klantactiviteiten met het bijbehorende materiaal: van de nieuwsbrief in januari tot de hypotheekverjaardag in juni en Prinsjesdag in september. Met agendabestand (.ics).",
+    summary:"Per maand concrete klantactiviteiten met het bijbehorende materiaal: van de nieuwsbrief in januari tot het Verantwoord Hypotheekrapport in juni en Prinsjesdag in september. Met agendabestand (.ics).",
     channels:["Agenda","Jaarplanning"], tags:["kalender","jaarplanning","agenda","ics","klantactiviteiten","campagne","prinsjesdag","maand"] },
   { id:"social-posts", cat:"content", kind:"social", model:"gratis",
     title:"Social-postbank: posts voor elke maand", by:"Blinqx V&H",
@@ -545,8 +545,8 @@ const ITEMS = [
     channels:["LinkedIn","Facebook","Instagram","Social"], tags:["social","linkedin","facebook","instagram","posts","social media","hashtags","content"] },
   { id:"ecards", cat:"content", kind:"kaarten", model:"gratis",
     title:"E-cards in Blinqx-stijl", by:"Blinqx V&H",
-    summary:"Tien kaartjes voor klantcontact: verjaardag (“Dat mag gevierd worden!”), bedankt, welkom, super, lekker bezig, thumbs up en meer. Download als PNG voor je mail, WhatsApp of social, of gebruik ze bij de hypotheekverjaardag.",
-    channels:["Eigen e-mail","WhatsApp","Social","Print"], tags:["kaart","ecard","verjaardag","hypotheekverjaardag","bedankt","welkom","klantbinding","afbeelding","png"] },
+    summary:"Tien kaartjes voor klantcontact: verjaardag (“Dat mag gevierd worden!”), bedankt, welkom, super, lekker bezig, thumbs up en meer. Download als PNG voor je mail, WhatsApp of social, of stuur ze mee met het Verantwoord Hypotheekrapport.",
+    channels:["Eigen e-mail","WhatsApp","Social","Print"], tags:["kaart","ecard","verjaardag","bedankt","welkom","klantbinding","afbeelding","png"] },
   { id:"brievenbank", cat:"content", kind:"brieven", model:"freemium",
     title:"Brievenbank: brieven en brochures", by:"PortefeuilleSignalen · Hypotheekbond",
     summary:"Ruim 40 voorbeeldbrieven en 15 brochures voor klantcontact: rentevaste periode, rentemiddeling, verhuizen, ORV-besparing, opvragen van documenten, familiebank en meer. Doorzoekbaar en per thema ingedeeld.",
@@ -640,10 +640,10 @@ const ITEMS = [
     compliance:"Een verkenning, geen advies." },
 
   { id:"verantwoord-hypotheekrapport", cat:"klanttools", kind:"vhr", model:"gratis",
-    title:"Verantwoord hypotheekrapport (hypotheekverjaardag)", by:"Blinqx V&H",
+    title:"Verantwoord Hypotheekrapport", by:"Blinqx V&H",
     summary:"Direct inzicht in risico's, besparingen en mogelijkheden van een hypotheek: arbeidsongeschiktheid, werkloosheid, pensioen, overlijden, einde relatie, einde looptijd, rentekorting door gestegen woningwaarde, hypotheekcheck en maximale hypotheek. Ook voor de partner. Met print- en Word-rapport.",
-    channels:["Eigen website","Eigen e-mail","Print/PDF","Word","Hypotheekverjaardag"],
-    tags:["verantwoord hypotheekrapport","hypotheekverjaardag","arbeidsongeschiktheid","werkloosheid","pensioen","overlijden","scheiding","einde looptijd","rentekorting","risicoklasse","hypotheekcheck","besparen","maximale hypotheek","pandwise","rapport","life events","zorgplicht"] },
+    channels:["Eigen website","Eigen e-mail","Print/PDF","Word"],
+    tags:["verantwoord hypotheekrapport","jaarlijkse check","arbeidsongeschiktheid","werkloosheid","pensioen","overlijden","scheiding","einde looptijd","rentekorting","risicoklasse","hypotheekcheck","besparen","maximale hypotheek","pandwise","rapport","life events","zorgplicht"] },
   { id:"verzekeringscheck", cat:"klanttools", kind:"verzekeringscheck", model:"gratis",
     title:"Jaarlijkse check opstal & inboedel: is de dekking nog passend?", by:"Blinqx V&H",
     summary:"Vijftien korte vragen over woning en inboedel: verbouwd, verduurzaamd, dure aankopen, verhuisd of thuiswerken? Met een rekenvoorbeeld van onderverzekering en een samenvatting die de klant naar de adviseur stuurt.",
@@ -952,7 +952,7 @@ function viewHome(params){
     </div></div></section>`;
 
   const FEAT = [
-    ["verantwoord-hypotheekrapport","life events","Risico's, besparingen en maximale hypotheek in één rapport. Perfect voor de hypotheekverjaardag.","dark"],
+    ["verantwoord-hypotheekrapport","life events","Risico's, besparingen en maximale hypotheek in één rapport. Perfect voor de jaarlijkse hypotheekcheck.","dark"],
     ["nieuwsbrief-hypotheekbeleid-2027","news","Kant-en-klaar met je eigen kantoorgegevens. Download als Word of kopieer voor je mail.",""],
     ["woontoekomst-check","house","Vier vragen voor 55-plussers: blijven of gaan? Antwoorden komen direct bij jou binnen.",""],
     ["kansentool","target","Hoeveel oversluiters, renteverlengers en verhuizers zitten er in je portefeuille?",""],
@@ -1578,7 +1578,7 @@ function viewBrieven(item){
 }
 
 /* ============================================================
-   TOOL: Verantwoord hypotheekrapport (hypotheekverjaardag)
+   TOOL: Verantwoord Hypotheekrapport
    Eigen, vereenvoudigde indicatieve methode. Alle aannames in VH.
    ============================================================ */
 const VH = {
@@ -1699,10 +1699,10 @@ const VH_INFO = {
 function viewVhr(item, params){
   setNav("klanttools");
   ["kantoor","adviseur","tel","email"].forEach(k=>{ if (params.get(k)) vh[k]=params.get(k); });
-  smallHero([`<a href="#/?cat=klanttools">Klanttools</a>`, `<b>Verantwoord hypotheekrapport</b>`], `
-    <div class="detail-head"><div>${badge(item.model)} <span class="badge cat">Tool</span> <span class="badge">Hypotheekverjaardag</span>
-      <h1>Verantwoord hypotheekrapport</h1><p>Direct inzicht in de risico's, besparingen en mogelijkheden van een hypotheek: bij arbeidsongeschiktheid, werkloosheid, pensioen, overlijden, einde relatie en einde looptijd. Met een partner berekenen we elke situatie ook voor de partner. Zie ook <a href="https://sites.google.com/view/hypotheekverjaardag/homepage" target="_blank" rel="noopener">Hypotheekverjaardag.nl</a>.</p></div>
-      <div class="btns" style="flex-direction:column;align-items:flex-end"><img src="data:image/png;base64,${CARDS["Verjaardag"][1]}" alt="Dat mag gevierd worden!" style="width:240px;max-width:100%;height:auto;box-shadow:0 8px 24px rgba(0,0,0,.12)">${vh.kantoor?`<span class="badge" style="font-size:.8rem;padding:8px 12px">Aangeboden door ${esc(vh.kantoor)}</span>`:""}</div></div>`);
+  smallHero([`<a href="#/?cat=klanttools">Klanttools</a>`, `<b>Verantwoord Hypotheekrapport</b>`], `
+    <div class="detail-head"><div>${badge(item.model)} <span class="badge cat">Tool</span>
+      <h1>Verantwoord Hypotheekrapport</h1><p>Direct inzicht in de risico's, besparingen en mogelijkheden van een hypotheek: bij arbeidsongeschiktheid, werkloosheid, pensioen, overlijden, einde relatie en einde looptijd. Met een partner berekenen we elke situatie ook voor de partner.</p></div>
+      <div class="btns" style="flex-direction:column;align-items:flex-end">${vh.kantoor?`<span class="badge" style="font-size:.8rem;padding:8px 12px">Aangeboden door ${esc(vh.kantoor)}</span>`:""}</div></div>`);
   const persoon = (k,X,titel) => `<div ${k==="p"?`id="vh-pblock" ${vh.partner?"":"hidden"}`:""}>
     <h3>${titel}</h3>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 10px">
@@ -1826,9 +1826,9 @@ function viewVhr(item, params){
     </div>
     <div class="actions" style="flex-direction:row;flex-wrap:wrap;margin-bottom:16px"><button class="btn btn-y" id="vh-print">Print / PDF-rapport</button><button class="btn btn-o" id="vh-word">⬇ Download Word</button></div>
     <div class="note"><strong>Let op, AFM/compliance:</strong> dit is een eigen, vereenvoudigde rekenmethode en géén officiële leennormtoets of nabouw van het originele Verantwoord Hypotheekrapport. Uitkomsten zijn indicatief en mogen niet als advies worden gepresenteerd. Werk de aannames (woonquotes, maximumdagloon, AOW, WW-duur) jaarlijks bij en laat de tool vóór breed gebruik toetsen.</div>`;
-    const reportHtml = () => `<div style="font-family:Arial,Helvetica,sans-serif;color:#000;padding:6px">${vh.kantoor?`<p style="font-size:12px;text-transform:uppercase;letter-spacing:1px">${esc(vh.kantoor)}</p>`:""}<h1 style="font-size:22px">Verantwoord hypotheekrapport</h1>${$("#vh-report").innerHTML.replace(/<details[^>]*>/g,"<div>").replace(/<\/details>/g,"</div>").replace(/<summary[^>]*>.*?<\/summary>/g,"<b style='font-size:12px'>Wettelijke regeling</b>").replace(/var\(--k\)/g,"#000").replace(/var\(--ok\)/g,"#1f7a45").replace(/var\(--y\)/g,"#FFCD00").replace(/var\(--[a-z0-9-]+\)/g,"#777")}</div>`;
-    $("#vh-print").onclick = () => printHtml("Verantwoord hypotheekrapport", reportHtml());
-    $("#vh-word").onclick = () => { download(`verantwoord-hypotheekrapport${vh.a.naam?"-"+slug(vh.a.naam):""}.doc`, "﻿"+`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>Verantwoord hypotheekrapport</title><style>@page{size:21cm 29.7cm;margin:1.8cm} body{font-family:Arial}</style></head><body>${reportHtml()}</body></html>`, "application/msword"); toast("Word-bestand gedownload"); };
+    const reportHtml = () => `<div style="font-family:Arial,Helvetica,sans-serif;color:#000;padding:6px">${vh.kantoor?`<p style="font-size:12px;text-transform:uppercase;letter-spacing:1px">${esc(vh.kantoor)}</p>`:""}<h1 style="font-size:22px">Verantwoord Hypotheekrapport</h1>${$("#vh-report").innerHTML.replace(/<details[^>]*>/g,"<div>").replace(/<\/details>/g,"</div>").replace(/<summary[^>]*>.*?<\/summary>/g,"<b style='font-size:12px'>Wettelijke regeling</b>").replace(/var\(--k\)/g,"#000").replace(/var\(--ok\)/g,"#1f7a45").replace(/var\(--y\)/g,"#FFCD00").replace(/var\(--[a-z0-9-]+\)/g,"#777")}</div>`;
+    $("#vh-print").onclick = () => printHtml("Verantwoord Hypotheekrapport", reportHtml());
+    $("#vh-word").onclick = () => { download(`verantwoord-hypotheekrapport${vh.a.naam?"-"+slug(vh.a.naam):""}.doc`, "﻿"+`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>Verantwoord Hypotheekrapport</title><style>@page{size:21cm 29.7cm;margin:1.8cm} body{font-family:Arial}</style></head><body>${reportHtml()}</body></html>`, "application/msword"); toast("Word-bestand gedownload"); };
   };
   $$("[data-vp]").forEach(el=>{ const [k,f]=el.dataset.vp.split(".");
     if (el.hasAttribute("data-eur")) euroInput(el, ()=>{ vh[k][f]=el.value; draw(); });
@@ -2515,7 +2515,7 @@ const KALENDER = [
     {t:"Woningmarkt in beweging: verhuizers", d:"Signaleer klanten die hun woning te koop zetten en help kopers met een feitencheck van hun nieuwe woning.", i:["portefeuillesignalen","pandwise","funderingscijfer"]},
     {t:"LinkedIn-campagne “Hypotheek vanaf 52”", d:"Start de campagne van zeven posts in vier weken.", i:["linkedin-52","adviseurstoolkit-52"]}]},
   { m:6, a:[
-    {t:"Hypotheekverjaardag", d:"Verras klanten op de verjaardag van hun hypotheek met een kaartje en een verantwoord hypotheekrapport.", i:["verantwoord-hypotheekrapport","ecards","sel-verjaardagen"]},
+    {t:"Verantwoord Hypotheekrapport", d:"Stuur klanten een Verantwoord Hypotheekrapport: past de hypotheek nog, ook bij arbeidsongeschiktheid, werkloosheid, pensioen en overlijden? Combineer het met een persoonlijk kaartje.", i:["verantwoord-hypotheekrapport","ecards"]},
     {t:"Halverwege het jaar: box 3 of lijfrente?", d:"Klanten met spaargeld: vergelijk vrij vermogen in box 3 met lijfrente of aanvullend pensioen.", i:["box3-lijfrente","campagne-box3-lijfrente"]},
     {t:"Woontoekomst-check voor 55-plussers", d:"Blijven of gaan? Laat oudere klanten in vier vragen aangeven hoe ze later willen wonen.", i:["woontoekomst-check","campagne-verkopen-terughuren"]}]},
   { m:7, a:[
@@ -2639,11 +2639,11 @@ function viewKennisbank(item, params){
 
 /* ---------- Uitnodigingsmails bij klanttools ---------- */
 const UITNODIGING = {
-  "verantwoord-hypotheekrapport": {o:"Uw hypotheek is jarig: tijd voor een check", x:`{aanhef},
+  "verantwoord-hypotheekrapport": {o:"Uw Verantwoord Hypotheekrapport: past uw hypotheek nog?", x:`{aanhef},
 
-Uw hypotheek is weer een jaar ouder. Dat vieren we graag met een korte check: past uw hypotheek nog bij uw situatie, nu en later?
+Graag maken we voor u een Verantwoord Hypotheekrapport: een korte check of uw hypotheek nog past bij uw situatie, nu en later.
 
-In een verantwoord hypotheekrapport ziet u wat er gebeurt bij arbeidsongeschiktheid, werkloosheid, pensioen of overlijden. Ook kijken we of u kunt besparen, bijvoorbeeld door rentekorting na een gestegen woningwaarde.
+In het rapport ziet u wat er gebeurt bij arbeidsongeschiktheid, werkloosheid, pensioen of overlijden. Ook kijken we of u kunt besparen, bijvoorbeeld door rentekorting na een gestegen woningwaarde.
 
 Zullen we een moment plannen? Reageer op deze mail of bel ons op {tel}.
 
@@ -2788,7 +2788,7 @@ const POSTS = [
   {m:3, t:"Pensioen telt eerder mee", ic:"pension", i:"campagne-pensioen", x:"Wist je dat sommige banken bij een nieuwe of aangepaste hypotheek al 15 jaar vóór je AOW-leeftijd naar je pensioeninkomen kijken?\n\nBen je tussen de 50 en 57 en heb je plannen met je woning? Dan is het slim om dit nu al in beeld te hebben. Een kort gesprek geeft veel duidelijkheid.\n\n👉 {link}", h:"#pensioen #hypotheek #50plus"},
   {m:4, t:"Verduurzamen loont dubbel", ic:"leaf", i:"campagne-duurzaam-oversluiten", x:"Isoleren, zonnepanelen of een warmtepomp? Verduurzamen kan je energierekening verlagen. Bij sommige geldverstrekkers krijg je bovendien rentekorting bij een beter energielabel.\n\nBenieuwd wat er voor jouw woning mogelijk is? Begin met een gratis duurzaamheidscheck en bespreek de financiering met ons.\n\n👉 {link}", h:"#verduurzamen #energielabel #duurzaamwonen"},
   {m:5, t:"Woning op het oog?", ic:"house report", i:"pandwise", x:"Een woning op het oog? Kijk verder dan de foto's. Met een gratis feitencheck zie je informatie over fundering, klimaat, geluid en een waarde-indicatie op basis van open data.\n\nEn daarna? Dan helpen wij je graag met de hypotheek.\n\n👉 {link}", h:"#huiskopen #woningzoeker #hypotheekadvies"},
-  {m:6, t:"Je hypotheek is jarig", beeld:"Verjaardag", i:"verantwoord-hypotheekrapport", x:"Dat mag gevierd worden! 🎉 Is je hypotheek weer een jaartje ouder? Dan is het een goed moment om te kijken of hij nog past bij je situatie: bij pensioen, arbeidsongeschiktheid, werkloosheid of als je wilt verhuizen.\n\nVraag ons naar je verantwoord hypotheekrapport.\n\n👉 {link}", h:"#hypotheekverjaardag #hypotheek #financieelgezond"},
+  {m:6, t:"Verantwoord Hypotheekrapport", ic:"house report", i:"verantwoord-hypotheekrapport", x:"Past je hypotheek nog bij je situatie? Met een Verantwoord Hypotheekrapport zie je wat er gebeurt bij pensioen, arbeidsongeschiktheid, werkloosheid of overlijden, en of je kunt besparen.\n\nVraag ons naar je Verantwoord Hypotheekrapport.\n\n👉 {link}", h:"#hypotheek #verantwoordhypotheekrapport #financieelgezond"},
   {m:6, t:"Blijven of gaan?", ic:"house", i:"woontoekomst-check", x:"Hoe wil jij later wonen? Bijna negen op de tien 55-plussers denken erover na, maar de helft doet er (nog) niets mee.\n\nDoe de woontoekomst-check: vier vragen, drie minuten, geen cijfers. Jij bepaalt of en hoe we contact opnemen.\n\n👉 {link}", h:"#55plus #wonen #woontoekomst"},
   {m:2, t:"Is je inboedel nog goed verzekerd?", ic:"insurance", i:"verzekeringscheck", x:"Nieuwe e-bike, zonnepanelen op het dak of net samenwonen? Dan is je opstal- of inboedelverzekering misschien niet meer up-to-date. Bij onderverzekering krijg je bij schade soms maar een deel vergoed.\n\nDoe de jaarlijkse check in drie minuten en weet waar je staat.\n\n👉 {link}", h:"#inboedelverzekering #opstalverzekering #verzekeren"},
   {m:11, t:"Op wintersport?", ic:"snow", i:"campagne-wintersport", x:"Ga je deze winter skiën of snowboarden? Check vóór vertrek je reisverzekering. Wintersport is niet altijd standaard meeverzekerd, en medische kosten in het buitenland worden door de basisverzekering vaak maar deels vergoed.\n\nTwijfel je? We kijken graag met je mee.\n\n👉 {link}", h:"#wintersport #reisverzekering #skiën"},
@@ -2881,7 +2881,7 @@ function viewKaarten(item){
   app.innerHTML = `<div class="wrap">${DISC_SHORT}
     <div class="grid">${Object.entries(CARDS).map(([k,[t,b64]])=>`<div class="card cut"><img src="data:image/png;base64,${b64}" alt="${esc(t)}" style="width:100%;height:auto;display:block"><h3 style="font-size:1rem">${esc(t)}</h3>
       <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-y btn-sm" download="blinqx-kaart-${slug(k)}.png" href="data:image/png;base64,${b64}">${icon("download",16)} Download PNG</a><button class="btn btn-o btn-sm" data-copy="${k}">${icon("copy",16)} Kopieer afbeelding</button></div></div>`).join("")}</div>
-    <div class="note" style="margin-top:18px"><strong>Tip:</strong> combineer de verjaardagskaart met de selectie <a href="#/item/sel-verjaardagen">Verjaardagen</a> of met het <a href="#/item/verantwoord-hypotheekrapport">Verantwoord hypotheekrapport</a> op de hypotheekverjaardag. Gebruik de kaarten alleen in klantcommunicatie van je eigen kantoor.</div></div>`;
+    <div class="note" style="margin-top:18px"><strong>Tip:</strong> combineer de verjaardagskaart met de selectie <a href="#/item/sel-verjaardagen">Verjaardagen</a> of met het <a href="#/item/verantwoord-hypotheekrapport">Verantwoord Hypotheekrapport</a>. Gebruik de kaarten alleen in klantcommunicatie van je eigen kantoor.</div></div>`;
   $$("[data-copy]").forEach(b=>b.onclick=async()=>{
     try{ const blob = await (await fetch("data:image/png;base64,"+CARDS[b.dataset.copy][1])).blob(); await navigator.clipboard.write([new ClipboardItem({"image/png":blob})]); toast("Afbeelding gekopieerd"); }
     catch(e){ toast("Kopiëren lukte niet; gebruik Download"); }

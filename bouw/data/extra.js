@@ -6,9 +6,9 @@ const EXTRA_CAMP = [
   summary:"De vraag die elke ouder zich stelt: kunnen mijn partner en kinderen in ons huis blijven wonen als ik overlijd of arbeidsongeschikt raak, en blijven ze goed verzorgd achter? Voor huurders én huiseigenaren.",
   waarom:["Bij overlijden of langdurige arbeidsongeschiktheid daalt het inkomen vaak flink, terwijl de huur of hypotheek gewoon doorloopt. De ANW-uitkering is beperkt en inkomensafhankelijk, een nabestaandenpensioen is niet altijd geregeld en ondernemers hebben geen wettelijk vangnet.",
     "Voor gezinnen met kinderen is dit de kernvraag: kan het gezin in de vertrouwde omgeving blijven wonen? Met een paar concrete cijfers maak je het bespreekbaar, en vaak blijkt een overlijdensrisicoverzekering of inkomensvoorziening goed betaalbaar."],
-  blokken:[["Huiseigenaren",["Verantwoord hypotheekrapport: overlijden en AO per partner","Overlijdensrisicoverzekering afgestemd op de hypotheek","Woonlasten- of arbeidsongeschiktheidsverzekering","Testament en voogdij"]],["Huurders",["Woonlastencheck: huur als deel van het inkomen","Nabestaandenpensioen en ANW in kaart","Overlijdensrisicoverzekering voor het inkomen","Buffer en vaste lasten"]]],
+  blokken:[["Huiseigenaren",["Verantwoord Hypotheekrapport: overlijden en AO per partner","Overlijdensrisicoverzekering afgestemd op de hypotheek","Woonlasten- of arbeidsongeschiktheidsverzekering","Testament en voogdij"]],["Huurders",["Woonlastencheck: huur als deel van het inkomen","Nabestaandenpensioen en ANW in kaart","Overlijdensrisicoverzekering voor het inkomen","Buffer en vaste lasten"]]],
   doelgroep:["Gezinnen met kinderen","Samenwonenden met één hoofdinkomen","Ondernemers en zzp'ers","Huurders én huiseigenaren"],
-  watDoen:"Stel de vraag concreet: kunnen je partner en kinderen in het huis blijven wonen? Bied de woonlastencheck (huur) of het verantwoord hypotheekrapport (koop) aan, en bespreek daarna de nabestaandencheck.",
+  watDoen:"Stel de vraag concreet: kunnen je partner en kinderen in het huis blijven wonen? Bied de woonlastencheck (huur) of het Verantwoord Hypotheekrapport (koop) aan, en bespreek daarna de nabestaandencheck.",
   stappen:[["Mail","Stuur de mail voor huurders of voor huiseigenaren."],["Inzicht","Laat de klant de woonlastencheck of het rapport invullen, of vul het samen in."],["Gesprek","Bespreek de uitkomst, de nabestaanden en eventuele voorzieningen."],["Vastleggen","Leg advies en keuze vast, ook als de klant niets regelt."]],
   sjablonen:[
     {naam:"Mail: huiseigenaren", onderwerp:"Kunnen uw partner en kinderen in uw huis blijven wonen?", tekst:`{aanhef},
@@ -16,7 +16,7 @@ const EXTRA_CAMP = [
 Het is een vraag die veel ouders zich stellen: kunnen mijn partner en kinderen in ons huis blijven wonen als mij iets overkomt? En blijven ze goed verzorgd achter?
 
 ## Wat gebeurt er met uw hypotheek?
-Bij overlijden of langdurige arbeidsongeschiktheid daalt het inkomen vaak, terwijl de hypotheek gewoon doorloopt. Met het verantwoord hypotheekrapport ziet u per situatie of de hypotheek betaalbaar blijft, voor u én voor uw partner.
+Bij overlijden of langdurige arbeidsongeschiktheid daalt het inkomen vaak, terwijl de hypotheek gewoon doorloopt. Met het Verantwoord Hypotheekrapport ziet u per situatie of de hypotheek betaalbaar blijft, voor u én voor uw partner.
 
 ## En verder?
 - Wat ontvangt uw partner aan nabestaandenpensioen of ANW?
@@ -44,7 +44,7 @@ Met vriendelijke groet,
 
 {adviseur}
 {kantoor}`}],
-  links:[{label:"Klantcheck: woonlasten", url:"#/item/check-woonlasten"},{label:"Klantcheck: nabestaanden", url:"#/item/check-nabestaanden"},{label:"Verantwoord hypotheekrapport", url:"#/item/verantwoord-hypotheekrapport"}],
+  links:[{label:"Klantcheck: woonlasten", url:"#/item/check-woonlasten"},{label:"Klantcheck: nabestaanden", url:"#/item/check-nabestaanden"},{label:"Verantwoord Hypotheekrapport", url:"#/item/verantwoord-hypotheekrapport"}],
   tags:["blijven wonen","nabestaanden","overlijden","arbeidsongeschiktheid","huur","hypotheek","gezin","kinderen","orv","verzorgd achterblijven"],
   compliance:"Benader dit onderwerp met tact. Advies over ORV, AOV en woonlastenverzekeringen vraagt een volledige klantinventarisatie (Wft-zorgplicht)." },
 

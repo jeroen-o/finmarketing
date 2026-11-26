@@ -78,7 +78,7 @@ Met de gezinscheck ziet u in een paar minuten waar aandachtspunten liggen:
 [link naar de gezinscheck]
 
 Daarna bespreken we de uitkomst graag met u. Bel ons op {tel} of reageer op deze mail.` + MAILSLOT}],
-  links:[{label:"Klantcheck: gezin met kinderen", url:"#/item/check-gezin"},{label:"Verantwoord hypotheekrapport", url:"#/item/verantwoord-hypotheekrapport"}],
+  links:[{label:"Klantcheck: gezin met kinderen", url:"#/item/check-gezin"},{label:"Verantwoord Hypotheekrapport", url:"#/item/verantwoord-hypotheekrapport"}],
   tags:["gezin","kinderen","baby","ouders","voogdij","testament","orv","avp","gezinscheck"],
   compliance:"Een gezinscheck is een inventarisatie, geen advies. Advies over ORV, AOV of uitvaart vraagt een volledige klantinventarisatie (Wft)." },
 
@@ -155,18 +155,18 @@ Voor de meeste automobilisten biedt een SVI betere bescherming, omdat de werkeli
 { id:"campagne-woonlasten-inkomen", title:"Kunnen jullie de hypotheek of huur nog betalen bij overlijden of arbeidsongeschiktheid?", short:"Woonlasten bij overlijden en AO",
   summary:"Overlijden of arbeidsongeschiktheid van een partner kan het inkomen flink verlagen. Help klanten (kopers én huurders) inzien of de woonlasten dan nog betaalbaar zijn, en welke voorzieningen er zijn.",
   waarom:["Veel huishoudens rekenen op twee inkomens. Valt er één weg door overlijden of arbeidsongeschiktheid, dan blijven de woonlasten vaak gelijk. De ANW-uitkering is beperkt en inkomensafhankelijk, en bij arbeidsongeschiktheid daalt het inkomen na twee jaar meestal flink. Ondernemers hebben geen wettelijke vangnet.",
-    "Dit gesprek is geschikt voor iedereen: met een hypotheek gebruik je het Verantwoord hypotheekrapport, met een huurwoning de woonlastencheck."],
+    "Dit gesprek is geschikt voor iedereen: met een hypotheek gebruik je het Verantwoord Hypotheekrapport, met een huurwoning de woonlastencheck."],
   blokken:[["Bij overlijden",["Nabestaandenpensioen en ANW (beperkt)","Overlijdensrisicoverzekering","Kan de partner in het huis blijven wonen?","Testament en voogdij"]],["Bij arbeidsongeschiktheid",["Loondoorbetaling 2 jaar, daarna WIA","Ondernemers: geen wettelijke dekking","Arbeidsongeschiktheids- of woonlastenverzekering","Buffer en vaste lasten"]]],
   doelgroep:["Samenwonende klanten met een hypotheek of huurwoning","Gezinnen met kinderen","Ondernemers en zzp'ers"],
-  watDoen:"Nodig klanten uit voor de woonlastencheck of het verantwoord hypotheekrapport, en bespreek de uitkomst.",
-  stappen:[["Mail","Stuur de uitnodiging: hypotheek → verantwoord hypotheekrapport; huur → woonlastencheck."],["Gesprek","Bespreek de uitkomst en mogelijke voorzieningen."],["Vastleggen","Leg advies en keuze vast."]],
+  watDoen:"Nodig klanten uit voor de woonlastencheck of het Verantwoord Hypotheekrapport, en bespreek de uitkomst.",
+  stappen:[["Mail","Stuur de uitnodiging: hypotheek → Verantwoord Hypotheekrapport; huur → woonlastencheck."],["Gesprek","Bespreek de uitkomst en mogelijke voorzieningen."],["Vastleggen","Leg advies en keuze vast."]],
   sjablonen:[
     {naam:"Mail: met een hypotheek", onderwerp:"Kunt u uw hypotheek blijven betalen als het tegenzit?", tekst:`{aanhef},
 
 Niemand staat er graag bij stil, maar wat gebeurt er met uw woonlasten als een van u overlijdt of langdurig arbeidsongeschikt raakt? Het inkomen daalt dan vaak, terwijl de hypotheek gewoon doorloopt.
 
 ## Inzicht in één rapport
-Met het verantwoord hypotheekrapport ziet u per situatie of de hypotheek betaalbaar blijft: bij overlijden, arbeidsongeschiktheid, werkloosheid en pensioen. Zo weet u waar u staat en of een voorziening verstandig is.
+Met het Verantwoord Hypotheekrapport ziet u per situatie of de hypotheek betaalbaar blijft: bij overlijden, arbeidsongeschiktheid, werkloosheid en pensioen. Zo weet u waar u staat en of een voorziening verstandig is.
 
 Zullen we een moment plannen om het samen te bekijken? Bel ons op {tel} of reageer op deze mail.` + MAILSLOT},
     {naam:"Mail: met een huurwoning", onderwerp:"Kunt u de huur blijven betalen als het tegenzit?", tekst:`{aanhef},
@@ -178,7 +178,7 @@ In een paar minuten ziet u hoe uw woonlasten zich verhouden tot uw inkomen, nu e
 [link naar de woonlastencheck]
 
 Wij bespreken de uitkomst graag met u, en kijken of een voorziening zinvol is. Bel ons op {tel}.` + MAILSLOT}],
-  links:[{label:"Klantcheck: woonlasten bij overlijden en AO", url:"#/item/check-woonlasten"},{label:"Verantwoord hypotheekrapport", url:"#/item/verantwoord-hypotheekrapport"}],
+  links:[{label:"Klantcheck: woonlasten bij overlijden en AO", url:"#/item/check-woonlasten"},{label:"Verantwoord Hypotheekrapport", url:"#/item/verantwoord-hypotheekrapport"}],
   tags:["overlijden","arbeidsongeschiktheid","woonlasten","huur","hypotheek","orv","aov","woonlastenverzekering","anw","nabestaanden"],
   compliance:"Advies over ORV, AOV en woonlastenverzekeringen valt onder de Wft-zorgplicht: volledige klantinventarisatie nodig. Uitkomsten van checks zijn indicatief." },
 
@@ -265,7 +265,7 @@ const CHECKS = {
     secties:[
       { key:"inkomen", titel:"Inkomen en wonen", items:[
         {k:"inkomen", q:"Weet u niet of uw partner en kinderen financieel rond kunnen komen als u overlijdt?", s:"", w:2, tip:"Laat in kaart brengen wat uw nabestaanden ontvangen (nabestaandenpensioen, ANW, ORV) en wat ze nodig hebben."},
-        {k:"woning", q:"Weet u niet of uw partner in het huis kan blijven wonen?", s:"", w:2, tip:"Bekijk of de hypotheek of huur betaalbaar blijft op één inkomen. Het verantwoord hypotheekrapport geeft inzicht."}]},
+        {k:"woning", q:"Weet u niet of uw partner in het huis kan blijven wonen?", s:"", w:2, tip:"Bekijk of de hypotheek of huur betaalbaar blijft op één inkomen. Het Verantwoord Hypotheekrapport geeft inzicht."}]},
       { key:"wensen", titel:"Wensen en regelingen", items:[
         {k:"testament", q:"Heeft u (nog) geen testament, of is het ouder dan 10 jaar?", s:"", w:1, tip:"Een testament voorkomt onduidelijkheid. Bespreek met een notaris of het nog past bij uw situatie."},
         {k:"wensen", q:"Zijn uw uitvaartwensen niet vastgelegd?", s:"", w:1, tip:"Leg uw wensen vast en bespreek ze met uw naasten. Dat geeft hen houvast."},
