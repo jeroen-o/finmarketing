@@ -128,6 +128,9 @@
   .fpartners a.fp img{height:46px;width:auto;max-width:150px;background:#fff;padding:5px 8px;flex:none}
   .fpartners a.fp:hover span{text-decoration:underline}
   .plogo{height:64px;width:auto;max-width:240px;background:#fff;padding:8px 12px;display:block}
+  .partners-band{padding:8px 0 30px}
+  .partners-band .partners{margin-bottom:10px}
+  body.embed .partners-band{display:none!important}
   .partners{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:44px}
   .partners .pc{background:#fff;padding:22px;display:flex;flex-direction:column;gap:10px}
   .partners .pc img{height:70px;width:auto;max-width:100%;object-fit:contain;align-self:flex-start}
@@ -384,6 +387,7 @@
 
 <div id="hero"></div>
 <main id="app" tabindex="-1"></main>
+<section class="partners-band adv-only" id="partners-band" aria-label="Partners"></section>
 
 <footer class="site">
   <div class="wrap">
@@ -399,7 +403,6 @@
         <p><b>Blinqx Verzekering &amp; Hypotheek</b><br>Hullenbergweg 109<br>1101 CL Amsterdam, NL<br>T: <a href="tel:+31207582111">020 - 758 21 11</a><br><a href="https://verzekeringhypotheek.blinqx.tech/" target="_blank" rel="noopener">verzekeringhypotheek.blinqx.tech</a></p>
       </div>
     </div>
-    <div class="fpartners adv-only" id="fpartners"></div>
     <div class="fdisc">
       <p id="f-ask" hidden style="margin:0 0 12px"><a class="btn btn-y btn-sm" href="#/vraag">Vraag over dit item →</a></p>
       <h3 style="color:var(--y);font-size:1.05rem;margin-bottom:8px">Gebruik volledig voor eigen rekening en risico</h3>
@@ -2946,11 +2949,27 @@ ITEMS.push(
   channels:["Opleiding","PE"], tags:["nvhp","hypothecairplanner","hypothecairplanner.nl","masterclass","masterclasses","opleiding","pe","permanente educatie","erkend hypothecair planner","kenniscentrum","partner"] },
 { id:"nvhp-marketing-generator", cat:"content", kind:"item", model:"aanvraag", logo:"nvhp",
   title:"NVHP Marketing Generator", by:"NVHP · Hypothecairplanner.nl (partner)", url:HP+"/adviseur/materialen/marketing-generator",
-  summary:"Marketingtool van de Nederlandse Vereniging van Hypothecair Planners voor leden. Daarnaast biedt de NVHP promotiematerialen, brochures en het logo voor Erkend Hypothecair Planners.",
-  contents:["Marketing Generator: beschikbaar voor leden, na inloggen op Hypothecairplanner.nl","Promotiematerialen en brochures van de NVHP","Logo’s en ‘Trots op ons logo’ voor Erkend Hypothecair Planners"],
-  links:[{label:"Marketing Generator", url:HP+"/adviseur/materialen/marketing-generator"},{label:"Inloggen voor leden", url:HP+"/user/login?destination=/portal"},{label:"Promotiematerialen", url:HP+"/adviseur/materialen/promotiematerialen"},{label:"Brochures", url:HP+"/adviseur/publicaties/brochures"},{label:"Lid worden van de NVHP", url:HP+"/adviseur/lidmaatschap/lid-worden"}],
+  summary:"Vul je gegevens één keer in en maak in de huisstijl van de NVHP een e-mailhandtekening voor Outlook, een visitekaartje, een LinkedIn-banner en een Teams-achtergrond. Voor leden van de NVHP.",
+  contents:["E-mailhandtekening voor Outlook","Visitekaartje","LinkedIn-banner","Teams-achtergrond","Beschikbaar voor leden, na inloggen op Hypothecairplanner.nl","Promotiematerialen en brochures van de NVHP","Logo’s en ‘Trots op ons logo’ voor Erkend Hypothecair Planners"],
+  links:[{label:"Marketing Generator", url:HP+"/adviseur/materialen/marketing-generator"},{label:"Inloggen voor leden", url:HP+"/user/login?destination=/portal"},{label:"Promotiematerialen", url:"#/item/nvhp-promotiematerialen"},{label:"Brochures", url:"#/item/nvhp-brochures"},{label:"Lid worden van de NVHP", url:HP+"/adviseur/lidmaatschap/lid-worden"}],
   priceLabel:"Voor leden", price:"Op aanvraag", priceNote:"Onderdeel van het NVHP-lidmaatschap", premium:["Toegang via het ledenportaal"],
-  channels:["Eigen e-mail","Eigen website","Social"], tags:["nvhp","hypothecairplanner","hypothecairplanner.nl","marketing generator","marketing","generator","promotiematerialen","brochures","logo","leden","partner","hypothecair planner"] },
+  channels:["Eigen e-mail","Eigen website","Social"], tags:["nvhp","hypothecairplanner","hypothecairplanner.nl","marketing generator","marketing","generator","e-mailhandtekening","handtekening","visitekaartje","linkedin-banner","linkedin","teams-achtergrond","promotiematerialen","brochures","logo","leden","partner","hypothecair planner"] },
+{ id:"nvhp-brochures", cat:"content", kind:"item", model:"gratis", logo:"nvhp",
+  title:"NVHP-brochures voor je klanten", by:"NVHP · Hypothecairplanner.nl (partner)", url:HP+"/adviseur/publicaties/brochures",
+  summary:"Veertien digitale brochures die een thema op hoofdlijnen uitleggen voor consumenten, met de meerwaarde van een Erkend Hypothecair Planner: van stap-voor-stap-uitleg tot echtscheiding, aflossingsvrij, duurzaam verbouwen, schenking en familiehypotheek.",
+  free:["Leden van de NVHP mogen de brochures zonder extra kosten gebruiken: mailen aan relaties of op de eigen website plaatsen","Consumenten kunnen ze lezen op Hypothecairplanner.nl"],
+  contents:["Stap voor stap uitleg over een hypotheek","Laten we gaan bouwen!","Echtscheiding en de gevolgen voor je hypotheek","De aflossingsvrije hypotheek","De aflossing van je hypotheek","Duurzaam verbouwen","Omdat het om jouw toekomst gaat","Woning: huren of kopen?","Passen de maandlasten in jouw financiële huishouding?","Je hypotheek is jouw en onze blijvende aandacht waard","De ondernemer en ‘zijn’ hypotheek","Schenking vanuit familie voor de eigen woning","Waarom de NVHP-gedragscode van belang is","Familiehypotheek"],
+  links:[{label:"Brochures voor adviseurs", url:HP+"/adviseur/publicaties/brochures"},{label:"Brochures voor consumenten", url:HP+"/consument/brochures"},{label:"Stap voor stap uitleg over een hypotheek (pdf)", url:HP+"/sites/default/files/2026-08/Stap%20voor%20stap%20uitleg%20over%20een%20hypotheek.pdf"},{label:"Laten we gaan bouwen! (pdf)", url:HP+"/sites/default/files/2026-08/Laten%20we%20gaan%20bouwen.pdf"},{label:"Echtscheiding en de gevolgen voor je hypotheek (pdf)", url:HP+"/sites/default/files/2026-08/Echtscheiding%20en%20de%20gevolgen%20voor%20je%20hypotheek.pdf"},{label:"De aflossingsvrije hypotheek (pdf)", url:HP+"/sites/default/files/2026-08/De%20aflossingsvrije%20hypotheek.pdf"},{label:"De aflossing van je hypotheek (pdf)", url:HP+"/sites/default/files/2026-08/Aflossing%20hypotheek.pdf"},{label:"Duurzaam verbouwen (pdf)", url:HP+"/sites/default/files/2026-08/Duurzaamheid_0.pdf"},{label:"Omdat het om jouw toekomst gaat (pdf)", url:HP+"/sites/default/files/2026-08/Omdat%20het%20om%20jouw%20toekomst%20gaat.pdf"},{label:"Woning: huren of kopen? (pdf)", url:HP+"/sites/default/files/2026-08/Huren%20of%20kopen.pdf"},{label:"Passen de maandlasten in jouw financiële huishouding? (pdf)", url:HP+"/sites/default/files/2026-08/Leenruimte.pdf"},{label:"Je hypotheek is jouw en onze blijvende aandacht waard (pdf)", url:HP+"/sites/default/files/2026-08/Hypotheek%20onderhoud.pdf"},{label:"De ondernemer en ‘zijn’ hypotheek (pdf)", url:HP+"/sites/default/files/2026-08/De%20ondernemer%20en%20zijn%20hypotheek.pdf"},{label:"Schenking vanuit familie voor de eigen woning (pdf)", url:HP+"/sites/default/files/2026-08/Schenking%20vanuit%20familie.pdf"},{label:"Waarom de NVHP-gedragscode van belang is (pdf)", url:HP+"/sites/default/files/2026-08/Gedragscode.pdf"},{label:"Familiehypotheek (pdf)", url:HP+"/sites/default/files/2026-08/Familiehypotheek.pdf"}],
+  useCases:["Meesturen na een oriëntatiegesprek","Op je website bij het bijbehorende onderwerp","Bij campagnes zoals aflossingsvrij, duurzaamheid of schenken"],
+  channels:["Eigen e-mail","Eigen website","Klantgesprek"], tags:["nvhp","hypothecairplanner","hypothecairplanner.nl","brochure","brochures","pdf","klantuitleg","echtscheiding","aflossingsvrij","duurzaam","huren of kopen","ondernemer","schenking","familiehypotheek","gedragscode","partner"] },
+{ id:"nvhp-promotiematerialen", cat:"kantoor", kind:"item", model:"betaald", logo:"nvhp",
+  title:"NVHP-promotiematerialen", by:"NVHP · Hypothecairplanner.nl (partner)", url:HP+"/adviseur/materialen/promotiematerialen",
+  summary:"Profileer je als Erkend Hypothecair Planner met naambordjes, certificaten, sluitzegels, schrijfblokken, pennen, een banner en digitale materialen. Leden ontvangen de materialen tegen kostprijs.",
+  contents:["Balpennen met logo (50 stuks): € 38,75","Certificaten met je naam (25 stuks): € 11,50","Naambordje 20 × 20 cm, weerbestendig: € 40,00","Naambordje aluminium (tot 3 namen): op aanvraag","Schrijfblok met de NVHP-gedragscode (10 stuks): € 25,00","Sluitzegels ‘Dit advies is opgesteld door een Erkend Hypothecair Planner’ (250 stuks): € 7,50","Brochure Duurzaam (ver)bouwen, A5: € 9,50","Banner 85 × 205 cm: op aanvraag","Digitale logo's: op aanvraag","Digitale handtekening, visitekaartje, LinkedIn-banner en Teams-achtergrond: op aanvraag","Wettenbundel Financiële dienstverlening 2026: € 150,00 (excl. verzendkosten)","Syllabus Leergang Hypothecair Planning 2026: € 320,00 (excl. verzendkosten)","Sam, olifant uit de Elephant Parade met NVHP-huisje: € 55,00 (excl. verzendkosten), steunt de Asian Elephant Foundation"],
+  links:[{label:"Promotiematerialen", url:HP+"/adviseur/materialen/promotiematerialen"},{label:"NVHP Marketing Generator", url:"#/item/nvhp-marketing-generator"},{label:"Lid worden van de NVHP", url:HP+"/adviseur/lidmaatschap/lid-worden"}],
+  priceLabel:"Voor leden, tegen kostprijs", price:"Zie prijzen per artikel", priceNote:"Prijzen volgens Hypothecairplanner.nl (2026)", premium:["Bestellen via Hypothecairplanner.nl"],
+  useCases:["Naambordje en certificaat op kantoor als gespreksopener","Sluitzegel op het adviesrapport","Sam als attentie na het passeren"],
+  channels:["Kantoor","Klantcadeau"], tags:["nvhp","hypothecairplanner","promotiematerialen","promotie","naambordje","certificaat","sluitzegels","pennen","banner","wettenbundel","syllabus","logo","relatiegeschenk","olifant","partner"] },
 { id:"nvhp-themas", cat:"bronnen", kind:"item", model:"gratis", logo:"nvhp",
   title:"Thema's voor het hypotheekadvies (NVHP)", by:"NVHP · Hypothecairplanner.nl (partner)", url:HP+"/adviseur/themas",
   summary:"Per thema achtergrond, webinars, standaardteksten en hulpmiddelen voor je adviespraktijk: duurzaamheid, aflossingsvrij, fundering, onderhoud en nazorg, familiehypotheek, ECB-beleid en verzilveren.",
@@ -2959,10 +2978,15 @@ ITEMS.push(
   channels:["Achtergrond","Kennis"], tags:["nvhp","hypothecairplanner","hypothecairplanner.nl","thema","duurzaamheid","aflossingsvrij","fundering","nazorg","familiehypotheek","ecb","verzilveren","webinar","standaardteksten"] }
 );
 function vulFooterPartners(){
-  const el = document.getElementById("fpartners"); if (!el) return;
-  el.innerHTML = `<h3>Partners voor kennis en compliance</h3>
-    <a class="fp" href="#/item/dfo"><img src="${PARTNER_LOGO.dfo}" alt="DFO"><span>Opleidingen, compliance en documenten: DFO →</span></a>
-    <a class="fp" href="#/item/nvhp-masterclasses"><img src="${PARTNER_LOGO.nvhp}" alt="NVHP"><span>Masterclasses en thema's: NVHP · Hypothecairplanner.nl →</span></a>`;
+  const el = document.getElementById("partners-band"); if (!el) return;
+  el.innerHTML = `<div class="wrap">
+    <h2 class="sec-title">Partners voor <u>kennis en compliance</u></h2><p class="sec-sub">Voor opleidingen, compliance, documenten, masterclasses en promotiematerialen verwijzen we je graag door.</p>
+    <div class="partners">
+      <div class="pc cut"><img src="${PARTNER_LOGO.dfo}" alt="DFO, dienstverlening voor financiële ondernemers"><h3>Opleidingen, compliance en documenten</h3><p>Bureau DFO helpt bij permanente educatie, compliance, modeldocumenten en contracten, en bij webinars en contentproductie.</p>
+        <div class="links"><a href="#/item/dfo"><span>Over DFO</span><small>→</small></a><a href="#/item/dfo-nazorgcalculator"><span>Gratis calculator nazorgabonnement</span><small>→</small></a></div></div>
+      <div class="pc cut"><img src="${PARTNER_LOGO.nvhp}" alt="NVHP, Nederlandse Vereniging van Hypothecair Planners"><h3>Masterclasses, brochures en promotie</h3><p>De NVHP (Hypothecairplanner.nl) biedt masterclasses, thema's, brochures voor je klanten, promotiematerialen en voor leden de Marketing Generator.</p>
+        <div class="links"><a href="#/item/nvhp-masterclasses"><span>Masterclasses</span><small>→</small></a><a href="#/item/nvhp-themas"><span>Thema's voor het hypotheekadvies</span><small>→</small></a><a href="#/item/nvhp-brochures"><span>Brochures voor je klanten</span><small>→</small></a><a href="#/item/nvhp-promotiematerialen"><span>Promotiematerialen</span><small>→</small></a><a href="#/item/nvhp-marketing-generator"><span>NVHP Marketing Generator</span><small>→</small></a></div></div>
+    </div></div>`;
 }
 
 const NB = {
@@ -3205,13 +3229,6 @@ function viewHome(params){
       <div class="step cut"><b class="n">3</b><h3>Verstuur of plaats</h3><p>Via je eigen mail, je website of Blinqx Connect. Of download als Word of PDF.</p></div>
     </div>
 
-    <h2 class="sec-title">Partners voor <u>kennis en compliance</u></h2><p class="sec-sub">Voor opleidingen, compliance, documenten en masterclasses verwijzen we je graag door.</p>
-    <div class="partners">
-      <div class="pc cut"><img src="${PARTNER_LOGO.dfo}" alt="DFO, dienstverlening voor financiële ondernemers"><h3>Opleidingen, compliance en documenten</h3><p>Bureau DFO helpt bij permanente educatie, compliance, modeldocumenten en contracten, en bij webinars en contentproductie.</p>
-        <div class="links"><a href="#/item/dfo"><span>Over DFO</span><small>→</small></a><a href="#/item/dfo-nazorgcalculator"><span>Gratis calculator nazorgabonnement</span><small>→</small></a></div></div>
-      <div class="pc cut"><img src="${PARTNER_LOGO.nvhp}" alt="NVHP, Nederlandse Vereniging van Hypothecair Planners"><h3>Masterclasses, thema's en marketing</h3><p>De NVHP (Hypothecairplanner.nl) biedt masterclasses, per thema achtergrond, webinars en standaardteksten, en voor leden de Marketing Generator.</p>
-        <div class="links"><a href="#/item/nvhp-masterclasses"><span>Masterclasses</span><small>→</small></a><a href="#/item/nvhp-themas"><span>Thema's voor het hypotheekadvies</span><small>→</small></a><a href="#/item/nvhp-marketing-generator"><span>NVHP Marketing Generator</span><small>→</small></a></div></div>
-    </div>
     <h2 class="sec-title">Kies een <u>categorie</u></h2>
     <p class="sec-sub">Acht categorieën, van kant-en-klare content tot bronnen. Klik op een categorie of zoek direct.</p>
     <div class="cats">${CATS.map(c=>`<button class="cat cut" data-cat="${c.id}" aria-pressed="${state.cat===c.id}">
