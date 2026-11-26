@@ -4866,7 +4866,10 @@ function viewKalender(){
 const KB_THEMES = [...new Set(KB.map(a=>a.th))];
 const kbSlug = a => a.u.replace(/\/+$/,"").split("/").pop();
 const kbState = { q:"", th:"alle" };
-const kbOud = a => /\b(19\d\d|20[01]\d|2020)\b|290\.000|265\.000|levensloop|52%|51%|50,5%/i.test(a.t+" "+a.b);
+const KB_STATUS = { bijgewerkt:["freemium","Bijgewerkt nov. 2026","Gecontroleerd en bijgewerkt naar de regels van 2027"], historisch:["betaald","Historisch","Dit onderwerp is vervallen; het artikel beschrijft de oude situatie"], controleren:["betaald","Nog te controleren","Controleer dit artikel vóór je het deelt"] };
+const KB_GECHECKT = KB.some(a=>a.s);
+const kbOud = a => KB_GECHECKT ? a.s === "controleren" : /\b(19\d\d|20[01]\d|2020)\b|290\.000|265\.000|levensloop|52%|51%|50,5%/i.test(a.t+" "+a.b);
+const kbBadge = a => { if (!KB_GECHECKT) return kbOud(a) ? `<span class="badge betaald" title="Bevat jaartallen of bedragen van vóór 2021">Mogelijk verouderd</span>` : ""; const x = KB_STATUS[a.s]; return x ? `<span class="badge ${x[0]}" title="${x[2]}">${x[1]}</span>` : ""; };
 function viewKennisbank(item, params){
   setNav("kennisbank");
   const open = (params && params.get("a")) || "";
@@ -4879,7 +4882,7 @@ function viewKennisbank(item, params){
       <button type="submit">Zoek →</button>
     </form>`);
   app.innerHTML = `<div class="wrap">
-    <div class="note"><strong>Let op, deels verouderd:</strong> de artikelen komen uit de Hypotheekbond-kennisbank en zijn niet allemaal actueel. Bedragen, normen en regels (bijv. NHG-grens, aftrekpercentages, renteoverzichten) kunnen zijn gewijzigd. Controleer de actuele situatie voordat je een artikel met klanten deelt.</div>
+    ${KB_GECHECKT?`<div class="note"><strong>Gecontroleerd in november 2026:</strong> alle artikelen zijn nagelopen op de regels voor 2027. Artikelen met verouderde bedragen of regels zijn bijgewerkt (label ‘Bijgewerkt nov. 2026’); vervallen onderwerpen hebben het label ‘Historisch’. Bedragen uit het Belastingplan 2027 zijn voorlopig tot de Eerste Kamer heeft ingestemd. Controleer altijd de actuele situatie voordat je een artikel met klanten deelt.</div>`:`<div class="note"><strong>Let op, deels verouderd:</strong> de artikelen komen uit de Hypotheekbond-kennisbank en zijn niet allemaal actueel. Bedragen, normen en regels kunnen zijn gewijzigd. Controleer de actuele situatie voordat je een artikel met klanten deelt.</div>`}
     <div class="filterbar" style="flex-wrap:wrap">
       <span class="lbl">Thema</span>
       ${["alle",...KB_THEMES].map(th=>`<button class="chip" data-th="${esc(th)}" aria-pressed="${kbState.th===th}">${th==="alle"?"Alle thema's":esc(th)} <span style="opacity:.6">${th==="alle"?KB.length:KB.filter(a=>a.th===th).length}</span></button>`).join("")}
@@ -4900,13 +4903,13 @@ function viewKennisbank(item, params){
     $("#kb-list").innerHTML = list.length ? list.map(a=>{ const s=kbSlug(a);
       const body = a.b ? a.b.split("\n").map(l=> l.startsWith("• ") ? `<li>${highlight(l.slice(2),T)}</li>` : `<p>${highlight(l,T)}</p>`).join("").replace(/(<li>.*?<\/li>)+/g, m=>`<ul class="feat">${m}</ul>`) : `<p class="hint">Dit onderdeel is een rekentool of overzicht op de oorspronkelijke site.</p>`;
       return `<details class="panel cut kb-a" id="kb-${esc(s)}" ${open===s?"open":""} style="margin-bottom:10px">
-        <summary style="cursor:pointer;font-weight:800;display:flex;justify-content:space-between;gap:12px;align-items:center;list-style:none"><span>${highlight(a.t,T)}</span><span style="display:flex;gap:6px;flex-wrap:wrap;flex:none">${kbOud(a)?`<span class="badge betaald" title="Bevat jaartallen of bedragen van vóór 2021">Mogelijk verouderd</span>`:""}<span class="badge cat kb-th">${esc(a.th)}</span></span></summary>
+        <summary style="cursor:pointer;font-weight:800;display:flex;justify-content:space-between;gap:12px;align-items:center;list-style:none"><span>${highlight(a.t,T)}</span><span style="display:flex;gap:6px;flex-wrap:wrap;flex:none">${kbBadge(a)}<span class="badge cat kb-th">${esc(a.th)}</span></span></summary>
         <div style="margin-top:12px;font-size:.95rem">${body}</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
           <button class="btn btn-k btn-sm" data-kbcopy="${esc(s)}">${icon("copy",16)} Kopieer tekst</button>
           <button class="btn btn-o btn-sm" data-kblink="${esc(s)}">${icon("link",16)} Kopieer link</button>
           <button class="btn btn-o btn-sm" data-kbsocial="${esc(s)}">${icon("share",16)} Deel op social</button>
-          <a class="btn btn-o btn-sm" href="${esc(a.u)}" target="_blank" rel="noopener">Origineel ↗</a>
+          <a class="btn btn-o btn-sm" href="${esc(a.u)}" target="_blank" rel="noopener">${a.s==="bijgewerkt"||a.s==="historisch"?"Oorspronkelijke versie ↗":"Origineel ↗"}</a>
         </div></details>`; }).join("")
       : `<div class="empty">Geen artikel gevonden. <a href="#/vraag?item=kennisbank&soort=wens">Vraag een artikel aan</a>.</div>`;
     $$("[data-kbcopy]").forEach(b=>b.onclick=async()=>{ const a=KB.find(x=>kbSlug(x)===b.dataset.kbcopy); toast(await copyText(`${a.t}\n\n${a.b}`)?"Tekst gekopieerd":"Kopiëren lukte niet"); });
