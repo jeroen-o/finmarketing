@@ -20,7 +20,7 @@ const MODEL = { gratis: "Gratis", freemium: "Freemium", betaald: "Betaald", aanv
     SEL: SEL.map(s => ({ id: s.id, tekst: s.tekst, punten: s.punten, extra: s.extra, tip: s.tip, voorbeeld: s.voorbeeld, compliance: s.compliance })),
     CHECKS: Object.fromEntries(Object.entries(CHECKS).map(([k, c]) => [k, { h1: c.h1, intro: c.intro, secties: c.secties.map(s => ({ titel: s.titel, items: s.items.map(i => i.q) })) }])),
     FORMS: FORMS.map(f => ({ id: f.id, titel: f.titel, intro: f.intro, stappen: f.stappen.map(s => ({ titel: s.titel, vragen: s.vragen.map(q => q.v) })) })),
-    NB: { title: NB.title, intro: NB.intro, sections: NB.sections }, LOGO: getComputedStyle(document.querySelector(".logo")).backgroundImage
+    NB: { title: NB.title, intro: NB.intro, sections: NB.sections }, REKENTOOLS: typeof REKENTOOLS !== "undefined" ? REKENTOOLS : [], LOGO: getComputedStyle(document.querySelector(".logo")).backgroundImage
   }));
   const kbSlug = a => a.u.replace(/\/+$/, "").split("/").pop();
 
@@ -87,6 +87,7 @@ const MODEL = { gratis: "Gratis", freemium: "Freemium", betaald: "Betaald", aanv
     if (sel) extra += `<div class="card"><h2>Over deze selectie</h2>${(sel.tekst || []).map(x => `<p>${esc(x)}</p>`).join("")}${sel.punten ? `<ul>${sel.punten.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}${sel.extra ? `<p>${esc(sel.extra)}</p>` : ""}${sel.tip ? `<p><b>Tip:</b> ${esc(sel.tip)}</p>` : ""}</div>` + (sel.compliance ? `<p class="note"><b>Let op, AFM/compliance:</b> ${esc(sel.compliance)}</p>` : "");
     if (chk) extra += `<div class="card"><h2>${esc(chk.h1)}</h2><p>${esc(chk.intro)}</p>${chk.secties.map(s => `<h3>${esc(s.titel)}</h3><ul>${s.items.map(q => `<li>${esc(q)}</li>`).join("")}</ul>`).join("")}</div>`;
     if (frm) extra += `<div class="card"><h2>${esc(frm.titel)}</h2>${frm.intro ? `<p>${esc(frm.intro)}</p>` : ""}${frm.stappen.map((s, k) => `<h3>${k + 1}. ${esc(s.titel)}</h3><ul>${s.vragen.map(q => `<li>${esc(q)}</li>`).join("")}</ul>`).join("")}</div>`;
+    if (i.rekentools) extra += `<div class="card links"><h2>Rekentools (openen in een apart tabblad)</h2>${D.REKENTOOLS.map(g => `<h3>${esc(g.g)}</h3>${g.t.map(([n, u]) => `<a href="${esc(u)}" rel="noopener" target="_blank">${esc(n)}</a>`).join("")}`).join("")}<p><small>Indicatieve uitkomsten, geen financieel advies. De tools worden geleverd door Hypotheekbond.</small></p></div>`;
     if (i.kind === "nieuwsbrief") extra += D.NB.sections.map(s => `<div class="card"><h2>${esc(s.title)}</h2>${s.paras.map(x => `<p>${esc(x)}</p>`).join("")}${s.bullets.length ? `<ul>${s.bullets.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}</div>`).join("");
     const body = lijst("Wat zit erin?", i.contents) + lijst("Gratis", i.free) + (i.premium ? lijst(`${i.priceLabel || "Premium"}: ${i.price || "op aanvraag"}`, i.premium) : "") + lijst("Zo zet je het in", i.useCases) + extra
       + (i.links ? `<div class="card links"><h2>Links</h2>${i.links.map(l => { const intern = l.url.startsWith("#"); const href = intern ? "/" + l.url : (/^https?:|^mailto:/.test(l.url) ? l.url : "/" + l.url); return `<a href="${esc(href)}"${intern || !/^https?:/.test(href) ? "" : ' rel="noopener" target="_blank"'}>${esc(l.label)}</a>`; }).join("")}</div>` : "")

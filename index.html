@@ -149,6 +149,8 @@
   .sig-meer summary::after{content:"▾"}.sig-meer[open] summary::after{content:"▴"}
   .sig-cards{align-items:start}
   @media (max-width:640px){ .sig-cards{grid-template-columns:minmax(0,1fr)!important} }
+  .rt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px 18px}
+  .rt-grid .links a{padding:8px 10px}
   .partners-band{padding:8px 0 30px}
   .partners-band .partners{margin-bottom:10px}
   body.embed .partners-band{display:none!important}
@@ -718,8 +720,9 @@ const ITEMS = [
     summary:"Rekentools voor je eigen website, in je eigen huisstijl: van websitebezoeker naar afspraak. De eerste twee maanden gratis.",
     free:["Twee maanden gratis gebruik","Tools in je eigen huisstijl op je website"],
     premium:["Doorlopend gebruik na de proefperiode"], priceLabel:"Na 2 maanden", price:"Op aanvraag",
-    contents:["Maximale hypotheek: “Hoeveel kan ik lenen?”","Hypotheekcheck: betaal ik niet te veel?","Rentes vergelijken en berekenen op je eigen website","Inventarisatieformulier: gegevens direct in je dossier"],
-    links:[{label:"Rekentools voor op de website (Blinqx V&H)", url:"https://verzekeringhypotheek.blinqx.tech/partners/rekentools-voor-op-de-website"},{label:"Aanvragen via het vraagformulier", url:"#/vraag?item=websitetools-2-maanden&soort=premium"}],
+    contents:["23 rekentools in zes groepen: hypotheek berekenen, rentes vergelijken, aflossen & besparen, sparen & verzekeren, woning & verduurzamen en klantinzicht","Maximale hypotheek: “Hoeveel kan ik lenen?”","Hypotheekbespaarcheck: betaal ik niet te veel?","Rentes vergelijken op je eigen website","Inventarisatieformulier: gegevens direct in je dossier"],
+    rekentools:true,
+    links:[{label:"Rekentools voor op de website (Blinqx V&H)", url:"https://verzekeringhypotheek.blinqx.tech/partners/rekentools-voor-op-de-website"},{label:"Aanvragen via het vraagformulier", url:"#/vraag?item=websitetools-2-maanden&soort=premium"},{label:"Info: Milan Akavia (milan.akavia@blinqx.tech)", url:"mailto:milan.akavia@blinqx.tech?subject=Rekentools%20voor%20op%20de%20website"},{label:"Info: Jeroen Oversteegen (jeroen.oversteegen@blinqx.tech)", url:"mailto:jeroen.oversteegen@blinqx.tech?subject=Rekentools%20voor%20op%20de%20website"}],
     channels:["Eigen website"], tags:["websitetools","rekentools","website","leads","maximale hypotheek","hypotheekcheck","proefperiode","gratis","twee maanden"],
     compliance:"Controleer de actuele voorwaarden van de proefperiode voordat je die communiceert." },
   { id:"brochure-verborgen-kansen", cat:"leads", kind:"item", model:"gratis",
@@ -3460,6 +3463,14 @@ function viewNewsletter(item){
   $("#a-social").onclick=()=>{ const s=NB.sections.find(x=>d.secties[x.id])||NB.sections[0]; nbSocial(s); };
 }
 
+const REKENTOOLS = [
+  {g:"Hypotheek berekenen", t:[["Maximale hypotheek","https://ca5f0678-c68f-466c-b96b-1df9b27455b3.tools.hypotheekbond.nl/maxmortgage"],["Kan ik deze woning kopen?","https://9767d520-e4f2-46d7-8aa0-5dc1c4b56557.tools.hypotheekbond.nl/kidwk"],["Maandlasten berekenen","https://e0d090fa-043c-4ed5-a4c8-5757884685fc.tools.hypotheekbond.nl/looptijdrente"],["Maandlastengrafiek","https://2cf15bb7-ace5-4d8f-891c-2a65bd68f9e6.tools.hypotheekbond.nl/maandlastengrafiek"],["Hypotheek nu & straks","https://da0c3065-4744-4864-9e68-68b1e9a6941e.tools.hypotheekbond.nl/hns"],["Van huren naar kopen","https://74132995-5d2c-4450-8c42-a5c6c068939d.tools.hypotheekbond.nl/hnk"]]},
+  {g:"Rentes vergelijken", t:[["Renteoverzicht","https://d7d0405f-f9e2-411b-b5fc-5d9314853eb4.tools.hypotheekbond.nl/renteoverzicht"],["Volledig renteoverzicht","https://d7d0405f-f9e2-411b-b5fc-5d9314853eb4.tools.hypotheekbond.nl/renteoverzicht/all"],["Rente top 5","https://35ede3cc-22ff-4b8d-9e03-8eade5bc00df.tools.hypotheekbond.nl/rente-top-5"],["Topafslag","https://79352705-6aac-4d69-bdcf-b5f53bcc7561.tools.hypotheekbond.nl/topafslag"],["Spaarrente top 10","https://a858ca8c-d5c5-4e6e-afe4-bc43ec7ce039.tools.hypotheekbond.nl/spaar-rente"]]},
+  {g:"Aflossen & besparen", t:[["Hypotheekbespaarcheck","https://a98477a6-3877-41c4-85fb-6c7a29ea9709.tools.hypotheekbond.nl/hypotheekbespaarcheck"],["Maandlasten bij aflossen","https://8c5a126a-d1a6-48f0-928a-db308413d7e0.tools.hypotheekbond.nl/maandlasten-bij-aflossen"],["Hoeveel wilt u aflossen?","https://15b60449-4525-4dd8-84e0-2ac171fed57b.tools.hypotheekbond.nl/hoeveel-aflossen"],["Vast bedrag per maand aflossen","https://33b557a1-b4cd-4041-ab59-c377b13ce9c6.tools.hypotheekbond.nl/vast-bedrag-per-maand"],["Aflossen of beleggen?","https://9d3f36f2-77d0-4228-868a-06e5bfdde6f2.tools.hypotheekbond.nl/aflossen-of-beleggen"]]},
+  {g:"Sparen & verzekeren", t:[["Hoeveel levert sparen op?","https://1d87386d-bcdf-40ba-9b5b-38b120434b3a.tools.hypotheekbond.nl/hoeveel-levert-sparen-op"],["Overlijdensrisicoverzekering","https://c698ab16-2a63-435d-b8bb-de8f500d9bf2.tools.hypotheekbond.nl/orv"],["Premie berekenen","https://deck.nl/premie?t=steenhypotheken"]]},
+  {g:"Woning & verduurzamen", t:[["Woningwaarde","https://f388b829-468a-4003-b84e-452b78499333.tools.hypotheekbond.nl/woningwaarde"],["Duurzaamheidsprofiel","https://duurzaamheidsprofiel.hypotheekbond.nl/"]]},
+  {g:"Klantinzicht", t:[["Inventarisatie","https://inventarisatie.hypotheekbond.nl/82c7becb-d06b-465e-995b-37dc122053aa"],["Zelfreflectie","https://46158772-02db-4e14-81d9-e253df135a36.tools.hypotheekbond.nl/zelfreflectie"]]}
+];
 /* ---------- Detail: checklist ---------- */
 function viewChecklist(item){
   setNav("home");
@@ -3509,6 +3520,10 @@ function viewItem(item){
         <p class="hint">Aanbieder: ${esc(item.by)}</p></div>
     </aside>
     <section>
+      ${item.rekentools?`<div class="panel cut"><h2><span class="hexi">${icon("calculate",18)}</span>Probeer de rekentools</h2>
+        <p style="margin:0 0 12px">Elke tool opent in een apart tabblad, zoals bezoekers hem straks op jouw website zien.</p>
+        <div class="rt-grid">${REKENTOOLS.map(gr=>`<div><h3 style="font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px">${esc(gr.g)}</h3><div class="links">${gr.t.map(([n,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener"><span>${esc(n)}</span><small>↗</small></a>`).join("")}</div></div>`).join("")}</div>
+        <p class="hint" style="margin-top:12px">De uitkomsten zijn indicatief en bedoeld als eerste oriëntatie. Ze houden geen rekening met de volledige persoonlijke situatie, er kunnen geen rechten aan worden ontleend en ze vormen geen financieel advies in de zin van de Wft. De tools worden geleverd door Hypotheekbond en openen op een website van die partij; ingevulde gegevens worden daar verwerkt.</p></div>`:""}
       ${item.contents?`<div class="panel cut"><h2>Wat zit erin?</h2><ul class="feat">${item.contents.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:""}
       ${item.useCases?`<div class="panel cut"><h2>Zo zet je het in</h2><ul class="feat">${item.useCases.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:""}
       ${promoTxt?`<div class="panel cut"><h2>Tekst voor je mail, nieuwsbrief of social</h2><div class="promo">${esc(promoTxt)}</div>
