@@ -506,8 +506,8 @@ const ITEMS = [
     channels:["Eigen e-mail","WhatsApp","Social","Print"], tags:["kaart","ecard","verjaardag","hypotheekverjaardag","bedankt","welkom","klantbinding","afbeelding","png"] },
   { id:"brievenbank", cat:"content", kind:"brieven", model:"freemium",
     title:"Brievenbank: brieven en brochures", by:"PortefeuilleSignalen · Hypotheekbond",
-    summary:"Ruim 40 voorbeeldbrieven en 15 brochures voor klantcontact: rentevaste periode, rentemiddeling, verhuizen, ORV-besparing, beleggingsverzekering, opvragen van documenten, familiebank en meer. Doorzoekbaar en per thema ingedeeld.",
-    channels:["Eigen e-mail","Brief","Word"], tags:["brieven","brochures","voorbeeldbrief","rentemiddeling","rentevaste periode","beleggingsverzekering","verhuizen","familiebank","orv","opvragen","belscript","word"] },
+    summary:"Ruim 40 voorbeeldbrieven en 15 brochures voor klantcontact: rentevaste periode, rentemiddeling, verhuizen, ORV-besparing, opvragen van documenten, familiebank en meer. Doorzoekbaar en per thema ingedeeld.",
+    channels:["Eigen e-mail","Brief","Word"], tags:["brieven","brochures","voorbeeldbrief","rentemiddeling","rentevaste periode","verhuizen","familiebank","orv","opvragen","belscript","word"] },
 
   /* ---------- Klantscans ---------- */
   { id:"stappenscan-52", cat:"scans", kind:"item", model:"gratis",
@@ -2801,14 +2801,6 @@ Object.assign(CHECKS, {
       {k:"vorm", q:"Weet u niet of uw dekking gelijkblijvend, dalend of annuïtair dalend is?", s:"", w:1, tip:"Bij een dalende dekking neemt het verzekerd bedrag af. Past dat nog bij uw situatie?"},
       {k:"begunstigd", q:"Weet u niet wie de begunstigde is?", s:"", w:1, tip:"Controleer de begunstiging, zeker na een scheiding of nieuw partnerschap."},
       {k:"kruislings", q:"Weet u niet of de polis ‘kruislings’ is afgesloten?", s:"Dat kan erfbelasting schelen.", w:1, tip:"Bij ongehuwd samenwonen of grote bedragen kan een kruislings afgesloten ORV erfbelasting voorkomen."}]}]},
-  "check-woekerpolis": { titel:"Polischeck: beleggingsverzekering of oude kapitaalverzekering", h1:"Voldoet uw beleggingsverzekering nog aan uw wensen?", intro:"Veel oude beleggings- en kapitaalverzekeringen kennen hoge kosten of een onzekere eindwaarde. Zes vragen om te zien of een check verstandig is.", mail:"Polischeck",
-    secties:[{ key:"polis", titel:"Uw polis", items:[
-      {k:"type", q:"Heeft u een beleggingsverzekering of kapitaalverzekering, bijvoorbeeld gekoppeld aan uw hypotheek?", s:"", w:1, tip:"Laat de polis doorlichten: kosten, verwachte eindwaarde en mogelijkheden."},
-      {k:"tekort", q:"Verwacht u een tekort op de einddatum ten opzichte van het doel (bijv. aflossing hypotheek)?", s:"Of weet u het niet?", w:2, tip:"Bespreek mogelijkheden om een tekort op te vangen, zoals extra inleg, aflossen uit spaargeld of omzetten."},
-      {k:"orv", q:"Zit er een overlijdensrisicodekking in de polis die u niet (meer) nodig heeft?", s:"", w:1, tip:"Een ingebouwde ORV kan duur zijn. Bekijk of de dekking nog nodig en passend is."},
-      {k:"kosten", q:"Weet u niet hoeveel kosten u jaarlijks betaalt?", s:"", w:1, tip:"Vraag een kostenoverzicht op bij de verzekeraar en vergelijk met alternatieven."},
-      {k:"fiscaal", q:"Weet u niet of de polis fiscaal is vrijgesteld (KEW of overgangsrecht)?", s:"", w:2, tip:"Wijzigen kan gevolgen hebben voor een fiscale vrijstelling. Laat u adviseren vóór u iets aanpast."},
-      {k:"compensatie", q:"Weet u niet of u recht had op een compensatieregeling?", s:"", w:1, tip:"Voor veel beleggingsverzekeringen zijn compensatieregelingen afgesproken. Uw adviseur kan nagaan wat voor u geldt."}]}]},
   "check-woz": { titel:"WOZ-bezwaar-check: betaalt u te veel?", h1:"Klopt uw WOZ-waarde?", intro:"Een te hoge WOZ-waarde betekent te veel onroerendezaakbelasting en een hoger eigenwoningforfait. Vijf vragen om te zien of bezwaar zin kan hebben.", mail:"WOZ-check",
     secties:[{ key:"woz", titel:"Uw WOZ-beschikking", items:[
       {k:"hoger", q:"Ligt uw WOZ-waarde hoger dan die van vergelijkbare woningen in de buurt?", s:"Vergelijk via het WOZ-waardeloket.", w:2, tip:"Een hogere waarde dan vergelijkbare woningen is een goede reden om bezwaar te overwegen."},
@@ -2842,7 +2834,6 @@ Object.assign(CHECKS, {
       {k:"verzekering", q:"Heeft u al zonnepanelen of een warmtepomp, maar niet doorgegeven aan uw verzekeraar?", s:"", w:1, tip:"Geef installaties door aan uw opstalverzekeraar, zodat ze goed verzekerd zijn."}]}]}
 });
 [["check-orv","Klantcheck: ORV-check","Zeven vragen over de overlijdensrisicoverzekering: leeftijd polis, roken, hypotheek, gezin, dekkingsvorm, begunstiging en kruislings.",["orv","overlijdensrisicoverzekering","premie","roken","begunstigde","kruislings"]],
- ["check-woekerpolis","Klantcheck: polischeck beleggingsverzekering","Zes vragen voor klanten met een beleggings- of kapitaalverzekering: tekort, ingebouwde ORV, kosten, fiscale status en compensatie.",["beleggingsverzekering","woekerpolis","kapitaalverzekering","kew","compensatie"]],
  ["check-woz","Klantcheck: WOZ-bezwaar","Vijf vragen om te zien of bezwaar tegen de WOZ-waarde zin kan hebben, met de termijn van zes weken.",["woz","woz-bezwaar","ozb","eigenwoningforfait"]],
  ["check-aktepassering","Klantcheck: na de aktepassering","Zes vragen na het passeren: ervaring, vragen, opstal, inboedel, voorlopige teruggave en bouwdepot.",["aktepassering","passeren","nazorg","tevredenheid","voorlopige teruggave","bouwdepot"]],
  ["check-aov","Klantcheck: AOV voor ondernemers","Zes vragen over de arbeidsongeschiktheidsverzekering van ondernemers: dekking, inkomen, premie, einddatum, beroep en wachttijd.",["aov","arbeidsongeschiktheid","ondernemer","zzp","broodfonds","wachttijd"]],
@@ -2873,7 +2864,6 @@ IDEEEN.push(
   {t:"Eindejaarscheck belastingdruk", wanneer:"november–december", d:"Lijfrente vóór 31 december, box 3-peildatum 1 januari, extra aflossen en schenken.", i:"campagne-eindejaar-belasting"},
   {t:"Box 3, lijfrente of aanvullend pensioen?", wanneer:"het hele jaar; bij spaargeld", d:"Vergelijk de routes voor vermogensopbouw.", i:"box3-lijfrente"},
   {t:"ORV-check", wanneer:"bij polissen ouder dan 5 jaar", d:"Premies zijn gedaald; check dekking, begunstiging en kruislings.", i:"check-orv"},
-  {t:"Beleggingsverzekering doorlichten", wanneer:"het hele jaar", d:"Tekort op einddatum, kosten, ingebouwde ORV en fiscale status.", i:"check-woekerpolis"},
   {t:"Na de aktepassering", wanneer:"2–4 weken na passeren", d:"Tevredenheid, vragen, opstal, inboedel en voorlopige teruggave.", i:"check-aktepassering"},
   {t:"AOV-check voor ondernemers", wanneer:"jaarlijks; bij premieverhoging", d:"Dekking, verzekerd bedrag, wachttijd en einddatum.", i:"check-aov"},
   {t:"Duurzaamheidscheck", wanneer:"voorjaar; bij einde rentevast", d:"Verduurzamingsplannen, label, financiering en verzekering.", i:"check-duurzaam"},
@@ -3666,10 +3656,10 @@ function viewSignalen(item){
 const BRIEVEN = [
   {g:"Klantcontact & afspraken", s:["Aangesloten bij de Nationale Hypotheekbond","Aanmelding klantdossier","Afspraak onderhoud","Afspraak verzekeringspakket","All-in servicecontract","Antwoord op e-mail","Belscript","Bevestiging kantoorafspraak","Hypotheekabonnement","Periodieke controle van uw persoonlijke financiële situatie","Uw hypotheek is up-to-date","Uw kind wordt 14 jaar","Uw kind wordt 18 jaar","U gaat verhuizen"]},
   {g:"Rente & oversluiten", s:["Besparing hypotheeklast mogelijk","Uw rentevaste periode loopt af, actie is vereist","Uw rentevaste periode loopt binnenkort af","Verzoek tussentijdse rentemiddeling","Rentemiddeling mailing","Advies bij aankoop van een woning","Aansprakelijkheid geldverstrekker hersteladvies"]},
-  {g:"Verzekeringen & beleggingspolissen", s:["Besparing op uw overlijdensrisicoverzekering","Advies over uw beleggingsverzekering","Inzicht in uw beleggingsverzekering","Slotbrief beleggingsverzekering","AFM: geen belemmeringen verpande polis","Opstalactie: van opstal naar totaalrelatie","Verzekeren van leegstaande en verhuurde woningen","Formulier aanvullende voorzieningen werknemers"]},
+  {g:"Verzekeringen", s:["Besparing op uw overlijdensrisicoverzekering","Opstalactie: van opstal naar totaalrelatie","Verzekeren van leegstaande en verhuurde woningen","Formulier aanvullende voorzieningen werknemers"]},
   {g:"Opvragen bij geldverstrekker of verzekeraar", s:["Machtiging en informatieverzoek","Opvragen proforma aflosnota","Opvragen kopie ondertekende hypotheekofferte","Opvragen kopie polis levensverzekering","Opvragen actuele rentetarieven huidige hypotheek","Benodigde documenten voor het afsluiten van een hypotheek"]},
   {g:"Overeenkomsten & familiebank", s:["Concept geldleningsovereenkomst","Concept klantprofiel hypotheek","Overeenkomst van geldlening","Uitleg familiebank / familiehypotheek"]},
-  {g:"Brochures (derden)", s:["NVHP: Passen de maandlasten bij uw netto inkomen?","NVHP: Blijvende aandacht voor uw hypotheek","NVHP: Waarom de gedragscode voor u van belang is","Een Hypothecair Planner, omdat het om uw toekomst gaat","De Erkend Hypotheekadviseur (SEH)","AFM: Verstandig een hypotheek kiezen","AFM: Houd rekening met rentestijgingen","AFM: Beleggingsverzekeringen, kom in actie!","AFM: Verstandig je pensioen regelen","Nibud: Een betaalbare hypotheek, nu en straks","NVHP: Uitleg nazorg","Lenen binnen de familie","Uw woning kopen of huren?","NVHP: De ondernemer en zijn hypotheek","NVHP: Info rentemiddeling"]}
+  {g:"Brochures (derden)", s:["NVHP: Passen de maandlasten bij uw netto inkomen?","NVHP: Blijvende aandacht voor uw hypotheek","NVHP: Waarom de gedragscode voor u van belang is","Een Hypothecair Planner, omdat het om uw toekomst gaat","De Erkend Hypotheekadviseur (SEH)","AFM: Verstandig een hypotheek kiezen","AFM: Houd rekening met rentestijgingen","AFM: Verstandig je pensioen regelen","Nibud: Een betaalbare hypotheek, nu en straks","NVHP: Uitleg nazorg","Lenen binnen de familie","Uw woning kopen of huren?","NVHP: De ondernemer en zijn hypotheek","NVHP: Info rentemiddeling"]}
 ];
 function viewBrieven(item){
   setNav("content");
@@ -4639,8 +4629,7 @@ const KALENDER = [
     {t:"ORV-check: premies gedaald", d:"Laat klanten met een ORV ouder dan vijf jaar checken of dekking, begunstiging en premie nog passen.", i:["check-orv","sel-gestopte-rokers"]},
     {t:"Bomen planten met het Hypotheekbos", d:"In maart zijn de bomenplantdagen. Deel het op social en laat zien dat je kantoor groen is.", i:["hypotheekbos"]}]},
   { m:4, a:[
-    {t:"Voorjaar: verduurzamen", d:"Klanten denken in het voorjaar aan isoleren en zonnepanelen. Wijs op extra leenruimte en rentekorting bij een beter energielabel.", i:["campagne-duurzaam-oversluiten","check-duurzaam","duurzaamheidsprofiel","klimaatcijfer"]},
-    {t:"Beleggingsverzekering doorlichten", d:"Stuur klanten met een beleggings- of kapitaalverzekering de polischeck: tekort, kosten en fiscale status.", i:["check-woekerpolis"]}]},
+    {t:"Voorjaar: verduurzamen", d:"Klanten denken in het voorjaar aan isoleren en zonnepanelen. Wijs op extra leenruimte en rentekorting bij een beter energielabel.", i:["campagne-duurzaam-oversluiten","check-duurzaam","duurzaamheidsprofiel","klimaatcijfer"]}]},
   { m:5, a:[
     {t:"Gezin met kinderen", d:"Nodig gezinnen uit voor de gezinscheck: ORV, arbeidsongeschiktheid, voogdij en gezinsdekking.", i:["check-gezin","campagne-gezin"]},
     {t:"Woningmarkt in beweging: verhuizers", d:"Signaleer klanten die hun woning te koop zetten en help kopers met een feitencheck van hun nieuwe woning.", i:["portefeuillesignalen","pandwise","funderingscijfer"]},

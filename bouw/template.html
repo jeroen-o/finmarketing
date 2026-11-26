@@ -502,8 +502,8 @@ const ITEMS = [
     channels:["Eigen e-mail","WhatsApp","Social","Print"], tags:["kaart","ecard","verjaardag","hypotheekverjaardag","bedankt","welkom","klantbinding","afbeelding","png"] },
   { id:"brievenbank", cat:"content", kind:"brieven", model:"freemium",
     title:"Brievenbank: brieven en brochures", by:"PortefeuilleSignalen · Hypotheekbond",
-    summary:"Ruim 40 voorbeeldbrieven en 15 brochures voor klantcontact: rentevaste periode, rentemiddeling, verhuizen, ORV-besparing, beleggingsverzekering, opvragen van documenten, familiebank en meer. Doorzoekbaar en per thema ingedeeld.",
-    channels:["Eigen e-mail","Brief","Word"], tags:["brieven","brochures","voorbeeldbrief","rentemiddeling","rentevaste periode","beleggingsverzekering","verhuizen","familiebank","orv","opvragen","belscript","word"] },
+    summary:"Ruim 40 voorbeeldbrieven en 15 brochures voor klantcontact: rentevaste periode, rentemiddeling, verhuizen, ORV-besparing, opvragen van documenten, familiebank en meer. Doorzoekbaar en per thema ingedeeld.",
+    channels:["Eigen e-mail","Brief","Word"], tags:["brieven","brochures","voorbeeldbrief","rentemiddeling","rentevaste periode","verhuizen","familiebank","orv","opvragen","belscript","word"] },
 
   /* ---------- Klantscans ---------- */
   { id:"stappenscan-52", cat:"scans", kind:"item", model:"gratis",
@@ -1478,10 +1478,10 @@ function viewSignalen(item){
 const BRIEVEN = [
   {g:"Klantcontact & afspraken", s:["Aangesloten bij de Nationale Hypotheekbond","Aanmelding klantdossier","Afspraak onderhoud","Afspraak verzekeringspakket","All-in servicecontract","Antwoord op e-mail","Belscript","Bevestiging kantoorafspraak","Hypotheekabonnement","Periodieke controle van uw persoonlijke financiële situatie","Uw hypotheek is up-to-date","Uw kind wordt 14 jaar","Uw kind wordt 18 jaar","U gaat verhuizen"]},
   {g:"Rente & oversluiten", s:["Besparing hypotheeklast mogelijk","Uw rentevaste periode loopt af, actie is vereist","Uw rentevaste periode loopt binnenkort af","Verzoek tussentijdse rentemiddeling","Rentemiddeling mailing","Advies bij aankoop van een woning","Aansprakelijkheid geldverstrekker hersteladvies"]},
-  {g:"Verzekeringen & beleggingspolissen", s:["Besparing op uw overlijdensrisicoverzekering","Advies over uw beleggingsverzekering","Inzicht in uw beleggingsverzekering","Slotbrief beleggingsverzekering","AFM: geen belemmeringen verpande polis","Opstalactie: van opstal naar totaalrelatie","Verzekeren van leegstaande en verhuurde woningen","Formulier aanvullende voorzieningen werknemers"]},
+  {g:"Verzekeringen", s:["Besparing op uw overlijdensrisicoverzekering","Opstalactie: van opstal naar totaalrelatie","Verzekeren van leegstaande en verhuurde woningen","Formulier aanvullende voorzieningen werknemers"]},
   {g:"Opvragen bij geldverstrekker of verzekeraar", s:["Machtiging en informatieverzoek","Opvragen proforma aflosnota","Opvragen kopie ondertekende hypotheekofferte","Opvragen kopie polis levensverzekering","Opvragen actuele rentetarieven huidige hypotheek","Benodigde documenten voor het afsluiten van een hypotheek"]},
   {g:"Overeenkomsten & familiebank", s:["Concept geldleningsovereenkomst","Concept klantprofiel hypotheek","Overeenkomst van geldlening","Uitleg familiebank / familiehypotheek"]},
-  {g:"Brochures (derden)", s:["NVHP: Passen de maandlasten bij uw netto inkomen?","NVHP: Blijvende aandacht voor uw hypotheek","NVHP: Waarom de gedragscode voor u van belang is","Een Hypothecair Planner, omdat het om uw toekomst gaat","De Erkend Hypotheekadviseur (SEH)","AFM: Verstandig een hypotheek kiezen","AFM: Houd rekening met rentestijgingen","AFM: Beleggingsverzekeringen, kom in actie!","AFM: Verstandig je pensioen regelen","Nibud: Een betaalbare hypotheek, nu en straks","NVHP: Uitleg nazorg","Lenen binnen de familie","Uw woning kopen of huren?","NVHP: De ondernemer en zijn hypotheek","NVHP: Info rentemiddeling"]}
+  {g:"Brochures (derden)", s:["NVHP: Passen de maandlasten bij uw netto inkomen?","NVHP: Blijvende aandacht voor uw hypotheek","NVHP: Waarom de gedragscode voor u van belang is","Een Hypothecair Planner, omdat het om uw toekomst gaat","De Erkend Hypotheekadviseur (SEH)","AFM: Verstandig een hypotheek kiezen","AFM: Houd rekening met rentestijgingen","AFM: Verstandig je pensioen regelen","Nibud: Een betaalbare hypotheek, nu en straks","NVHP: Uitleg nazorg","Lenen binnen de familie","Uw woning kopen of huren?","NVHP: De ondernemer en zijn hypotheek","NVHP: Info rentemiddeling"]}
 ];
 function viewBrieven(item){
   setNav("content");
@@ -2451,8 +2451,7 @@ const KALENDER = [
     {t:"ORV-check: premies gedaald", d:"Laat klanten met een ORV ouder dan vijf jaar checken of dekking, begunstiging en premie nog passen.", i:["check-orv","sel-gestopte-rokers"]},
     {t:"Bomen planten met het Hypotheekbos", d:"In maart zijn de bomenplantdagen. Deel het op social en laat zien dat je kantoor groen is.", i:["hypotheekbos"]}]},
   { m:4, a:[
-    {t:"Voorjaar: verduurzamen", d:"Klanten denken in het voorjaar aan isoleren en zonnepanelen. Wijs op extra leenruimte en rentekorting bij een beter energielabel.", i:["campagne-duurzaam-oversluiten","check-duurzaam","duurzaamheidsprofiel","klimaatcijfer"]},
-    {t:"Beleggingsverzekering doorlichten", d:"Stuur klanten met een beleggings- of kapitaalverzekering de polischeck: tekort, kosten en fiscale status.", i:["check-woekerpolis"]}]},
+    {t:"Voorjaar: verduurzamen", d:"Klanten denken in het voorjaar aan isoleren en zonnepanelen. Wijs op extra leenruimte en rentekorting bij een beter energielabel.", i:["campagne-duurzaam-oversluiten","check-duurzaam","duurzaamheidsprofiel","klimaatcijfer"]}]},
   { m:5, a:[
     {t:"Gezin met kinderen", d:"Nodig gezinnen uit voor de gezinscheck: ORV, arbeidsongeschiktheid, voogdij en gezinsdekking.", i:["check-gezin","campagne-gezin"]},
     {t:"Woningmarkt in beweging: verhuizers", d:"Signaleer klanten die hun woning te koop zetten en help kopers met een feitencheck van hun nieuwe woning.", i:["portefeuillesignalen","pandwise","funderingscijfer"]},

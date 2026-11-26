@@ -121,14 +121,6 @@ Object.assign(CHECKS, {
       {k:"vorm", q:"Weet u niet of uw dekking gelijkblijvend, dalend of annuïtair dalend is?", s:"", w:1, tip:"Bij een dalende dekking neemt het verzekerd bedrag af. Past dat nog bij uw situatie?"},
       {k:"begunstigd", q:"Weet u niet wie de begunstigde is?", s:"", w:1, tip:"Controleer de begunstiging, zeker na een scheiding of nieuw partnerschap."},
       {k:"kruislings", q:"Weet u niet of de polis ‘kruislings’ is afgesloten?", s:"Dat kan erfbelasting schelen.", w:1, tip:"Bij ongehuwd samenwonen of grote bedragen kan een kruislings afgesloten ORV erfbelasting voorkomen."}]}]},
-  "check-woekerpolis": { titel:"Polischeck: beleggingsverzekering of oude kapitaalverzekering", h1:"Voldoet uw beleggingsverzekering nog aan uw wensen?", intro:"Veel oude beleggings- en kapitaalverzekeringen kennen hoge kosten of een onzekere eindwaarde. Zes vragen om te zien of een check verstandig is.", mail:"Polischeck",
-    secties:[{ key:"polis", titel:"Uw polis", items:[
-      {k:"type", q:"Heeft u een beleggingsverzekering of kapitaalverzekering, bijvoorbeeld gekoppeld aan uw hypotheek?", s:"", w:1, tip:"Laat de polis doorlichten: kosten, verwachte eindwaarde en mogelijkheden."},
-      {k:"tekort", q:"Verwacht u een tekort op de einddatum ten opzichte van het doel (bijv. aflossing hypotheek)?", s:"Of weet u het niet?", w:2, tip:"Bespreek mogelijkheden om een tekort op te vangen, zoals extra inleg, aflossen uit spaargeld of omzetten."},
-      {k:"orv", q:"Zit er een overlijdensrisicodekking in de polis die u niet (meer) nodig heeft?", s:"", w:1, tip:"Een ingebouwde ORV kan duur zijn. Bekijk of de dekking nog nodig en passend is."},
-      {k:"kosten", q:"Weet u niet hoeveel kosten u jaarlijks betaalt?", s:"", w:1, tip:"Vraag een kostenoverzicht op bij de verzekeraar en vergelijk met alternatieven."},
-      {k:"fiscaal", q:"Weet u niet of de polis fiscaal is vrijgesteld (KEW of overgangsrecht)?", s:"", w:2, tip:"Wijzigen kan gevolgen hebben voor een fiscale vrijstelling. Laat u adviseren vóór u iets aanpast."},
-      {k:"compensatie", q:"Weet u niet of u recht had op een compensatieregeling?", s:"", w:1, tip:"Voor veel beleggingsverzekeringen zijn compensatieregelingen afgesproken. Uw adviseur kan nagaan wat voor u geldt."}]}]},
   "check-woz": { titel:"WOZ-bezwaar-check: betaalt u te veel?", h1:"Klopt uw WOZ-waarde?", intro:"Een te hoge WOZ-waarde betekent te veel onroerendezaakbelasting en een hoger eigenwoningforfait. Vijf vragen om te zien of bezwaar zin kan hebben.", mail:"WOZ-check",
     secties:[{ key:"woz", titel:"Uw WOZ-beschikking", items:[
       {k:"hoger", q:"Ligt uw WOZ-waarde hoger dan die van vergelijkbare woningen in de buurt?", s:"Vergelijk via het WOZ-waardeloket.", w:2, tip:"Een hogere waarde dan vergelijkbare woningen is een goede reden om bezwaar te overwegen."},
@@ -162,7 +154,6 @@ Object.assign(CHECKS, {
       {k:"verzekering", q:"Heeft u al zonnepanelen of een warmtepomp, maar niet doorgegeven aan uw verzekeraar?", s:"", w:1, tip:"Geef installaties door aan uw opstalverzekeraar, zodat ze goed verzekerd zijn."}]}]}
 });
 [["check-orv","Klantcheck: ORV-check","Zeven vragen over de overlijdensrisicoverzekering: leeftijd polis, roken, hypotheek, gezin, dekkingsvorm, begunstiging en kruislings.",["orv","overlijdensrisicoverzekering","premie","roken","begunstigde","kruislings"]],
- ["check-woekerpolis","Klantcheck: polischeck beleggingsverzekering","Zes vragen voor klanten met een beleggings- of kapitaalverzekering: tekort, ingebouwde ORV, kosten, fiscale status en compensatie.",["beleggingsverzekering","woekerpolis","kapitaalverzekering","kew","compensatie"]],
  ["check-woz","Klantcheck: WOZ-bezwaar","Vijf vragen om te zien of bezwaar tegen de WOZ-waarde zin kan hebben, met de termijn van zes weken.",["woz","woz-bezwaar","ozb","eigenwoningforfait"]],
  ["check-aktepassering","Klantcheck: na de aktepassering","Zes vragen na het passeren: ervaring, vragen, opstal, inboedel, voorlopige teruggave en bouwdepot.",["aktepassering","passeren","nazorg","tevredenheid","voorlopige teruggave","bouwdepot"]],
  ["check-aov","Klantcheck: AOV voor ondernemers","Zes vragen over de arbeidsongeschiktheidsverzekering van ondernemers: dekking, inkomen, premie, einddatum, beroep en wachttijd.",["aov","arbeidsongeschiktheid","ondernemer","zzp","broodfonds","wachttijd"]],
@@ -193,7 +184,6 @@ IDEEEN.push(
   {t:"Eindejaarscheck belastingdruk", wanneer:"november–december", d:"Lijfrente vóór 31 december, box 3-peildatum 1 januari, extra aflossen en schenken.", i:"campagne-eindejaar-belasting"},
   {t:"Box 3, lijfrente of aanvullend pensioen?", wanneer:"het hele jaar; bij spaargeld", d:"Vergelijk de routes voor vermogensopbouw.", i:"box3-lijfrente"},
   {t:"ORV-check", wanneer:"bij polissen ouder dan 5 jaar", d:"Premies zijn gedaald; check dekking, begunstiging en kruislings.", i:"check-orv"},
-  {t:"Beleggingsverzekering doorlichten", wanneer:"het hele jaar", d:"Tekort op einddatum, kosten, ingebouwde ORV en fiscale status.", i:"check-woekerpolis"},
   {t:"Na de aktepassering", wanneer:"2–4 weken na passeren", d:"Tevredenheid, vragen, opstal, inboedel en voorlopige teruggave.", i:"check-aktepassering"},
   {t:"AOV-check voor ondernemers", wanneer:"jaarlijks; bij premieverhoging", d:"Dekking, verzekerd bedrag, wachttijd en einddatum.", i:"check-aov"},
   {t:"Duurzaamheidscheck", wanneer:"voorjaar; bij einde rentevast", d:"Verduurzamingsplannen, label, financiering en verzekering.", i:"check-duurzaam"},
