@@ -2575,8 +2575,9 @@ function viewWoontoekomst(item, params){
         <label class="f" for="wa-n">Naam adviseur</label><input class="i" id="wa-n" value="${esc(adv.naam)}">
         <label class="f" for="wa-k">Kantoornaam</label><input class="i" id="wa-k" value="${esc(adv.kantoor)}">
         <label class="f" for="wa-m">E-mail voor de antwoorden</label><input class="i" id="wa-m" type="email" value="${esc(adv.mail)}">
-        <div class="actions" style="margin-top:10px"><button class="btn btn-k btn-sm" id="wa-link">Kopieer deellink</button></div>
-        <p class="hint">Werkt zodra de bibliotheek online staat. Voor een Google Sites-embed: open de link in een nieuw tabblad (mailto werkt niet altijd in een iframe).</p>
+        <div class="actions" style="margin-top:10px;flex-direction:row;flex-wrap:wrap"><button class="btn btn-k btn-sm" id="wa-link">Kopieer deellink</button><button class="btn btn-y btn-sm" id="wa-html">${icon("download",16)} Download HTML voor je website</button></div>
+        <p class="hint">Met de HTML-download zet je de check direct op je eigen website: één bestand, met jouw naam, kantoor, e-mailadres en <a href="#/huisstijl">huisstijl</a> (logo, kleuren, lettertype). Upload het als pagina, of plak de inhoud in een HTML-blok. De antwoorden komen via het mailprogramma van de klant bij jou binnen.</p>
+        <p class="hint">Voor een Google Sites-embed: open de link in een nieuw tabblad (mailto werkt niet altijd in een iframe).</p>
       </details>
       ${uitnodigingPanel("woontoekomst-check")}
       <div class="note"><strong>Let op, AVG:</strong> de check vraagt alleen naam, telefoon en een optionele toelichting, met expliciete toestemming. Er wordt niets opgeslagen; versturen gaat via het mailprogramma van de klant. Vraag geen medische gegevens.</div>
@@ -2634,6 +2635,10 @@ function viewWoontoekomst(item, params){
   };
   render();
   bindUitnodiging("woontoekomst-check", () => { const p=new URLSearchParams(); [["adviseur","#wa-n"],["kantoor","#wa-k"],["mail","#wa-m"]].forEach(([k,id])=>{ const v=$(id).value.trim(); if(v) p.set(k,v); }); return location.href.split("#")[0]+"#/item/woontoekomst-check"+(p.toString()?"?"+p:""); });
+  $("#wa-html").onclick = () => { const v = id => $(id).value.trim(), mail = v("#wa-m");
+    if (!mail){ toast("Vul eerst het e-mailadres voor de antwoorden in"); $("#wa-m").focus(); return; }
+    const html = woontoekomstHtml({ adviseur:v("#wa-n"), kantoor:v("#wa-k"), mail, tel:HS.tel, kleur:HS.kleur, kleur2:HS.kleur2, font:HS.fontData?hsFont():((HS.font||HS.fontEigen)?fontStack(HS.font,HS.fontEigen):""), logo:HS.logo||HS.logoUrl, fontFace:hsFontFace() });
+    download(`woontoekomst-check${v("#wa-k")?"-"+slug(v("#wa-k")):""}.html`, html, "text/html"); toast("HTML gedownload: zet het bestand op je website"); };
   $("#wa-link").onclick = async () => { const p = new URLSearchParams(); [["adviseur","#wa-n"],["kantoor","#wa-k"],["mail","#wa-m"]].forEach(([k,id])=>{ const v=$(id).value.trim(); if(v) p.set(k,v); });
     toast(await copyText(location.href.split("#")[0]+"#/item/"+item.id+(p.toString()?"?"+p:"")) ? "Deellink gekopieerd" : "Kopiëren lukte niet"); };
 }
@@ -3147,6 +3152,7 @@ function viewSelectie(item){
 }
 
 /*__HS__*/
+/*__EXPORT__*/
 
 /* ---------- Disclaimer ---------- */
 function viewDisclaimer(){
