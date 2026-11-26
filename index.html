@@ -192,8 +192,11 @@
   .zoek-hulp{background:var(--y-soft);padding:10px 14px;margin:0 0 14px;font-size:.92rem}
   .linkbtn{background:none;border:0;padding:0;font:inherit;font-weight:800;text-decoration:underline;cursor:pointer;color:inherit}
   .zoek-sug{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin-top:14px}
-  .leeg{background:#fff;border:1px solid var(--line);padding:28px clamp(16px,4vw,36px);max-width:760px;margin:0 auto;grid-column:1/-1;width:100%;box-sizing:border-box}
-  .leeg h3{margin:0 0 12px;font-size:1.3rem}
+  .leeg{background:#fff;border:3px solid var(--k);padding:0 clamp(16px,4vw,36px) 28px;max-width:760px;margin:0 auto;grid-column:1/-1;width:100%;box-sizing:border-box}
+  .leeg-kop{display:flex;gap:14px;align-items:center;background:var(--y);margin:0 calc(-1 * clamp(16px,4vw,36px)) 18px;padding:18px clamp(16px,4vw,36px)}
+  .leeg-kop b{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+  .leeg-ico{flex:none;width:44px;height:44px;border-radius:50%;background:var(--k);color:var(--y);display:grid;place-items:center;font-weight:900;font-size:1.5rem}
+  .leeg h3{margin:2px 0 0;font-size:1.35rem;line-height:1.25;overflow-wrap:anywhere}
   .leeg p{margin:0 0 8px}
   .leeg ul{margin:0 0 6px;padding-left:20px;line-height:1.6}
   .leeg .zoek-sug{justify-content:flex-start;margin:16px 0 0}
@@ -3508,7 +3511,7 @@ function viewHome(params){
           if (state.by!=="alle") f.push("aanbieder <b>"+esc(state.by)+"</b>");
           const q = state.q.trim();
           return `<div class="leeg">
-            <h3>${q ? `Geen resultaten voor “${esc(q)}”` : "Geen resultaten met deze filters"}</h3>
+            <div class="leeg-kop"><span class="leeg-ico" aria-hidden="true">?</span><div><b>Niets gevonden</b><h3>${q ? `Geen resultaten voor “${esc(q)}”` : "Geen resultaten met deze filters"}</h3></div></div>
             ${f.length ? `<p class="leeg-filter">Je zoekt nu alleen binnen ${f.join(" en ")}. <button type="button" class="btn btn-k btn-sm" id="reset2">Zoek in alles</button></p>` : ""}
             ${q ? `<p><b>Zo vind je het wel:</b></p><ul>
               <li>Controleer de spelling of typ het woord voluit${q.length<=4?` (afkortingen als “${esc(q)}” kent de zoeker misschien niet)`:""}.</li>
