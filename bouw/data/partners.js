@@ -8,7 +8,7 @@ ITEMS.push(
   links:[{label:"Opleidingen", url:"https://www.dfobv.nl/product-categorie/alle-opleidingen/"},{label:"Agenda opleidingen", url:"https://www.dfobv.nl/agenda/"},{label:"Compliance", url:DFO+"/diensten/compliance/"},{label:"Modellen: documenten en contracten", url:DFO+"/documenten-contracten/"},{label:"Abonnementen", url:DFO+"/diensten/onze-abonnementen/"},{label:"Contentmarketing en social media", url:DFO+"/studio/contentmarketing-social-media-productie/"},{label:"Website DFO", url:DFO+"/"}],
   priceLabel:"Opleidingen en diensten", price:"Op aanvraag", premium:["Prijzen per opleiding of abonnement, zie DFO"],
   useCases:["Permanente educatie (PE) voor jezelf en je medewerkers","Laat campagneteksten en klantcommunicatie toetsen op compliance","Gebruik modeldocumenten en contracten in je adviespraktijk"],
-  channels:["Kantoor","Opleiding","Compliance"], tags:["dfo","opleiding","opleidingen","pe","permanente educatie","compliance","wft","documenten","modellen","contracten","partner","webinar"] },
+  channels:["Kantoor","Opleiding","Compliance"], tags:["dfo","opleiding","opleidingen","pe","permanente educatie","compliance","wft","documenten","modellen","contracten","partner","webinar","dfobv","dfobv.nl","bureau dfo"] },
 { id:"dfo-nazorgcalculator", cat:"adviseurstools", kind:"item", model:"gratis", logo:"dfo",
   title:"Calculator onderhoud- en nazorgabonnement", by:"DFO bv (partner), mede mogelijk gemaakt door Blinqx V&H", url:DFO+"/abonnement-dashboard/",
   summary:"Bereken hoeveel fte er nodig is voor het onderhouds- en nazorgabonnement dat je aanbiedt, en welk maandbedrag de gewenste winst oplevert. Werkt alleen op een groot scherm.",
@@ -21,13 +21,20 @@ ITEMS.push(
   contents:["Jaarlijks vastgestelde onderwerpen en docenten (Commissie Masterclasses)","PE-eis 2026: minimaal drie verschillende masterclasses om in 2027 de titel Erkend Hypothecair Planner te voeren","Daarnaast gastcolleges en syllabi in het kenniscentrum"],
   links:[{label:"Masterclasses", url:HP+"/adviseur/kenniscentrum/masterclasses"},{label:"Gastcolleges", url:HP+"/adviseur/kenniscentrum/gastcolleges"},{label:"Thema's voor het hypotheekadvies", url:HP+"/adviseur/themas"},{label:"Hypothecairplanner.nl", url:HP+"/"}],
   priceLabel:"Per masterclass", price:"€ 162,50 – € 243,50", priceNote:"Tarief 2026, afhankelijk van duur en aantal deelnemers", premium:["Inschrijven via Hypothecairplanner.nl"],
-  channels:["Opleiding","PE"], tags:["nvhp","masterclass","masterclasses","opleiding","pe","permanente educatie","erkend hypothecair planner","kenniscentrum","partner"] },
+  channels:["Opleiding","PE"], tags:["nvhp","hypothecairplanner","hypothecairplanner.nl","masterclass","masterclasses","opleiding","pe","permanente educatie","erkend hypothecair planner","kenniscentrum","partner"] },
+{ id:"nvhp-marketing-generator", cat:"content", kind:"item", model:"aanvraag", logo:"nvhp",
+  title:"NVHP Marketing Generator", by:"NVHP · Hypothecairplanner.nl (partner)", url:HP+"/adviseur/materialen/marketing-generator",
+  summary:"Marketingtool van de Nederlandse Vereniging van Hypothecair Planners voor leden. Daarnaast biedt de NVHP promotiematerialen, brochures en het logo voor Erkend Hypothecair Planners.",
+  contents:["Marketing Generator: beschikbaar voor leden, na inloggen op Hypothecairplanner.nl","Promotiematerialen en brochures van de NVHP","Logo’s en ‘Trots op ons logo’ voor Erkend Hypothecair Planners"],
+  links:[{label:"Marketing Generator", url:HP+"/adviseur/materialen/marketing-generator"},{label:"Inloggen voor leden", url:HP+"/user/login?destination=/portal"},{label:"Promotiematerialen", url:HP+"/adviseur/materialen/promotiematerialen"},{label:"Brochures", url:HP+"/adviseur/publicaties/brochures"},{label:"Lid worden van de NVHP", url:HP+"/adviseur/lidmaatschap/lid-worden"}],
+  priceLabel:"Voor leden", price:"Op aanvraag", priceNote:"Onderdeel van het NVHP-lidmaatschap", premium:["Toegang via het ledenportaal"],
+  channels:["Eigen e-mail","Eigen website","Social"], tags:["nvhp","hypothecairplanner","hypothecairplanner.nl","marketing generator","marketing","generator","promotiematerialen","brochures","logo","leden","partner","hypothecair planner"] },
 { id:"nvhp-themas", cat:"bronnen", kind:"item", model:"gratis", logo:"nvhp",
   title:"Thema's voor het hypotheekadvies (NVHP)", by:"NVHP · Hypothecairplanner.nl (partner)", url:HP+"/adviseur/themas",
   summary:"Per thema achtergrond, webinars, standaardteksten en hulpmiddelen voor je adviespraktijk: duurzaamheid, aflossingsvrij, fundering, onderhoud en nazorg, familiehypotheek, ECB-beleid en verzilveren.",
-  links:[{label:"Alle thema's", url:HP+"/adviseur/themas"},{label:"Duurzaamheid", url:HP+"/adviseur/duurzaamheid-informatie/duurzaamheid"},{label:"Aflossingsvrije hypotheek", url:HP+"/themas/aflossingsvrije-hypotheek"},{label:"Fundering", url:HP+"/themas/funderingsrisicos-het-hypotheekadvies"},{label:"Onderhoud en nazorg", url:HP+"/themas/onderhoud-en-nazorg"},{label:"Familiehypotheek", url:HP+"/themas/familiehypotheek"},{label:"ECB-beleid", url:HP+"/themas/ecb-beleid-hypotheken"},{label:"Verzilveren", url:HP+"/themas/verzilveren-overwaarde-opnemen"},{label:"NVHP Marketing Generator", url:HP+"/adviseur/materialen/marketing-generator"}],
+  links:[{label:"Alle thema's", url:HP+"/adviseur/themas"},{label:"Duurzaamheid", url:HP+"/adviseur/duurzaamheid-informatie/duurzaamheid"},{label:"Aflossingsvrije hypotheek", url:HP+"/themas/aflossingsvrije-hypotheek"},{label:"Fundering", url:HP+"/themas/funderingsrisicos-het-hypotheekadvies"},{label:"Onderhoud en nazorg", url:HP+"/themas/onderhoud-en-nazorg"},{label:"Familiehypotheek", url:HP+"/themas/familiehypotheek"},{label:"ECB-beleid", url:HP+"/themas/ecb-beleid-hypotheken"},{label:"Verzilveren", url:HP+"/themas/verzilveren-overwaarde-opnemen"},{label:"NVHP Marketing Generator", url:"#/item/nvhp-marketing-generator"}],
   free:["Achtergrond per thema","Webinars en standaardteksten","Hulpmiddelen voor je adviespraktijk"],
-  channels:["Achtergrond","Kennis"], tags:["nvhp","thema","duurzaamheid","aflossingsvrij","fundering","nazorg","familiehypotheek","ecb","verzilveren","webinar","standaardteksten"] }
+  channels:["Achtergrond","Kennis"], tags:["nvhp","hypothecairplanner","hypothecairplanner.nl","thema","duurzaamheid","aflossingsvrij","fundering","nazorg","familiehypotheek","ecb","verzilveren","webinar","standaardteksten"] }
 );
 function vulFooterPartners(){
   const el = document.getElementById("fpartners"); if (!el) return;

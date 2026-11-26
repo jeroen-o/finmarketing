@@ -799,7 +799,7 @@ const SYN = {
   "duurzaam":["duurzaamheid","verduurzaming","energie"], "energie":["duurzaamheid","energielabel"],
   "social":["linkedin"], "aflosvrij":["aflossingsvrij"], "aflossingsvrij":["aflosvrij"], "brief":["brieven"], "campagnes":["campagne"], "mail":["e-mail","nieuwsbrief","mailing"], "nieuwsbrief":["mailing"],
   "rekenen":["rekentool","calculator"], "calculator":["rekentool"], "acceptatie":["voorwaarden"],
-  "huis":["woning"], "woning":["huis"], "compliance":["afm","wft","avg"], "afm":["compliance"],
+  "huis":["woning"], "woning":["huis"], "compliance":["afm","wft","avg","dfo"], "dfo":["dfobv","bureau dfo"], "dfobv":["dfo"], "nvhp":["hypothecairplanner","hypothecair planner"], "hypothecairplanner":["nvhp"], "opleiding":["opleidingen","masterclass","pe"], "opleidingen":["opleiding","masterclass"], "masterclass":["masterclasses","opleiding"], "pe":["permanente educatie","opleiding"], "afm":["compliance"],
   "fundering":["funderingsrisico"], "klimaat":["klimaatrisico"], "rente":["renteschok","rentes"], "word":["nieuwsbrief"]
 };
 function haystack(i){
@@ -807,7 +807,7 @@ function haystack(i){
   return {
     t: norm(i.title),
     g: norm((i.tags||[]).join(" ")+" "+cat+" "+MODELS[i.model]),
-    r: norm([i.summary,i.by,(i.contents||[]).join(" "),(i.free||[]).join(" "),(i.premium||[]).join(" "),(i.useCases||[]).join(" "),(i.channels||[]).join(" ")].join(" "))
+    r: norm([i.summary,i.by,i.url||"",(i.links||[]).map(l=>l.label+" "+l.url.replace(/^https?:\/\/(www2?\.)?/,"")).join(" "),(i.contents||[]).join(" "),(i.free||[]).join(" "),(i.premium||[]).join(" "),(i.useCases||[]).join(" "),(i.channels||[]).join(" ")].join(" "))
   };
 }
 const HAY = new Map(ITEMS.map(i=>[i.id, haystack(i)]));
@@ -981,8 +981,8 @@ function viewHome(params){
     <div class="partners">
       <div class="pc cut"><img src="${PARTNER_LOGO.dfo}" alt="DFO, dienstverlening voor financiële ondernemers"><h3>Opleidingen, compliance en documenten</h3><p>Bureau DFO helpt bij permanente educatie, compliance, modeldocumenten en contracten, en bij webinars en contentproductie.</p>
         <div class="links"><a href="#/item/dfo"><span>Over DFO</span><small>→</small></a><a href="#/item/dfo-nazorgcalculator"><span>Gratis calculator nazorgabonnement</span><small>→</small></a></div></div>
-      <div class="pc cut"><img src="${PARTNER_LOGO.nvhp}" alt="NVHP, Nederlandse Vereniging van Hypothecair Planners"><h3>Masterclasses en thema's</h3><p>De NVHP (Hypothecairplanner.nl) biedt masterclasses over actuele onderwerpen en per thema achtergrond, webinars en standaardteksten.</p>
-        <div class="links"><a href="#/item/nvhp-masterclasses"><span>Masterclasses</span><small>→</small></a><a href="#/item/nvhp-themas"><span>Thema's voor het hypotheekadvies</span><small>→</small></a></div></div>
+      <div class="pc cut"><img src="${PARTNER_LOGO.nvhp}" alt="NVHP, Nederlandse Vereniging van Hypothecair Planners"><h3>Masterclasses, thema's en marketing</h3><p>De NVHP (Hypothecairplanner.nl) biedt masterclasses, per thema achtergrond, webinars en standaardteksten, en voor leden de Marketing Generator.</p>
+        <div class="links"><a href="#/item/nvhp-masterclasses"><span>Masterclasses</span><small>→</small></a><a href="#/item/nvhp-themas"><span>Thema's voor het hypotheekadvies</span><small>→</small></a><a href="#/item/nvhp-marketing-generator"><span>NVHP Marketing Generator</span><small>→</small></a></div></div>
     </div>
     <h2 class="sec-title">Kies een <u>categorie</u></h2>
     <p class="sec-sub">Acht categorieën, van kant-en-klare content tot bronnen. Klik op een categorie of zoek direct.</p>
@@ -1190,7 +1190,7 @@ function viewItem(item){
   app.innerHTML = `<div class="wrap">${DISC_SHORT}<div class="layout">
     <aside class="sticky">
       ${priceBlock}
-      ${item.links?`<div class="panel cut"><h2>Links</h2><div class="links">${item.links.map(l=>`<a href="${esc(l.url)}" ${l.url.startsWith("mailto:")?"":'target="_blank" rel="noopener"'}><span>${esc(l.label)}</span><small>${l.url.startsWith("mailto:")?"✉":"↗"}</small></a>`).join("")}</div></div>`:""}
+      ${item.links?`<div class="panel cut"><h2>Links</h2><div class="links">${item.links.map(l=>`<a href="${esc(l.url)}" ${/^(mailto:|#)/.test(l.url)?"":'target="_blank" rel="noopener"'}><span>${esc(l.label)}</span><small>${l.url.startsWith("mailto:")?"✉":"↗"}</small></a>`).join("")}</div></div>`:""}
       <div class="panel cut"><h2>Inzetbaar via</h2><div class="chan">${item.channels.map(x=>`<span>${esc(x)}</span>`).join("")}</div>
         <p class="hint">Aanbieder: ${esc(item.by)}</p></div>
     </aside>
