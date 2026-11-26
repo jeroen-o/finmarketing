@@ -3374,13 +3374,16 @@ function viewHome(params){
     <div id="kb-hits"></div>
   </div>`;
 
+  /* Deze externe klanttools staan onderaan hun blok, in deze volgorde */
+  const ONDERAAN = ["hypotheekcijfer","funderingscijfer","pandwise","duurzaamheidsprofiel","woningcijfer","klimaatcijfer"];
   const grid=$("#grid");
   function draw(){
     const T = terms(state.q);
     let list = ITEMS.map(i=>({i, s:scoreItem(i,T)})).filter(x=>x.s>0 &&
       (state.cat==="alle"||x.i.cat===state.cat) && (state.model==="alle"||x.i.model===state.model) && (state.by==="alle"||x.i.by===state.by));
     if (T.length) list.sort((a,b)=>b.s-a.s);
-    else list.sort((a,b)=>CATS.findIndex(c=>c.id===a.i.cat)-CATS.findIndex(c=>c.id===b.i.cat));
+    else { const onder = i => { const k = ONDERAAN.indexOf(i.id); return k<0 ? -1 : k; };
+      list.sort((a,b)=>CATS.findIndex(c=>c.id===a.i.cat)-CATS.findIndex(c=>c.id===b.i.cat) || onder(a.i)-onder(b.i)); }
     $("#res-title").textContent = state.cat==="alle" ? (T.length?"Zoekresultaten":"Alle materialen") : catOf(state.cat).title;
     $("#sel-promo").hidden = state.cat!=="campagnes";
     $("#count").textContent = `${list.length} ${list.length===1?"resultaat":"resultaten"}${T.length?` voor “${state.q.trim()}”`:""}`;
