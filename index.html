@@ -185,6 +185,10 @@
   .bm-lead{color:#5c6577;font-size:1.05rem}.bm-callout{background:var(--bm-tint);border-radius:12px;padding:16px 20px;margin:16px 0 22px}
   .bm-card .btn{border-radius:999px;padding:13px 24px}.bm-card .btn-k{background:var(--bm-gold);color:#fff}.bm-card .btn-o{border:1px solid var(--bm-line);color:var(--bm-navy)}
   .bm-card .wtc-opt{border-radius:12px!important}.bm-card .progress i{background:var(--bm-gold)}
+  .page-hits{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin:0 0 16px}
+  .page-hits a{display:flex;align-items:center;gap:12px;background:#fff;padding:12px 16px;text-decoration:none;color:var(--ink)}
+  .page-hits a:hover{background:var(--y-soft)}
+  .page-hits a>span:nth-child(2){flex:1 1 auto;min-width:0}.page-hits small{display:block;color:var(--muted);font-size:.8rem}
   .partners-band{padding:8px 0 30px}
   .partners-band .partners{margin-bottom:10px}
   body.embed .partners-band{display:none!important}
@@ -3177,7 +3181,7 @@ const SYN = {
   "duurzaam":["duurzaamheid","verduurzaming","energie"], "energie":["duurzaamheid","energielabel"],
   "social":["linkedin"], "aflosvrij":["aflossingsvrij"], "aflossingsvrij":["aflosvrij"], "brief":["brieven"], "campagnes":["campagne"], "mail":["e-mail","nieuwsbrief","mailing"], "nieuwsbrief":["mailing"],
   "rekenen":["rekentool","calculator"], "calculator":["rekentool"], "acceptatie":["voorwaarden"],
-  "huis":["woning"], "woning":["huis"], "compliance":["afm","wft","avg","dfo"], "hypotheekrente":["rente","renteoverzicht","rente-api"], "rekentools":["rekentool","websitetools","calculator"], "rekentool":["rekentools","websitetools","calculator"], "websitetools":["websitetool","rekentools","tools voor op je website"], "websitetool":["websitetools","rekentools"], "website":["websitetools","eigen website"], "rentes":["rente","hypotheekrente"], "api":["webservices","koppeling"], "dfo":["dfobv","bureau dfo"], "dfobv":["dfo"], "nvhp":["hypothecairplanner","hypothecair planner"], "hypothecairplanner":["nvhp"], "opleiding":["opleidingen","masterclass","pe"], "opleidingen":["opleiding","masterclass"], "masterclass":["masterclasses","opleiding"], "pe":["permanente educatie","opleiding"], "afm":["compliance"],
+  "huis":["woning"], "woning":["huis"], "compliance":["afm","wft","avg","dfo"], "hypotheekrente":["rente","renteoverzicht","rente-api"], "oversluitboete":["boete","boeterente","boetevrij"], "boeterente":["boete","boetevrij"], "55":["55+","55-plus","senioren","woontoekomst"], "plus":["+"], "60":["60+","senioren"], "senioren":["55+","60+","woontoekomst","verzilver"], "ouderen":["senioren","55+","woontoekomst"], "zzp":["ondernemer","zzp'er"], "ondernemers":["ondernemer","kvk"], "rekentools":["rekentool","websitetools","calculator"], "rekentool":["rekentools","websitetools","calculator"], "websitetools":["websitetool","rekentools","tools voor op je website"], "websitetool":["websitetools","rekentools"], "website":["websitetools","eigen website"], "rentes":["rente","hypotheekrente"], "api":["webservices","koppeling"], "dfo":["dfobv","bureau dfo"], "dfobv":["dfo"], "nvhp":["hypothecairplanner","hypothecair planner"], "hypothecairplanner":["nvhp"], "opleiding":["opleidingen","masterclass","pe"], "opleidingen":["opleiding","masterclass"], "masterclass":["masterclasses","opleiding"], "pe":["permanente educatie","opleiding"], "afm":["compliance"],
   "fundering":["funderingsrisico"], "klimaat":["klimaatrisico"], "rente":["renteschok","rentes"], "word":["nieuwsbrief"]
 };
 function haystack(i){
@@ -3185,7 +3189,7 @@ function haystack(i){
   return {
     t: norm(i.title),
     g: norm((i.tags||[]).join(" ")+" "+cat+" "+MODELS[i.model]),
-    r: norm([i.summary,i.by,i.url||"",(i.links||[]).map(l=>l.label+" "+l.url.replace(/^https?:\/\/(www2?\.)?/,"")).join(" "),(i.contents||[]).join(" "),(i.free||[]).join(" "),(i.premium||[]).join(" "),(i.useCases||[]).join(" "),(i.channels||[]).join(" ")].join(" "))
+    r: norm([i.summary,i.zoek||"",i.by,i.url||"",(i.links||[]).map(l=>l.label+" "+l.url.replace(/^https?:\/\/(www2?\.)?/,"")).join(" "),(i.contents||[]).join(" "),(i.free||[]).join(" "),(i.premium||[]).join(" "),(i.useCases||[]).join(" "),(i.channels||[]).join(" ")].join(" "))
   };
 }
 const HAY = new Map(ITEMS.map(i=>[i.id, haystack(i)]));
@@ -3383,12 +3387,21 @@ function viewHome(params){
       <span class="hexi">${icon("filter",20)}</span>
       <span class="t"><b>Bekijk alle selecties</b><span>Ruim 115 kant-en-klare selecties in PortefeuilleSignalen: einde rentevast, topafslag, aflossingsvrij, LTV, verjaardagen en meer. Eén klik en de selectie opent direct.</span></span>
       <span class="btn btn-k btn-sm">Naar de selecties →</span></a>
+    <div id="page-hits"></div>
     <div class="grid" id="grid"></div>
     <div id="kb-hits"></div>
   </div>`;
 
   /* Deze externe klanttools staan onderaan hun blok, in deze volgorde */
   const ONDERAAN = ["hypotheekcijfer","funderingscijfer","pandwise","duurzaamheidsprofiel","woningcijfer","klimaatcijfer"];
+  const PAGINAS = [
+    {t:"Jouw huisstijl", d:"Logo, kleuren en lettertype instellen, bewaren en laden", h:"#/huisstijl", ic:"partner", z:"huisstijl logo kleur kleuren lettertype font eigen stijl bewaren opslaan laden huisstijlbestand branding"},
+    {t:"Marketingkalender", d:"Per maand de klantactiviteiten, met agendabestand", h:"#/kalender", ic:"calendar", z:"kalender agenda planning jaarplanning maand maanden ics jaar activiteiten"},
+    {t:"Kennisbank", d:"Korte uitlegartikelen over hypotheken, wonen en fiscaliteit", h:"#/kennisbank", ic:"faq", z:"kennisbank uitleg artikelen begrippen vragen antwoorden faq"},
+    {t:"Selecties in PortefeuilleSignalen", d:"Ruim 115 kant-en-klare selecties die direct openen", h:"#/item/portefeuillesignalen", ic:"filter", z:"selecties selectie portefeuille signalen doelgroep"},
+    {t:"Vraag of wens indienen", d:"Stel een vraag of vraag nieuw materiaal aan", h:"#/vraag", ic:"contact", z:"vraag wens contact idee feedback aanvragen helpdesk partner aanmelden"},
+    {t:"Disclaimer", d:"Gebruik voor eigen rekening en risico", h:"#/disclaimer", ic:"document", z:"disclaimer aansprakelijkheid voorwaarden risico gebruik"}
+  ];
   const grid=$("#grid");
   function draw(){
     const T = terms(state.q);
@@ -3412,6 +3425,9 @@ function viewHome(params){
     $("#reset2")?.addEventListener("click", resetAll);
     // Kennisbank-treffers
     const kbHits = T.length ? KB.filter(a=>T.every(x=>norm(a.t+" "+a.b).includes(x))).sort((a,b)=>(T.some(x=>norm(a.t).includes(x))?0:1)-(T.some(x=>norm(b.t).includes(x))?0:1)) : [];
+    const pgBox = $("#page-hits");
+    const pgHits = T.length ? PAGINAS.filter(pg=>T.every(x=>{ const h=norm(pg.t+" "+pg.z); return [x,...(SYN[x]||[]).map(norm)].some(y=>h.includes(y)); })) : [];
+    if (pgBox) pgBox.innerHTML = pgHits.length ? `<div class="page-hits">${pgHits.map(pg=>`<a class="cut" href="${pg.h}"><span class="hexi">${icon(pg.ic,16)}</span><span><b>${highlight(pg.t,T)}</b><small>${esc(pg.d)}</small></span><span aria-hidden="true">→</span></a>`).join("")}</div>` : "";
     const kbBox = $("#kb-hits");
     if (kbBox) kbBox.innerHTML = kbHits.length ? `<div class="panel cut" style="margin-top:18px"><h2><span class="hexi">${icon("faq",18)}</span>Ook in de kennisbank: ${kbHits.length} ${kbHits.length===1?"artikel":"artikelen"}</h2>
       <div class="links">${kbHits.slice(0,5).map(a=>`<a href="#/kennisbank?a=${esc(kbSlug(a))}"><span>${highlight(a.t,T)}</span><small>→</small></a>`).join("")}</div>
@@ -6140,6 +6156,23 @@ function route(){
 document.addEventListener("keydown",e=>{ if(e.key==="/" && !/input|textarea|select/i.test(document.activeElement.tagName)){ const f=$("#fq")||$("#hq"); if(f){ e.preventDefault(); f.focus(); f.scrollIntoView({block:"center"}); } } });
 window.addEventListener("hashchange",route);
 vulFooterPartners();
+/* Zoekindex aanvullen met de inhoud van items (na het laden van alle data) */
+(function(){
+  const zet = (id, tekst) => { const i = ITEMS.find(x=>x.id===id); if (i) i.zoek = ((i.zoek||"") + " " + tekst).trim(); };
+  zet("portefeuillesignalen", SELECTIES.flatMap(g=>[g.g, g.d, ...g.s.map(x=>x[0])]).join(" ") + " " + SIGNALEN.map(x=>x[1]+" "+x[2]).join(" "));
+  const rt = REKENTOOLS.flatMap(g=>[g.g, ...g.t.map(x=>x[0])]).join(" ");
+  zet("websitetools-2-maanden", rt);
+  zet("hypotheekrente-tools", REKENTOOLS.filter(g=>/rente/i.test(g.g)).flatMap(g=>g.t.map(x=>x[0])).join(" "));
+  ITEMS.forEach(i=>{
+    if (i.data && i.data.sjablonen) zet(i.id, i.data.sjablonen.map(x=>x.naam+" "+x.onderwerp).join(" "));
+    if (i.data && i.data.punten) zet(i.id, i.data.punten.join(" "));
+    if (i.kind==="check" && CHECKS[i.id]) zet(i.id, CHECKS[i.id].h1+" "+CHECKS[i.id].secties.flatMap(x=>[x.titel, ...x.items.map(q=>q.q)]).join(" "));
+    if (i.kind==="form") { const f = FORMS.find(x=>x.id===i.id); if (f) zet(i.id, f.stappen.flatMap(x=>[x.titel, ...x.vragen.map(q=>q.v)]).join(" ")); }
+  });
+  zet("verzekeringscheck", Object.values(VC_Q).flatMap(x=>[x.titel, ...x.items.map(q=>q.q)]).join(" "));
+  zet("woontoekomst-check", WTC_Q.map(q=>q.title+" "+q.options.map(o=>Array.isArray(o)?o.join(" "):o).join(" ")).join(" "));
+  ITEMS.forEach(i=>HAY.set(i.id, haystack(i)));
+})();
 route();
 </script>
 </body>
