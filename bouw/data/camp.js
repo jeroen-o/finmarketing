@@ -224,6 +224,82 @@ Met vriendelijke groet,
     compliance:"Oversluiten loont niet altijd (boete, advies-, taxatie- en notariskosten). Formuleer besparing als mogelijkheid. Het oorspronkelijke sjabloon sprak van ‘de rente is momenteel laag’; dat is uit deze versie gehaald." }
 ];
 
+CAMP.push({ id:"campagne-opstal-inboedel", title:"Jaarlijkse check: is de opstal- en inboedeldekking nog passend?", short:"Jaarlijkse check opstal & inboedel",
+  summary:"Een vast jaarlijks contactmoment voor schadeklanten: zijn herbouwwaarde, inboedelwaarde, eigen risico en dekking nog passend na verbouwing, verduurzaming, dure aankopen of een andere gezinssituatie?",
+  waarom:["Woningen en inboedels veranderen, polissen niet vanzelf. Na een verbouwing, zonnepanelen of een warmtepomp, dure aankopen of een verhuizing lopen veel klanten ongemerkt het risico op onderverzekering. Bij schade keert de verzekeraar dan mogelijk maar een deel uit.",
+    "Een jaarlijkse check is goede nazorg en een logisch moment voor contact. Je laat zien dat je meedenkt, voorkomt teleurstelling bij schade en vindt vaak ook kansen: een betere dekking, een passend eigen risico of een bundel."],
+  blokken:[["Opstal: waar let je op?",["Herbouwwaarde langer dan 5 jaar geleden bepaald","Verbouwing, uitbouw of verduurzaming","Verhuur, leegstand of bedrijf aan huis","Garantie tegen onderverzekering"]],
+           ["Inboedel: waar let je op?",["Inboedelwaarde langer dan 3 jaar geleden berekend","Dure aankopen: e-bike, elektronica, sieraden","Samenwonen, gezinsuitbreiding, kinderen uit huis","Thuiswerken en huurdersbelang"]]],
+  doelgroep:["Klanten met een opstal- en/of inboedelverzekering","Bij voorkeur 1–2 maanden vóór de prolongatiedatum","Extra aandacht: polis ouder dan 3 jaar zonder wijziging, of een signaal van verbouwing, verduurzaming of verhuizing"],
+  watDoen:"Nodig de klant jaarlijks uit om de dekking te controleren. Stuur de link naar de check, bespreek de uitkomst en leg vast wat je hebt besproken en wat de klant besluit.",
+  stappen:[["Mail de klant","Stuur de uitnodiging met de link naar de check opstal & inboedel (maak je persoonlijke link via de tool)."],["Bespreek de uitkomst","De klant stuurt de samenvatting naar je. Bel of plan een kort gesprek, en laat zo nodig de herbouw- of inboedelwaarde opnieuw bepalen."],["Pas aan en bevestig","Verwerk wijzigingen bij de verzekeraar en bevestig de uitkomst per e-mail, ook als de klant niets wil wijzigen (zorgplicht en dossiervorming)."],["Geen reactie? Herinner","Stuur na twee weken een korte herinnering en leg vast dat je de klant hebt benaderd."]],
+  sjablonen:[
+    {naam:"Mail: uitnodiging jaarlijkse check", onderwerp:"Is uw woning en inboedel nog goed verzekerd?", tekst:`{aanhef},
+
+Uw woning en uw spullen veranderen in de loop van de tijd, uw verzekering niet vanzelf. Daarom nodigen wij u uit voor de jaarlijkse check van uw opstal- en inboedelverzekering.
+
+## Waarom is dit belangrijk?
+Heeft u verbouwd, zonnepanelen of een warmtepomp laten plaatsen, dure spullen gekocht of is uw gezinssituatie veranderd? Dan past uw verzekering mogelijk niet meer. Bij onderverzekering keert de verzekeraar bij schade soms maar een deel uit.
+
+## Doe de check in drie minuten
+Via de link hieronder beantwoordt u vijftien korte vragen. U ziet direct of uw dekking nog passend lijkt, en u kunt de uitkomst naar ons sturen:
+[link naar de check]
+
+Liever direct even bellen? Dat kan via {tel}.
+
+Met vriendelijke groet,
+
+{adviseur}
+{kantoor}`},
+    {naam:"Mail: na een verbouwing of verduurzaming", onderwerp:"Verbouwd of verduurzaamd? Check uw verzekering", tekst:`{aanhef},
+
+Gefeliciteerd met uw verbouwing of verduurzaming. Een mooie stap, en een goed moment om ook naar uw verzekeringen te kijken.
+
+## Waar moet u aan denken?
+- Een uitbouw, nieuwe keuken of badkamer verhoogt vaak de herbouwwaarde van uw woning.
+- Zonnepanelen, een warmtepomp, thuisbatterij of laadpaal zijn niet altijd automatisch (volledig) meeverzekerd.
+- Is uw woning meer waard geworden, dan kan ook uw inboedel zijn veranderd.
+
+Wij controleren graag of uw opstal- en inboedelverzekering hier nog bij passen. Reageer op deze mail of bel ons op {tel}.
+
+Met vriendelijke groet,
+
+{adviseur}
+{kantoor}`},
+    {naam:"Mail: herinnering", onderwerp:"Herinnering: jaarlijkse check van uw woonverzekeringen", tekst:`{aanhef},
+
+Enige tijd geleden nodigden wij u uit voor de jaarlijkse check van uw opstal- en inboedelverzekering. Wij hebben nog niets van u gehoord.
+
+De check kost ongeveer drie minuten en helpt u verrassingen bij schade te voorkomen:
+[link naar de check]
+
+Is er niets veranderd in uw situatie? Dan hoort u dat ook graag van u, zodat we dat kunnen vastleggen.
+
+Met vriendelijke groet,
+
+{adviseur}
+{kantoor}`},
+    {naam:"Mail: bevestiging van het gesprek", onderwerp:"Bevestiging: uitkomst check opstal en inboedel", tekst:`{aanhef},
+
+Dank voor het prettige contact over uw opstal- en inboedelverzekering. Hierbij bevestigen wij wat we hebben besproken.
+
+## Wat we hebben besproken
+- [bijvoorbeeld: herbouwwaarde opnieuw bepaald / zonnepanelen meeverzekerd / inboedelwaarde aangepast]
+- [eventuele wijziging in eigen risico of dekking]
+
+## Uw keuze
+- [wijziging doorgevoerd per ... / u heeft besloten niets te wijzigen]
+
+Klopt dit niet, of verandert er iets in uw situatie? Laat het ons dan weten. Wij nemen volgend jaar weer contact met u op.
+
+Met vriendelijke groet,
+
+{adviseur}
+{kantoor}`}],
+  links:[{label:"Tool: check opstal & inboedel", url:"#/item/verzekeringscheck"},{label:"Klimaatcijfer.nl", url:"https://klimaatcijfer.nl/"},{label:"Funderingscijfer.nl", url:"https://funderingscijfer.nl/"}],
+  tags:["opstal","inboedel","schadeverzekering","onderverzekering","herbouwwaarde","inboedelwaarde","nazorg","prolongatie","verbouwing","zonnepanelen"],
+  compliance:"De check is een hulpmiddel, geen advies; de polisvoorwaarden zijn leidend. Leg advies en de keuze van de klant vast, ook als de klant niets wijzigt. Commerciële mail alleen aan klanten of met toestemming, met afmeldmogelijkheid." });
+
 const SEL = [
   { id:"sel-scheiding", title:"Mogelijke relaties in scheiding", tekst:["Uit de praktijk blijkt dat ongeveer twee op de drie relaties in deze selectie in een scheiding zitten en daarna goed advies nodig hebben over de gevolgen voor hun hypotheek. Andere relaties blijken vaak te verhuizen, bijvoorbeeld vanwege een nieuwe baan."], tip:"Bel deze relaties met een servicecall: “Enige tijd geleden heeft u via ons kantoor uw hypotheek afgesloten. Hoe gaat het nu met u?”", tags:["scheiding","verhuizen","service-call","woning te koop"], compliance:"Benoem een vermoedelijke scheiding nooit richting de klant; open het gesprek neutraal." },
   { id:"sel-gestopte-rokers", title:"Gestopte rokers actie", tekst:["Stoppen met roken levert een flinke besparing op de premie van een overlijdensrisicoverzekering op. Deze selectie laat zien welke klanten een ORV van vóór 2012 hebben en toen rookten. Benader ze met een nieuwsbrief of update over de mogelijke besparing als ze inmiddels gestopt zijn."], tags:["orv","roken","besparen","premie","overlijdensrisicoverzekering"], compliance:"Rookgedrag is gevoelige informatie: vraag er niet naar in een massamail, maar informeer algemeen." },
