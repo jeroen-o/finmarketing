@@ -938,7 +938,7 @@ const SYN = {
   "duurzaam":["duurzaamheid","verduurzaming","energie"], "energie":["duurzaamheid","energielabel"],
   "social":["linkedin"], "aflosvrij":["aflossingsvrij"], "aflossingsvrij":["aflosvrij"], "brief":["brieven"], "campagnes":["campagne"], "mail":["e-mail","nieuwsbrief","mailing"], "nieuwsbrief":["mailing"],
   "rekenen":["rekentool","calculator"], "calculator":["rekentool"], "acceptatie":["voorwaarden"],
-  "huis":["woning"], "woning":["huis"], "compliance":["afm","wft","avg","dfo"], "hypotheekrente":["rente","renteoverzicht","rente-api"], "oversluitboete":["boete","boeterente","boetevrij"], "boeterente":["boete","boetevrij"], "55":["55+","55-plus","senioren","woontoekomst"], "plus":["+"], "60":["60+","senioren"], "senioren":["55+","60+","woontoekomst","verzilver"], "ouderen":["senioren","55+","woontoekomst"], "zzp":["ondernemer","zzp'er"], "ondernemers":["ondernemer","kvk"], "rekentools":["rekentool","websitetools","calculator"], "rekentool":["rekentools","websitetools","calculator"], "websitetools":["websitetool","rekentools","tools voor op je website"], "websitetool":["websitetools","rekentools"], "website":["websitetools","eigen website"], "rentes":["rente","hypotheekrente"], "api":["webservices","koppeling"], "dfo":["dfobv","bureau dfo"], "dfobv":["dfo"], "nvhp":["hypothecairplanner","hypothecair planner"], "hypothecairplanner":["nvhp"], "opleiding":["opleidingen","masterclass","pe"], "opleidingen":["opleiding","masterclass"], "masterclass":["masterclasses","opleiding"], "pe":["permanente educatie","opleiding"], "afm":["compliance"],
+  "huis":["woning"], "woning":["huis"], "verzilveren":["verzilverhypotheek","woningverzilveraar"], "opeethypotheek":["verzilverhypotheek"], "compliance":["afm","wft","avg","dfo"], "hypotheekrente":["rente","renteoverzicht","rente-api"], "oversluitboete":["boete","boeterente","boetevrij"], "boeterente":["boete","boetevrij"], "55":["55+","55-plus","senioren","woontoekomst"], "plus":["+"], "60":["60+","senioren"], "senioren":["55+","60+","woontoekomst","verzilver"], "ouderen":["senioren","55+","woontoekomst"], "zzp":["ondernemer","zzp'er"], "ondernemers":["ondernemer","kvk"], "rekentools":["rekentool","websitetools","calculator"], "rekentool":["rekentools","websitetools","calculator"], "websitetools":["websitetool","rekentools","tools voor op je website"], "websitetool":["websitetools","rekentools"], "website":["websitetools","eigen website"], "rentes":["rente","hypotheekrente"], "api":["webservices","koppeling"], "dfo":["dfobv","bureau dfo"], "dfobv":["dfo"], "nvhp":["hypothecairplanner","hypothecair planner"], "hypothecairplanner":["nvhp"], "opleiding":["opleidingen","masterclass","pe"], "opleidingen":["opleiding","masterclass"], "masterclass":["masterclasses","opleiding"], "pe":["permanente educatie","opleiding"], "afm":["compliance"],
   "fundering":["funderingsrisico"], "klimaat":["klimaatrisico"], "rente":["renteschok","rentes"], "word":["nieuwsbrief"]
 };
 function haystack(i){
@@ -985,10 +985,10 @@ function scoreItem(i, terms, gew, deels){
   if (!terms.length) return 1;
   const h = HAY.get(i.id); let total = 0, raak = 0;
   for (const t of terms){
-    const alts = [...vormen(t), ...(SYN[t]||[]).map(norm)];
+    const vs = vormen(t), alts = [...vs, ...(SYN[t]||[]).map(norm)];
     let best = 0;
     for (const a of alts){
-      const w = a===t ? 1 : .6;
+      const w = a===t ? 1 : vs.includes(a) ? .9 : .6;
       if (h.t.includes(a)) best = Math.max(best, 5*w);
       else if (h.g.includes(a)) best = Math.max(best, 3*w);
       else if (h.r.includes(a)) best = Math.max(best, 1*w);

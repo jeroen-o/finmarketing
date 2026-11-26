@@ -194,4 +194,4 @@ IDEEEN.push(
 ITEMS.push({ id:"insluitcodes", cat:"klanttools", kind:"insluiten", model:"gratis",
   title:"Insluitcodes: tools op je eigen website", by:"Blinqx V&H",
   summary:"Zet PandWise, Duurzaamheidsprofiel of een klanttool uit deze bibliotheek met één stukje code op je eigen website, in Google Sites, WordPress of Wix. Met je kantoornaam, logo en kleuren vooraf ingevuld.",
-  channels:["Eigen website (embed)","Google Sites","WordPress","Wix"], tags:["insluitcode","embed","iframe","website","google sites","wordpress","wix","pandwise","duurzaamheidsprofiel","woningwaarde","code"] });
+  channels:["Eigen website (embed)","Google Sites","WordPress","Wix"], tags:["insluitcode","embed","iframe","website","google sites","wordpress","wix","pandwise","duurzaamheidsprofiel","woningwaarde","code","woningverzilveraar","verzilveren"] });

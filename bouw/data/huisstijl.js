@@ -348,6 +348,9 @@ const INSLUIT_EXTERN = {
   woningcijfer:{ naam:"Woningcijfer: hoe toekomstbestendig is de woning?", titel:"Woningcijfer", hoogte:1200, noFrame:true,
     url:() => "https://www.woningcijfer.nl/",
     info:"Klanten zien welk cijfer een woning scoort, met de cijfers voor woning, klimaat en fundering. Woningcijfer staat insluiten in een iframe niet toe; gebruik een knop of link." },
+  woningverzilveraar:{ naam:"Woningverzilveraar: verzilverhypotheken vergelijken (NVHP)", titel:"Woningverzilveraar", hoogte:1800,
+    url:() => "https://woningverzilveraar.nl/",
+    info:"Senioren zien hoeveel overwaarde ze kunnen opnemen en welke verzilverhypotheken bij hen passen: a.s.r., MUNT, Vandaag, ABN AMRO, ZilverHuis, SocioHypotheek en SVn. De NVHP houdt aanbod en voorwaarden actueel; via de iframe staat op je site altijd de nieuwste versie." },
   duurzaamheidsprofiel:{ naam:"Duurzaamheidsprofiel", titel:"Duurzaamheidsprofiel", hoogte:1200,
     url:() => "https://duurzaamheidsprofiel.hypotheekbond.nl/",
     info:"Klanten zien op postcode en huisnummer hoe hun woning scoort en welke maatregelen mogelijk zijn, met kosten en besparing." }
