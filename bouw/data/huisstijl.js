@@ -351,6 +351,9 @@ const INSLUIT_EXTERN = {
   woningverzilveraar:{ naam:"Woningverzilveraar: verzilverhypotheken vergelijken (NVHP)", titel:"Woningverzilveraar", hoogte:1000, gegevens:true, contact:true,
     url:o => "https://woningverzilveraar.nl/?embed=1" + [["kantoor",o.kantoor],["adviseur",o.adviseur],["logo",/^https:\/\//i.test(o.logo)?o.logo:""],["kleur",/^#[0-9a-f]{6}$/i.test(o.kleur||"")?o.kleur:""],["web",/^https?:\/\//i.test(o.web||"")?o.web:""],["email",o.email],["tel",o.tel]].filter(x=>x[1]).map(([k,v])=>`&${k}=${encodeURIComponent(v)}`).join(""),
     info:"Senioren zien hoeveel overwaarde ze kunnen opnemen en welke verzilverhypotheken bij hen passen: a.s.r., MUNT, Vandaag, ABN AMRO, ZilverHuis, SocioHypotheek en SVn. De NVHP houdt aanbod en voorwaarden actueel; via de iframe staat op je site altijd de nieuwste versie. Op jouw site staat ‘Aangeboden door’ met je naam en logo, en de knop ‘Neem contact op’ gaat naar jou in plaats van naar de NVHP. Zonder contactgegevens vervalt die knop." },
+  werkgeversverklaring:{ naam:"Werkgeversverklaring: online invullen (NHG 2027)", titel:"Werkgeversverklaring", hoogte:2200,
+    url:() => "https://werkgeversverklaring.nl/",
+    info:"Klanten of hun werkgever vullen het model werkgeversverklaring NHG 2027 online in en downloaden hem als pdf. Wil je je eigen logo en kantoorgegevens erop? Stel die in op werkgeversverklaring.nl/adviseurs.html en zet het gedownloade HTML-bestand op je eigen website." },
   duurzaamheidsprofiel:{ naam:"Duurzaamheidsprofiel", titel:"Duurzaamheidsprofiel", hoogte:1200,
     url:() => "https://duurzaamheidsprofiel.hypotheekbond.nl/",
     info:"Klanten zien op postcode en huisnummer hoe hun woning scoort en welke maatregelen mogelijk zijn, met kosten en besparing." }
